@@ -26,7 +26,13 @@
   --violet-soft: #f1eafe;
   --shadow: 0 16px 42px rgba(32, 36, 39, 0.08);
   --shadow-hover: 0 18px 50px rgba(32, 36, 39, 0.13);
-  --accent-visible: var(--accent);
+  --accent: #2563a9;
+  --accent-visible: #2563a9;
+  --accent-soft: rgba(37, 99, 169, 0.18);
+  --accent-card: rgba(37, 99, 169, 0.13);
+  --accent-border: rgba(37, 99, 169, 0.58);
+  --accent-glow: rgba(37, 99, 169, 0.42);
+  --accent-ink: #4f8dd3;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -50,7 +56,6 @@
     --violet-soft: #281f3f;
     --shadow: 0 16px 42px rgba(0, 0, 0, 0.32);
     --shadow-hover: 0 18px 50px rgba(0, 0, 0, 0.42);
-    --accent-visible: color-mix(in srgb, var(--accent) 68%, #ffffff);
   }
 }
 
@@ -291,10 +296,10 @@ input {
   gap: 18px;
   margin: 0 0 22px;
   padding: 20px;
-  border: 1px solid color-mix(in srgb, var(--accent-visible) 38%, var(--line));
+  border: 1px solid var(--accent-border);
   border-radius: 8px;
   background:
-    linear-gradient(90deg, color-mix(in srgb, var(--accent-visible) 20%, transparent), transparent 52%),
+    linear-gradient(90deg, var(--accent-card), transparent 52%),
     var(--panel);
   box-shadow: var(--shadow);
   animation: panelIn 220ms ease both;
@@ -366,10 +371,10 @@ body[data-view="focus"] .table-section {
   position: relative;
   overflow: hidden;
   padding: 16px 14px 14px 18px;
-  border: 1px solid color-mix(in srgb, var(--accent-visible) 22%, var(--line));
+  border: 1px solid var(--accent-border);
   border-radius: 8px;
   background:
-    linear-gradient(90deg, color-mix(in srgb, var(--accent-visible) 13%, transparent), transparent 34%),
+    linear-gradient(90deg, var(--accent-card), transparent 34%),
     var(--panel);
   box-shadow: 0 10px 26px rgba(32, 36, 39, 0.06);
   transition:
@@ -396,7 +401,7 @@ body[data-view="focus"] .table-section {
 }
 
 .task:hover {
-  border-color: color-mix(in srgb, var(--accent-visible) 40%, var(--line));
+  border-color: var(--accent-border);
   box-shadow: var(--shadow-hover);
   transform: translateY(-2px);
 }
@@ -436,8 +441,8 @@ body[data-view="focus"] .table-section {
   border-radius: 999px;
   background: var(--accent-visible);
   box-shadow:
-    0 0 0 4px color-mix(in srgb, var(--accent-visible) 22%, transparent),
-    0 0 18px color-mix(in srgb, var(--accent-visible) 28%, transparent);
+    0 0 0 4px var(--accent-soft),
+    0 0 18px var(--accent-glow);
   flex: 0 0 auto;
 }
 
@@ -446,10 +451,10 @@ body[data-view="focus"] .table-section {
   align-items: center;
   min-height: 24px;
   padding: 0 8px;
-  border: 1px solid color-mix(in srgb, var(--accent-visible) 42%, var(--line));
+  border: 1px solid var(--accent-border);
   border-radius: 999px;
-  background: color-mix(in srgb, var(--accent-visible) 16%, var(--panel));
-  color: color-mix(in srgb, var(--accent-visible) 70%, var(--ink));
+  background: var(--accent-soft);
+  color: var(--accent-ink);
   font-size: 12px;
   font-weight: 900;
 }
@@ -541,8 +546,8 @@ body[data-view="focus"] .table-section {
 
 .mini-button:hover,
 .mini-button.is-active {
-  border-color: color-mix(in srgb, var(--accent-visible) 45%, var(--line));
-  background: color-mix(in srgb, var(--accent-visible) 12%, var(--panel));
+  border-color: var(--accent-border);
+  background: var(--accent-soft);
   color: var(--ink);
 }
 
@@ -672,8 +677,8 @@ pre {
 @media (prefers-color-scheme: dark) {
   .dealer-dot {
     box-shadow:
-      0 0 0 4px color-mix(in srgb, var(--accent-visible) 38%, transparent),
-      0 0 24px color-mix(in srgb, var(--accent-visible) 42%, transparent);
+      0 0 0 4px var(--accent-soft),
+      0 0 24px var(--accent-glow);
   }
 
   .task::before {
@@ -681,15 +686,15 @@ pre {
   }
 
   .task {
-    border-color: color-mix(in srgb, var(--accent-visible) 32%, var(--line));
+    border-color: var(--accent-border);
     background:
-      linear-gradient(90deg, color-mix(in srgb, var(--accent-visible) 18%, transparent), transparent 40%),
+      linear-gradient(90deg, var(--accent-card), transparent 40%),
       var(--panel);
   }
 
   .brand-badge {
-    background: color-mix(in srgb, var(--accent-visible) 22%, var(--panel));
-    color: color-mix(in srgb, var(--accent-visible) 62%, #ffffff);
+    background: var(--accent-soft);
+    color: var(--accent-ink);
   }
 
   a {
@@ -1528,6 +1533,7 @@ async function boot() {
     pageStatus: state.overrides[task.id] || task.pageStatus,
     inventorySignal: state.signalOverrides[task.id] || inferSignal(task),
     accent: dealerAccents[task.dealer] || "#2563a9",
+    accentStyle: accentStyle(dealerAccents[task.dealer] || "#2563a9"),
     inventoryUrl: sourceFor(task.dealer)?.inventoryUrl || "",
   }));
   populateDealerFilter();
@@ -1634,7 +1640,7 @@ function renderFocusTask() {
     return;
   }
 
-  els.focusPanel.style.setProperty("--accent", task.accent);
+  applyAccentStyle(els.focusPanel, task.accentStyle);
   els.focusTitle.textContent = `${task.year} ${task.make} ${task.model}`;
   els.focusMeta.textContent = `${task.dealer} • ${statusLabels[task.pageStatus]}`;
   els.focusTags.innerHTML = `${signalPill(task.inventorySignal)}${statusPill(task.pageStatus)}`;
@@ -1666,7 +1672,7 @@ function renderQueue(container, tasks, type) {
 
 function renderTask(task) {
   return `
-    <article class="task" style="--accent: ${escapeAttr(task.accent)}">
+    <article class="task" style="${escapeAttr(task.accentStyle)}">
       <div class="task-title">
         <div>
           <span class="dealer-dot"></span>
@@ -1686,7 +1692,7 @@ function renderTable(tasks) {
     .map(
       (task) => `
         <tr>
-          <td><span class="table-dealer" style="--accent: ${escapeAttr(task.accent)}"><span class="dealer-dot"></span><span class="brand-badge">${escapeHtml(task.make || "Brand")}</span>${escapeHtml(task.dealer)}</span></td>
+          <td><span class="table-dealer" style="${escapeAttr(task.accentStyle)}"><span class="dealer-dot"></span><span class="brand-badge">${escapeHtml(task.make || "Brand")}</span>${escapeHtml(task.dealer)}</span></td>
           <td><strong>${escapeHtml(task.year)} ${escapeHtml(task.make)} ${escapeHtml(task.model)}</strong></td>
           <td><div class="tag-stack">${signalPill(task.inventorySignal)}${statusPill(task.pageStatus)}</div></td>
           <td><a href="${escapeAttr(task.inventoryUrl)}" target="_blank" rel="noreferrer">Open inventory</a></td>
@@ -1883,6 +1889,47 @@ function escapeHtml(value) {
 
 function escapeAttr(value) {
   return escapeHtml(value);
+}
+
+function accentStyle(hex) {
+  const rgb = hexToRgb(hex);
+  if (!rgb) {
+    return "--accent:#2563a9;--accent-soft:rgba(37,99,169,.18);--accent-border:rgba(37,99,169,.55);--accent-ink:#78b7ff;";
+  }
+  const { r, g, b } = rgb;
+  return [
+    `--accent:${hex}`,
+    `--accent-visible:${hex}`,
+    `--accent-soft:rgba(${r},${g},${b},.18)`,
+    `--accent-card:rgba(${r},${g},${b},.13)`,
+    `--accent-border:rgba(${r},${g},${b},.58)`,
+    `--accent-glow:rgba(${r},${g},${b},.42)`,
+    `--accent-ink:${brighten(hex, 42)}`,
+  ].join(";");
+}
+
+function applyAccentStyle(element, styleText) {
+  styleText.split(";").forEach((declaration) => {
+    const [property, value] = declaration.split(":");
+    if (property && value) element.style.setProperty(property.trim(), value.trim());
+  });
+}
+
+function hexToRgb(hex) {
+  const clean = String(hex).replace("#", "").trim();
+  if (!/^[0-9a-f]{6}$/i.test(clean)) return null;
+  return {
+    r: parseInt(clean.slice(0, 2), 16),
+    g: parseInt(clean.slice(2, 4), 16),
+    b: parseInt(clean.slice(4, 6), 16),
+  };
+}
+
+function brighten(hex, amount) {
+  const rgb = hexToRgb(hex);
+  if (!rgb) return "#78b7ff";
+  const toHex = (value) => Math.max(0, Math.min(255, value)).toString(16).padStart(2, "0");
+  return `#${toHex(rgb.r + amount)}${toHex(rgb.g + amount)}${toHex(rgb.b + amount)}`;
 }
 
 boot().catch((error) => {
