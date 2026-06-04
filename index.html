@@ -294,10 +294,20 @@ input {
   border: 1px solid color-mix(in srgb, var(--accent-visible) 38%, var(--line));
   border-radius: 8px;
   background:
-    linear-gradient(90deg, color-mix(in srgb, var(--accent-visible) 16%, transparent), transparent 46%),
+    linear-gradient(90deg, color-mix(in srgb, var(--accent-visible) 20%, transparent), transparent 52%),
     var(--panel);
   box-shadow: var(--shadow);
   animation: panelIn 220ms ease both;
+  position: relative;
+  overflow: hidden;
+}
+
+.focus-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 10px;
+  background: var(--accent-visible);
 }
 
 .focus-panel h2 {
@@ -355,10 +365,12 @@ body[data-view="focus"] .table-section {
 .task {
   position: relative;
   overflow: hidden;
-  padding: 14px;
-  border: 1px solid var(--line);
+  padding: 16px 14px 14px 18px;
+  border: 1px solid color-mix(in srgb, var(--accent-visible) 22%, var(--line));
   border-radius: 8px;
-  background: var(--panel);
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--accent-visible) 13%, transparent), transparent 34%),
+    var(--panel);
   box-shadow: 0 10px 26px rgba(32, 36, 39, 0.06);
   transition:
     transform 180ms ease,
@@ -371,8 +383,16 @@ body[data-view="focus"] .table-section {
   content: "";
   position: absolute;
   inset: 0 auto 0 0;
-  width: 5px;
+  width: 8px;
   background: var(--accent-visible);
+}
+
+.task::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-visible), transparent 62%);
 }
 
 .task:hover {
@@ -393,6 +413,7 @@ body[data-view="focus"] .table-section {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .task-title strong {
@@ -400,18 +421,37 @@ body[data-view="focus"] .table-section {
 }
 
 .task-meta {
-  margin: 5px 0 12px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 12px;
   color: var(--muted);
   font-size: 13px;
 }
 
 .dealer-dot {
-  width: 10px;
-  height: 10px;
+  width: 13px;
+  height: 13px;
   border-radius: 999px;
   background: var(--accent-visible);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-visible) 18%, transparent);
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--accent-visible) 22%, transparent),
+    0 0 18px color-mix(in srgb, var(--accent-visible) 28%, transparent);
   flex: 0 0 auto;
+}
+
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0 8px;
+  border: 1px solid color-mix(in srgb, var(--accent-visible) 42%, var(--line));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-visible) 16%, var(--panel));
+  color: color-mix(in srgb, var(--accent-visible) 70%, var(--ink));
+  font-size: 12px;
+  font-weight: 900;
 }
 
 .tag-stack {
@@ -631,11 +671,25 @@ pre {
 
 @media (prefers-color-scheme: dark) {
   .dealer-dot {
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-visible) 34%, transparent);
+    box-shadow:
+      0 0 0 4px color-mix(in srgb, var(--accent-visible) 38%, transparent),
+      0 0 24px color-mix(in srgb, var(--accent-visible) 42%, transparent);
   }
 
   .task::before {
     filter: saturate(1.45) brightness(1.2);
+  }
+
+  .task {
+    border-color: color-mix(in srgb, var(--accent-visible) 32%, var(--line));
+    background:
+      linear-gradient(90deg, color-mix(in srgb, var(--accent-visible) 18%, transparent), transparent 40%),
+      var(--panel);
+  }
+
+  .brand-badge {
+    background: color-mix(in srgb, var(--accent-visible) 22%, var(--panel));
+    color: color-mix(in srgb, var(--accent-visible) 62%, #ffffff);
   }
 
   a {
@@ -1620,7 +1674,7 @@ function renderTask(task) {
         </div>
         <div class="tag-stack">${signalPill(task.inventorySignal)}${statusPill(task.pageStatus)}</div>
       </div>
-      <p class="task-meta">${escapeHtml(task.dealer)}</p>
+      <p class="task-meta"><span class="brand-badge">${escapeHtml(task.make || sourceFor(task.dealer)?.shortName || "Brand")}</span>${escapeHtml(task.dealer)}</p>
       <div class="signal-actions">${signalButtons(task)}</div>
       <div class="task-actions">${actionButtons(task)}</div>
     </article>
@@ -1632,7 +1686,7 @@ function renderTable(tasks) {
     .map(
       (task) => `
         <tr>
-          <td><span class="table-dealer" style="--accent: ${escapeAttr(task.accent)}"><span class="dealer-dot"></span>${escapeHtml(task.dealer)}</span></td>
+          <td><span class="table-dealer" style="--accent: ${escapeAttr(task.accent)}"><span class="dealer-dot"></span><span class="brand-badge">${escapeHtml(task.make || "Brand")}</span>${escapeHtml(task.dealer)}</span></td>
           <td><strong>${escapeHtml(task.year)} ${escapeHtml(task.make)} ${escapeHtml(task.model)}</strong></td>
           <td><div class="tag-stack">${signalPill(task.inventorySignal)}${statusPill(task.pageStatus)}</div></td>
           <td><a href="${escapeAttr(task.inventoryUrl)}" target="_blank" rel="noreferrer">Open inventory</a></td>
@@ -1837,4 +1891,4 @@ boot().catch((error) => {
 
     </script>
   </body>
-</html> 
+</html>
