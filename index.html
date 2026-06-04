@@ -12,6 +12,7 @@
   --ink: #202427;
   --muted: #657078;
   --line: #d9e0e4;
+  --soft-line: #edf1f3;
   --green: #1b7f53;
   --green-soft: #e7f4ee;
   --blue: #2563a9;
@@ -20,7 +21,10 @@
   --amber-soft: #fff4d8;
   --red: #b42318;
   --red-soft: #fde8e6;
-  --shadow: 0 14px 40px rgba(32, 36, 39, 0.08);
+  --violet: #7c3aed;
+  --violet-soft: #f1eafe;
+  --shadow: 0 16px 42px rgba(32, 36, 39, 0.08);
+  --shadow-hover: 0 18px 50px rgba(32, 36, 39, 0.13);
 }
 
 * {
@@ -29,7 +33,10 @@
 
 body {
   margin: 0;
-  background: var(--bg);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(245, 247, 248, 0.94)),
+    radial-gradient(circle at 12% 0%, rgba(37, 99, 169, 0.1), transparent 32%),
+    var(--bg);
   color: var(--ink);
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -43,7 +50,11 @@ body {
   gap: 24px;
   padding: 28px 32px 20px;
   border-bottom: 1px solid var(--line);
-  background: var(--panel);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  position: sticky;
+  top: 0;
+  z-index: 5;
 }
 
 .eyebrow {
@@ -99,10 +110,17 @@ input {
   padding: 0 14px;
   cursor: pointer;
   font-weight: 750;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
 }
 
 .button:hover {
   border-color: #aab6bd;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(32, 36, 39, 0.08);
 }
 
 .button-primary {
@@ -118,11 +136,21 @@ input {
 }
 
 .metric {
+  position: relative;
+  overflow: hidden;
   padding: 18px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
   box-shadow: var(--shadow);
+}
+
+.metric::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--blue), var(--violet), var(--green));
 }
 
 .metric-label {
@@ -146,6 +174,7 @@ input {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
+  box-shadow: 0 10px 28px rgba(32, 36, 39, 0.05);
 }
 
 label {
@@ -194,10 +223,31 @@ input {
 }
 
 .task {
+  position: relative;
+  overflow: hidden;
   padding: 14px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
+  box-shadow: 0 10px 26px rgba(32, 36, 39, 0.06);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.task::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+  background: var(--accent);
+}
+
+.task:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
 }
 
 .task-title {
@@ -205,6 +255,13 @@ input {
   align-items: flex-start;
   justify-content: space-between;
   gap: 10px;
+}
+
+.task-title > div:first-child,
+.table-dealer {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .task-title strong {
@@ -215,6 +272,22 @@ input {
   margin: 5px 0 12px;
   color: var(--muted);
   font-size: 13px;
+}
+
+.dealer-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent);
+  flex: 0 0 auto;
+}
+
+.tag-stack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
 }
 
 .status-needs_seo,
@@ -245,6 +318,63 @@ input {
   color: var(--red);
 }
 
+.signal {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.signal-upcoming {
+  background: var(--violet-soft);
+  color: var(--violet);
+}
+
+.signal-shipped {
+  background: var(--blue-soft);
+  color: var(--blue);
+}
+
+.signal-on_lot {
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.signal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 12px;
+}
+
+.mini-button {
+  min-height: 28px;
+  padding: 0 9px;
+  border: 1px solid var(--soft-line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.mini-button:hover,
+.mini-button.is-active {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  background: color-mix(in srgb, var(--accent) 10%, #fff);
+  color: var(--ink);
+}
+
 .table-section {
   margin-top: 26px;
 }
@@ -254,6 +384,7 @@ input {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
+  box-shadow: 0 12px 34px rgba(32, 36, 39, 0.06);
 }
 
 table {
@@ -278,6 +409,14 @@ th {
 
 tr:last-child td {
   border-bottom: 0;
+}
+
+tbody tr {
+  transition: background 140ms ease;
+}
+
+tbody tr:hover {
+  background: #fbfcfd;
 }
 
 a {
@@ -487,6 +626,31 @@ const statusLabels = {
   ignored: "Ignored",
   snoozed: "Snoozed",
   needs_review: "Needs Review",
+};
+
+const signalLabels = {
+  upcoming: "Upcoming",
+  shipped: "Shipped",
+  on_lot: "On lot",
+};
+
+const dealerAccents = {
+  "Lou Fusz Chrysler Jeep Dodge RAM": "#d24726",
+  "Lou Fusz Mazda": "#7c3aed",
+  "Lou Fusz Toyota": "#d71920",
+  "Lou Fusz Buick GMC": "#0f766e",
+  "Lou Fusz Chevrolet": "#b7791f",
+  "Lou Fusz Kia": "#c026d3",
+  "Lou Fusz Ford": "#1d4ed8",
+  "Lou Fusz Chrysler Jeep Dodge Ram Vincennes": "#ea580c",
+  "Lou Fusz Kia Evansville": "#db2777",
+  "Lou Fusz Kia of Moline": "#9333ea",
+  "Lou Fusz Kia Terre Haute": "#be185d",
+  "Lou Fusz Mazda Evansville": "#6d28d9",
+  "Lou Fusz Nissan Moline": "#dc2626",
+  "Lou Fusz Subaru St. Louis": "#2563eb",
+  "Lou Fusz Subaru O'Fallon": "#0284c7",
+  "Lou Fusz Kia Columbus": "#a21caf",
 };
 
 const transitions = {
@@ -1034,6 +1198,7 @@ const state = {
   tasks: [],
   sources: [],
   overrides: JSON.parse(localStorage.getItem("pipeline-status-overrides") || "{}"),
+  signalOverrides: JSON.parse(localStorage.getItem("pipeline-signal-overrides") || "{}"),
 };
 
 const els = {
@@ -1062,6 +1227,8 @@ async function boot() {
   state.tasks = tasks.map((task) => ({
     ...task,
     pageStatus: state.overrides[task.id] || task.pageStatus,
+    inventorySignal: state.signalOverrides[task.id] || inferSignal(task),
+    accent: dealerAccents[task.dealer] || "#2563a9",
     inventoryUrl: sourceFor(task.dealer)?.inventoryUrl || "",
   }));
   populateDealerFilter();
@@ -1096,8 +1263,14 @@ function bindEvents() {
 
   document.addEventListener("click", (event) => {
     const button = event.target.closest("[data-status]");
-    if (!button) return;
-    updateStatus(button.dataset.taskId, button.dataset.status);
+    if (button) {
+      updateStatus(button.dataset.taskId, button.dataset.status);
+      return;
+    }
+
+    const signalButton = event.target.closest("[data-signal]");
+    if (!signalButton) return;
+    updateSignal(signalButton.dataset.taskId, signalButton.dataset.signal);
   });
 
   els.digestButton.addEventListener("click", () => {
@@ -1162,12 +1335,16 @@ function renderQueue(container, tasks, type) {
 
 function renderTask(task) {
   return `
-    <article class="task">
+    <article class="task" style="--accent: ${escapeAttr(task.accent)}">
       <div class="task-title">
-        <strong>${escapeHtml(task.year)} ${escapeHtml(task.make)} ${escapeHtml(task.model)}</strong>
-        ${statusPill(task.pageStatus)}
+        <div>
+          <span class="dealer-dot"></span>
+          <strong>${escapeHtml(task.year)} ${escapeHtml(task.make)} ${escapeHtml(task.model)}</strong>
+        </div>
+        <div class="tag-stack">${signalPill(task.inventorySignal)}${statusPill(task.pageStatus)}</div>
       </div>
       <p class="task-meta">${escapeHtml(task.dealer)}</p>
+      <div class="signal-actions">${signalButtons(task)}</div>
       <div class="task-actions">${actionButtons(task)}</div>
     </article>
   `;
@@ -1178,9 +1355,9 @@ function renderTable(tasks) {
     .map(
       (task) => `
         <tr>
-          <td>${escapeHtml(task.dealer)}</td>
+          <td><span class="table-dealer" style="--accent: ${escapeAttr(task.accent)}"><span class="dealer-dot"></span>${escapeHtml(task.dealer)}</span></td>
           <td><strong>${escapeHtml(task.year)} ${escapeHtml(task.make)} ${escapeHtml(task.model)}</strong></td>
-          <td>${statusPill(task.pageStatus)}</td>
+          <td><div class="tag-stack">${signalPill(task.inventorySignal)}${statusPill(task.pageStatus)}</div></td>
           <td><a href="${escapeAttr(task.inventoryUrl)}" target="_blank" rel="noreferrer">Open inventory</a></td>
           <td><div class="row-actions">${actionButtons(task)}</div></td>
         </tr>
@@ -1193,12 +1370,25 @@ function statusPill(status) {
   return `<span class="status status-${escapeAttr(status)}">${escapeHtml(statusLabels[status] || status)}</span>`;
 }
 
+function signalPill(signal) {
+  return `<span class="signal signal-${escapeAttr(signal)}">${escapeHtml(signalLabels[signal] || signal)}</span>`;
+}
+
 function actionButtons(task) {
   return (transitions[task.pageStatus] || [])
     .map(
       ([nextStatus, label]) =>
         `<button class="button" type="button" data-task-id="${escapeAttr(task.id)}" data-status="${escapeAttr(nextStatus)}">${escapeHtml(label)}</button>`,
     )
+    .join("");
+}
+
+function signalButtons(task) {
+  return Object.entries(signalLabels)
+    .map(([signal, label]) => {
+      const active = task.inventorySignal === signal ? " is-active" : "";
+      return `<button class="mini-button${active}" type="button" data-task-id="${escapeAttr(task.id)}" data-signal="${escapeAttr(signal)}">${escapeHtml(label)}</button>`;
+    })
     .join("");
 }
 
@@ -1209,6 +1399,16 @@ function updateStatus(taskId, status) {
   task.pageStatus = status;
   state.overrides[taskId] = status;
   localStorage.setItem("pipeline-status-overrides", JSON.stringify(state.overrides));
+  render();
+}
+
+function updateSignal(taskId, signal) {
+  const task = state.tasks.find((candidate) => candidate.id === taskId);
+  if (!task) return;
+
+  task.inventorySignal = signal;
+  state.signalOverrides[taskId] = signal;
+  localStorage.setItem("pipeline-signal-overrides", JSON.stringify(state.signalOverrides));
   render();
 }
 
@@ -1263,6 +1463,12 @@ function seedDetectedFromTracker() {
       make: task.make,
       model: task.model,
     }));
+}
+
+function inferSignal(task) {
+  if (task.pageStatus === "live") return "on_lot";
+  if (["seo_done", "needs_build", "page_built"].includes(task.pageStatus)) return "shipped";
+  return "upcoming";
 }
 
 function buildDigest() {
