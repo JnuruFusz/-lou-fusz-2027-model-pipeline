@@ -1,0 +1,1321 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>2027 Model Pipeline</title>
+    <style>
+:root {
+  color-scheme: light;
+  --bg: #f5f7f8;
+  --panel: #ffffff;
+  --ink: #202427;
+  --muted: #657078;
+  --line: #d9e0e4;
+  --green: #1b7f53;
+  --green-soft: #e7f4ee;
+  --blue: #2563a9;
+  --blue-soft: #e7f0fb;
+  --amber: #976000;
+  --amber-soft: #fff4d8;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --shadow: 0 14px 40px rgba(32, 36, 39, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 32px 20px;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: 30px;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+main {
+  padding: 24px 32px 42px;
+}
+
+.header-actions,
+.toolbar,
+.section-heading,
+.task-actions,
+.row-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.button,
+select,
+input {
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+}
+
+.button {
+  padding: 0 14px;
+  cursor: pointer;
+  font-weight: 750;
+}
+
+.button:hover {
+  border-color: #aab6bd;
+}
+
+.button-primary {
+  border-color: var(--blue);
+  background: var(--blue);
+  color: #fff;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.metric {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.metric-label {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.metric strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 34px;
+  line-height: 1;
+}
+
+.toolbar {
+  flex-wrap: wrap;
+  margin: 22px 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+select,
+input {
+  width: min(280px, 78vw);
+  padding: 0 12px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.section-heading {
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.count-pill,
+.status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: #eef2f4;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.task-list {
+  display: grid;
+  gap: 10px;
+}
+
+.task {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.task-title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.task-title strong {
+  font-size: 15px;
+}
+
+.task-meta {
+  margin: 5px 0 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.status-needs_seo,
+.status-needs_build {
+  background: var(--amber-soft);
+  color: var(--amber);
+}
+
+.status-seo_done,
+.status-page_built {
+  background: var(--blue-soft);
+  color: var(--blue);
+}
+
+.status-live {
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.status-ignored,
+.status-snoozed {
+  background: #f0eeee;
+  color: #615b57;
+}
+
+.status-needs_review {
+  background: var(--red-soft);
+  color: var(--red);
+}
+
+.table-section {
+  margin-top: 26px;
+}
+
+.table-wrap {
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: middle;
+}
+
+th {
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+tr:last-child td {
+  border-bottom: 0;
+}
+
+a {
+  color: var(--blue);
+  font-weight: 750;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.icon-button {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+
+dialog {
+  width: min(720px, calc(100vw - 32px));
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+pre {
+  overflow: auto;
+  padding: 14px;
+  border-radius: 8px;
+  background: #f4f6f7;
+  color: var(--ink);
+  white-space: pre-wrap;
+}
+
+.empty {
+  padding: 18px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 900px) {
+  .app-header,
+  main {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .app-header,
+  .board {
+    grid-template-columns: 1fr;
+  }
+
+  .app-header {
+    display: grid;
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header-actions,
+  .task-actions,
+  .row-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+  }
+}
+
+    </style>
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Lou Fusz page production</p>
+        <h1>2027 Model Pipeline</h1>
+      </div>
+      <div class="header-actions">
+        <button id="scanButton" class="button button-primary" type="button">Run Scan</button>
+        <button id="digestButton" class="button" type="button">Preview Digest</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="summary-grid" aria-label="Pipeline summary">
+        <div class="metric">
+          <span class="metric-label">Detected</span>
+          <strong id="metricDetected">0</strong>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Needs SEO</span>
+          <strong id="metricSeo">0</strong>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Ready To Build</span>
+          <strong id="metricBuild">0</strong>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Live</span>
+          <strong id="metricLive">0</strong>
+        </div>
+      </section>
+
+      <section class="toolbar" aria-label="Filters">
+        <label>
+          Dealership
+          <select id="dealerFilter"></select>
+        </label>
+        <label>
+          Status
+          <select id="statusFilter">
+            <option value="all">All statuses</option>
+            <option value="needs_seo">Needs SEO</option>
+            <option value="seo_in_progress">SEO In Progress</option>
+            <option value="seo_done">SEO Done</option>
+            <option value="needs_build">Needs Page Build</option>
+            <option value="page_built">Page Built</option>
+            <option value="live">Live / Checked</option>
+            <option value="ignored">Ignored</option>
+            <option value="snoozed">Snoozed</option>
+          </select>
+        </label>
+        <label>
+          Search
+          <input id="searchInput" type="search" placeholder="Model, make, dealer" />
+        </label>
+      </section>
+
+      <section class="board" aria-label="Work queues">
+        <div>
+          <div class="section-heading">
+            <h2>SEO Queue</h2>
+            <span id="seoCount" class="count-pill">0</span>
+          </div>
+          <div id="seoQueue" class="task-list"></div>
+        </div>
+        <div>
+          <div class="section-heading">
+            <h2>Build Queue</h2>
+            <span id="buildCount" class="count-pill">0</span>
+          </div>
+          <div id="buildQueue" class="task-list"></div>
+        </div>
+      </section>
+
+      <section class="table-section" aria-label="All model tasks">
+        <div class="section-heading">
+          <h2>All 2027 Models</h2>
+          <span id="visibleCount" class="count-pill">0</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Dealer</th>
+                <th>Model</th>
+                <th>Status</th>
+                <th>Inventory</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="taskTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="digestDialog">
+      <form method="dialog">
+        <div class="dialog-header">
+          <h2>Daily Digest Preview</h2>
+          <button class="icon-button" value="close" aria-label="Close" type="submit">x</button>
+        </div>
+        <pre id="digestText"></pre>
+      </form>
+    </dialog>
+
+    <script type="module">
+const statusLabels = {
+  needs_seo: "Needs SEO",
+  seo_in_progress: "SEO In Progress",
+  seo_done: "SEO Done",
+  needs_build: "Needs Page Build",
+  page_built: "Page Built",
+  live: "Live / Checked",
+  ignored: "Ignored",
+  snoozed: "Snoozed",
+  needs_review: "Needs Review",
+};
+
+const transitions = {
+  needs_seo: [
+    ["seo_in_progress", "Claim SEO"],
+    ["seo_done", "SEO Done"],
+    ["ignored", "Ignore"],
+    ["snoozed", "Snooze"],
+  ],
+  seo_in_progress: [
+    ["seo_done", "SEO Done"],
+    ["needs_seo", "Unclaim"],
+  ],
+  seo_done: [
+    ["needs_build", "Send To Build"],
+    ["live", "Already Live"],
+  ],
+  needs_build: [
+    ["page_built", "Page Built"],
+    ["seo_done", "Back To SEO Done"],
+  ],
+  page_built: [
+    ["live", "Mark Live"],
+    ["needs_build", "Reopen"],
+  ],
+  live: [["needs_review", "Review"]],
+  ignored: [["needs_seo", "Restore"]],
+  snoozed: [["needs_seo", "Unsnooze"]],
+  needs_review: [
+    ["needs_seo", "Needs SEO"],
+    ["live", "Keep Live"],
+  ],
+};
+
+const embeddedTracker = [
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram|2027|pacifica",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge RAM",
+    "year": 2027,
+    "make": "Chrysler",
+    "model": "Pacifica",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 3,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram|2027|1500-srt-trx",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge RAM",
+    "year": 2027,
+    "make": "Ram",
+    "model": "1500 SRT TRX",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 18,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda|2027|mazda-cx-50",
+    "dealer": "Lou Fusz Mazda",
+    "year": 2027,
+    "make": "Mazda",
+    "model": "Mazda CX-50",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 5,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda|2027|mazda-cx-70",
+    "dealer": "Lou Fusz Mazda",
+    "year": 2027,
+    "make": "Mazda",
+    "model": "Mazda CX-70",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 8,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2027|land-cruiser",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2027,
+    "make": "Toyota",
+    "model": "Land Cruiser",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 2,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2027|highlander-ev",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2027,
+    "make": "Toyota",
+    "model": "Highlander EV",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 18,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-buick-gmc|2027|terrain",
+    "dealer": "Lou Fusz Buick GMC",
+    "year": 2027,
+    "make": "GMC",
+    "model": "Terrain",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 8,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-buick-gmc|2027|sierra-1500",
+    "dealer": "Lou Fusz Buick GMC",
+    "year": 2027,
+    "make": "GMC",
+    "model": "Sierra 1500",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 11,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-kia|2027|kia-telluride",
+    "dealer": "Lou Fusz Kia",
+    "year": 2027,
+    "make": "Kia",
+    "model": "Kia Telluride",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 2,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-kia|2027|seltos",
+    "dealer": "Lou Fusz Kia",
+    "year": 2027,
+    "make": "Kia",
+    "model": "Seltos",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 3,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-kia|2027|ev3",
+    "dealer": "Lou Fusz Kia",
+    "year": 2027,
+    "make": "Kia",
+    "model": "EV3",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 4,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-chevrolet|2027|equinox",
+    "dealer": "Lou Fusz Chevrolet",
+    "year": 2027,
+    "make": "Chevrolet",
+    "model": "Equinox",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 3,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-chevrolet|2027|silverado-1500",
+    "dealer": "Lou Fusz Chevrolet",
+    "year": 2027,
+    "make": "Chevrolet",
+    "model": "Silverado 1500",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 7,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-chevrolet|2027|bolt",
+    "dealer": "Lou Fusz Chevrolet",
+    "year": 2027,
+    "make": "Chevrolet",
+    "model": "Bolt",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 13,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2027|pacifica",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge Ram Vincennes",
+    "year": 2027,
+    "make": "Chrysler",
+    "model": "Pacifica",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 3,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2027|1500-srt-trx",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge Ram Vincennes",
+    "year": 2027,
+    "make": "Ram",
+    "model": "1500 SRT TRX",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 24,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-evansville|2027|kia-telluride",
+    "dealer": "Lou Fusz Kia Evansville",
+    "year": 2027,
+    "make": "Kia",
+    "model": "Kia Telluride",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 2,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-evansville|2027|seltos",
+    "dealer": "Lou Fusz Kia Evansville",
+    "year": 2027,
+    "make": "Kia",
+    "model": "Seltos",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 3,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-evansville|2027|ev3",
+    "dealer": "Lou Fusz Kia Evansville",
+    "year": 2027,
+    "make": "Kia",
+    "model": "EV3",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 4,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-of-moline|2027|kia-telluride",
+    "dealer": "Lou Fusz Kia of Moline",
+    "year": 2027,
+    "make": "Kia",
+    "model": "Kia Telluride",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 2,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-of-moline|2027|seltos",
+    "dealer": "Lou Fusz Kia of Moline",
+    "year": 2027,
+    "make": "Kia",
+    "model": "Seltos",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 3,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-of-moline|2027|ev3",
+    "dealer": "Lou Fusz Kia of Moline",
+    "year": 2027,
+    "make": "Kia",
+    "model": "EV3",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 4,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-terre-haute|2027|kia-telluride",
+    "dealer": "Lou Fusz Kia Terre Haute",
+    "year": 2027,
+    "make": "Kia",
+    "model": "Kia Telluride",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 2,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-terre-haute|2027|seltos",
+    "dealer": "Lou Fusz Kia Terre Haute",
+    "year": 2027,
+    "make": "Kia",
+    "model": "Seltos",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 3,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-terre-haute|2027|ev3",
+    "dealer": "Lou Fusz Kia Terre Haute",
+    "year": 2027,
+    "make": "Kia",
+    "model": "EV3",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 4,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda-evansville|2027|mazda-cx-50",
+    "dealer": "Lou Fusz Mazda Evansville",
+    "year": 2027,
+    "make": "Mazda",
+    "model": "Mazda CX-50",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 2,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda-evansville|2027|mazda-cx-70",
+    "dealer": "Lou Fusz Mazda Evansville",
+    "year": 2027,
+    "make": "Mazda",
+    "model": "Mazda CX-70",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 9,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-nissan-moline|2027|nissan-z",
+    "dealer": "Lou Fusz Nissan Moline",
+    "year": 2027,
+    "make": "Nissan",
+    "model": "Nissan Z",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 5,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-st.-louis|2027|crosstrek",
+    "dealer": "Lou Fusz Subaru St. Louis",
+    "year": 2027,
+    "make": "Subaru",
+    "model": "Crosstrek",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 2,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-st.-louis|2027|crosstrek-hybrid",
+    "dealer": "Lou Fusz Subaru St. Louis",
+    "year": 2027,
+    "make": "Subaru",
+    "model": "Crosstrek Hybrid",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 3,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-st.-louis|2027|getaway-ev",
+    "dealer": "Lou Fusz Subaru St. Louis",
+    "year": 2027,
+    "make": "Subaru",
+    "model": "Getaway EV",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 4,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-o'fallon|2027|crosstrek",
+    "dealer": "Lou Fusz Subaru O'Fallon",
+    "year": 2027,
+    "make": "Subaru",
+    "model": "Crosstrek",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 2,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-o'fallon|2027|crosstrek-hybrid",
+    "dealer": "Lou Fusz Subaru O'Fallon",
+    "year": 2027,
+    "make": "Subaru",
+    "model": "Crosstrek Hybrid",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 3,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-o'fallon|2027|getaway-ev",
+    "dealer": "Lou Fusz Subaru O'Fallon",
+    "year": 2027,
+    "make": "Subaru",
+    "model": "Getaway EV",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 4,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-columbus|2027|kia-telluride",
+    "dealer": "Lou Fusz Kia Columbus",
+    "year": 2027,
+    "make": "Kia",
+    "model": "Kia Telluride",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 2,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-columbus|2027|seltos",
+    "dealer": "Lou Fusz Kia Columbus",
+    "year": 2027,
+    "make": "Kia",
+    "model": "Seltos",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 3,
+    "source": "sharepoint-2027-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-columbus|2027|ev3",
+    "dealer": "Lou Fusz Kia Columbus",
+    "year": 2027,
+    "make": "Kia",
+    "model": "EV3",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 4,
+    "source": "sharepoint-2027-tracker"
+  }
+];
+const embeddedSources = [
+  {
+    "dealer": "Lou Fusz Chrysler Jeep Dodge RAM",
+    "shortName": "CJDR",
+    "brands": ["Chrysler", "Dodge", "Jeep", "Ram"],
+    "inventoryUrl": "https://www.loufuszchryslerjeepdodge.net/new-vehicles/"
+  },
+  {
+    "dealer": "Lou Fusz Mazda",
+    "shortName": "Mazda",
+    "brands": ["Mazda"],
+    "inventoryUrl": "https://www.mazda.fusz.com/new-vehicles/"
+  },
+  {
+    "dealer": "Lou Fusz Toyota",
+    "shortName": "Toyota",
+    "brands": ["Toyota"],
+    "inventoryUrl": "https://www.fusztoyota.com/new-vehicles/"
+  },
+  {
+    "dealer": "Lou Fusz Buick GMC",
+    "shortName": "Buick GMC",
+    "brands": ["Buick", "GMC"],
+    "inventoryUrl": "https://www.loufuszbuickgmc.com/new-vehicles/"
+  },
+  {
+    "dealer": "Lou Fusz Chevrolet",
+    "shortName": "Chevrolet",
+    "brands": ["Chevrolet"],
+    "inventoryUrl": "https://www.loufuszchevrolet.com/new-vehicles/"
+  },
+  {
+    "dealer": "Lou Fusz Kia",
+    "shortName": "Kia",
+    "brands": ["Kia"],
+    "inventoryUrl": "https://www.kia.fusz.com/new-vehicles/"
+  },
+  {
+    "dealer": "Lou Fusz Ford",
+    "shortName": "Ford",
+    "brands": ["Ford"],
+    "inventoryUrl": "https://www.loufuszford.com/new-vehicles/"
+  },
+  {
+    "dealer": "Lou Fusz Chrysler Jeep Dodge Ram Vincennes",
+    "shortName": "CJDR Vincennes",
+    "brands": ["Chrysler", "Dodge", "Jeep", "Ram"],
+    "inventoryUrl": "https://www.loufuszcjdrvincennes.com/new-vehicles/"
+  },
+  {
+    "dealer": "Lou Fusz Kia Evansville",
+    "shortName": "Kia Evansville",
+    "brands": ["Kia"],
+    "inventoryUrl": "https://www.evansvillekia.com/"
+  },
+  {
+    "dealer": "Lou Fusz Kia of Moline",
+    "shortName": "Kia Moline",
+    "brands": ["Kia"],
+    "inventoryUrl": "https://www.loufuszkiamoline.com/new-vehicles/"
+  },
+  {
+    "dealer": "Lou Fusz Kia Terre Haute",
+    "shortName": "Kia Terre Haute",
+    "brands": ["Kia"],
+    "inventoryUrl": "https://www.loufuszkiaterrehaute.com/new-vehicles/"
+  },
+  {
+    "dealer": "Lou Fusz Mazda Evansville",
+    "shortName": "Mazda Evansville",
+    "brands": ["Mazda"],
+    "inventoryUrl": "https://www.loufuszmazdaevansville.com/new-vehicles/"
+  },
+  {
+    "dealer": "Lou Fusz Nissan Moline",
+    "shortName": "Nissan Moline",
+    "brands": ["Nissan"],
+    "inventoryUrl": "https://www.loufusznissanmoline.com/new-vehicles/"
+  },
+  {
+    "dealer": "Lou Fusz Subaru St. Louis",
+    "shortName": "Subaru St. Louis",
+    "brands": ["Subaru"],
+    "inventoryUrl": "https://www.subaru.fusz.com/new-vehicles/"
+  },
+  {
+    "dealer": "Lou Fusz Subaru O'Fallon",
+    "shortName": "Subaru O'Fallon",
+    "brands": ["Subaru"],
+    "inventoryUrl": "https://www.fuszsubaru.com/new-vehicles/"
+  },
+  {
+    "dealer": "Lou Fusz Kia Columbus",
+    "shortName": "Kia Columbus",
+    "brands": ["Kia"],
+    "inventoryUrl": "https://www.loufuszkia.com/new-vehicles/"
+  }
+]
+;
+
+const state = {
+  tasks: [],
+  sources: [],
+  overrides: JSON.parse(localStorage.getItem("pipeline-status-overrides") || "{}"),
+};
+
+const els = {
+  dealerFilter: document.querySelector("#dealerFilter"),
+  statusFilter: document.querySelector("#statusFilter"),
+  searchInput: document.querySelector("#searchInput"),
+  seoQueue: document.querySelector("#seoQueue"),
+  buildQueue: document.querySelector("#buildQueue"),
+  taskTable: document.querySelector("#taskTable"),
+  seoCount: document.querySelector("#seoCount"),
+  buildCount: document.querySelector("#buildCount"),
+  visibleCount: document.querySelector("#visibleCount"),
+  metricDetected: document.querySelector("#metricDetected"),
+  metricSeo: document.querySelector("#metricSeo"),
+  metricBuild: document.querySelector("#metricBuild"),
+  metricLive: document.querySelector("#metricLive"),
+  scanButton: document.querySelector("#scanButton"),
+  digestButton: document.querySelector("#digestButton"),
+  digestDialog: document.querySelector("#digestDialog"),
+  digestText: document.querySelector("#digestText"),
+};
+
+async function boot() {
+  const [tasks, sources] = [embeddedTracker, embeddedSources];
+  state.sources = sources;
+  state.tasks = tasks.map((task) => ({
+    ...task,
+    pageStatus: state.overrides[task.id] || task.pageStatus,
+    inventoryUrl: sourceFor(task.dealer)?.inventoryUrl || "",
+  }));
+  populateDealerFilter();
+  bindEvents();
+  render();
+}
+
+async function fetchJson(url) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Unable to load ${url}`);
+  }
+  return response.json();
+}
+
+function sourceFor(dealer) {
+  return state.sources.find((source) => source.dealer === dealer);
+}
+
+function populateDealerFilter() {
+  const dealers = [...new Set(state.tasks.map((task) => task.dealer))].sort();
+  els.dealerFilter.innerHTML = [
+    `<option value="all">All dealerships</option>`,
+    ...dealers.map((dealer) => `<option value="${escapeAttr(dealer)}">${escapeHtml(dealer)}</option>`),
+  ].join("");
+}
+
+function bindEvents() {
+  [els.dealerFilter, els.statusFilter, els.searchInput].forEach((el) => {
+    el.addEventListener("input", render);
+  });
+
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-status]");
+    if (!button) return;
+    updateStatus(button.dataset.taskId, button.dataset.status);
+  });
+
+  els.digestButton.addEventListener("click", () => {
+    els.digestText.textContent = buildDigest();
+    els.digestDialog.showModal();
+  });
+
+  els.scanButton.addEventListener("click", runScan);
+}
+
+function filteredTasks() {
+  const dealer = els.dealerFilter.value;
+  const status = els.statusFilter.value;
+  const query = els.searchInput.value.trim().toLowerCase();
+
+  return state.tasks.filter((task) => {
+    if (dealer !== "all" && task.dealer !== dealer) return false;
+    if (status !== "all" && task.pageStatus !== status) return false;
+    if (!query) return true;
+    return `${task.dealer} ${task.make} ${task.model} ${task.pageStatus}`.toLowerCase().includes(query);
+  });
+}
+
+function render() {
+  const tasks = filteredTasks();
+  const seoTasks = state.tasks.filter((task) =>
+    ["needs_seo", "seo_in_progress"].includes(task.pageStatus),
+  );
+  const buildTasks = state.tasks.filter((task) =>
+    ["seo_done", "needs_build", "page_built"].includes(task.pageStatus),
+  );
+
+  renderMetrics();
+  renderQueue(els.seoQueue, seoTasks, "seo");
+  renderQueue(els.buildQueue, buildTasks, "build");
+  renderTable(tasks);
+
+  els.seoCount.textContent = seoTasks.length;
+  els.buildCount.textContent = buildTasks.length;
+  els.visibleCount.textContent = tasks.length;
+}
+
+function renderMetrics() {
+  els.metricDetected.textContent = state.tasks.length;
+  els.metricSeo.textContent = state.tasks.filter((task) =>
+    ["needs_seo", "seo_in_progress"].includes(task.pageStatus),
+  ).length;
+  els.metricBuild.textContent = state.tasks.filter((task) =>
+    ["seo_done", "needs_build", "page_built"].includes(task.pageStatus),
+  ).length;
+  els.metricLive.textContent = state.tasks.filter((task) => task.pageStatus === "live").length;
+}
+
+function renderQueue(container, tasks, type) {
+  const topTasks = tasks.slice(0, 8);
+  if (!topTasks.length) {
+    container.innerHTML = `<div class="empty">No ${type === "seo" ? "SEO" : "build"} tasks waiting.</div>`;
+    return;
+  }
+  container.innerHTML = topTasks.map(renderTask).join("");
+}
+
+function renderTask(task) {
+  return `
+    <article class="task">
+      <div class="task-title">
+        <strong>${escapeHtml(task.year)} ${escapeHtml(task.make)} ${escapeHtml(task.model)}</strong>
+        ${statusPill(task.pageStatus)}
+      </div>
+      <p class="task-meta">${escapeHtml(task.dealer)}</p>
+      <div class="task-actions">${actionButtons(task)}</div>
+    </article>
+  `;
+}
+
+function renderTable(tasks) {
+  els.taskTable.innerHTML = tasks
+    .map(
+      (task) => `
+        <tr>
+          <td>${escapeHtml(task.dealer)}</td>
+          <td><strong>${escapeHtml(task.year)} ${escapeHtml(task.make)} ${escapeHtml(task.model)}</strong></td>
+          <td>${statusPill(task.pageStatus)}</td>
+          <td><a href="${escapeAttr(task.inventoryUrl)}" target="_blank" rel="noreferrer">Open inventory</a></td>
+          <td><div class="row-actions">${actionButtons(task)}</div></td>
+        </tr>
+      `,
+    )
+    .join("");
+}
+
+function statusPill(status) {
+  return `<span class="status status-${escapeAttr(status)}">${escapeHtml(statusLabels[status] || status)}</span>`;
+}
+
+function actionButtons(task) {
+  return (transitions[task.pageStatus] || [])
+    .map(
+      ([nextStatus, label]) =>
+        `<button class="button" type="button" data-task-id="${escapeAttr(task.id)}" data-status="${escapeAttr(nextStatus)}">${escapeHtml(label)}</button>`,
+    )
+    .join("");
+}
+
+function updateStatus(taskId, status) {
+  const task = state.tasks.find((candidate) => candidate.id === taskId);
+  if (!task) return;
+
+  task.pageStatus = status;
+  state.overrides[taskId] = status;
+  localStorage.setItem("pipeline-status-overrides", JSON.stringify(state.overrides));
+  render();
+}
+
+async function runScan() {
+  els.scanButton.disabled = true;
+  els.scanButton.textContent = "Scanning";
+  try {
+    const response = await fetch("/.netlify/functions/scan-inventory");
+    if (!response.ok) throw new Error("scan unavailable");
+    const result = await response.json();
+    mergeScanResults(result.detected || []);
+    if (result.errors?.length) {
+      showDigest(`Scan completed with ${result.errors.length} blocked source(s).\n\n${formatScanErrors(result.errors)}`);
+    }
+  } catch {
+    mergeScanResults(seedDetectedFromTracker());
+    showDigest(
+      "Live scan is not available in the static preview, so the dashboard is using the current 2027 tracker as its source.\n\nWhen deployed, the scanner will check the /llm/inventory/ endpoints and create one task per year + make + model.",
+    );
+  } finally {
+    els.scanButton.disabled = false;
+    els.scanButton.textContent = "Run Scan";
+    render();
+  }
+}
+
+function mergeScanResults(detected) {
+  const existing = new Set(state.tasks.map((task) => task.id));
+  detected.forEach((item) => {
+    const id = `${item.dealer}|${item.year}|${item.model}`.toLowerCase().replace(/\s+/g, "-");
+    if (existing.has(id)) return;
+    existing.add(id);
+    state.tasks.push({
+      id,
+      dealer: item.dealer,
+      year: Number(item.year),
+      make: item.make || "",
+      model: item.model,
+      pageStatus: "needs_seo",
+      inventoryUrl: sourceFor(item.dealer)?.inventoryUrl || "",
+      source: "inventory-scan",
+    });
+  });
+}
+
+function seedDetectedFromTracker() {
+  return state.tasks
+    .filter((task) => task.year >= 2027 && task.pageStatus !== "live")
+    .map((task) => ({
+      dealer: task.dealer,
+      year: task.year,
+      make: task.make,
+      model: task.model,
+    }));
+}
+
+function buildDigest() {
+  const needsSeo = state.tasks.filter((task) => task.pageStatus === "needs_seo");
+  const readyBuild = state.tasks.filter((task) =>
+    ["seo_done", "needs_build", "page_built"].includes(task.pageStatus),
+  );
+  const live = state.tasks.filter((task) => task.pageStatus === "live");
+
+  const lines = [
+    "2027 Model Pipeline Digest",
+    "",
+    `Needs SEO: ${needsSeo.length}`,
+    ...needsSeo.slice(0, 12).map((task) => `- ${task.dealer}: ${task.year} ${task.make} ${task.model}`),
+    "",
+    `Ready / In Build: ${readyBuild.length}`,
+    ...readyBuild.slice(0, 12).map((task) => `- ${task.dealer}: ${task.year} ${task.make} ${task.model} (${statusLabels[task.pageStatus]})`),
+    "",
+    `Live / Checked: ${live.length}`,
+  ];
+
+  return lines.join("\n");
+}
+
+function showDigest(text) {
+  els.digestText.textContent = text;
+  els.digestDialog.showModal();
+}
+
+function formatScanErrors(errors) {
+  return errors
+    .slice(0, 12)
+    .map((error) => `- ${error.dealer}: ${error.message}`)
+    .join("\n");
+}
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function escapeAttr(value) {
+  return escapeHtml(value);
+}
+
+boot().catch((error) => {
+  document.body.innerHTML = `<main><div class="empty">${escapeHtml(error.message)}</div></main>`;
+});
+
+    </script>
+  </body>
+</html>
