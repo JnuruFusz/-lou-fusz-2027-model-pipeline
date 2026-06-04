@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Lou Fusz Model Pipeline</title>
+    <title>2027 Model Pipeline</title>
     <style>
 :root {
   color-scheme: light dark;
@@ -418,11 +418,11 @@ body[data-view="focus"] .table-section {
 .task {
   position: relative;
   overflow: hidden;
-  padding: 16px 14px 14px 18px;
-  border: 1px solid var(--accent-border);
+  padding: 16px 14px 14px 16px;
+  border: 1px solid var(--line);
   border-radius: 8px;
   background:
-    linear-gradient(90deg, var(--accent-card), transparent 34%),
+    linear-gradient(90deg, rgba(255, 255, 255, 0), transparent 34%),
     var(--panel);
   box-shadow: 0 10px 26px rgba(32, 36, 39, 0.06);
   transition:
@@ -436,16 +436,8 @@ body[data-view="focus"] .table-section {
   content: "";
   position: absolute;
   inset: 0 auto 0 0;
-  width: 8px;
+  width: 5px;
   background: var(--accent-visible);
-}
-
-.task::after {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent-visible), transparent 62%);
 }
 
 .task:hover {
@@ -484,13 +476,12 @@ body[data-view="focus"] .table-section {
 }
 
 .dealer-dot {
-  width: 13px;
-  height: 13px;
+  width: 11px;
+  height: 11px;
   border-radius: 999px;
   background: var(--accent-visible);
   box-shadow:
-    0 0 0 4px var(--accent-soft),
-    0 0 18px var(--accent-glow);
+    0 0 0 3px var(--accent-soft);
   flex: 0 0 auto;
 }
 
@@ -623,6 +614,11 @@ body[data-view="focus"] .table-section {
   color: var(--ink);
 }
 
+.button-primary-action {
+  border-color: color-mix(in srgb, var(--blue) 38%, var(--line));
+  background: color-mix(in srgb, var(--blue-soft) 70%, var(--panel));
+}
+
 .table-section {
   margin-top: 26px;
 }
@@ -731,7 +727,7 @@ dialog {
 
 .details-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
   margin-top: 18px;
 }
@@ -781,9 +777,7 @@ pre {
 
 @media (prefers-color-scheme: dark) {
   .dealer-dot {
-    box-shadow:
-      0 0 0 4px var(--accent-soft),
-      0 0 24px var(--accent-glow);
+    box-shadow: 0 0 0 3px var(--accent-soft);
   }
 
   .task::before {
@@ -791,9 +785,9 @@ pre {
   }
 
   .task {
-    border-color: var(--accent-border);
+    border-color: var(--line);
     background:
-      linear-gradient(90deg, var(--accent-card), transparent 40%),
+      linear-gradient(90deg, rgba(255, 255, 255, 0), transparent 40%),
       var(--panel);
   }
 
@@ -1034,7 +1028,7 @@ pre {
 
       <section class="table-section" aria-label="All model tasks">
         <div class="section-heading">
-          <h2>All 2027 Models</h2>
+          <h2 id="tableTitle">All Models</h2>
           <span id="visibleCount" class="count-pill">0</span>
         </div>
         <div class="table-wrap">
@@ -1072,6 +1066,23 @@ pre {
           <button class="icon-button" value="close" aria-label="Close" type="submit">x</button>
         </div>
         <div class="details-grid">
+          <label>
+            Inventory Signal
+            <select id="detailSignalSelect">
+              <option value="upcoming">Upcoming</option>
+              <option value="shipped">Shipped</option>
+              <option value="on_lot">On lot</option>
+            </select>
+          </label>
+          <label>
+            AEO Status
+            <select id="detailAeoSelect">
+              <option value="not_started">AEO Not Started</option>
+              <option value="in_progress">AEO In Progress</option>
+              <option value="done">AEO Done</option>
+              <option value="not_needed">AEO Not Needed</option>
+            </select>
+          </label>
           <label>
             SEO Owner
             <input id="seoOwnerInput" type="text" placeholder="Name" />
@@ -3749,6 +3760,7 @@ const els = {
   aeoQueue: document.querySelector("#aeoQueue"),
   buildQueue: document.querySelector("#buildQueue"),
   taskTable: document.querySelector("#taskTable"),
+  tableTitle: document.querySelector("#tableTitle"),
   seoCount: document.querySelector("#seoCount"),
   aeoCount: document.querySelector("#aeoCount"),
   buildCount: document.querySelector("#buildCount"),
@@ -3773,6 +3785,8 @@ const els = {
   digestText: document.querySelector("#digestText"),
   taskDialog: document.querySelector("#taskDialog"),
   taskDialogTitle: document.querySelector("#taskDialogTitle"),
+  detailSignalSelect: document.querySelector("#detailSignalSelect"),
+  detailAeoSelect: document.querySelector("#detailAeoSelect"),
   seoOwnerInput: document.querySelector("#seoOwnerInput"),
   aeoOwnerInput: document.querySelector("#aeoOwnerInput"),
   buildOwnerInput: document.querySelector("#buildOwnerInput"),
@@ -3906,11 +3920,20 @@ function render() {
   renderQueue(els.aeoQueue, aeoTasks, "aeo");
   renderQueue(els.buildQueue, buildTasks, "build");
   renderTable(tasks);
+  renderTableTitle();
 
   els.seoCount.textContent = seoTasks.length;
   els.aeoCount.textContent = aeoTasks.length;
   els.buildCount.textContent = buildTasks.length;
   els.visibleCount.textContent = tasks.length;
+}
+
+function renderTableTitle() {
+  const year = els.yearFilter.value;
+  const dealer = els.dealerFilter.value;
+  const yearLabel = year === "all" ? "All Years" : year;
+  const dealerLabel = dealer === "all" ? "All Dealerships" : dealer;
+  els.tableTitle.textContent = `${yearLabel} Models - ${dealerLabel}`;
 }
 
 function renderViewMode() {
@@ -3934,9 +3957,7 @@ function renderFocusTask() {
   els.focusMeta.textContent = `${task.dealer} • ${statusLabels[task.pageStatus]}`;
   els.focusTags.innerHTML = `${signalPill(task.inventorySignal)}${statusPill(task.pageStatus)}${aeoPill(task.aeoStatus)}`;
   els.focusActions.innerHTML = `
-    <div class="signal-actions">${signalButtons(task)}</div>
-    <div class="signal-actions">${aeoButtons(task)}</div>
-    <div class="task-actions">${actionButtons(task)}</div>
+    <div class="task-actions">${primaryActionButton(task)}<button class="button" type="button" data-details="${escapeAttr(task.id)}">Details</button></div>
   `;
 }
 
@@ -3984,9 +4005,7 @@ function renderTask(task) {
         <div class="tag-stack">${signalPill(task.inventorySignal)}${statusPill(task.pageStatus)}${aeoPill(task.aeoStatus)}</div>
       </div>
       <p class="task-meta"><span class="brand-badge">${escapeHtml(task.make || sourceFor(task.dealer)?.shortName || "Brand")}</span>${escapeHtml(task.dealer)}</p>
-      <div class="signal-actions">${signalButtons(task)}</div>
-      <div class="signal-actions">${aeoButtons(task)}</div>
-      <div class="task-actions">${actionButtons(task)}<button class="button" type="button" data-details="${escapeAttr(task.id)}">Details</button></div>
+      <div class="task-actions">${primaryActionButton(task)}<button class="button" type="button" data-details="${escapeAttr(task.id)}">Details</button></div>
     </article>
   `;
 }
@@ -4001,7 +4020,7 @@ function renderTable(tasks) {
           <td><div class="tag-stack">${signalPill(task.inventorySignal)}${statusPill(task.pageStatus)}</div></td>
           <td>${aeoPill(task.aeoStatus)}</td>
           <td><a href="${escapeAttr(task.inventoryUrl)}" target="_blank" rel="noreferrer">Open inventory</a></td>
-          <td><div class="row-actions">${actionButtons(task)}<button class="button" type="button" data-details="${escapeAttr(task.id)}">Details</button></div></td>
+          <td><div class="row-actions">${primaryActionButton(task)}<button class="button" type="button" data-details="${escapeAttr(task.id)}">Details</button></div></td>
         </tr>
       `,
     )
@@ -4027,6 +4046,13 @@ function actionButtons(task) {
         `<button class="button" type="button" data-task-id="${escapeAttr(task.id)}" data-status="${escapeAttr(nextStatus)}">${escapeHtml(label)}</button>`,
     )
     .join("");
+}
+
+function primaryActionButton(task) {
+  const primary = (transitions[task.pageStatus] || [])[0];
+  if (!primary) return "";
+  const [nextStatus, label] = primary;
+  return `<button class="button button-primary-action" type="button" data-task-id="${escapeAttr(task.id)}" data-status="${escapeAttr(nextStatus)}">${escapeHtml(label)}</button>`;
 }
 
 function signalButtons(task) {
@@ -4099,6 +4125,8 @@ function openTaskDetails(taskId) {
   state.activeTaskId = taskId;
   const details = task.details || {};
   els.taskDialogTitle.textContent = taskTitle(task);
+  els.detailSignalSelect.value = task.inventorySignal;
+  els.detailAeoSelect.value = task.aeoStatus;
   els.seoOwnerInput.value = details.seoOwner || "";
   els.aeoOwnerInput.value = details.aeoOwner || "";
   els.buildOwnerInput.value = details.buildOwner || "";
@@ -4109,6 +4137,13 @@ function openTaskDetails(taskId) {
 function saveTaskDetails() {
   const task = state.tasks.find((candidate) => candidate.id === state.activeTaskId);
   if (!task) return;
+
+  task.inventorySignal = els.detailSignalSelect.value;
+  task.aeoStatus = els.detailAeoSelect.value;
+  state.signalOverrides[task.id] = task.inventorySignal;
+  state.aeoOverrides[task.id] = task.aeoStatus;
+  localStorage.setItem("pipeline-signal-overrides", JSON.stringify(state.signalOverrides));
+  localStorage.setItem("pipeline-aeo-overrides", JSON.stringify(state.aeoOverrides));
 
   task.details = {
     seoOwner: els.seoOwnerInput.value.trim(),
