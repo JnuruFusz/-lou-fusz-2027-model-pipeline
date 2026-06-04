@@ -26,6 +26,7 @@
   --violet-soft: #f1eafe;
   --shadow: 0 16px 42px rgba(32, 36, 39, 0.08);
   --shadow-hover: 0 18px 50px rgba(32, 36, 39, 0.13);
+  --accent-visible: var(--accent);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -49,6 +50,7 @@
     --violet-soft: #281f3f;
     --shadow: 0 16px 42px rgba(0, 0, 0, 0.32);
     --shadow-hover: 0 18px 50px rgba(0, 0, 0, 0.42);
+    --accent-visible: color-mix(in srgb, var(--accent) 68%, #ffffff);
   }
 }
 
@@ -114,10 +116,49 @@ main {
 .toolbar,
 .section-heading,
 .task-actions,
-.row-actions {
+.row-actions,
+.focus-actions {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.view-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 40px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--panel) 74%, var(--line));
+}
+
+.view-tab {
+  min-height: 30px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 850;
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.view-tab:hover {
+  color: var(--ink);
+}
+
+.view-tab.is-active {
+  background: var(--panel);
+  color: var(--ink);
+  box-shadow: 0 7px 18px rgba(32, 36, 39, 0.1);
 }
 
 .button,
@@ -146,6 +187,23 @@ input {
   border-color: #aab6bd;
   transform: translateY(-1px);
   box-shadow: 0 8px 18px rgba(32, 36, 39, 0.08);
+}
+
+.button:active,
+.view-tab:active,
+.mini-button:active,
+.icon-button:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+.mini-button:focus-visible,
+.view-tab:focus-visible,
+.icon-button:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--blue) 42%, transparent);
+  outline-offset: 2px;
 }
 
 .button-primary {
@@ -221,6 +279,53 @@ input {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
   align-items: start;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.focus-panel {
+  display: none;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  margin: 0 0 22px;
+  padding: 20px;
+  border: 1px solid color-mix(in srgb, var(--accent-visible) 38%, var(--line));
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--accent-visible) 16%, transparent), transparent 46%),
+    var(--panel);
+  box-shadow: var(--shadow);
+  animation: panelIn 220ms ease both;
+}
+
+.focus-panel h2 {
+  margin-top: 3px;
+  font-size: 24px;
+}
+
+.focus-meta {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.focus-actions {
+  grid-column: 1 / -1;
+  flex-wrap: wrap;
+}
+
+body[data-view="focus"] .focus-panel {
+  display: grid;
+}
+
+body[data-view="focus"] .board {
+  grid-template-columns: 1fr;
+}
+
+body[data-view="focus"] .table-section {
+  display: none;
 }
 
 .section-heading {
@@ -259,6 +364,7 @@ input {
     transform 180ms ease,
     box-shadow 180ms ease,
     border-color 180ms ease;
+  animation: cardIn 220ms ease both;
 }
 
 .task::before {
@@ -266,11 +372,11 @@ input {
   position: absolute;
   inset: 0 auto 0 0;
   width: 5px;
-  background: var(--accent);
+  background: var(--accent-visible);
 }
 
 .task:hover {
-  border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+  border-color: color-mix(in srgb, var(--accent-visible) 40%, var(--line));
   box-shadow: var(--shadow-hover);
   transform: translateY(-2px);
 }
@@ -303,8 +409,8 @@ input {
   width: 10px;
   height: 10px;
   border-radius: 999px;
-  background: var(--accent);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent);
+  background: var(--accent-visible);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-visible) 18%, transparent);
   flex: 0 0 auto;
 }
 
@@ -395,8 +501,8 @@ input {
 
 .mini-button:hover,
 .mini-button.is-active {
-  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
-  background: color-mix(in srgb, var(--accent) 10%, var(--panel));
+  border-color: color-mix(in srgb, var(--accent-visible) 45%, var(--line));
+  background: color-mix(in srgb, var(--accent-visible) 12%, var(--panel));
   color: var(--ink);
 }
 
@@ -459,7 +565,7 @@ a:hover {
   height: 34px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: #fff;
+  background: var(--panel);
   cursor: pointer;
 }
 
@@ -468,6 +574,35 @@ dialog {
   border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: var(--shadow);
+  background: var(--panel);
+  color: var(--ink);
+}
+
+.toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 20;
+  max-width: min(420px, calc(100vw - 32px));
+  padding: 13px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--panel) 92%, var(--ink));
+  color: var(--ink);
+  box-shadow: var(--shadow-hover);
+  font-size: 14px;
+  font-weight: 800;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px) scale(0.98);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .dialog-header {
@@ -496,15 +631,47 @@ pre {
 
 @media (prefers-color-scheme: dark) {
   .dealer-dot {
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 28%, transparent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-visible) 34%, transparent);
   }
 
   .task::before {
-    filter: saturate(1.25) brightness(1.15);
+    filter: saturate(1.45) brightness(1.2);
   }
 
   a {
     color: #95c8ff;
+  }
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
   }
 }
 
@@ -527,6 +694,14 @@ pre {
   .summary-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .focus-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .focus-panel .tag-stack {
+    justify-content: flex-start;
+  }
 }
 
 @media (max-width: 560px) {
@@ -535,13 +710,19 @@ pre {
   }
 
   .header-actions,
+  .view-switch,
   .task-actions,
   .row-actions {
     align-items: stretch;
     flex-direction: column;
   }
 
-  .button {
+  .view-switch {
+    border-radius: 8px;
+  }
+
+  .button,
+  .view-tab {
     width: 100%;
   }
 }
@@ -555,6 +736,10 @@ pre {
         <h1>2027 Model Pipeline</h1>
       </div>
       <div class="header-actions">
+        <div class="view-switch" aria-label="View mode">
+          <button class="view-tab is-active" id="boardViewButton" type="button" data-view="board">Board</button>
+          <button class="view-tab" id="focusViewButton" type="button" data-view="focus">Focus</button>
+        </div>
         <button id="scanButton" class="button button-primary" type="button">Run Scan</button>
         <button id="digestButton" class="button" type="button">Preview Digest</button>
       </div>
@@ -578,6 +763,16 @@ pre {
           <span class="metric-label">Live</span>
           <strong id="metricLive">0</strong>
         </div>
+      </section>
+
+      <section id="focusPanel" class="focus-panel" aria-label="Focus view">
+        <div>
+          <p class="eyebrow">Next best action</p>
+          <h2 id="focusTitle">No task selected</h2>
+          <p id="focusMeta" class="focus-meta"></p>
+        </div>
+        <div id="focusTags" class="tag-stack"></div>
+        <div id="focusActions" class="focus-actions"></div>
       </section>
 
       <section class="toolbar" aria-label="Filters">
@@ -653,6 +848,8 @@ pre {
         <pre id="digestText"></pre>
       </form>
     </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
     <script type="module">
 const statusLabels = {
@@ -1238,6 +1435,7 @@ const state = {
   sources: [],
   overrides: JSON.parse(localStorage.getItem("pipeline-status-overrides") || "{}"),
   signalOverrides: JSON.parse(localStorage.getItem("pipeline-signal-overrides") || "{}"),
+  viewMode: localStorage.getItem("pipeline-view-mode") || "board",
 };
 
 const els = {
@@ -1256,8 +1454,16 @@ const els = {
   metricLive: document.querySelector("#metricLive"),
   scanButton: document.querySelector("#scanButton"),
   digestButton: document.querySelector("#digestButton"),
+  boardViewButton: document.querySelector("#boardViewButton"),
+  focusViewButton: document.querySelector("#focusViewButton"),
+  focusPanel: document.querySelector("#focusPanel"),
+  focusTitle: document.querySelector("#focusTitle"),
+  focusMeta: document.querySelector("#focusMeta"),
+  focusTags: document.querySelector("#focusTags"),
+  focusActions: document.querySelector("#focusActions"),
   digestDialog: document.querySelector("#digestDialog"),
   digestText: document.querySelector("#digestText"),
+  toast: document.querySelector("#toast"),
 };
 
 async function boot() {
@@ -1318,6 +1524,10 @@ function bindEvents() {
   });
 
   els.scanButton.addEventListener("click", runScan);
+
+  [els.boardViewButton, els.focusViewButton].forEach((button) => {
+    button.addEventListener("click", () => setViewMode(button.dataset.view));
+  });
 }
 
 function filteredTasks() {
@@ -1343,6 +1553,8 @@ function render() {
   );
 
   renderMetrics();
+  renderViewMode();
+  renderFocusTask();
   renderQueue(els.seoQueue, seoTasks, "seo");
   renderQueue(els.buildQueue, buildTasks, "build");
   renderTable(tasks);
@@ -1350,6 +1562,32 @@ function render() {
   els.seoCount.textContent = seoTasks.length;
   els.buildCount.textContent = buildTasks.length;
   els.visibleCount.textContent = tasks.length;
+}
+
+function renderViewMode() {
+  document.body.dataset.view = state.viewMode;
+  els.boardViewButton.classList.toggle("is-active", state.viewMode === "board");
+  els.focusViewButton.classList.toggle("is-active", state.viewMode === "focus");
+}
+
+function renderFocusTask() {
+  const task = nextBestTask();
+  if (!task) {
+    els.focusTitle.textContent = "Everything is clear";
+    els.focusMeta.textContent = "No active 2027 model tasks are waiting.";
+    els.focusTags.innerHTML = "";
+    els.focusActions.innerHTML = "";
+    return;
+  }
+
+  els.focusPanel.style.setProperty("--accent", task.accent);
+  els.focusTitle.textContent = `${task.year} ${task.make} ${task.model}`;
+  els.focusMeta.textContent = `${task.dealer} • ${statusLabels[task.pageStatus]}`;
+  els.focusTags.innerHTML = `${signalPill(task.inventorySignal)}${statusPill(task.pageStatus)}`;
+  els.focusActions.innerHTML = `
+    <div class="signal-actions">${signalButtons(task)}</div>
+    <div class="task-actions">${actionButtons(task)}</div>
+  `;
 }
 
 function renderMetrics() {
@@ -1438,6 +1676,7 @@ function updateStatus(taskId, status) {
   task.pageStatus = status;
   state.overrides[taskId] = status;
   localStorage.setItem("pipeline-status-overrides", JSON.stringify(state.overrides));
+  showToast(`${task.model} moved to ${statusLabels[status] || status}`);
   render();
 }
 
@@ -1448,6 +1687,14 @@ function updateSignal(taskId, signal) {
   task.inventorySignal = signal;
   state.signalOverrides[taskId] = signal;
   localStorage.setItem("pipeline-signal-overrides", JSON.stringify(state.signalOverrides));
+  showToast(`${task.model} tagged ${signalLabels[signal] || signal}`);
+  render();
+}
+
+function setViewMode(viewMode) {
+  state.viewMode = viewMode;
+  localStorage.setItem("pipeline-view-mode", viewMode);
+  showToast(`${viewMode === "focus" ? "Focus" : "Board"} view enabled`);
   render();
 }
 
@@ -1508,6 +1755,33 @@ function inferSignal(task) {
   if (task.pageStatus === "live") return "on_lot";
   if (["seo_done", "needs_build", "page_built"].includes(task.pageStatus)) return "shipped";
   return "upcoming";
+}
+
+function nextBestTask() {
+  const priority = {
+    needs_review: 0,
+    needs_seo: 1,
+    seo_in_progress: 2,
+    seo_done: 3,
+    needs_build: 4,
+    page_built: 5,
+    snoozed: 8,
+    ignored: 9,
+    live: 10,
+  };
+  return [...state.tasks]
+    .filter((task) => !["live", "ignored", "snoozed"].includes(task.pageStatus))
+    .sort((a, b) => (priority[a.pageStatus] ?? 7) - (priority[b.pageStatus] ?? 7))[0];
+}
+
+let toastTimer;
+function showToast(message) {
+  els.toast.textContent = message;
+  els.toast.classList.add("is-visible");
+  window.clearTimeout(toastTimer);
+  toastTimer = window.setTimeout(() => {
+    els.toast.classList.remove("is-visible");
+  }, 2200);
 }
 
 function buildDigest() {
