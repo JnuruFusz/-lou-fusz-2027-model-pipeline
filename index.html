@@ -6,9 +6,10 @@
     <title>2027 Model Pipeline</title>
     <style>
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
   --bg: #f5f7f8;
   --panel: #ffffff;
+  --panel-rgb: 255, 255, 255;
   --ink: #202427;
   --muted: #657078;
   --line: #d9e0e4;
@@ -27,6 +28,30 @@
   --shadow-hover: 0 18px 50px rgba(32, 36, 39, 0.13);
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1419;
+    --panel: #151b22;
+    --panel-rgb: 21, 27, 34;
+    --ink: #eef3f7;
+    --muted: #9aa7b2;
+    --line: #2a343e;
+    --soft-line: #222b34;
+    --green: #51d79a;
+    --green-soft: #123326;
+    --blue: #7cb7ff;
+    --blue-soft: #132b45;
+    --amber: #f0c76a;
+    --amber-soft: #3b2b0f;
+    --red: #ff8a7c;
+    --red-soft: #411a17;
+    --violet: #b99cff;
+    --violet-soft: #281f3f;
+    --shadow: 0 16px 42px rgba(0, 0, 0, 0.32);
+    --shadow-hover: 0 18px 50px rgba(0, 0, 0, 0.42);
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -34,7 +59,7 @@
 body {
   margin: 0;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(245, 247, 248, 0.94)),
+    linear-gradient(180deg, rgba(var(--panel-rgb), 0.9), rgba(var(--panel-rgb), 0.68)),
     radial-gradient(circle at 12% 0%, rgba(37, 99, 169, 0.1), transparent 32%),
     var(--bg);
   color: var(--ink);
@@ -50,7 +75,7 @@ body {
   gap: 24px;
   padding: 28px 32px 20px;
   border-bottom: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(var(--panel-rgb), 0.92);
   backdrop-filter: blur(14px);
   position: sticky;
   top: 0;
@@ -101,7 +126,7 @@ input {
   min-height: 40px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: #fff;
+  background: var(--panel);
   color: var(--ink);
   font: inherit;
 }
@@ -126,7 +151,7 @@ input {
 .button-primary {
   border-color: var(--blue);
   background: var(--blue);
-  color: #fff;
+  color: light-dark(#fff, #071018);
 }
 
 .summary-grid {
@@ -356,7 +381,7 @@ input {
   padding: 0 9px;
   border: 1px solid var(--soft-line);
   border-radius: 999px;
-  background: #fff;
+  background: var(--panel);
   color: var(--muted);
   cursor: pointer;
   font: inherit;
@@ -371,7 +396,7 @@ input {
 .mini-button:hover,
 .mini-button.is-active {
   border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
-  background: color-mix(in srgb, var(--accent) 10%, #fff);
+  background: color-mix(in srgb, var(--accent) 10%, var(--panel));
   color: var(--ink);
 }
 
@@ -416,7 +441,7 @@ tbody tr {
 }
 
 tbody tr:hover {
-  background: #fbfcfd;
+  background: color-mix(in srgb, var(--panel) 78%, var(--line));
 }
 
 a {
@@ -456,7 +481,7 @@ pre {
   overflow: auto;
   padding: 14px;
   border-radius: 8px;
-  background: #f4f6f7;
+  background: color-mix(in srgb, var(--panel) 82%, var(--line));
   color: var(--ink);
   white-space: pre-wrap;
 }
@@ -466,7 +491,21 @@ pre {
   border: 1px dashed var(--line);
   border-radius: 8px;
   color: var(--muted);
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(var(--panel-rgb), 0.6);
+}
+
+@media (prefers-color-scheme: dark) {
+  .dealer-dot {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 28%, transparent);
+  }
+
+  .task::before {
+    filter: saturate(1.25) brightness(1.15);
+  }
+
+  a {
+    color: #95c8ff;
+  }
 }
 
 @media (max-width: 900px) {
@@ -635,22 +674,22 @@ const signalLabels = {
 };
 
 const dealerAccents = {
-  "Lou Fusz Chrysler Jeep Dodge RAM": "#d24726",
-  "Lou Fusz Mazda": "#7c3aed",
-  "Lou Fusz Toyota": "#d71920",
-  "Lou Fusz Buick GMC": "#0f766e",
-  "Lou Fusz Chevrolet": "#b7791f",
-  "Lou Fusz Kia": "#c026d3",
-  "Lou Fusz Ford": "#1d4ed8",
-  "Lou Fusz Chrysler Jeep Dodge Ram Vincennes": "#ea580c",
-  "Lou Fusz Kia Evansville": "#db2777",
-  "Lou Fusz Kia of Moline": "#9333ea",
-  "Lou Fusz Kia Terre Haute": "#be185d",
-  "Lou Fusz Mazda Evansville": "#6d28d9",
-  "Lou Fusz Nissan Moline": "#dc2626",
-  "Lou Fusz Subaru St. Louis": "#2563eb",
-  "Lou Fusz Subaru O'Fallon": "#0284c7",
-  "Lou Fusz Kia Columbus": "#a21caf",
+  "Lou Fusz Chrysler Jeep Dodge RAM": "#d5001c",
+  "Lou Fusz Mazda": "#101820",
+  "Lou Fusz Toyota": "#eb0a1e",
+  "Lou Fusz Buick GMC": "#005daa",
+  "Lou Fusz Chevrolet": "#c8a95a",
+  "Lou Fusz Kia": "#05141f",
+  "Lou Fusz Ford": "#003478",
+  "Lou Fusz Chrysler Jeep Dodge Ram Vincennes": "#d5001c",
+  "Lou Fusz Kia Evansville": "#05141f",
+  "Lou Fusz Kia of Moline": "#05141f",
+  "Lou Fusz Kia Terre Haute": "#05141f",
+  "Lou Fusz Mazda Evansville": "#101820",
+  "Lou Fusz Nissan Moline": "#c3002f",
+  "Lou Fusz Subaru St. Louis": "#013c74",
+  "Lou Fusz Subaru O'Fallon": "#013c74",
+  "Lou Fusz Kia Columbus": "#05141f",
 };
 
 const transitions = {
