@@ -265,6 +265,54 @@ input:focus-visible,
   box-shadow: 0 10px 28px rgba(32, 36, 39, 0.05);
 }
 
+.achievement-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: -8px 0 22px;
+}
+
+.achievement {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 78px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(124, 183, 255, 0.12), transparent 46%),
+    var(--panel);
+  box-shadow: 0 10px 28px rgba(32, 36, 39, 0.06);
+}
+
+.achievement-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.achievement strong {
+  display: block;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.achievement span:last-child {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 750;
+}
+
 label {
   display: grid;
   gap: 6px;
@@ -754,6 +802,10 @@ pre {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .achievement-strip {
+    grid-template-columns: 1fr;
+  }
+
   .focus-panel {
     grid-template-columns: 1fr;
   }
@@ -836,6 +888,10 @@ pre {
 
       <section class="toolbar" aria-label="Filters">
         <label>
+          Year
+          <select id="yearFilter"></select>
+        </label>
+        <label>
           Dealership
           <select id="dealerFilter"></select>
         </label>
@@ -857,6 +913,30 @@ pre {
           Search
           <input id="searchInput" type="search" placeholder="Model, make, dealer" />
         </label>
+      </section>
+
+      <section class="achievement-strip" aria-label="Team progress">
+        <div class="achievement">
+          <span class="achievement-icon">SEO</span>
+          <div>
+            <strong id="achievementWritten">0</strong>
+            <span>pages written or live</span>
+          </div>
+        </div>
+        <div class="achievement">
+          <span class="achievement-icon">LIVE</span>
+          <div>
+            <strong id="achievementLive">0</strong>
+            <span>pages checked live</span>
+          </div>
+        </div>
+        <div class="achievement">
+          <span class="achievement-icon">NEXT</span>
+          <div>
+            <strong id="achievementRemaining">0</strong>
+            <span>left in this view</span>
+          </div>
+        </div>
       </section>
 
       <section class="board" aria-label="Work queues">
@@ -1014,6 +1094,2019 @@ const transitions = {
 };
 
 const embeddedTracker = [
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram|2026|pacifica",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge RAM",
+    "year": 2026,
+    "make": "Chrysler",
+    "model": "Pacifica",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 3,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram|2026|voyager",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge RAM",
+    "year": 2026,
+    "make": "Chrysler",
+    "model": "Voyager",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 4,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram|2026|durango",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge RAM",
+    "year": 2026,
+    "make": "Dodge",
+    "model": "Durango",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 7,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram|2026|charger",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge RAM",
+    "year": 2026,
+    "make": "Dodge",
+    "model": "Charger",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 8,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram|2026|cherokee",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge RAM",
+    "year": 2026,
+    "make": "Jeep",
+    "model": "Cherokee",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 11,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram|2026|compass",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge RAM",
+    "year": 2026,
+    "make": "Jeep",
+    "model": "Compass",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 12,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram|2026|wrangler",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge RAM",
+    "year": 2026,
+    "make": "Jeep",
+    "model": "Wrangler",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 13,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram|2026|gladiator",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge RAM",
+    "year": 2026,
+    "make": "Jeep",
+    "model": "Gladiator",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 14,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram|2026|grand-cherokee",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge RAM",
+    "year": 2026,
+    "make": "Jeep",
+    "model": "Grand Cherokee",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 15,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram|2026|grand-wagoneer",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge RAM",
+    "year": 2026,
+    "make": "Jeep",
+    "model": "Grand Wagoneer",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 16,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram|2026|1500",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge RAM",
+    "year": 2026,
+    "make": "Ram",
+    "model": "1500",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 18,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram|2026|1500-rho",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge RAM",
+    "year": 2026,
+    "make": "Ram",
+    "model": "1500 RHO",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 19,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram|2026|2500",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge RAM",
+    "year": 2026,
+    "make": "Ram",
+    "model": "2500",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 20,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram|2026|3500",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge RAM",
+    "year": 2026,
+    "make": "Ram",
+    "model": "3500",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 21,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda|2026|cx-5",
+    "dealer": "Lou Fusz Mazda",
+    "year": 2026,
+    "make": "Mazda",
+    "model": "CX-5",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 2,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda|2026|mazda3-hatchback",
+    "dealer": "Lou Fusz Mazda",
+    "year": 2026,
+    "make": "Mazda",
+    "model": "Mazda3 Hatchback",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 3,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda|2026|mazda-cx-90",
+    "dealer": "Lou Fusz Mazda",
+    "year": 2026,
+    "make": "Mazda",
+    "model": "Mazda CX-90",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 4,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda|2026|mazda-cx-50",
+    "dealer": "Lou Fusz Mazda",
+    "year": 2026,
+    "make": "Mazda",
+    "model": "Mazda CX-50",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 5,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda|2026|mazda-cx-30",
+    "dealer": "Lou Fusz Mazda",
+    "year": 2026,
+    "make": "Mazda",
+    "model": "Mazda CX-30",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 6,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda|2026|mazda3-sedan",
+    "dealer": "Lou Fusz Mazda",
+    "year": 2026,
+    "make": "Mazda",
+    "model": "Mazda3 Sedan",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 7,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda|2026|mazda-cx-70",
+    "dealer": "Lou Fusz Mazda",
+    "year": 2026,
+    "make": "Mazda",
+    "model": "Mazda CX-70",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 8,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda|2026|mazda-mx-5-miata",
+    "dealer": "Lou Fusz Mazda",
+    "year": 2026,
+    "make": "Mazda",
+    "model": "Mazda MX-5 MIATA",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 9,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda|2026|mazda-mx-5-miata-rf",
+    "dealer": "Lou Fusz Mazda",
+    "year": 2026,
+    "make": "Mazda",
+    "model": "Mazda MX-5 MIATA RF",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 10,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|crown",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "Crown",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 2,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|rav4",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "RAV4",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 3,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|rav4-plug-in-hybrid",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "RAV4 Plug in Hybrid",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 4,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|bz",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "bZ",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 5,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|c-hr",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "C-HR",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 6,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|corolla-hatchback",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "Corolla Hatchback",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 7,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|corolla-cross",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "Corolla Cross",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 8,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|gr86",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "GR86",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 9,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|camry",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "Camry",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 10,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|corolla",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "Corolla",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 11,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|grand-highlander",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "Grand HIghlander",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 12,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|tundra",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "Tundra",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 13,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|prius",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "Prius",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 14,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|sequoia",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "Sequoia",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 15,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|gr-supra",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "GR Supra",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 16,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|land-crsuier",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "Land Crsuier",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 17,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|highlander",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "Highlander",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 18,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|sienna",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "Sienna",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 19,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|4runner",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "4Runner",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 20,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|gr-corolla",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "GR Corolla",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 21,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-toyota|2026|tacoma",
+    "dealer": "Lou Fusz Toyota",
+    "year": 2026,
+    "make": "Toyota",
+    "model": "Tacoma",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 22,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-buick-gmc|2026|encore-gx",
+    "dealer": "Lou Fusz Buick GMC",
+    "year": 2026,
+    "make": "Buick",
+    "model": "Encore GX",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 3,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-buick-gmc|2026|envista",
+    "dealer": "Lou Fusz Buick GMC",
+    "year": 2026,
+    "make": "Buick",
+    "model": "Envista",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 4,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-buick-gmc|2026|envision",
+    "dealer": "Lou Fusz Buick GMC",
+    "year": 2026,
+    "make": "Buick",
+    "model": "Envision",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 5,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-buick-gmc|2026|enclave",
+    "dealer": "Lou Fusz Buick GMC",
+    "year": 2026,
+    "make": "Buick",
+    "model": "Enclave",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 6,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-buick-gmc|2026|terrain",
+    "dealer": "Lou Fusz Buick GMC",
+    "year": 2026,
+    "make": "GMC",
+    "model": "Terrain",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 8,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-buick-gmc|2026|sierra-ev",
+    "dealer": "Lou Fusz Buick GMC",
+    "year": 2026,
+    "make": "GMC",
+    "model": "Sierra EV",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 9,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-buick-gmc|2026|hummer-ev-suv",
+    "dealer": "Lou Fusz Buick GMC",
+    "year": 2026,
+    "make": "GMC",
+    "model": "Hummer EV SUV",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 10,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-buick-gmc|2026|acadia",
+    "dealer": "Lou Fusz Buick GMC",
+    "year": 2026,
+    "make": "GMC",
+    "model": "Acadia",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 11,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-buick-gmc|2026|canyon",
+    "dealer": "Lou Fusz Buick GMC",
+    "year": 2026,
+    "make": "GMC",
+    "model": "Canyon",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 12,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-buick-gmc|2026|yukon-xl",
+    "dealer": "Lou Fusz Buick GMC",
+    "year": 2026,
+    "make": "GMC",
+    "model": "Yukon XL",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 13,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-buick-gmc|2026|sierra-1500",
+    "dealer": "Lou Fusz Buick GMC",
+    "year": 2026,
+    "make": "GMC",
+    "model": "Sierra 1500",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 14,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-buick-gmc|2026|sierra-2500",
+    "dealer": "Lou Fusz Buick GMC",
+    "year": 2026,
+    "make": "GMC",
+    "model": "Sierra 2500",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 15,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-buick-gmc|2026|yukon",
+    "dealer": "Lou Fusz Buick GMC",
+    "year": 2026,
+    "make": "GMC",
+    "model": "Yukon",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 16,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-buick-gmc|2026|hummer-ev-pickup",
+    "dealer": "Lou Fusz Buick GMC",
+    "year": 2026,
+    "make": "GMC",
+    "model": "Hummer EV Pickup",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 17,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia|2026|carnival-(hybrid)",
+    "dealer": "Lou Fusz Kia",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Carnival (Hybrid)",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 2,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia|2026|ev9",
+    "dealer": "Lou Fusz Kia",
+    "year": 2026,
+    "make": "Kia",
+    "model": "EV9",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 3,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia|2026|seltos",
+    "dealer": "Lou Fusz Kia",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Seltos",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 4,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia|2026|sportage",
+    "dealer": "Lou Fusz Kia",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Sportage",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 5,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia|2026|k5",
+    "dealer": "Lou Fusz Kia",
+    "year": 2026,
+    "make": "Kia",
+    "model": "K5",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 6,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia|2026|k4-hatchback",
+    "dealer": "Lou Fusz Kia",
+    "year": 2026,
+    "make": "Kia",
+    "model": "K4 Hatchback",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 7,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia|2026|k4",
+    "dealer": "Lou Fusz Kia",
+    "year": 2026,
+    "make": "Kia",
+    "model": "K4",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 8,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia|2026|sorento",
+    "dealer": "Lou Fusz Kia",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Sorento",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 9,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia|2026|niro",
+    "dealer": "Lou Fusz Kia",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Niro",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 10,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chevrolet|2026|trailblazer",
+    "dealer": "Lou Fusz Chevrolet",
+    "year": 2026,
+    "make": "Chevrolet",
+    "model": "Trailblazer",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 2,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chevrolet|2026|equinox",
+    "dealer": "Lou Fusz Chevrolet",
+    "year": 2026,
+    "make": "Chevrolet",
+    "model": "Equinox",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 3,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chevrolet|2026|silverado-ev",
+    "dealer": "Lou Fusz Chevrolet",
+    "year": 2026,
+    "make": "Chevrolet",
+    "model": "Silverado EV",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 4,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chevrolet|2026|corvette-stingray",
+    "dealer": "Lou Fusz Chevrolet",
+    "year": 2026,
+    "make": "Chevrolet",
+    "model": "Corvette Stingray",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 5,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chevrolet|2026|traverse",
+    "dealer": "Lou Fusz Chevrolet",
+    "year": 2026,
+    "make": "Chevrolet",
+    "model": "Traverse",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 6,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chevrolet|2026|silverado-1500",
+    "dealer": "Lou Fusz Chevrolet",
+    "year": 2026,
+    "make": "Chevrolet",
+    "model": "Silverado 1500",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 7,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chevrolet|2026|colorado",
+    "dealer": "Lou Fusz Chevrolet",
+    "year": 2026,
+    "make": "Chevrolet",
+    "model": "Colorado",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 8,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chevrolet|2026|suburban",
+    "dealer": "Lou Fusz Chevrolet",
+    "year": 2026,
+    "make": "Chevrolet",
+    "model": "Suburban",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 9,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chevrolet|2026|trax",
+    "dealer": "Lou Fusz Chevrolet",
+    "year": 2026,
+    "make": "Chevrolet",
+    "model": "Trax",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 10,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chevrolet|2026|equinox-ev",
+    "dealer": "Lou Fusz Chevrolet",
+    "year": 2026,
+    "make": "Chevrolet",
+    "model": "Equinox EV",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 11,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chevrolet|2026|tahoe",
+    "dealer": "Lou Fusz Chevrolet",
+    "year": 2026,
+    "make": "Chevrolet",
+    "model": "Tahoe",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 12,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chevrolet|2026|silverado-2500",
+    "dealer": "Lou Fusz Chevrolet",
+    "year": 2026,
+    "make": "Chevrolet",
+    "model": "Silverado 2500",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 13,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chevrolet|2026|blazer",
+    "dealer": "Lou Fusz Chevrolet",
+    "year": 2026,
+    "make": "Chevrolet",
+    "model": "Blazer",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 14,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chevrolet|2026|blazer-ev",
+    "dealer": "Lou Fusz Chevrolet",
+    "year": 2026,
+    "make": "Chevrolet",
+    "model": "Blazer EV",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 15,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chevrolet|2026|corvette-z06-3lz",
+    "dealer": "Lou Fusz Chevrolet",
+    "year": 2026,
+    "make": "Chevrolet",
+    "model": "Corvette Z06 3LZ",
+    "pageStatus": "needs_seo",
+    "trackerStatusRaw": null,
+    "trackerRow": 16,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-ford|2026|mustang",
+    "dealer": "Lou Fusz Ford",
+    "year": 2026,
+    "make": "Ford",
+    "model": "Mustang",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 2,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-ford|2026|expedition",
+    "dealer": "Lou Fusz Ford",
+    "year": 2026,
+    "make": "Ford",
+    "model": "Expedition",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 3,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-ford|2026|explorer",
+    "dealer": "Lou Fusz Ford",
+    "year": 2026,
+    "make": "Ford",
+    "model": "Explorer",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 4,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-ford|2026|escape",
+    "dealer": "Lou Fusz Ford",
+    "year": 2026,
+    "make": "Ford",
+    "model": "Escape",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 5,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-ford|2026|super-duty-f-250",
+    "dealer": "Lou Fusz Ford",
+    "year": 2026,
+    "make": "Ford",
+    "model": "Super Duty F-250",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 6,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-ford|2026|maverick",
+    "dealer": "Lou Fusz Ford",
+    "year": 2026,
+    "make": "Ford",
+    "model": "Maverick",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 7,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-ford|2026|f-150",
+    "dealer": "Lou Fusz Ford",
+    "year": 2026,
+    "make": "Ford",
+    "model": "F-150",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 8,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-ford|2026|ranger",
+    "dealer": "Lou Fusz Ford",
+    "year": 2026,
+    "make": "Ford",
+    "model": "Ranger",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 9,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-ford|2026|bronco",
+    "dealer": "Lou Fusz Ford",
+    "year": 2026,
+    "make": "Ford",
+    "model": "Bronco",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 10,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-ford|2026|bronco-sport",
+    "dealer": "Lou Fusz Ford",
+    "year": 2026,
+    "make": "Ford",
+    "model": "Bronco Sport",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 11,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-ford|2026|mustang-mach-e",
+    "dealer": "Lou Fusz Ford",
+    "year": 2026,
+    "make": "Ford",
+    "model": "Mustang Mach-E",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 12,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2026|pacifica",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge Ram Vincennes",
+    "year": 2026,
+    "make": "Chrysler",
+    "model": "Pacifica",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 3,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2026|voyager",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge Ram Vincennes",
+    "year": 2026,
+    "make": "Chrysler",
+    "model": "Voyager",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 4,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2026|durango",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge Ram Vincennes",
+    "year": 2026,
+    "make": "Dodge",
+    "model": "Durango",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 7,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2026|dodge-charger",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge Ram Vincennes",
+    "year": 2026,
+    "make": "Jeep",
+    "model": "Dodge Charger",
+    "pageStatus": "seo_done",
+    "trackerStatusRaw": "Written",
+    "trackerRow": 8,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2026|cherokee",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge Ram Vincennes",
+    "year": 2026,
+    "make": "Jeep",
+    "model": "Cherokee",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 11,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2026|compass",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge Ram Vincennes",
+    "year": 2026,
+    "make": "Jeep",
+    "model": "Compass",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 12,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2026|gladiator",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge Ram Vincennes",
+    "year": 2026,
+    "make": "Jeep",
+    "model": "Gladiator",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 13,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2026|wrangler",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge Ram Vincennes",
+    "year": 2026,
+    "make": "Jeep",
+    "model": "Wrangler",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 14,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2026|grand-cherokee",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge Ram Vincennes",
+    "year": 2026,
+    "make": "Jeep",
+    "model": "Grand Cherokee",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 15,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2026|grand-wagoneer",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge Ram Vincennes",
+    "year": 2026,
+    "make": "Jeep",
+    "model": "Grand Wagoneer",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 16,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2026|1500",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge Ram Vincennes",
+    "year": 2026,
+    "make": "Ram",
+    "model": "1500",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 22,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2026|1500-rho",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge Ram Vincennes",
+    "year": 2026,
+    "make": "Ram",
+    "model": "1500 RHO",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 23,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2026|2500",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge Ram Vincennes",
+    "year": 2026,
+    "make": "Ram",
+    "model": "2500",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 24,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2026|3500",
+    "dealer": "Lou Fusz Chrysler Jeep Dodge Ram Vincennes",
+    "year": 2026,
+    "make": "Ram",
+    "model": "3500",
+    "pageStatus": "seo_done",
+    "trackerStatusRaw": "Written",
+    "trackerRow": 25,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-evansville|2026|carnival-(hybrid)",
+    "dealer": "Lou Fusz Kia Evansville",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Carnival (Hybrid)",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 2,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-evansville|2026|ev9",
+    "dealer": "Lou Fusz Kia Evansville",
+    "year": 2026,
+    "make": "Kia",
+    "model": "EV9",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 3,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-evansville|2026|seltos",
+    "dealer": "Lou Fusz Kia Evansville",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Seltos",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 4,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-evansville|2026|sportage",
+    "dealer": "Lou Fusz Kia Evansville",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Sportage",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 5,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-evansville|2026|k5",
+    "dealer": "Lou Fusz Kia Evansville",
+    "year": 2026,
+    "make": "Kia",
+    "model": "K5",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 6,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-evansville|2026|k4-hatchback",
+    "dealer": "Lou Fusz Kia Evansville",
+    "year": 2026,
+    "make": "Kia",
+    "model": "K4 Hatchback",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 7,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-evansville|2026|k4",
+    "dealer": "Lou Fusz Kia Evansville",
+    "year": 2026,
+    "make": "Kia",
+    "model": "K4",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 8,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-evansville|2026|sorento",
+    "dealer": "Lou Fusz Kia Evansville",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Sorento",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 9,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-evansville|2026|niro",
+    "dealer": "Lou Fusz Kia Evansville",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Niro",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 10,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-of-moline|2026|carnival-(hybrid)",
+    "dealer": "Lou Fusz Kia of Moline",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Carnival (Hybrid)",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 2,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-of-moline|2026|ev9",
+    "dealer": "Lou Fusz Kia of Moline",
+    "year": 2026,
+    "make": "Kia",
+    "model": "EV9",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 3,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-of-moline|2026|seltos",
+    "dealer": "Lou Fusz Kia of Moline",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Seltos",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 4,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-of-moline|2026|sportage",
+    "dealer": "Lou Fusz Kia of Moline",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Sportage",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 5,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-of-moline|2026|k5",
+    "dealer": "Lou Fusz Kia of Moline",
+    "year": 2026,
+    "make": "Kia",
+    "model": "K5",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 6,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-of-moline|2026|k4-hatchback",
+    "dealer": "Lou Fusz Kia of Moline",
+    "year": 2026,
+    "make": "Kia",
+    "model": "K4 Hatchback",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 7,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-of-moline|2026|k4",
+    "dealer": "Lou Fusz Kia of Moline",
+    "year": 2026,
+    "make": "Kia",
+    "model": "K4",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 8,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-of-moline|2026|sorento",
+    "dealer": "Lou Fusz Kia of Moline",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Sorento",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 9,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-of-moline|2026|niro",
+    "dealer": "Lou Fusz Kia of Moline",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Niro",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 10,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-terre-haute|2026|carnival-(hybrid)",
+    "dealer": "Lou Fusz Kia Terre Haute",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Carnival (Hybrid)",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 2,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-terre-haute|2026|ev9",
+    "dealer": "Lou Fusz Kia Terre Haute",
+    "year": 2026,
+    "make": "Kia",
+    "model": "EV9",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 3,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-terre-haute|2026|seltos",
+    "dealer": "Lou Fusz Kia Terre Haute",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Seltos",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 4,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-terre-haute|2026|sportage",
+    "dealer": "Lou Fusz Kia Terre Haute",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Sportage",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 5,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-terre-haute|2026|k5",
+    "dealer": "Lou Fusz Kia Terre Haute",
+    "year": 2026,
+    "make": "Kia",
+    "model": "K5",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 6,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-terre-haute|2026|k4-hatchback",
+    "dealer": "Lou Fusz Kia Terre Haute",
+    "year": 2026,
+    "make": "Kia",
+    "model": "K4 Hatchback",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 7,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-terre-haute|2026|k4",
+    "dealer": "Lou Fusz Kia Terre Haute",
+    "year": 2026,
+    "make": "Kia",
+    "model": "K4",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 8,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-terre-haute|2026|sorento",
+    "dealer": "Lou Fusz Kia Terre Haute",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Sorento",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 9,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-terre-haute|2026|niro",
+    "dealer": "Lou Fusz Kia Terre Haute",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Niro",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 10,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda-evansville|2026|cx-5",
+    "dealer": "Lou Fusz Mazda Evansville",
+    "year": 2026,
+    "make": "Mazda",
+    "model": "CX-5",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 2,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda-evansville|2026|mazda3-hatchback",
+    "dealer": "Lou Fusz Mazda Evansville",
+    "year": 2026,
+    "make": "Mazda",
+    "model": "Mazda3 Hatchback",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 3,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda-evansville|2026|cx-90",
+    "dealer": "Lou Fusz Mazda Evansville",
+    "year": 2026,
+    "make": "Mazda",
+    "model": "CX-90",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 4,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda-evansville|2026|cx-30",
+    "dealer": "Lou Fusz Mazda Evansville",
+    "year": 2026,
+    "make": "Mazda",
+    "model": "CX-30",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 5,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda-evansville|2026|cx-50",
+    "dealer": "Lou Fusz Mazda Evansville",
+    "year": 2026,
+    "make": "Mazda",
+    "model": "CX-50",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 6,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda-evansville|2026|cx-70",
+    "dealer": "Lou Fusz Mazda Evansville",
+    "year": 2026,
+    "make": "Mazda",
+    "model": "CX-70",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 7,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda-evansville|2026|mazda3-sedan",
+    "dealer": "Lou Fusz Mazda Evansville",
+    "year": 2026,
+    "make": "Mazda",
+    "model": "Mazda3 Sedan",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 8,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda-evansville|2026|mazda-mx-5-miata",
+    "dealer": "Lou Fusz Mazda Evansville",
+    "year": 2026,
+    "make": "Mazda",
+    "model": "Mazda MX-5 MIATA",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 9,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-mazda-evansville|2026|mazda-mx-5-miata-rf",
+    "dealer": "Lou Fusz Mazda Evansville",
+    "year": 2026,
+    "make": "Mazda",
+    "model": "Mazda MX-5 MIATA RF",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 10,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-nissan-moline|2026|leaf",
+    "dealer": "Lou Fusz Nissan Moline",
+    "year": 2026,
+    "make": "Nissan",
+    "model": "LEAF",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 2,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-nissan-moline|2026|armada",
+    "dealer": "Lou Fusz Nissan Moline",
+    "year": 2026,
+    "make": "Nissan",
+    "model": "Armada",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 3,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-nissan-moline|2026|murano",
+    "dealer": "Lou Fusz Nissan Moline",
+    "year": 2026,
+    "make": "Nissan",
+    "model": "Murano",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 4,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-nissan-moline|2026|frontier",
+    "dealer": "Lou Fusz Nissan Moline",
+    "year": 2026,
+    "make": "Nissan",
+    "model": "Frontier",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 5,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-nissan-moline|2026|rogue",
+    "dealer": "Lou Fusz Nissan Moline",
+    "year": 2026,
+    "make": "Nissan",
+    "model": "Rogue",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 6,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-nissan-moline|2026|kicks",
+    "dealer": "Lou Fusz Nissan Moline",
+    "year": 2026,
+    "make": "Nissan",
+    "model": "Kicks",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 7,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-nissan-moline|2026|sentra",
+    "dealer": "Lou Fusz Nissan Moline",
+    "year": 2026,
+    "make": "Nissan",
+    "model": "Sentra",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 8,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-nissan-moline|2026|pathfinder",
+    "dealer": "Lou Fusz Nissan Moline",
+    "year": 2026,
+    "make": "Nissan",
+    "model": "Pathfinder",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 9,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-nissan-moline|2026|altima",
+    "dealer": "Lou Fusz Nissan Moline",
+    "year": 2026,
+    "make": "Nissan",
+    "model": "Altima",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 10,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-nissan-moline|2026|murano",
+    "dealer": "Lou Fusz Nissan Moline",
+    "year": 2026,
+    "make": "Nissan",
+    "model": "Murano",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 11,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-nissan-moline|2026|z",
+    "dealer": "Lou Fusz Nissan Moline",
+    "year": 2026,
+    "make": "Nissan",
+    "model": "Z",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 12,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-st.-louis|2026|forester",
+    "dealer": "Lou Fusz Subaru St. Louis",
+    "year": 2026,
+    "make": "Subaru",
+    "model": "Forester",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 2,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-st.-louis|2026|crosstrek-hybrid",
+    "dealer": "Lou Fusz Subaru St. Louis",
+    "year": 2026,
+    "make": "Subaru",
+    "model": "Crosstrek Hybrid",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 3,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-st.-louis|2026|solterra",
+    "dealer": "Lou Fusz Subaru St. Louis",
+    "year": 2026,
+    "make": "Subaru",
+    "model": "Solterra",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 4,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-st.-louis|2026|outback",
+    "dealer": "Lou Fusz Subaru St. Louis",
+    "year": 2026,
+    "make": "Subaru",
+    "model": "Outback",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 5,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-st.-louis|2026|trailseeker",
+    "dealer": "Lou Fusz Subaru St. Louis",
+    "year": 2026,
+    "make": "Subaru",
+    "model": "Trailseeker",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 6,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-st.-louis|2026|uncharted",
+    "dealer": "Lou Fusz Subaru St. Louis",
+    "year": 2026,
+    "make": "Subaru",
+    "model": "Uncharted",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 7,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-st.-louis|2026|impreza",
+    "dealer": "Lou Fusz Subaru St. Louis",
+    "year": 2026,
+    "make": "Subaru",
+    "model": "Impreza",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 8,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-st.-louis|2026|ascent",
+    "dealer": "Lou Fusz Subaru St. Louis",
+    "year": 2026,
+    "make": "Subaru",
+    "model": "Ascent",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 9,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-st.-louis|2026|brz",
+    "dealer": "Lou Fusz Subaru St. Louis",
+    "year": 2026,
+    "make": "Subaru",
+    "model": "BRZ",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 10,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-st.-louis|2026|wrx",
+    "dealer": "Lou Fusz Subaru St. Louis",
+    "year": 2026,
+    "make": "Subaru",
+    "model": "WRX",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 11,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-o'fallon|2026|forester",
+    "dealer": "Lou Fusz Subaru O'Fallon",
+    "year": 2026,
+    "make": "Subaru",
+    "model": "Forester",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 2,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-o'fallon|2026|crosstrek-hybrid",
+    "dealer": "Lou Fusz Subaru O'Fallon",
+    "year": 2026,
+    "make": "Subaru",
+    "model": "Crosstrek Hybrid",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 3,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-o'fallon|2026|solterra",
+    "dealer": "Lou Fusz Subaru O'Fallon",
+    "year": 2026,
+    "make": "Subaru",
+    "model": "Solterra",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 4,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-o'fallon|2026|outback",
+    "dealer": "Lou Fusz Subaru O'Fallon",
+    "year": 2026,
+    "make": "Subaru",
+    "model": "Outback",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 5,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-o'fallon|2026|trailseeker",
+    "dealer": "Lou Fusz Subaru O'Fallon",
+    "year": 2026,
+    "make": "Subaru",
+    "model": "Trailseeker",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 6,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-o'fallon|2026|uncharted",
+    "dealer": "Lou Fusz Subaru O'Fallon",
+    "year": 2026,
+    "make": "Subaru",
+    "model": "Uncharted",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 7,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-o'fallon|2026|impreza",
+    "dealer": "Lou Fusz Subaru O'Fallon",
+    "year": 2026,
+    "make": "Subaru",
+    "model": "Impreza",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 8,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-o'fallon|2026|ascent",
+    "dealer": "Lou Fusz Subaru O'Fallon",
+    "year": 2026,
+    "make": "Subaru",
+    "model": "Ascent",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 9,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-o'fallon|2026|brz",
+    "dealer": "Lou Fusz Subaru O'Fallon",
+    "year": 2026,
+    "make": "Subaru",
+    "model": "BRZ",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 10,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-subaru-o'fallon|2026|wrx",
+    "dealer": "Lou Fusz Subaru O'Fallon",
+    "year": 2026,
+    "make": "Subaru",
+    "model": "WRX",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 11,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-columbus|2026|carnival-(hybrid)",
+    "dealer": "Lou Fusz Kia Columbus",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Carnival (Hybrid)",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 2,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-columbus|2026|ev9",
+    "dealer": "Lou Fusz Kia Columbus",
+    "year": 2026,
+    "make": "Kia",
+    "model": "EV9",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 3,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-columbus|2026|seltos",
+    "dealer": "Lou Fusz Kia Columbus",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Seltos",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 4,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-columbus|2026|sportage",
+    "dealer": "Lou Fusz Kia Columbus",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Sportage",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 5,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-columbus|2026|k5",
+    "dealer": "Lou Fusz Kia Columbus",
+    "year": 2026,
+    "make": "Kia",
+    "model": "K5",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 6,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-columbus|2026|k4-hatchback",
+    "dealer": "Lou Fusz Kia Columbus",
+    "year": 2026,
+    "make": "Kia",
+    "model": "K4 Hatchback",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 7,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-columbus|2026|k4",
+    "dealer": "Lou Fusz Kia Columbus",
+    "year": 2026,
+    "make": "Kia",
+    "model": "K4",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 8,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-columbus|2026|sorento",
+    "dealer": "Lou Fusz Kia Columbus",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Sorento",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 9,
+    "source": "sharepoint-2026-tracker"
+  },
+  {
+    "id": "lou-fusz-kia-columbus|2026|niro",
+    "dealer": "Lou Fusz Kia Columbus",
+    "year": 2026,
+    "make": "Kia",
+    "model": "Niro",
+    "pageStatus": "live",
+    "trackerStatusRaw": true,
+    "trackerRow": 10,
+    "source": "sharepoint-2026-tracker"
+  },
   {
     "id": "lou-fusz-chrysler-jeep-dodge-ram|2027|pacifica",
     "dealer": "Lou Fusz Chrysler Jeep Dodge RAM",
@@ -1531,6 +3624,7 @@ const state = {
 };
 
 const els = {
+  yearFilter: document.querySelector("#yearFilter"),
   dealerFilter: document.querySelector("#dealerFilter"),
   statusFilter: document.querySelector("#statusFilter"),
   searchInput: document.querySelector("#searchInput"),
@@ -1544,6 +3638,9 @@ const els = {
   metricSeo: document.querySelector("#metricSeo"),
   metricBuild: document.querySelector("#metricBuild"),
   metricLive: document.querySelector("#metricLive"),
+  achievementWritten: document.querySelector("#achievementWritten"),
+  achievementLive: document.querySelector("#achievementLive"),
+  achievementRemaining: document.querySelector("#achievementRemaining"),
   scanButton: document.querySelector("#scanButton"),
   digestButton: document.querySelector("#digestButton"),
   boardViewButton: document.querySelector("#boardViewButton"),
@@ -1569,6 +3666,7 @@ async function boot() {
     accentStyle: accentStyleForTask(task),
     inventoryUrl: sourceFor(task.dealer)?.inventoryUrl || "",
   }));
+  populateYearFilter();
   populateDealerFilter();
   bindEvents();
   render();
@@ -1594,8 +3692,17 @@ function populateDealerFilter() {
   ].join("");
 }
 
+function populateYearFilter() {
+  const years = [...new Set(state.tasks.map((task) => task.year))].sort((a, b) => b - a);
+  els.yearFilter.innerHTML = [
+    `<option value="all">All years</option>`,
+    ...years.map((year) => `<option value="${year}">${year}</option>`),
+  ].join("");
+  els.yearFilter.value = years.includes(2027) ? "2027" : String(years[0] || "all");
+}
+
 function bindEvents() {
-  [els.dealerFilter, els.statusFilter, els.searchInput].forEach((el) => {
+  [els.yearFilter, els.dealerFilter, els.statusFilter, els.searchInput].forEach((el) => {
     el.addEventListener("input", render);
   });
 
@@ -1624,11 +3731,13 @@ function bindEvents() {
 }
 
 function filteredTasks() {
+  const year = els.yearFilter.value;
   const dealer = els.dealerFilter.value;
   const status = els.statusFilter.value;
   const query = els.searchInput.value.trim().toLowerCase();
 
   return state.tasks.filter((task) => {
+    if (year !== "all" && String(task.year) !== year) return false;
     if (dealer !== "all" && task.dealer !== dealer) return false;
     if (status !== "all" && task.pageStatus !== status) return false;
     if (!query) return true;
@@ -1645,7 +3754,7 @@ function render() {
     ["seo_done", "needs_build", "page_built"].includes(task.pageStatus),
   );
 
-  renderMetrics();
+  renderMetrics(tasks);
   renderViewMode();
   renderFocusTask();
   renderQueue(els.seoQueue, seoTasks, "seo");
@@ -1664,10 +3773,10 @@ function renderViewMode() {
 }
 
 function renderFocusTask() {
-  const task = nextBestTask();
+  const task = nextBestTask(filteredTasks());
   if (!task) {
     els.focusTitle.textContent = "Everything is clear";
-    els.focusMeta.textContent = "No active 2027 model tasks are waiting.";
+    els.focusMeta.textContent = "No active model tasks are waiting in this view.";
     els.focusTags.innerHTML = "";
     els.focusActions.innerHTML = "";
     return;
@@ -1683,15 +3792,27 @@ function renderFocusTask() {
   `;
 }
 
-function renderMetrics() {
-  els.metricDetected.textContent = state.tasks.length;
-  els.metricSeo.textContent = state.tasks.filter((task) =>
+function renderMetrics(tasks) {
+  els.metricDetected.textContent = tasks.length;
+  els.metricSeo.textContent = tasks.filter((task) =>
     ["needs_seo", "seo_in_progress"].includes(task.pageStatus),
   ).length;
-  els.metricBuild.textContent = state.tasks.filter((task) =>
+  els.metricBuild.textContent = tasks.filter((task) =>
     ["seo_done", "needs_build", "page_built"].includes(task.pageStatus),
   ).length;
-  els.metricLive.textContent = state.tasks.filter((task) => task.pageStatus === "live").length;
+  els.metricLive.textContent = tasks.filter((task) => task.pageStatus === "live").length;
+  renderAchievements(tasks);
+}
+
+function renderAchievements(tasks) {
+  const written = tasks.filter((task) =>
+    ["seo_done", "needs_build", "page_built", "live"].includes(task.pageStatus),
+  ).length;
+  const live = tasks.filter((task) => task.pageStatus === "live").length;
+  const remaining = tasks.filter((task) => !["live", "ignored", "snoozed"].includes(task.pageStatus)).length;
+  els.achievementWritten.textContent = written;
+  els.achievementLive.textContent = live;
+  els.achievementRemaining.textContent = remaining;
 }
 
 function renderQueue(container, tasks, type) {
@@ -1850,7 +3971,7 @@ function inferSignal(task) {
   return "upcoming";
 }
 
-function nextBestTask() {
+function nextBestTask(tasks = state.tasks) {
   const priority = {
     needs_review: 0,
     needs_seo: 1,
@@ -1862,7 +3983,7 @@ function nextBestTask() {
     ignored: 9,
     live: 10,
   };
-  return [...state.tasks]
+  return [...tasks]
     .filter((task) => !["live", "ignored", "snoozed"].includes(task.pageStatus))
     .sort((a, b) => (priority[a.pageStatus] ?? 7) - (priority[b.pageStatus] ?? 7))[0];
 }
