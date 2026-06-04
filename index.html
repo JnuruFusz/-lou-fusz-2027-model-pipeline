@@ -1638,10 +1638,10 @@ function filteredTasks() {
 
 function render() {
   const tasks = filteredTasks();
-  const seoTasks = state.tasks.filter((task) =>
+  const seoTasks = tasks.filter((task) =>
     ["needs_seo", "seo_in_progress"].includes(task.pageStatus),
   );
-  const buildTasks = state.tasks.filter((task) =>
+  const buildTasks = tasks.filter((task) =>
     ["seo_done", "needs_build", "page_built"].includes(task.pageStatus),
   );
 
