@@ -930,22 +930,50 @@ const signalLabels = {
 };
 
 const dealerAccents = {
-  "Lou Fusz Chrysler Jeep Dodge RAM": "#d5001c",
+  "Lou Fusz Chrysler Jeep Dodge RAM": "#8f98a3",
   "Lou Fusz Mazda": "#101820",
   "Lou Fusz Toyota": "#eb0a1e",
   "Lou Fusz Buick GMC": "#005daa",
   "Lou Fusz Chevrolet": "#c8a95a",
-  "Lou Fusz Kia": "#05141f",
+  "Lou Fusz Kia": "#4f6f8f",
   "Lou Fusz Ford": "#003478",
-  "Lou Fusz Chrysler Jeep Dodge Ram Vincennes": "#d5001c",
-  "Lou Fusz Kia Evansville": "#05141f",
-  "Lou Fusz Kia of Moline": "#05141f",
-  "Lou Fusz Kia Terre Haute": "#05141f",
+  "Lou Fusz Chrysler Jeep Dodge Ram Vincennes": "#8f98a3",
+  "Lou Fusz Kia Evansville": "#4f6f8f",
+  "Lou Fusz Kia of Moline": "#4f6f8f",
+  "Lou Fusz Kia Terre Haute": "#4f6f8f",
   "Lou Fusz Mazda Evansville": "#101820",
   "Lou Fusz Nissan Moline": "#c3002f",
   "Lou Fusz Subaru St. Louis": "#013c74",
   "Lou Fusz Subaru O'Fallon": "#013c74",
-  "Lou Fusz Kia Columbus": "#05141f",
+  "Lou Fusz Kia Columbus": "#4f6f8f",
+};
+
+const brandAccentOverrides = {
+  Kia: {
+    accent: "#05141f",
+    visible: "#7f9db8",
+    ink: "#b8d3ec",
+  },
+  Chrysler: {
+    accent: "#2f343a",
+    visible: "#aeb6bf",
+    ink: "#e5ebf0",
+  },
+  Dodge: {
+    accent: "#2f343a",
+    visible: "#aeb6bf",
+    ink: "#e5ebf0",
+  },
+  Jeep: {
+    accent: "#2f343a",
+    visible: "#aeb6bf",
+    ink: "#e5ebf0",
+  },
+  Ram: {
+    accent: "#2f343a",
+    visible: "#aeb6bf",
+    ink: "#e5ebf0",
+  },
 };
 
 const transitions = {
@@ -1532,8 +1560,8 @@ async function boot() {
     ...task,
     pageStatus: state.overrides[task.id] || task.pageStatus,
     inventorySignal: state.signalOverrides[task.id] || inferSignal(task),
-    accent: dealerAccents[task.dealer] || "#2563a9",
-    accentStyle: accentStyle(dealerAccents[task.dealer] || "#2563a9"),
+    accent: brandAccentOverrides[task.make]?.accent || dealerAccents[task.dealer] || "#2563a9",
+    accentStyle: accentStyleForTask(task),
     inventoryUrl: sourceFor(task.dealer)?.inventoryUrl || "",
   }));
   populateDealerFilter();
@@ -1905,6 +1933,25 @@ function accentStyle(hex) {
     `--accent-border:rgba(${r},${g},${b},.58)`,
     `--accent-glow:rgba(${r},${g},${b},.42)`,
     `--accent-ink:${brighten(hex, 42)}`,
+  ].join(";");
+}
+
+function accentStyleForTask(task) {
+  const make = task.make;
+  const override = brandAccentOverrides[make];
+  if (!override) return accentStyle(dealerAccents[task.dealer] || "#2563a9");
+
+  const rgb = hexToRgb(override.visible);
+  if (!rgb) return accentStyle(override.accent);
+  const { r, g, b } = rgb;
+  return [
+    `--accent:${override.accent}`,
+    `--accent-visible:${override.visible}`,
+    `--accent-soft:rgba(${r},${g},${b},.22)`,
+    `--accent-card:rgba(${r},${g},${b},.16)`,
+    `--accent-border:rgba(${r},${g},${b},.68)`,
+    `--accent-glow:rgba(${r},${g},${b},.54)`,
+    `--accent-ink:${override.ink}`,
   ].join(";");
 }
 
