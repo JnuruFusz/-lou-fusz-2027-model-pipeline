@@ -3863,7 +3863,7 @@ function bindEvents() {
 
     const detailsButton = event.target.closest("[data-details]");
     if (detailsButton) {
-      openTaskDetails(detailsButton.dataset.taskId);
+      openTaskDetails(detailsButton.dataset.taskId || detailsButton.dataset.details);
       return;
     }
 
