@@ -3,29 +3,29 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>2027 Model Pipeline</title>
+    <title>Fusz+</title>
     <style>
 :root {
-  color-scheme: light dark;
-  --bg: #f5f7f8;
-  --panel: #ffffff;
-  --panel-rgb: 255, 255, 255;
-  --ink: #202427;
-  --muted: #657078;
-  --line: #d9e0e4;
-  --soft-line: #edf1f3;
-  --green: #1b7f53;
-  --green-soft: #e7f4ee;
-  --blue: #2563a9;
-  --blue-soft: #e7f0fb;
-  --amber: #976000;
-  --amber-soft: #fff4d8;
-  --red: #b42318;
-  --red-soft: #fde8e6;
-  --violet: #7c3aed;
-  --violet-soft: #f1eafe;
-  --shadow: 0 16px 42px rgba(32, 36, 39, 0.08);
-  --shadow-hover: 0 18px 50px rgba(32, 36, 39, 0.13);
+  color-scheme: dark;
+  --bg: #151515;
+  --panel: #1e1e1e;
+  --panel-rgb: 30, 30, 30;
+  --ink: #e8e8e8;
+  --muted: #9a9a9a;
+  --line: rgba(255, 255, 255, 0.07);
+  --soft-line: rgba(255, 255, 255, 0.12);
+  --green: #6fcf97;
+  --green-soft: rgba(111, 207, 151, 0.12);
+  --blue: #6aa8ff;
+  --blue-soft: rgba(106, 168, 255, 0.14);
+  --amber: #d6a84f;
+  --amber-soft: rgba(214, 168, 79, 0.14);
+  --red: #ff6b62;
+  --red-soft: rgba(255, 107, 98, 0.14);
+  --violet: #b99cff;
+  --violet-soft: rgba(185, 156, 255, 0.14);
+  --shadow: none;
+  --shadow-hover: 0 18px 50px rgba(0, 0, 0, 0.3);
   --accent: #2563a9;
   --accent-visible: #2563a9;
   --accent-soft: rgba(37, 99, 169, 0.18);
@@ -65,27 +65,452 @@
 
 body {
   margin: 0;
-  background:
-    linear-gradient(180deg, rgba(var(--panel-rgb), 0.9), rgba(var(--panel-rgb), 0.68)),
-    radial-gradient(circle at 12% 0%, rgba(37, 99, 169, 0.1), transparent 32%),
-    var(--bg);
+  background: var(--bg);
   color: var(--ink);
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
 }
 
+body[data-theme] {
+  --bg: #151515;
+  --panel: #1e1e1e;
+  --panel-rgb: 30, 30, 30;
+  --ink: #e8e8e8;
+  --muted: #9a9a9a;
+  --line: rgba(255, 255, 255, 0.07);
+  --soft-line: rgba(255, 255, 255, 0.12);
+  --green: #6fcf97;
+  --blue: #6aa8ff;
+  --amber: #d6a84f;
+  --red: #ff6b62;
+  --violet: #b99cff;
+}
+
+body[data-theme="dark"] {
+  --bg: #0f1419;
+  --panel: #151b22;
+  --panel-rgb: 21, 27, 34;
+  --ink: #eef3f7;
+  --muted: #9aa7b2;
+  --line: #2a343e;
+  --soft-line: #222b34;
+  --green: #51d79a;
+  --green-soft: #123326;
+  --blue: #7cb7ff;
+  --blue-soft: #132b45;
+  --amber: #f0c76a;
+  --amber-soft: #3b2b0f;
+  --red: #ff8a7c;
+  --red-soft: #411a17;
+  --violet: #b99cff;
+  --violet-soft: #281f3f;
+  --shadow: 0 16px 42px rgba(0, 0, 0, 0.32);
+  --shadow-hover: 0 18px 50px rgba(0, 0, 0, 0.42);
+}
+
+body[data-theme="gray"] {
+  --bg: #151515;
+  --panel: #1e1e1e;
+  --panel-rgb: 30, 30, 30;
+  --ink: #e8e8e8;
+  --muted: #9a9a9a;
+  --line: rgba(255, 255, 255, 0.07);
+  --soft-line: rgba(255, 255, 255, 0.12);
+  --green: #6fcf97;
+  --green-soft: rgba(111, 207, 151, 0.12);
+  --blue: #6aa8ff;
+  --blue-soft: rgba(106, 168, 255, 0.14);
+  --amber: #d6a84f;
+  --amber-soft: rgba(214, 168, 79, 0.14);
+  --red: #ff6b62;
+  --red-soft: rgba(255, 107, 98, 0.14);
+  --violet: #b99cff;
+  --violet-soft: rgba(185, 156, 255, 0.14);
+  --shadow: none;
+  --shadow-hover: 0 18px 50px rgba(0, 0, 0, 0.34);
+}
+
+body[data-theme="light"] {
+  --bg: #f3f6f8;
+  --panel: #fbfdff;
+  --panel-rgb: 251, 253, 255;
+  --ink: #182028;
+  --muted: #536372;
+  --line: #dbe4ea;
+  --soft-line: #edf3f6;
+  --green: #1b7f53;
+  --green-soft: #e7f4ee;
+  --blue: #2563a9;
+  --blue-soft: #e7f0fb;
+  --amber: #976000;
+  --amber-soft: #fff4d8;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --violet: #7c3aed;
+  --violet-soft: #f1eafe;
+  --shadow: 0 14px 34px rgba(39, 55, 70, 0.07);
+  --shadow-hover: 0 18px 46px rgba(39, 55, 70, 0.12);
+}
+
+body[data-theme="light"] {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(246, 249, 251, 0.78)),
+    radial-gradient(circle at 18% 0%, rgba(37, 99, 169, 0.08), transparent 30%),
+    var(--bg);
+}
+
+body[data-theme="light"] .work-card,
+body[data-theme="light"] .watch-card,
+body[data-theme="light"] .automation-card,
+body[data-theme="light"] .achievement,
+body[data-theme="light"] .metric,
+body[data-theme="light"] .toolbar {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.7), transparent 44%),
+    var(--panel);
+  box-shadow: 0 12px 28px rgba(39, 55, 70, 0.07);
+}
+
+body[data-theme="light"] .task {
+  background: var(--panel);
+  box-shadow: 0 8px 20px rgba(39, 55, 70, 0.07);
+}
+
+body[data-auth="signed_out"] .app-sidebar,
+body[data-auth="signed_out"] .app-header,
+body[data-auth="signed_out"] main {
+  display: none;
+}
+
+body[data-auth="signed_in"] {
+  display: grid;
+  grid-template-columns: 248px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+body[data-auth="signed_in"] .auth-screen {
+  display: none;
+}
+
+.app-sidebar {
+  position: sticky;
+  top: 0;
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 30px 22px 28px;
+  border-right: 1px solid rgba(255, 255, 255, 0.04);
+  background: #071018;
+  color: #eef3f7;
+}
+
+.sidebar-logo {
+  display: block;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.sidebar-subtitle,
+.sidebar-footer {
+  display: block;
+  color: #7cb7ff;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.sidebar-subtitle {
+  margin-top: 8px;
+}
+
+.sidebar-nav {
+  display: grid;
+  gap: 14px;
+  margin-top: 78px;
+}
+
+.sidebar-link {
+  min-height: 36px;
+  padding: 0 18px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: #9aa7b2;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 750;
+  text-align: left;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.sidebar-link:hover,
+.sidebar-link.is-active {
+  border-color: #4f9cff;
+  background: #102234;
+  color: #ffffff;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  color: #9aa7b2;
+}
+
+.auth-screen {
+  min-height: 100vh;
+  padding: 34px;
+  display: grid;
+  place-items: center;
+}
+
+.auth-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 460px);
+  gap: 24px;
+  width: min(1120px, 100%);
+  min-height: 640px;
+}
+
+.auth-brand,
+.auth-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.auth-brand {
+  display: grid;
+  align-content: center;
+  padding: 46px;
+  overflow: hidden;
+  position: relative;
+}
+
+.auth-brand::after {
+  content: "";
+  position: absolute;
+  inset: auto -20% -18% 16%;
+  height: 220px;
+  background:
+    linear-gradient(90deg, rgba(124, 183, 255, 0.28), rgba(81, 215, 154, 0.22)),
+    var(--blue-soft);
+  filter: blur(44px);
+  opacity: 0.8;
+}
+
+.auth-brand h1 {
+  font-size: 58px;
+  line-height: 1;
+  position: relative;
+}
+
+.auth-brand p:not(.eyebrow) {
+  max-width: 620px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 20px;
+  font-weight: 650;
+  line-height: 1.45;
+  position: relative;
+}
+
+.auth-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 42px;
+  position: relative;
+}
+
+.auth-flow span,
+.doorway-list span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.auth-flow span.is-active {
+  border-color: var(--blue);
+  background: var(--blue-soft);
+  color: var(--blue);
+}
+
+.auth-card {
+  display: none;
+  align-content: center;
+  padding: 30px;
+  animation: panelIn 220ms ease both;
+}
+
+.auth-card.is-active {
+  display: grid;
+}
+
+.auth-card h2 {
+  margin-top: 4px;
+  font-size: 28px;
+}
+
+.auth-copy {
+  margin: 12px 0 22px;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.profile-preview {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 18px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--panel) 74%, var(--line));
+}
+
+.profile-preview > span {
+  display: inline-grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-weight: 950;
+}
+
+.profile-preview strong,
+.profile-preview small {
+  display: block;
+}
+
+.profile-preview small {
+  margin-top: 3px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.theme-options {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.role-confirm-list {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.role-confirm-list span {
+  display: block;
+  min-height: 34px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #1a1a1a;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.role-confirm-list span:first-child {
+  border-color: var(--blue);
+  color: var(--ink);
+}
+
+.theme-option {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 4px 12px;
+  align-items: center;
+  min-height: 78px;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+
+.theme-option.is-selected {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--blue) 22%, transparent);
+}
+
+.theme-option small {
+  grid-column: 2;
+  color: var(--muted);
+  font-weight: 750;
+}
+
+.theme-swatch {
+  grid-row: span 2;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.theme-dark {
+  background: linear-gradient(135deg, #071018, #1f5fae);
+}
+
+.theme-light {
+  background: linear-gradient(135deg, #ffffff, #e7f4ee);
+}
+
+.theme-gray {
+  background: linear-gradient(135deg, #222930, #7f8b96);
+}
+
+.doorway-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.doorway-list span {
+  border-color: var(--green);
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.header-context {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
 .app-header {
+  grid-column: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 28px 32px 20px;
-  border-bottom: 1px solid var(--line);
-  background: rgba(var(--panel-rgb), 0.92);
-  backdrop-filter: blur(14px);
-  position: sticky;
-  top: 0;
+  padding: 36px 86px 20px 40px;
+  border-bottom: 0;
+  background: transparent;
+  backdrop-filter: none;
+  position: relative;
   z-index: 5;
 }
 
@@ -114,7 +539,8 @@ h2 {
 }
 
 main {
-  padding: 24px 32px 42px;
+  grid-column: 2;
+  padding: 18px 86px 54px 40px;
 }
 
 .header-actions,
@@ -126,6 +552,41 @@ main {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.header-actions {
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.header-search {
+  width: 276px;
+  min-height: 42px;
+  border-color: var(--line);
+  border-radius: 7px;
+  background: var(--panel);
+  font-size: 12px;
+}
+
+.user-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 168px;
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.app-header #scanButton,
+.app-header #digestButton,
+.app-header #restartDemoButton {
+  display: none;
 }
 
 .view-switch {
@@ -154,6 +615,7 @@ main {
     background 160ms ease,
     color 160ms ease,
     transform 160ms ease;
+  white-space: nowrap;
 }
 
 .view-tab:hover {
@@ -220,25 +682,28 @@ input:focus-visible,
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
+  gap: 24px;
+  margin-bottom: 36px;
 }
 
 .metric {
   position: relative;
   overflow: hidden;
+  min-height: 104px;
   padding: 18px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
-  box-shadow: var(--shadow);
+  box-shadow: none;
 }
 
 .metric::after {
   content: "";
   position: absolute;
   inset: auto 0 0;
+  display: block;
   height: 4px;
-  background: linear-gradient(90deg, var(--blue), var(--violet), var(--green));
+  background: var(--blue);
 }
 
 .metric-label {
@@ -250,9 +715,25 @@ input:focus-visible,
 
 .metric strong {
   display: block;
-  margin-top: 8px;
+  margin-top: 10px;
   font-size: 34px;
   line-height: 1;
+}
+
+.summary-grid .metric:nth-child(1)::after {
+  background: var(--green);
+}
+
+.summary-grid .metric:nth-child(2)::after {
+  background: var(--blue);
+}
+
+.summary-grid .metric:nth-child(3)::after {
+  background: var(--red);
+}
+
+.summary-grid .metric:nth-child(4)::after {
+  background: var(--violet);
 }
 
 .toolbar {
@@ -268,30 +749,404 @@ input:focus-visible,
 .achievement-strip {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  margin: -8px 0 22px;
+  gap: 12px;
+  margin: -4px 0 20px;
 }
 
-.achievement {
+.workspace-panel {
+  display: none;
+  margin: 0 0 22px;
+  animation: panelIn 220ms ease both;
+}
+
+.builder-panel {
+  min-height: 470px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  box-shadow: none;
+}
+
+.builder-queue-panel {
+  min-width: 0;
+}
+
+.builder-checklist-panel {
+  min-width: 300px;
+}
+
+.builder-queue-panel .count-pill {
+  display: none;
+}
+
+.my-work-grid,
+.watchlist-grid,
+.automation-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.my-work-grid {
+  grid-template-columns: minmax(280px, 332px);
+  align-content: start;
+  gap: 28px;
+}
+
+.watchlist-grid,
+.automation-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.work-card,
+.watch-card,
+.automation-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 132px;
+  padding: 20px 24px 16px 26px;
+  border: 1px solid var(--accent-border, var(--line));
+  border-radius: 10px;
+  background: var(--panel);
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.work-card::before,
+.watch-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+  background: var(--accent-visible, var(--blue));
+}
+
+.work-card h3,
+.watch-card h3,
+.automation-card h3 {
+  margin: 0 0 8px;
+  max-width: 94%;
+  font-size: 17px;
+  line-height: 1.22;
+}
+
+.work-card p,
+.watch-card p,
+.automation-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.work-card-topline {
   display: flex;
   align-items: center;
-  gap: 12px;
-  min-height: 78px;
-  padding: 14px;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.work-owner,
+.automation-icon {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: var(--accent-soft, var(--blue-soft));
+  color: var(--accent-ink, var(--blue));
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.work-card .brand-badge {
+  border-color: color-mix(in srgb, var(--accent-border) 70%, var(--line));
+}
+
+.status-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.12);
+}
+
+.status-dot.signal-upcoming {
+  background: var(--violet);
+}
+
+.status-dot.signal-shipped {
+  background: var(--blue);
+}
+
+.status-dot.signal-on_lot {
+  background: var(--green);
+}
+
+.work-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.work-card-footer > span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.build-ready-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 12px;
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-soft) 54%, transparent);
+  color: var(--accent-ink);
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.checklist-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.checklist-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #1b1b1b;
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: left;
+}
+
+.checklist-row input {
+  width: auto;
+  accent-color: var(--green);
+}
+
+.panel-subtitle {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.selected-task-status,
+.detail-section-title {
+  margin-top: 22px;
+}
+
+.detail-section-title {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.resource-list,
+.admin-action-list,
+.pipeline-snapshot {
+  display: grid;
+  gap: 10px;
+}
+
+.resource-row {
+  min-height: 32px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #1b1b1b;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  text-align: left;
+}
+
+.detail-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.admin-row,
+.pipeline-snapshot article {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 58px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #1b1b1b;
+}
+
+.admin-row strong,
+.admin-row span,
+.pipeline-snapshot strong,
+.pipeline-snapshot span,
+.pipeline-snapshot em {
+  display: block;
+}
+
+.admin-row span,
+.pipeline-snapshot span {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pipeline-snapshot em {
+  color: var(--muted);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.work-card .button-primary-action {
+  min-width: 92px;
+  min-height: 40px;
+  padding: 0 18px;
+}
+
+.why-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 14px;
+  padding: 16px 18px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background:
     linear-gradient(135deg, rgba(124, 183, 255, 0.12), transparent 46%),
     var(--panel);
-  box-shadow: 0 10px 28px rgba(32, 36, 39, 0.06);
+}
+
+.why-panel strong,
+.why-panel span {
+  display: block;
+  font-weight: 900;
+}
+
+.why-panel p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.why-panel span {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  border: 1px solid var(--blue);
+  border-radius: 999px;
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-size: 12px;
+}
+
+.watch-top,
+.timeline-mini {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.watch-top {
+  justify-content: space-between;
+}
+
+.timeline-mini {
+  margin: 16px 0 0;
+}
+
+.timeline-mini span {
+  min-height: 26px;
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.timeline-mini .is-current,
+.automation-card .timeline-mini span:first-child {
+  border-color: var(--accent-border, var(--blue));
+  background: var(--accent-soft, var(--blue-soft));
+  color: var(--accent-ink, var(--blue));
+}
+
+.automation-card {
+  border-color: var(--line);
+  background:
+    linear-gradient(135deg, rgba(124, 183, 255, 0.12), transparent 44%),
+    var(--panel);
+}
+
+.automation-icon {
+  background: var(--blue-soft);
+  color: var(--blue);
+}
+
+.doc-example {
+  margin-top: 16px;
+  padding: 12px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  background: rgba(var(--panel-rgb), 0.72);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.achievement {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  box-shadow: 0 10px 24px rgba(32, 36, 39, 0.05);
 }
 
 .achievement-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
+  width: 34px;
+  height: 34px;
   border-radius: 8px;
   background: var(--blue-soft);
   color: var(--blue);
@@ -301,7 +1156,7 @@ input:focus-visible,
 
 .achievement strong {
   display: block;
-  font-size: 26px;
+  font-size: 22px;
   line-height: 1;
 }
 
@@ -391,6 +1246,71 @@ body[data-view="focus"] .table-section {
   display: none;
 }
 
+body[data-workspace-view="my_work"] .focus-panel,
+body[data-workspace-view="my_work"] #myWorkPanel {
+  display: grid;
+}
+
+#myWorkPanel {
+  grid-template-columns: minmax(0, 680px) minmax(280px, 340px);
+  gap: 32px;
+  align-items: start;
+}
+
+body[data-workspace-view="my_work"] .focus-panel,
+body[data-workspace-view="my_work"] .toolbar,
+body[data-workspace-view="my_work"] .achievement-strip,
+body[data-workspace-view="my_work"] .board,
+body[data-workspace-view="my_work"] .table-section {
+  display: none;
+}
+
+body[data-workspace-view="team_board"] .table-section {
+  display: block;
+}
+
+body[data-workspace-view="team_board"] .board,
+body[data-workspace-view="team_board"] .achievement-strip {
+  display: none;
+}
+
+body[data-workspace-view="admin"] #adminPanel {
+  display: grid;
+  grid-template-columns: minmax(320px, 420px) minmax(420px, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+
+body[data-workspace-view="admin"] .toolbar,
+body[data-workspace-view="admin"] .achievement-strip,
+body[data-workspace-view="admin"] .board,
+body[data-workspace-view="admin"] .table-section,
+body[data-workspace-view="admin"] #myWorkPanel {
+  display: none;
+}
+
+body[data-workspace-view="upcoming"] #upcomingPanel {
+  display: block;
+}
+
+body[data-workspace-view="upcoming"] .toolbar,
+body[data-workspace-view="upcoming"] .achievement-strip,
+body[data-workspace-view="upcoming"] .board,
+body[data-workspace-view="upcoming"] .table-section {
+  display: none;
+}
+
+body[data-workspace-view="docs"] #docsPanel {
+  display: block;
+}
+
+body[data-workspace-view="docs"] .toolbar,
+body[data-workspace-view="docs"] .achievement-strip,
+body[data-workspace-view="docs"] .board,
+body[data-workspace-view="docs"] .table-section {
+  display: none;
+}
+
 .section-heading {
   justify-content: space-between;
   margin-bottom: 10px;
@@ -403,28 +1323,70 @@ body[data-view="focus"] .table-section {
   min-height: 26px;
   padding: 0 9px;
   border-radius: 999px;
-  background: #eef2f4;
+  background: #2b2b2b;
   color: var(--muted);
   font-size: 12px;
   font-weight: 800;
   white-space: nowrap;
 }
 
+.stage {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.stage span {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--muted);
+}
+
+.stage-blue span {
+  background: var(--blue);
+}
+
+.stage-amber span {
+  background: var(--amber);
+}
+
+.stage-green span {
+  background: var(--green);
+}
+
+.stage-red span {
+  background: var(--red);
+}
+
+.stage-gray span {
+  background: #5e5e5e;
+}
+
+.inventory-cell {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
 .task-list {
   display: grid;
-  gap: 10px;
+  gap: 12px;
 }
 
 .task {
   position: relative;
   overflow: hidden;
-  padding: 16px 14px 14px 16px;
+  padding: 16px 16px 15px 18px;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0), transparent 34%),
-    var(--panel);
-  box-shadow: 0 10px 26px rgba(32, 36, 39, 0.06);
+  border-radius: 10px;
+  background: var(--panel);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
   transition:
     transform 180ms ease,
     box-shadow 180ms ease,
@@ -433,36 +1395,40 @@ body[data-view="focus"] .table-section {
 }
 
 .task::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 5px;
-  background: var(--accent-visible);
+  display: none;
 }
 
 .task:hover {
-  border-color: var(--accent-border);
-  box-shadow: var(--shadow-hover);
+  border-color: color-mix(in srgb, var(--blue) 32%, var(--line));
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
   transform: translateY(-2px);
 }
 
-.task-title {
+.task-state {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 10px;
+  justify-content: flex-start;
+  margin-bottom: 12px;
 }
 
-.task-title > div:first-child,
 .table-dealer {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  flex-wrap: wrap;
 }
 
-.task-title strong {
-  font-size: 15px;
+.task-card-title {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.task .task-actions {
+  gap: 8px;
+}
+
+.task .button {
+  min-height: 36px;
+  padding: 0 12px;
 }
 
 .task-meta {
@@ -470,9 +1436,18 @@ body[data-view="focus"] .table-section {
   flex-wrap: wrap;
   align-items: center;
   gap: 8px;
-  margin: 8px 0 12px;
+  margin: 9px 0 0;
   color: var(--muted);
   font-size: 13px;
+  font-weight: 700;
+}
+
+.queue-reason {
+  margin: 12px 0 14px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
 }
 
 .dealer-dot {
@@ -615,8 +1590,22 @@ body[data-view="focus"] .table-section {
 }
 
 .button-primary-action {
-  border-color: color-mix(in srgb, var(--blue) 38%, var(--line));
-  background: color-mix(in srgb, var(--blue-soft) 70%, var(--panel));
+  border-color: color-mix(in srgb, var(--blue) 58%, var(--line));
+  background: linear-gradient(135deg, color-mix(in srgb, var(--blue) 82%, #ffffff), var(--blue));
+  color: #ffffff;
+  box-shadow: 0 10px 22px color-mix(in srgb, var(--blue) 24%, transparent);
+}
+
+.button-quiet {
+  border-color: transparent;
+  background: transparent;
+  color: var(--muted);
+  box-shadow: none;
+}
+
+.button-quiet:hover {
+  border-color: var(--line);
+  background: color-mix(in srgb, var(--panel) 70%, var(--line));
 }
 
 .table-section {
@@ -833,7 +1822,52 @@ pre {
   }
 }
 
+@media (max-width: 1280px) and (min-width: 901px) {
+  .app-header {
+    padding-right: 42px;
+  }
+
+  main {
+    padding-right: 42px;
+  }
+
+  #myWorkPanel {
+    grid-template-columns: 1fr;
+  }
+
+  .builder-checklist-panel {
+    min-width: 0;
+  }
+}
+
 @media (max-width: 900px) {
+  body[data-auth="signed_in"] {
+    display: block;
+  }
+
+  .app-sidebar {
+    position: relative;
+    min-height: auto;
+    padding: 18px;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    gap: 8px;
+    margin-top: 18px;
+    overflow-x: auto;
+  }
+
+  .sidebar-link {
+    flex: 0 0 auto;
+    padding: 0 14px;
+    white-space: nowrap;
+  }
+
+  .sidebar-footer {
+    display: none;
+  }
+
   .app-header,
   main {
     padding-left: 18px;
@@ -857,7 +1891,17 @@ pre {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  #myWorkPanel {
+    grid-template-columns: 1fr;
+  }
+
   .achievement-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .my-work-grid,
+  .watchlist-grid,
+  .automation-grid {
     grid-template-columns: 1fr;
   }
 
@@ -871,6 +1915,19 @@ pre {
 
   .focus-panel .tag-stack {
     justify-content: flex-start;
+  }
+
+  .auth-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-brand {
+    min-height: 320px;
+  }
+
+  .why-panel {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
 
@@ -899,38 +1956,128 @@ pre {
 
     </style>
   </head>
-  <body>
+  <body data-auth="signed_out" data-theme="gray">
+    <section id="authScreen" class="auth-screen" aria-label="Fusz+ onboarding">
+      <div class="auth-shell">
+        <div class="auth-brand">
+          <p class="eyebrow">Lou Fusz workspace</p>
+          <h1>Fusz+</h1>
+          <p>
+            A calmer way to know what model pages need SEO, build, AEO review,
+            and live checks before the team loses track.
+          </p>
+          <div class="auth-flow">
+            <span class="is-active" data-flow-dot="login">1 Sign in</span>
+            <span data-flow-dot="theme">2 Confirm role</span>
+            <span data-flow-dot="doorway">3 My Work</span>
+          </div>
+        </div>
+
+        <div class="auth-card is-active" data-auth-step="login">
+          <p class="eyebrow">Invite accepted</p>
+          <h2>Welcome back, Jnuru</h2>
+          <p class="auth-copy">
+            Your role is set to Builder / Developer. Fusz+ will open your build
+            queue first so you do not have to search the whole board.
+          </p>
+          <div class="profile-preview">
+            <span>JG</span>
+            <div>
+              <strong>Jnuru Goodwin</strong>
+              <small>Builder / Developer</small>
+            </div>
+          </div>
+          <button id="continueLoginButton" class="button button-primary" type="button">
+            Continue as Jnuru
+          </button>
+          <button id="previewAdminButton" class="button" type="button" data-preview-role="admin">
+            Preview boss/admin path
+          </button>
+        </div>
+
+        <div class="auth-card" data-auth-step="theme">
+          <p class="eyebrow">Role confirmed</p>
+          <h2>Confirm your role</h2>
+          <p class="auth-copy">
+            Fusz+ opens to My Work first. Your Builder role decides which queue
+            and actions you see.
+          </p>
+          <div class="role-confirm-list" role="list">
+            <span>Builder workspace</span>
+            <span>My Work default</span>
+            <span>Team Pipeline one click away</span>
+          </div>
+          <button id="continueThemeButton" class="button button-primary" type="button">
+            Continue
+          </button>
+        </div>
+
+        <div class="auth-card" data-auth-step="doorway">
+          <p class="eyebrow">Your doorway</p>
+          <h2>Start in My Work</h2>
+          <p class="auth-copy">
+            You are seeing builder tasks because SEO is done and the page is
+            ready for build or live check.
+          </p>
+          <div class="doorway-list">
+            <span>Ready to Build</span>
+            <span>Live Check</span>
+            <span>Page link missing</span>
+          </div>
+          <button id="enterWorkspaceButton" class="button button-primary" type="button">
+            Enter My Work
+          </button>
+          <button id="skipToBoardButton" class="button" type="button">
+            Open Team Pipeline instead
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="app-sidebar" aria-label="Workspace navigation">
+      <div>
+        <strong class="sidebar-logo">Fusz+</strong>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-link is-active" type="button" data-workspace-view="my_work">My Work</button>
+        <button class="sidebar-link" type="button" data-workspace-view="team_board">Team Pipeline</button>
+        <button class="sidebar-link" type="button" data-workspace-view="upcoming">Upcoming</button>
+        <button class="sidebar-link" type="button" data-workspace-view="docs">Resources</button>
+        <button class="sidebar-link" type="button" data-workspace-view="settings">Settings</button>
+      </nav>
+      <span class="sidebar-footer">Lou Fusz Marketing</span>
+    </aside>
+
     <header class="app-header">
       <div>
-        <p class="eyebrow">Lou Fusz page production</p>
-        <h1>2027 Model Pipeline</h1>
+        <h1 id="pageTitle">Builder Workspace</h1>
+        <p id="userContext" class="header-context">Builder workspace</p>
       </div>
       <div class="header-actions">
-        <div class="view-switch" aria-label="View mode">
-          <button class="view-tab is-active" id="boardViewButton" type="button" data-view="board">Board</button>
-          <button class="view-tab" id="focusViewButton" type="button" data-view="focus">Focus</button>
-        </div>
+        <input id="searchInput" class="header-search" type="search" placeholder="Search model, dealer, owner" />
+        <span id="rolePill" class="user-pill">Builder</span>
         <button id="scanButton" class="button button-primary" type="button">Run Scan</button>
         <button id="digestButton" class="button" type="button">Preview Digest</button>
+        <button id="restartDemoButton" class="button" type="button">Restart Demo</button>
       </div>
     </header>
 
     <main>
       <section class="summary-grid" aria-label="Pipeline summary">
         <div class="metric">
-          <span class="metric-label">Detected</span>
+          <span class="metric-label">Ready to build</span>
           <strong id="metricDetected">0</strong>
         </div>
         <div class="metric">
-          <span class="metric-label">Needs SEO</span>
+          <span class="metric-label">Live checks</span>
           <strong id="metricSeo">0</strong>
         </div>
         <div class="metric">
-          <span class="metric-label">Needs AEO</span>
+          <span class="metric-label">Blocked</span>
           <strong id="metricAeo">0</strong>
         </div>
         <div class="metric">
-          <span class="metric-label">Live</span>
+          <span class="metric-label">Built month</span>
           <strong id="metricLive">0</strong>
         </div>
       </section>
@@ -943,6 +2090,135 @@ pre {
         </div>
         <div id="focusTags" class="tag-stack"></div>
         <div id="focusActions" class="focus-actions"></div>
+      </section>
+
+      <section id="myWorkPanel" class="workspace-panel" aria-label="My work">
+        <div class="builder-panel builder-queue-panel">
+          <div class="section-heading">
+            <h2>Build queue</h2>
+            <span id="myWorkCount" class="count-pill">0</span>
+          </div>
+          <div id="myWorkList" class="my-work-grid"></div>
+        </div>
+        <div class="builder-panel builder-checklist-panel">
+          <div class="section-heading">
+            <div>
+              <h2>2027 Ram 1500 SRT TRX</h2>
+              <p class="panel-subtitle">Lou Fusz CJDR</p>
+            </div>
+          </div>
+          <div class="selected-task-status">
+            <span class="stage stage-blue"><span></span>Ready to build</span>
+          </div>
+          <h3 class="detail-section-title">Resources</h3>
+          <div class="resource-list">
+            <button class="resource-row" type="button">Open SEO document</button>
+            <button class="resource-row" type="button">Open model reference</button>
+            <button class="resource-row" type="button">Open inventory</button>
+          </div>
+          <h3 class="detail-section-title">Build checklist</h3>
+          <div class="checklist-list">
+            <label class="checklist-row"><input type="checkbox" checked /> Page created</label>
+            <label class="checklist-row"><input type="checkbox" checked /> Model blocks added</label>
+            <label class="checklist-row"><input type="checkbox" /> Links and CTAs checked</label>
+            <label class="checklist-row"><input type="checkbox" /> Mobile QA complete</label>
+            <label class="checklist-row"><input type="checkbox" /> Published</label>
+            <label class="checklist-row"><input type="checkbox" /> Live page verified</label>
+          </div>
+          <div class="detail-actions">
+            <button class="button button-primary-action" type="button">Continue build</button>
+            <button class="button button-quiet" type="button">Mark blocked</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="adminPanel" class="workspace-panel admin-panel" aria-label="Admin command center">
+        <div class="builder-panel admin-action-panel">
+          <div class="section-heading">
+            <h2>Admin actions</h2>
+          </div>
+          <div class="admin-action-list">
+            <article class="admin-row">
+              <div>
+                <strong>Invite Sarah</strong>
+                <span>SEO writer role</span>
+              </div>
+              <button class="button button-primary-action" type="button">Send invite</button>
+            </article>
+            <article class="admin-row">
+              <div>
+                <strong>Feed approval</strong>
+                <span>Dealer Inspire source</span>
+              </div>
+              <button class="button button-quiet" type="button">Review</button>
+            </article>
+            <article class="admin-row">
+              <div>
+                <strong>Blocked models</strong>
+                <span>12 items need owner</span>
+              </div>
+              <button class="button button-quiet" type="button">Filter</button>
+            </article>
+            <article class="admin-row">
+              <div>
+                <strong>Alert rules</strong>
+                <span>Daily digest active</span>
+              </div>
+              <button class="button button-quiet" type="button">Open</button>
+            </article>
+          </div>
+        </div>
+        <div class="builder-panel admin-pipeline-panel">
+          <div class="section-heading">
+            <h2>Team pipeline snapshot</h2>
+          </div>
+          <div class="pipeline-snapshot">
+            <article><strong>2027 Kia EV3</strong><span>Lou Fusz Kia</span><em>Needs SEO</em></article>
+            <article><strong>2027 Ram TRX</strong><span>Lou Fusz CJDR</span><em>Ready to build</em></article>
+            <article><strong>2027 Mazda CX-50</strong><span>Lou Fusz Mazda</span><em>Needs live check</em></article>
+            <article><strong>2027 Toyota Land Cruiser</strong><span>Lou Fusz Toyota</span><em>Blocked</em></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="upcomingPanel" class="workspace-panel" aria-label="Upcoming models">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Watchlist</p>
+            <h2>Upcoming Models</h2>
+          </div>
+          <span id="upcomingCount" class="count-pill">0</span>
+        </div>
+        <div id="upcomingList" class="watchlist-grid"></div>
+      </section>
+
+      <section id="docsPanel" class="workspace-panel" aria-label="Google Docs and alert workflow">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Automation preview</p>
+            <h2>Resources</h2>
+          </div>
+        </div>
+        <div class="automation-grid">
+          <article class="automation-card">
+            <span class="automation-icon">DOC</span>
+            <h3>Google Doc Match</h3>
+            <p>Writers keep using Google Docs. When a doc follows the naming rule, the app can attach it to the matching model task.</p>
+            <div class="doc-example">2027 Kia EV3 - SEO Copy</div>
+          </article>
+          <article class="automation-card">
+            <span class="automation-icon">OEM</span>
+            <h3>OEM Watch</h3>
+            <p>Future feeds can add 2028+ models into the watchlist before they become active SEO or build work.</p>
+            <div class="timeline-mini"><span>Upcoming</span><span>Shipped</span><span>On lot</span></div>
+          </article>
+          <article class="automation-card">
+            <span class="automation-icon">PING</span>
+            <h3>Calm Digest</h3>
+            <p>Normal updates go into one daily digest. Instant alerts are reserved for high-priority vehicles on the lot with no page owner.</p>
+            <button id="docsDigestButton" class="button button-primary-action" type="button">Preview digest</button>
+          </article>
+        </div>
       </section>
 
       <section class="toolbar" aria-label="Filters">
@@ -974,7 +2250,7 @@ pre {
         </label>
         <label>
           Search
-          <input id="searchInput" type="search" placeholder="Model, make, dealer" />
+          <input id="toolbarSearchInput" type="search" placeholder="Use the top search field" disabled />
         </label>
       </section>
 
@@ -983,21 +2259,21 @@ pre {
           <span class="achievement-icon">SEO</span>
           <div>
             <strong id="achievementWritten">0</strong>
-            <span>pages written or live</span>
+            <span>SEO completed</span>
           </div>
         </div>
         <div class="achievement">
           <span class="achievement-icon">LIVE</span>
           <div>
             <strong id="achievementLive">0</strong>
-            <span>pages checked live</span>
+            <span>pages live</span>
           </div>
         </div>
         <div class="achievement">
-          <span class="achievement-icon">NEXT</span>
+          <span class="achievement-icon">TODO</span>
           <div>
             <strong id="achievementRemaining">0</strong>
-            <span>left in this view</span>
+            <span>remaining tasks</span>
           </div>
         </div>
       </section>
@@ -1019,7 +2295,7 @@ pre {
         </div>
         <div>
           <div class="section-heading">
-            <h2>Build Queue</h2>
+          <h2>Build Queue</h2>
             <span id="buildCount" class="count-pill">0</span>
           </div>
           <div id="buildQueue" class="task-list"></div>
@@ -1028,17 +2304,16 @@ pre {
 
       <section class="table-section" aria-label="All model tasks">
         <div class="section-heading">
-          <h2 id="tableTitle">All Models</h2>
+          <h2 id="tableTitle">Team Pipeline</h2>
           <span id="visibleCount" class="count-pill">0</span>
         </div>
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
-                <th>Dealer</th>
                 <th>Model</th>
-                <th>Status</th>
-                <th>AEO</th>
+                <th>Dealer</th>
+                <th>Stage</th>
                 <th>Inventory</th>
                 <th>Action</th>
               </tr>
@@ -1134,6 +2409,16 @@ const signalLabels = {
   on_lot: "On lot",
 };
 
+if (new URLSearchParams(window.location.search).get("demo") === "reset") {
+  localStorage.removeItem("fusz-demo-session");
+  localStorage.removeItem("pipeline-workspace-view");
+  localStorage.removeItem("pipeline-status-overrides");
+  localStorage.removeItem("pipeline-aeo-overrides");
+  localStorage.removeItem("pipeline-signal-overrides");
+  localStorage.setItem("fusz-theme", "gray");
+  history.replaceState({}, "", window.location.pathname);
+}
+
 const dealerAccents = {
   "Lou Fusz Chrysler Jeep Dodge RAM": "#8f98a3",
   "Lou Fusz Mazda": "#808080",
@@ -1188,32 +2473,32 @@ const brandAccentOverrides = {
 
 const transitions = {
   needs_seo: [
-    ["seo_in_progress", "Claim SEO"],
-    ["seo_done", "SEO Done"],
+    ["seo_in_progress", "Start SEO"],
+    ["seo_done", "Mark SEO Complete"],
     ["ignored", "Ignore"],
     ["snoozed", "Snooze"],
   ],
   seo_in_progress: [
-    ["seo_done", "SEO Done"],
+    ["seo_done", "Mark SEO Complete"],
     ["needs_seo", "Unclaim"],
   ],
   seo_done: [
     ["needs_build", "Send To Build"],
-    ["live", "Already Live"],
+    ["live", "Mark Already Live"],
   ],
   needs_build: [
-    ["page_built", "Page Built"],
-    ["seo_done", "Back To SEO Done"],
+    ["page_built", "Mark Page Built"],
+    ["seo_done", "Return To SEO Done"],
   ],
   page_built: [
-    ["live", "Mark Live"],
+    ["live", "Mark Page Live"],
     ["needs_build", "Reopen"],
   ],
-  live: [["needs_review", "Review"]],
+  live: [["needs_review", "Review Page"]],
   ignored: [["needs_seo", "Restore"]],
   snoozed: [["needs_seo", "Unsnooze"]],
   needs_review: [
-    ["needs_seo", "Needs SEO"],
+    ["needs_seo", "Send Back To SEO"],
     ["live", "Keep Live"],
   ],
 };
@@ -3743,15 +5028,31 @@ const embeddedSources = [
 const state = {
   tasks: [],
   sources: [],
+  session: JSON.parse(localStorage.getItem("fusz-demo-session") || "null"),
   overrides: JSON.parse(localStorage.getItem("pipeline-status-overrides") || "{}"),
   aeoOverrides: JSON.parse(localStorage.getItem("pipeline-aeo-overrides") || "{}"),
   details: JSON.parse(localStorage.getItem("pipeline-task-details") || "{}"),
   signalOverrides: JSON.parse(localStorage.getItem("pipeline-signal-overrides") || "{}"),
-  viewMode: localStorage.getItem("pipeline-view-mode") || "board",
+  workspaceView: localStorage.getItem("pipeline-workspace-view") || "my_work",
+  onboardingStep: "login",
+  selectedTheme: "gray",
   activeTaskId: null,
 };
 
 const els = {
+  authScreen: document.querySelector("#authScreen"),
+  authCards: document.querySelectorAll("[data-auth-step]"),
+  flowDots: document.querySelectorAll("[data-flow-dot]"),
+  continueLoginButton: document.querySelector("#continueLoginButton"),
+  previewAdminButton: document.querySelector("#previewAdminButton"),
+  continueThemeButton: document.querySelector("#continueThemeButton"),
+  enterWorkspaceButton: document.querySelector("#enterWorkspaceButton"),
+  skipToBoardButton: document.querySelector("#skipToBoardButton"),
+  themeOptions: document.querySelectorAll("[data-theme-choice]"),
+  restartDemoButton: document.querySelector("#restartDemoButton"),
+  userContext: document.querySelector("#userContext"),
+  pageTitle: document.querySelector("#pageTitle"),
+  rolePill: document.querySelector("#rolePill"),
   yearFilter: document.querySelector("#yearFilter"),
   dealerFilter: document.querySelector("#dealerFilter"),
   statusFilter: document.querySelector("#statusFilter"),
@@ -3774,13 +5075,21 @@ const els = {
   achievementRemaining: document.querySelector("#achievementRemaining"),
   scanButton: document.querySelector("#scanButton"),
   digestButton: document.querySelector("#digestButton"),
-  boardViewButton: document.querySelector("#boardViewButton"),
-  focusViewButton: document.querySelector("#focusViewButton"),
+  workspaceButtons: document.querySelectorAll("[data-workspace-view]"),
   focusPanel: document.querySelector("#focusPanel"),
   focusTitle: document.querySelector("#focusTitle"),
   focusMeta: document.querySelector("#focusMeta"),
   focusTags: document.querySelector("#focusTags"),
   focusActions: document.querySelector("#focusActions"),
+  myWorkPanel: document.querySelector("#myWorkPanel"),
+  myWorkList: document.querySelector("#myWorkList"),
+  myWorkCount: document.querySelector("#myWorkCount"),
+  adminPanel: document.querySelector("#adminPanel"),
+  upcomingPanel: document.querySelector("#upcomingPanel"),
+  upcomingList: document.querySelector("#upcomingList"),
+  upcomingCount: document.querySelector("#upcomingCount"),
+  docsPanel: document.querySelector("#docsPanel"),
+  docsDigestButton: document.querySelector("#docsDigestButton"),
   digestDialog: document.querySelector("#digestDialog"),
   digestText: document.querySelector("#digestText"),
   taskDialog: document.querySelector("#taskDialog"),
@@ -3796,11 +5105,12 @@ const els = {
 };
 
 async function boot() {
+  applyTheme(state.selectedTheme);
   const [tasks, sources] = [embeddedTracker, embeddedSources];
   state.sources = sources;
   state.tasks = tasks.map((task) => ({
     ...task,
-    pageStatus: normalizePageStatus(state.overrides[task.id] || task.pageStatus),
+    pageStatus: normalizePageStatus(state.overrides[task.id] || demoPageStatus(task) || task.pageStatus),
     aeoStatus: state.aeoOverrides[task.id] || inferAeoStatus(state.overrides[task.id] || task.pageStatus),
     details: state.details[task.id] || {},
     inventorySignal: state.signalOverrides[task.id] || inferSignal(task),
@@ -3811,7 +5121,18 @@ async function boot() {
   populateYearFilter();
   populateDealerFilter();
   bindEvents();
+  renderAuth();
   render();
+}
+
+function demoPageStatus(task) {
+  if (state.overrides[task.id]) return null;
+  if (task.year !== 2027) return null;
+  const model = String(task.model || "").toLowerCase();
+  if (model.includes("1500 srt trx")) return "seo_done";
+  if (model.includes("cx-50")) return "page_built";
+  if (model.includes("seltos")) return "needs_review";
+  return null;
 }
 
 async function fetchJson(url) {
@@ -3844,6 +5165,40 @@ function populateYearFilter() {
 }
 
 function bindEvents() {
+  els.continueLoginButton.addEventListener("click", () => {
+    state.onboardingStep = "theme";
+    renderAuth();
+  });
+
+  els.previewAdminButton.addEventListener("click", () => completeOnboarding("admin", "Admin"));
+
+  els.themeOptions.forEach((button) => {
+    button.addEventListener("click", () => {
+      state.selectedTheme = button.dataset.themeChoice;
+      localStorage.setItem("fusz-theme", state.selectedTheme);
+      applyTheme(state.selectedTheme);
+      renderAuth();
+    });
+  });
+
+  els.continueThemeButton.addEventListener("click", () => {
+    state.onboardingStep = "doorway";
+    renderAuth();
+  });
+
+  els.enterWorkspaceButton.addEventListener("click", () => completeOnboarding("my_work", "Builder"));
+  els.skipToBoardButton.addEventListener("click", () => completeOnboarding("team_board", "Builder"));
+
+  els.restartDemoButton.addEventListener("click", () => {
+    localStorage.removeItem("fusz-demo-session");
+    state.session = null;
+    state.onboardingStep = "login";
+    setWorkspaceView("my_work", { silent: true });
+    renderAuth();
+    applyTheme("gray");
+    showToast("Demo restarted");
+  });
+
   [els.yearFilter, els.dealerFilter, els.statusFilter, els.searchInput].forEach((el) => {
     el.addEventListener("input", render);
   });
@@ -3879,8 +5234,13 @@ function bindEvents() {
 
   els.scanButton.addEventListener("click", runScan);
 
-  [els.boardViewButton, els.focusViewButton].forEach((button) => {
-    button.addEventListener("click", () => setViewMode(button.dataset.view));
+  els.workspaceButtons.forEach((button) => {
+    button.addEventListener("click", () => setWorkspaceView(button.dataset.workspaceView));
+  });
+
+  els.docsDigestButton.addEventListener("click", () => {
+    els.digestText.textContent = buildDigest();
+    els.digestDialog.showModal();
   });
 
   els.saveTaskDetailsButton.addEventListener("click", saveTaskDetails);
@@ -3914,8 +5274,10 @@ function render() {
   );
 
   renderMetrics(tasks);
-  renderViewMode();
+  renderWorkspaceView();
   renderFocusTask();
+  renderMyWork(tasks);
+  renderUpcomingModels(tasks);
   renderQueue(els.seoQueue, seoTasks, "seo");
   renderQueue(els.aeoQueue, aeoTasks, "aeo");
   renderQueue(els.buildQueue, buildTasks, "build");
@@ -3928,18 +5290,76 @@ function render() {
   els.visibleCount.textContent = tasks.length;
 }
 
+function renderAuth() {
+  const isSignedIn = Boolean(state.session);
+  document.body.dataset.auth = isSignedIn ? "signed_in" : "signed_out";
+  document.body.dataset.onboardingStep = state.onboardingStep;
+  els.userContext.textContent = isSignedIn
+    ? workspaceSubtitle(state.workspaceView, state.session.role)
+    : "Jnuru Goodwin / Builder";
+  if (els.rolePill) els.rolePill.textContent = isSignedIn ? state.session.role : "Builder";
+
+  els.authCards.forEach((card) => {
+    card.classList.toggle("is-active", card.dataset.authStep === state.onboardingStep);
+  });
+  els.flowDots.forEach((dot) => {
+    dot.classList.toggle("is-active", dot.dataset.flowDot === state.onboardingStep);
+  });
+  els.themeOptions.forEach((option) => {
+    option.classList.toggle("is-selected", option.dataset.themeChoice === state.selectedTheme);
+  });
+}
+
+function completeOnboarding(workspaceView, role = "Builder") {
+  state.session = {
+    name: role === "Admin" ? "Scott Toulou" : "Jnuru Goodwin",
+    role,
+    defaultView: workspaceView,
+    theme: "gray",
+  };
+  localStorage.setItem("fusz-demo-session", JSON.stringify(state.session));
+  setWorkspaceView(workspaceView, { silent: true });
+  renderAuth();
+  showToast(role === "Admin" ? "Admin Command Center opened" : workspaceView === "my_work" ? "Welcome to My Work" : "Team Pipeline opened");
+}
+
 function renderTableTitle() {
   const year = els.yearFilter.value;
   const dealer = els.dealerFilter.value;
   const yearLabel = year === "all" ? "All Years" : year;
   const dealerLabel = dealer === "all" ? "All Dealerships" : dealer;
-  els.tableTitle.textContent = `${yearLabel} Models - ${dealerLabel}`;
+  els.tableTitle.textContent = `Team Pipeline - ${yearLabel} / ${dealerLabel}`;
 }
 
-function renderViewMode() {
-  document.body.dataset.view = state.viewMode;
-  els.boardViewButton.classList.toggle("is-active", state.viewMode === "board");
-  els.focusViewButton.classList.toggle("is-active", state.viewMode === "focus");
+function renderWorkspaceView() {
+  document.body.dataset.workspaceView = state.workspaceView;
+  if (els.pageTitle) els.pageTitle.textContent = workspaceTitle(state.workspaceView);
+  if (els.userContext) els.userContext.textContent = workspaceSubtitle(state.workspaceView, state.session?.role || "Builder");
+  els.workspaceButtons.forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.workspaceView === state.workspaceView);
+  });
+}
+
+function workspaceTitle(view) {
+  return {
+    admin: "Admin Command Center",
+    my_work: "Builder Workspace",
+    team_board: "Team Pipeline",
+    upcoming: "Upcoming Models",
+    docs: "Resources",
+    settings: "Settings",
+  }[view] || "Builder Workspace";
+}
+
+function workspaceSubtitle(view, role) {
+  if (view === "admin") return "Pipeline health, feed status, owners, and invite-only access.";
+  if (view === "team_board") return "A focused table for cross-team model page production.";
+  if (view === "upcoming") return "OEM watchlist and inventory signals for upcoming models.";
+  if (view === "docs") return "Google Docs, alert rules, and team handoff resources.";
+  if (view === "settings") return "Workspace defaults, users, and alert settings.";
+  return role === "Admin"
+    ? "Pipeline health, feed status, owners, and invite-only access."
+    : "Pages assigned to you for building and live verification.";
 }
 
 function renderFocusTask() {
@@ -3955,21 +5375,92 @@ function renderFocusTask() {
   applyAccentStyle(els.focusPanel, task.accentStyle);
   els.focusTitle.textContent = taskTitle(task);
   els.focusMeta.textContent = `${task.dealer} • ${statusLabels[task.pageStatus]}`;
-  els.focusTags.innerHTML = `${signalPill(task.inventorySignal)}${statusPill(task.pageStatus)}${aeoPill(task.aeoStatus)}`;
+  els.focusTags.innerHTML = summaryStatusLine(task);
   els.focusActions.innerHTML = `
-    <div class="task-actions">${primaryActionButton(task)}<button class="button" type="button" data-details="${escapeAttr(task.id)}">Details</button></div>
+    <div class="task-actions">${primaryActionButton(task)}<button class="button button-quiet" type="button" data-details="${escapeAttr(task.id)}">Details</button></div>
+  `;
+}
+
+function renderMyWork(tasks) {
+  const mine = tasks
+    .filter((task) => ownerBucket(task) === "Jnuru")
+    .sort((a, b) => workPriority(a) - workPriority(b))
+    .filter((task, index, list) => list.findIndex((candidate) => taskTitle(candidate) === taskTitle(task)) === index)
+    .slice(0, 2);
+
+  els.myWorkCount.textContent = mine.length;
+  els.myWorkList.innerHTML = mine.length
+    ? mine.map(renderMyWorkCard).join("")
+    : `<div class="empty"><strong>You're caught up</strong><br>No builder tasks are currently assigned to you.</div>`;
+}
+
+function renderMyWorkCard(task) {
+  return `
+    <article class="work-card" style="${escapeAttr(task.accentStyle)}" data-details="${escapeAttr(task.id)}">
+      <div>
+        <h3>${escapeHtml(taskTitle(task))}</h3>
+        <p>${builderCardMeta(task)}</p>
+      </div>
+      <div class="work-card-footer">
+        <span class="build-ready-chip">Build Ready</span>
+        ${builderActionButton(task)}
+      </div>
+    </article>
+  `;
+}
+
+function renderUpcomingModels(tasks) {
+  const futureModels = [
+    ...tasks.filter((task) => task.inventorySignal === "upcoming" && task.pageStatus !== "live"),
+    ...syntheticUpcomingModels(),
+  ]
+    .sort((a, b) => b.year - a.year || String(a.make).localeCompare(String(b.make)))
+    .slice(0, 12);
+
+  els.upcomingCount.textContent = futureModels.length;
+  els.upcomingList.innerHTML = futureModels.map(renderUpcomingCard).join("");
+}
+
+function renderUpcomingCard(task) {
+  return `
+    <article class="watch-card" style="${escapeAttr(task.accentStyle || accentStyleForTask(task))}">
+      <div class="watch-top">
+        <span class="brand-badge">${escapeHtml(task.make || "OEM")}</span>
+        ${signalPill(task.inventorySignal || "upcoming")}
+      </div>
+      <h3>${escapeHtml(taskTitle(task))}</h3>
+      <p>${escapeHtml(task.summary || upcomingSummary(task))}</p>
+      <div class="timeline-mini">
+        <span class="${task.inventorySignal === "upcoming" ? "is-current" : ""}">Upcoming</span>
+        <span class="${task.inventorySignal === "shipped" ? "is-current" : ""}">Shipped</span>
+        <span class="${task.inventorySignal === "on_lot" ? "is-current" : ""}">On lot</span>
+      </div>
+      ${task.id ? `<button class="button" type="button" data-details="${escapeAttr(task.id)}">Details</button>` : ""}
+    </article>
   `;
 }
 
 function renderMetrics(tasks) {
-  els.metricDetected.textContent = tasks.length;
-  els.metricSeo.textContent = tasks.filter((task) =>
-    ["needs_seo", "seo_in_progress"].includes(task.pageStatus),
-  ).length;
-  els.metricAeo.textContent = tasks.filter((task) =>
-    !["done", "not_needed"].includes(task.aeoStatus),
-  ).length;
-  els.metricLive.textContent = tasks.filter((task) => task.pageStatus === "live").length;
+  const labels = document.querySelectorAll(".metric-label");
+  if (state.workspaceView === "admin") {
+    ["Active models", "Needs owner", "Blocked", "Live pages"].forEach((label, index) => {
+      if (labels[index]) labels[index].textContent = label;
+    });
+    els.metricDetected.textContent = tasks.length;
+    els.metricSeo.textContent = tasks.filter((task) => ["needs_seo", "needs_review"].includes(task.pageStatus)).length;
+    els.metricAeo.textContent = tasks.filter((task) => task.pageStatus === "needs_review").length;
+    els.metricLive.textContent = tasks.filter((task) => task.pageStatus === "live").length;
+  } else {
+    ["Ready to build", "Needs live check", "Blocked", "Completed this month"].forEach((label, index) => {
+      if (labels[index]) labels[index].textContent = label;
+    });
+    els.metricDetected.textContent = tasks.filter((task) =>
+      ["seo_done", "needs_build"].includes(task.pageStatus),
+    ).length;
+    els.metricSeo.textContent = tasks.filter((task) => task.pageStatus === "page_built").length;
+    els.metricAeo.textContent = tasks.filter((task) => task.pageStatus === "needs_review").length;
+    els.metricLive.textContent = tasks.filter((task) => task.pageStatus === "live").length;
+  }
   renderAchievements(tasks);
 }
 
@@ -3991,21 +5482,17 @@ function renderQueue(container, tasks, type) {
     container.innerHTML = `<div class="empty">No ${label} tasks waiting.</div>`;
     return;
   }
-  container.innerHTML = topTasks.map(renderTask).join("");
+  container.innerHTML = topTasks.map((task) => renderTask(task, type)).join("");
 }
 
-function renderTask(task) {
+function renderTask(task, type) {
   return `
-    <article class="task" style="${escapeAttr(task.accentStyle)}">
-      <div class="task-title">
-        <div>
-          <span class="dealer-dot"></span>
-          <strong>${escapeHtml(taskTitle(task))}</strong>
-        </div>
-        <div class="tag-stack">${signalPill(task.inventorySignal)}${statusPill(task.pageStatus)}${aeoPill(task.aeoStatus)}</div>
-      </div>
+    <article class="task" style="${escapeAttr(task.accentStyle)}" data-details="${escapeAttr(task.id)}">
+      <div class="task-state">${queuePill(task, type)}</div>
+      <h3 class="task-card-title">${escapeHtml(taskTitle(task))}</h3>
       <p class="task-meta"><span class="brand-badge">${escapeHtml(task.make || sourceFor(task.dealer)?.shortName || "Brand")}</span>${escapeHtml(task.dealer)}</p>
-      <div class="task-actions">${primaryActionButton(task)}<button class="button" type="button" data-details="${escapeAttr(task.id)}">Details</button></div>
+      <p class="queue-reason">${escapeHtml(queueReason(task, type))}</p>
+      <div class="task-actions">${queuePrimaryActionButton(task, type)}<button class="button button-quiet" type="button" data-details="${escapeAttr(task.id)}">More</button></div>
     </article>
   `;
 }
@@ -4014,17 +5501,32 @@ function renderTable(tasks) {
   els.taskTable.innerHTML = tasks
     .map(
       (task) => `
-        <tr>
-          <td><span class="table-dealer" style="${escapeAttr(task.accentStyle)}"><span class="dealer-dot"></span><span class="brand-badge">${escapeHtml(task.make || "Brand")}</span>${escapeHtml(task.dealer)}</span></td>
+        <tr data-details="${escapeAttr(task.id)}">
           <td><strong>${escapeHtml(taskTitle(task))}</strong></td>
-          <td><div class="tag-stack">${signalPill(task.inventorySignal)}${statusPill(task.pageStatus)}</div></td>
-          <td>${aeoPill(task.aeoStatus)}</td>
-          <td><a href="${escapeAttr(task.inventoryUrl)}" target="_blank" rel="noreferrer">Open inventory</a></td>
-          <td><div class="row-actions">${primaryActionButton(task)}<button class="button" type="button" data-details="${escapeAttr(task.id)}">Details</button></div></td>
+          <td><span class="table-dealer"><span class="brand-badge">${escapeHtml(task.make || "Brand")}</span>${escapeHtml(task.dealer)}</span></td>
+          <td>${workflowStage(task)}</td>
+          <td><span class="inventory-cell">${escapeHtml(signalLabels[task.inventorySignal] || task.inventorySignal)}</span></td>
+          <td><div class="row-actions">${primaryActionButton(task)}<button class="button button-quiet" type="button" data-details="${escapeAttr(task.id)}">Details</button></div></td>
         </tr>
       `,
     )
     .join("");
+}
+
+function workflowStage(task) {
+  const map = {
+    needs_seo: ["Needs SEO", "amber"],
+    seo_in_progress: ["SEO in progress", "blue"],
+    seo_done: ["Ready to build", "blue"],
+    needs_build: ["Ready to build", "blue"],
+    page_built: ["Needs live check", "amber"],
+    live: ["Complete", "green"],
+    needs_review: ["Blocked", "red"],
+    ignored: ["Skipped", "gray"],
+    snoozed: ["Paused", "gray"],
+  };
+  const [label, tone] = map[task.pageStatus] || ["Queued", "gray"];
+  return `<span class="stage stage-${tone}"><span></span>${escapeHtml(label)}</span>`;
 }
 
 function statusPill(status) {
@@ -4037,6 +5539,51 @@ function signalPill(signal) {
 
 function aeoPill(status) {
   return `<span class="status aeo-status aeo-${escapeAttr(status)}">${escapeHtml(aeoLabels[status] || status)}</span>`;
+}
+
+function summaryStatusLine(task) {
+  return `
+    <div class="status-line">
+      <span class="status-dot signal-${escapeAttr(task.inventorySignal)}" aria-hidden="true"></span>
+      <span>${escapeHtml(signalLabels[task.inventorySignal] || task.inventorySignal)}</span>
+      <span aria-hidden="true">/</span>
+      <span>${escapeHtml(statusLabels[task.pageStatus] || task.pageStatus)}</span>
+      <span aria-hidden="true">/</span>
+      <span>${escapeHtml(aeoLabels[task.aeoStatus] || task.aeoStatus)}</span>
+    </div>
+  `;
+}
+
+function queuePill(task, type) {
+  if (type === "aeo") return aeoPill(task.aeoStatus);
+  return statusPill(task.pageStatus);
+}
+
+function queueReason(task, type) {
+  const signal = signalLabels[task.inventorySignal] || "Inventory signal";
+  if (type === "seo") {
+    if (task.pageStatus === "seo_in_progress") return `SEO work in progress. Inventory: ${signal}.`;
+    return `${signal}. Needs a model page written.`;
+  }
+  if (type === "aeo") {
+    if (task.aeoStatus === "in_progress") return `AEO answer layer in progress. Inventory: ${signal}.`;
+    return `AEO layer not finished yet. Inventory: ${signal}.`;
+  }
+  if (task.pageStatus === "page_built") return `Page built. Needs live check.`;
+  if (task.pageStatus === "needs_build") return `SEO ready. Page build is next.`;
+  return `SEO complete. Ready for build.`;
+}
+
+function queuePrimaryActionButton(task, type) {
+  if (type !== "aeo") return primaryActionButton(task);
+  const actions = {
+    not_started: ["in_progress", "Start AEO"],
+    in_progress: ["done", "Mark AEO Complete"],
+    done: ["not_needed", "Mark Not Needed"],
+    not_needed: ["not_started", "Reopen AEO"],
+  };
+  const [nextStatus, label] = actions[task.aeoStatus] || actions.not_started;
+  return `<button class="button button-primary-action" type="button" data-task-id="${escapeAttr(task.id)}" data-aeo-status="${escapeAttr(nextStatus)}">${escapeHtml(label)}</button>`;
 }
 
 function actionButtons(task) {
@@ -4052,6 +5599,22 @@ function primaryActionButton(task) {
   const primary = (transitions[task.pageStatus] || [])[0];
   if (!primary) return "";
   const [nextStatus, label] = primary;
+  return `<button class="button button-primary-action" type="button" data-task-id="${escapeAttr(task.id)}" data-status="${escapeAttr(nextStatus)}">${escapeHtml(label)}</button>`;
+}
+
+function builderCardMeta(task) {
+  if (task.pageStatus === "page_built") return "Needs live check";
+  if (task.pageStatus === "needs_build") return "Page build ready";
+  return "SEO done";
+}
+
+function builderActionButton(task) {
+  const actions = {
+    seo_done: ["needs_build", "Build"],
+    needs_build: ["page_built", "Build"],
+    page_built: ["live", "Mark live"],
+  };
+  const [nextStatus, label] = actions[task.pageStatus] || ["needs_build", "Build"];
   return `<button class="button button-primary-action" type="button" data-task-id="${escapeAttr(task.id)}" data-status="${escapeAttr(nextStatus)}">${escapeHtml(label)}</button>`;
 }
 
@@ -4111,10 +5674,10 @@ function updateSignal(taskId, signal) {
   render();
 }
 
-function setViewMode(viewMode) {
-  state.viewMode = viewMode;
-  localStorage.setItem("pipeline-view-mode", viewMode);
-  showToast(`${viewMode === "focus" ? "Focus" : "Board"} view enabled`);
+function setWorkspaceView(workspaceView, options = {}) {
+  state.workspaceView = workspaceView;
+  localStorage.setItem("pipeline-workspace-view", workspaceView);
+  if (!options.silent) showToast(`${workspaceLabel(workspaceView)} view enabled`);
   render();
 }
 
@@ -4159,236 +5722,3 @@ function saveTaskDetails() {
   render();
 }
 
-async function runScan() {
-  els.scanButton.disabled = true;
-  els.scanButton.textContent = "Scanning";
-  try {
-    const response = await fetch("/.netlify/functions/scan-inventory");
-    if (!response.ok) throw new Error("scan unavailable");
-    const result = await response.json();
-    mergeScanResults(result.detected || []);
-    if (result.errors?.length) {
-      showDigest(`Scan completed with ${result.errors.length} blocked source(s).\n\n${formatScanErrors(result.errors)}`);
-    }
-  } catch {
-    mergeScanResults(seedDetectedFromTracker());
-    showDigest(
-      "Live scan is not available in the static preview, so the dashboard is using the current 2027 tracker as its source.\n\nWhen deployed, the scanner will check the /llm/inventory/ endpoints and create one task per year + make + model.",
-    );
-  } finally {
-    els.scanButton.disabled = false;
-    els.scanButton.textContent = "Run Scan";
-    render();
-  }
-}
-
-function mergeScanResults(detected) {
-  const existing = new Set(state.tasks.map((task) => task.id));
-  detected.forEach((item) => {
-    const id = `${item.dealer}|${item.year}|${item.model}`.toLowerCase().replace(/\s+/g, "-");
-    if (existing.has(id)) return;
-    existing.add(id);
-    state.tasks.push({
-      id,
-      dealer: item.dealer,
-      year: Number(item.year),
-      make: item.make || "",
-      model: item.model,
-      pageStatus: "needs_seo",
-      aeoStatus: "not_started",
-      details: {},
-      accent: brandAccentOverrides[item.make]?.accent || dealerAccents[item.dealer] || "#2563a9",
-      accentStyle: accentStyleForTask(item),
-      inventorySignal: "on_lot",
-      inventoryUrl: sourceFor(item.dealer)?.inventoryUrl || "",
-      source: "inventory-scan",
-    });
-  });
-}
-
-function seedDetectedFromTracker() {
-  return state.tasks
-    .filter((task) => task.year >= 2027 && task.pageStatus !== "live")
-    .map((task) => ({
-      dealer: task.dealer,
-      year: task.year,
-      make: task.make,
-      model: task.model,
-    }));
-}
-
-function inferSignal(task) {
-  if (task.pageStatus === "live") return "on_lot";
-  if (["seo_done", "needs_build", "page_built"].includes(task.pageStatus)) return "shipped";
-  return "upcoming";
-}
-
-function inferAeoStatus(pageStatus) {
-  if (pageStatus === "aeo_in_progress") return "in_progress";
-  if (pageStatus === "aeo_done") return "done";
-  return "not_started";
-}
-
-function normalizePageStatus(pageStatus) {
-  if (pageStatus === "needs_aeo" || pageStatus === "aeo_in_progress") return "seo_done";
-  if (pageStatus === "aeo_done") return "needs_build";
-  return pageStatus;
-}
-
-function nextBestTask(tasks = state.tasks) {
-  const priority = {
-    needs_review: 0,
-    needs_seo: 1,
-    seo_in_progress: 2,
-    seo_done: 3,
-    needs_build: 4,
-    page_built: 5,
-    snoozed: 8,
-    ignored: 9,
-    live: 10,
-  };
-  return [...tasks]
-    .filter((task) => !["live", "ignored", "snoozed"].includes(task.pageStatus))
-    .sort((a, b) => (priority[a.pageStatus] ?? 7) - (priority[b.pageStatus] ?? 7))[0];
-}
-
-let toastTimer;
-function showToast(message) {
-  els.toast.textContent = message;
-  els.toast.classList.add("is-visible");
-  window.clearTimeout(toastTimer);
-  toastTimer = window.setTimeout(() => {
-    els.toast.classList.remove("is-visible");
-  }, 2200);
-}
-
-function buildDigest() {
-  const needsSeo = state.tasks.filter((task) => task.pageStatus === "needs_seo");
-  const aeo = state.tasks.filter((task) => !["done", "not_needed"].includes(task.aeoStatus));
-  const readyBuild = state.tasks.filter((task) =>
-    ["seo_done", "needs_build", "page_built"].includes(task.pageStatus),
-  );
-  const live = state.tasks.filter((task) => task.pageStatus === "live");
-
-  const lines = [
-    "2027 Model Pipeline Digest",
-    "",
-    `Needs SEO: ${needsSeo.length}`,
-    ...needsSeo.slice(0, 12).map((task) => `- ${task.dealer}: ${taskTitle(task)}`),
-    "",
-    `Needs / In AEO: ${aeo.length}`,
-    ...aeo.slice(0, 12).map((task) => `- ${task.dealer}: ${taskTitle(task)} (${aeoLabels[task.aeoStatus]})`),
-    "",
-    `Ready / In Build: ${readyBuild.length}`,
-    ...readyBuild.slice(0, 12).map((task) => `- ${task.dealer}: ${taskTitle(task)} (${statusLabels[task.pageStatus]})`),
-    "",
-    `Live / Checked: ${live.length}`,
-  ];
-
-  return lines.join("\n");
-}
-
-function showDigest(text) {
-  els.digestText.textContent = text;
-  els.digestDialog.showModal();
-}
-
-function formatScanErrors(errors) {
-  return errors
-    .slice(0, 12)
-    .map((error) => `- ${error.dealer}: ${error.message}`)
-    .join("\n");
-}
-
-function escapeHtml(value) {
-  return String(value ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-function displayModel(task) {
-  const model = String(task.model || "").trim();
-  const make = String(task.make || "").trim();
-  return make && model.toLowerCase().startsWith(`${make.toLowerCase()} `)
-    ? model.slice(make.length).trim()
-    : model;
-}
-
-function taskTitle(task) {
-  return `${task.year} ${task.make} ${displayModel(task)}`.trim();
-}
-
-function escapeAttr(value) {
-  return escapeHtml(value);
-}
-
-function accentStyle(hex) {
-  const rgb = hexToRgb(hex);
-  if (!rgb) {
-    return "--accent:#2563a9;--accent-soft:rgba(37,99,169,.18);--accent-border:rgba(37,99,169,.55);--accent-ink:#78b7ff;";
-  }
-  const { r, g, b } = rgb;
-  return [
-    `--accent:${hex}`,
-    `--accent-visible:${hex}`,
-    `--accent-soft:rgba(${r},${g},${b},.18)`,
-    `--accent-card:rgba(${r},${g},${b},.13)`,
-    `--accent-border:rgba(${r},${g},${b},.58)`,
-    `--accent-glow:rgba(${r},${g},${b},.42)`,
-    `--accent-ink:${brighten(hex, 42)}`,
-  ].join(";");
-}
-
-function accentStyleForTask(task) {
-  const make = task.make;
-  const override = brandAccentOverrides[make];
-  if (!override) return accentStyle(dealerAccents[task.dealer] || "#2563a9");
-
-  const rgb = hexToRgb(override.visible);
-  if (!rgb) return accentStyle(override.accent);
-  const { r, g, b } = rgb;
-  return [
-    `--accent:${override.accent}`,
-    `--accent-visible:${override.visible}`,
-    `--accent-soft:rgba(${r},${g},${b},.22)`,
-    `--accent-card:rgba(${r},${g},${b},.16)`,
-    `--accent-border:rgba(${r},${g},${b},.68)`,
-    `--accent-glow:rgba(${r},${g},${b},.54)`,
-    `--accent-ink:${override.ink}`,
-  ].join(";");
-}
-
-function applyAccentStyle(element, styleText) {
-  styleText.split(";").forEach((declaration) => {
-    const [property, value] = declaration.split(":");
-    if (property && value) element.style.setProperty(property.trim(), value.trim());
-  });
-}
-
-function hexToRgb(hex) {
-  const clean = String(hex).replace("#", "").trim();
-  if (!/^[0-9a-f]{6}$/i.test(clean)) return null;
-  return {
-    r: parseInt(clean.slice(0, 2), 16),
-    g: parseInt(clean.slice(2, 4), 16),
-    b: parseInt(clean.slice(4, 6), 16),
-  };
-}
-
-function brighten(hex, amount) {
-  const rgb = hexToRgb(hex);
-  if (!rgb) return "#78b7ff";
-  const toHex = (value) => Math.max(0, Math.min(255, value)).toString(16).padStart(2, "0");
-  return `#${toHex(rgb.r + amount)}${toHex(rgb.g + amount)}${toHex(rgb.b + amount)}`;
-}
-
-boot().catch((error) => {
-  document.body.innerHTML = `<main><div class="empty">${escapeHtml(error.message)}</div></main>`;
-});
-
-    </script>
-  </body>
-</html>
