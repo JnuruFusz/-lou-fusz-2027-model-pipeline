@@ -5722,3 +5722,316 @@ function saveTaskDetails() {
   render();
 }
 
+async function runScan() {
+  els.scanButton.disabled = true;
+  els.scanButton.textContent = "Scanning";
+  try {
+    const response = await fetch("/.netlify/functions/scan-inventory");
+    if (!response.ok) throw new Error("scan unavailable");
+    const result = await response.json();
+    mergeScanResults(result.detected || []);
+    if (result.errors?.length) {
+      showDigest(`Scan completed with ${result.errors.length} blocked source(s).\n\n${formatScanErrors(result.errors)}`);
+    }
+  } catch {
+    mergeScanResults(seedDetectedFromTracker());
+    showDigest(
+      "Live scan is not available in the static preview, so the dashboard is using the current 2027 tracker as its source.\n\nWhen deployed, the scanner will check the /llm/inventory/ endpoints and create one task per year + make + model.",
+    );
+  } finally {
+    els.scanButton.disabled = false;
+    els.scanButton.textContent = "Run Scan";
+    render();
+  }
+}
+
+function mergeScanResults(detected) {
+  const existing = new Set(state.tasks.map((task) => task.id));
+  detected.forEach((item) => {
+    const id = `${item.dealer}|${item.year}|${item.model}`.toLowerCase().replace(/\s+/g, "-");
+    if (existing.has(id)) return;
+    existing.add(id);
+    state.tasks.push({
+      id,
+      dealer: item.dealer,
+      year: Number(item.year),
+      make: item.make || "",
+      model: item.model,
+      pageStatus: "needs_seo",
+      aeoStatus: "not_started",
+      details: {},
+      accent: brandAccentOverrides[item.make]?.accent || dealerAccents[item.dealer] || "#2563a9",
+      accentStyle: accentStyleForTask(item),
+      inventorySignal: "on_lot",
+      inventoryUrl: sourceFor(item.dealer)?.inventoryUrl || "",
+      source: "inventory-scan",
+    });
+  });
+}
+
+function seedDetectedFromTracker() {
+  return state.tasks
+    .filter((task) => task.year >= 2027 && task.pageStatus !== "live")
+    .map((task) => ({
+      dealer: task.dealer,
+      year: task.year,
+      make: task.make,
+      model: task.model,
+    }));
+}
+
+function inferSignal(task) {
+  if (task.pageStatus === "live") return "on_lot";
+  if (["seo_done", "needs_build", "page_built"].includes(task.pageStatus)) return "shipped";
+  return "upcoming";
+}
+
+function inferAeoStatus(pageStatus) {
+  if (pageStatus === "aeo_in_progress") return "in_progress";
+  if (pageStatus === "aeo_done") return "done";
+  return "not_started";
+}
+
+function normalizePageStatus(pageStatus) {
+  if (pageStatus === "needs_aeo" || pageStatus === "aeo_in_progress") return "seo_done";
+  if (pageStatus === "aeo_done") return "needs_build";
+  return pageStatus;
+}
+
+function nextBestTask(tasks = state.tasks) {
+  const priority = {
+    needs_review: 0,
+    needs_seo: 1,
+    seo_in_progress: 2,
+    seo_done: 3,
+    needs_build: 4,
+    page_built: 5,
+    snoozed: 8,
+    ignored: 9,
+    live: 10,
+  };
+  return [...tasks]
+    .filter((task) => !["live", "ignored", "snoozed"].includes(task.pageStatus))
+    .sort((a, b) => (priority[a.pageStatus] ?? 7) - (priority[b.pageStatus] ?? 7))[0];
+}
+
+function ownerBucket(task) {
+  if (task.details?.buildOwner) return task.details.buildOwner;
+  if (task.details?.seoOwner) return task.details.seoOwner;
+  if (["seo_done", "needs_build", "page_built"].includes(task.pageStatus)) return "Jnuru";
+  if (["needs_seo", "seo_in_progress"].includes(task.pageStatus)) return "SEO Writer";
+  if (!["done", "not_needed"].includes(task.aeoStatus)) return "Scott";
+  return "Team";
+}
+
+function workPriority(task) {
+  const priority = {
+    needs_build: 0,
+    seo_done: 1,
+    page_built: 2,
+    needs_review: 3,
+    needs_seo: 4,
+    seo_in_progress: 5,
+    live: 9,
+  };
+  return priority[task.pageStatus] ?? 6;
+}
+
+function actionLabel(task) {
+  if (task.pageStatus === "seo_done") return "SEO is done. Ready to send into build.";
+  if (task.pageStatus === "needs_build") return "Build the model page next.";
+  if (task.pageStatus === "page_built") return "Check the live page.";
+  if (task.pageStatus === "needs_seo") return "SEO copy is the next step.";
+  return statusLabels[task.pageStatus] || "Review task";
+}
+
+function syntheticUpcomingModels() {
+  return [
+    {
+      year: 2028,
+      make: "Toyota",
+      model: "RAV4",
+      dealer: "Lou Fusz Toyota",
+      inventorySignal: "upcoming",
+      pageStatus: "watchlist",
+      aeoStatus: "not_started",
+      summary: "Watchlist example for OEM-confirmed or rumored future models before inventory appears.",
+    },
+    {
+      year: 2028,
+      make: "Subaru",
+      model: "Outback",
+      dealer: "Lou Fusz Subaru St. Louis",
+      inventorySignal: "upcoming",
+      pageStatus: "watchlist",
+      aeoStatus: "not_started",
+      summary: "Future model placeholder. This would come from an OEM source once feeds are connected.",
+    },
+  ].map((task) => ({
+    ...task,
+    accentStyle: accentStyleForTask(task),
+  }));
+}
+
+function upcomingSummary(task) {
+  if (task.inventorySignal === "on_lot") return "Vehicle has hit the lot. Page status should be reviewed.";
+  if (task.inventorySignal === "shipped") return "Vehicle appears shipped or in transit. Prepare copy/build timing.";
+  return "Upcoming model being watched before it becomes active page work.";
+}
+
+function workspaceLabel(view) {
+  return {
+    admin: "Admin Command Center",
+    my_work: "My Work",
+    team_board: "Team Pipeline",
+    upcoming: "Upcoming Models",
+    docs: "Resources",
+    settings: "Settings",
+  }[view] || "Workspace";
+}
+
+let toastTimer;
+function showToast(message) {
+  els.toast.textContent = message;
+  els.toast.classList.add("is-visible");
+  window.clearTimeout(toastTimer);
+  toastTimer = window.setTimeout(() => {
+    els.toast.classList.remove("is-visible");
+  }, 2200);
+}
+
+function buildDigest() {
+  const needsSeo = state.tasks.filter((task) => task.pageStatus === "needs_seo");
+  const aeo = state.tasks.filter((task) => !["done", "not_needed"].includes(task.aeoStatus));
+  const readyBuild = state.tasks.filter((task) =>
+    ["seo_done", "needs_build", "page_built"].includes(task.pageStatus),
+  );
+  const live = state.tasks.filter((task) => task.pageStatus === "live");
+
+  const lines = [
+    "Fusz+ Daily Digest",
+    "For: Jnuru Goodwin / Builder",
+    "",
+    `Needs SEO: ${needsSeo.length}`,
+    ...needsSeo.slice(0, 12).map((task) => `- ${task.dealer}: ${taskTitle(task)}`),
+    "",
+    `Needs / In AEO: ${aeo.length}`,
+    ...aeo.slice(0, 12).map((task) => `- ${task.dealer}: ${taskTitle(task)} (${aeoLabels[task.aeoStatus]})`),
+    "",
+    `Ready / In Build: ${readyBuild.length}`,
+    ...readyBuild.slice(0, 12).map((task) => `- ${task.dealer}: ${taskTitle(task)} (${statusLabels[task.pageStatus]})`),
+    "",
+    `Live / Checked: ${live.length}`,
+  ];
+
+  return lines.join("\n");
+}
+
+function applyTheme(theme) {
+  document.body.dataset.theme = theme;
+}
+
+function showDigest(text) {
+  els.digestText.textContent = text;
+  els.digestDialog.showModal();
+}
+
+function formatScanErrors(errors) {
+  return errors
+    .slice(0, 12)
+    .map((error) => `- ${error.dealer}: ${error.message}`)
+    .join("\n");
+}
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function displayModel(task) {
+  const model = String(task.model || "").trim();
+  const make = String(task.make || "").trim();
+  return make && model.toLowerCase().startsWith(`${make.toLowerCase()} `)
+    ? model.slice(make.length).trim()
+    : model;
+}
+
+function taskTitle(task) {
+  return `${task.year} ${task.make} ${displayModel(task)}`.trim();
+}
+
+function escapeAttr(value) {
+  return escapeHtml(value);
+}
+
+function accentStyle(hex) {
+  const rgb = hexToRgb(hex);
+  if (!rgb) {
+    return "--accent:#2563a9;--accent-soft:rgba(37,99,169,.18);--accent-border:rgba(37,99,169,.55);--accent-ink:#78b7ff;";
+  }
+  const { r, g, b } = rgb;
+  return [
+    `--accent:${hex}`,
+    `--accent-visible:${hex}`,
+    `--accent-soft:rgba(${r},${g},${b},.18)`,
+    `--accent-card:rgba(${r},${g},${b},.13)`,
+    `--accent-border:rgba(${r},${g},${b},.58)`,
+    `--accent-glow:rgba(${r},${g},${b},.42)`,
+    `--accent-ink:${brighten(hex, 42)}`,
+  ].join(";");
+}
+
+function accentStyleForTask(task) {
+  const make = task.make;
+  const override = brandAccentOverrides[make];
+  if (!override) return accentStyle(dealerAccents[task.dealer] || "#2563a9");
+
+  const rgb = hexToRgb(override.visible);
+  if (!rgb) return accentStyle(override.accent);
+  const { r, g, b } = rgb;
+  return [
+    `--accent:${override.accent}`,
+    `--accent-visible:${override.visible}`,
+    `--accent-soft:rgba(${r},${g},${b},.22)`,
+    `--accent-card:rgba(${r},${g},${b},.16)`,
+    `--accent-border:rgba(${r},${g},${b},.68)`,
+    `--accent-glow:rgba(${r},${g},${b},.54)`,
+    `--accent-ink:${override.ink}`,
+  ].join(";");
+}
+
+function applyAccentStyle(element, styleText) {
+  styleText.split(";").forEach((declaration) => {
+    const [property, value] = declaration.split(":");
+    if (property && value) element.style.setProperty(property.trim(), value.trim());
+  });
+}
+
+function hexToRgb(hex) {
+  const clean = String(hex).replace("#", "").trim();
+  if (!/^[0-9a-f]{6}$/i.test(clean)) return null;
+  return {
+    r: parseInt(clean.slice(0, 2), 16),
+    g: parseInt(clean.slice(2, 4), 16),
+    b: parseInt(clean.slice(4, 6), 16),
+  };
+}
+
+function brighten(hex, amount) {
+  const rgb = hexToRgb(hex);
+  if (!rgb) return "#78b7ff";
+  const toHex = (value) => Math.max(0, Math.min(255, value)).toString(16).padStart(2, "0");
+  return `#${toHex(rgb.r + amount)}${toHex(rgb.g + amount)}${toHex(rgb.b + amount)}`;
+}
+
+boot().catch((error) => {
+  document.body.innerHTML = `<main><div class="empty">${escapeHtml(error.message)}</div></main>`;
+});
+
+    </script>
+  </body>
+</html>
