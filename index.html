@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Fusz+</title>
     <style>
-:root {
+﻿﻿:root {
   color-scheme: dark;
   --bg: #151515;
   --panel: #1e1e1e;
@@ -198,7 +198,8 @@ body[data-auth="signed_in"] .auth-screen {
   display: none;
 }
 
-.app-sidebar {
+
+﻿.app-sidebar {
   position: sticky;
   top: 0;
   grid-column: 1;
@@ -289,7 +290,8 @@ body[data-admin-access="true"] .admin-only {
   color: #9a9a9a;
 }
 
-.auth-screen {
+
+﻿.auth-screen {
   min-height: 100vh;
   padding: 0;
   display: grid;
@@ -531,7 +533,8 @@ body[data-admin-access="true"] .admin-only {
   color: var(--green);
 }
 
-.header-context {
+
+﻿.header-context {
   margin: 8px 0 0;
   color: var(--muted);
   font-size: 13px;
@@ -629,7 +632,8 @@ main {
   display: none;
 }
 
-.view-switch {
+
+﻿.view-switch {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -723,7 +727,8 @@ input:focus-visible,
   color: light-dark(#fff, #071018);
 }
 
-.summary-grid {
+
+﻿.summary-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
@@ -832,7 +837,8 @@ input:focus-visible,
 .my-work-grid,
 .watchlist-grid,
 .automation-grid,
-.resource-hub-grid {
+
+﻿.resource-hub-grid {
   display: grid;
   gap: 14px;
 }
@@ -1035,7 +1041,8 @@ input:focus-visible,
   opacity: 0.82;
 }
 
-.settings-shell {
+
+﻿.settings-shell {
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
@@ -1438,6 +1445,7 @@ input:focus-visible,
   font-size: 13px;
 }
 
+﻿
 .work-card {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -1632,7 +1640,8 @@ input:focus-visible,
   font-weight: 850;
 }
 
-.panel-subtitle {
+
+﻿.panel-subtitle {
   margin: 6px 0 0;
   color: var(--muted);
   font-size: 12px;
@@ -1953,7 +1962,8 @@ input:focus-visible,
   font-weight: 750;
 }
 
-label {
+
+﻿label {
   display: grid;
   gap: 6px;
   color: var(--muted);
@@ -2415,7 +2425,8 @@ body[data-workspace-view="settings"] .table-section {
   background: color-mix(in srgb, var(--panel) 70%, var(--line));
 }
 
-.table-section {
+
+﻿.table-section {
   margin-top: 22px;
 }
 
@@ -2575,7 +2586,8 @@ pre {
   background: rgba(var(--panel-rgb), 0.6);
 }
 
-@media (prefers-color-scheme: dark) {
+
+﻿@media (prefers-color-scheme: dark) {
   .dealer-dot {
     box-shadow: 0 0 0 3px var(--accent-soft);
   }
@@ -2633,7 +2645,8 @@ pre {
   }
 }
 
-@media (max-width: 1280px) and (min-width: 901px) {
+
+﻿@media (max-width: 1280px) and (min-width: 901px) {
   .app-header {
     padding-right: 42px;
   }
@@ -3225,6 +3238,7 @@ pre {
     transform: translateX(0) !important;
   }
 }
+
 
     </style>
   </head>
@@ -3854,17 +3868,6 @@ const signalLabels = {
   on_lot: "On lot",
 };
 
-if (new URLSearchParams(window.location.search).get("demo") === "reset") {
-  localStorage.removeItem("fusz-demo-session");
-  localStorage.removeItem("pipeline-workspace-view");
-  localStorage.removeItem("pipeline-status-overrides");
-  localStorage.removeItem("pipeline-aeo-overrides");
-  localStorage.removeItem("pipeline-signal-overrides");
-  localStorage.removeItem("pipeline-task-details");
-  localStorage.setItem("fusz-theme", "gray");
-  history.replaceState({}, "", window.location.pathname);
-}
-
 const dealerAccents = {
   "Lou Fusz Chrysler Jeep Dodge RAM": "#8f98a3",
   "Lou Fusz Mazda": "#808080",
@@ -3948,6 +3951,7 @@ const transitions = {
     ["live", "Keep Live"],
   ],
 };
+
 
 const embeddedTracker = [
   {
@@ -6490,6 +6494,7 @@ const state = {
   activeTaskId: null,
 };
 
+
 const els = {
   authScreen: document.querySelector("#authScreen"),
   authCards: document.querySelectorAll("[data-auth-step]"),
@@ -6569,66 +6574,6 @@ const els = {
   toast: document.querySelector("#toast"),
 };
 
-async function boot() {
-  applyTheme(state.selectedTheme);
-  normalizeSession();
-  bindEvents();
-  renderAuth();
-  const [tasks, sources, inventoryFeed] = [embeddedTracker, embeddedSources, await fetchInventoryFeed()];
-  state.sources = sources;
-  state.inventoryFeed = inventoryFeed;
-  state.tasks = tasks.map((task) => ({
-    ...task,
-    pageStatus: normalizePageStatus(state.overrides[task.id] || demoPageStatus(task) || task.pageStatus),
-    aeoStatus: state.aeoOverrides[task.id] || inferAeoStatus(state.overrides[task.id] || task.pageStatus),
-    details: state.details[task.id] || {},
-    inventorySignal: state.signalOverrides[task.id] || inferSignal(task),
-    accent: brandAccentOverrides[task.make]?.accent || dealerAccents[task.dealer] || "#2563a9",
-    accentStyle: accentStyleForTask(task),
-    inventoryUrl: sourceFor(task.dealer)?.inventoryUrl || "",
-  }));
-  applyInventoryFeedSignals();
-  populateYearFilter();
-  populateDealerFilter();
-  render();
-}
-
-function normalizeSession() {
-  if (!state.session) return;
-  if (state.session.primaryRole && typeof state.session.isAdmin === "boolean") return;
-
-  if (state.session.role === "Admin") {
-    state.session = {
-      ...state.session,
-      name: state.session.name || "Scott Toulou",
-      primaryRole: "AEO Writer",
-      role: "AEO Writer",
-      isAdmin: true,
-      defaultView: "admin",
-    };
-  } else if (state.session.role === "Builder") {
-    state.session = {
-      ...state.session,
-      name: state.session.name || "Jnuru Goodwin",
-      primaryRole: "Builder",
-      role: "Builder",
-      isAdmin: true,
-      defaultView: state.session.defaultView || "my_work",
-    };
-  }
-
-  localStorage.setItem("fusz-demo-session", JSON.stringify(state.session));
-}
-
-function demoPageStatus(task) {
-  if (state.overrides[task.id]) return null;
-  if (task.year !== 2027) return null;
-  const model = String(task.model || "").toLowerCase();
-  if (model.includes("1500 srt trx")) return "seo_done";
-  if (model.includes("cx-50")) return "page_built";
-  if (model.includes("seltos")) return "needs_review";
-  return null;
-}
 
 async function fetchJson(url) {
   const response = await fetch(url);
@@ -6698,6 +6643,81 @@ function normalizeFeedKey(key) {
   return String(key || "").trim().toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
 }
 
+
+
+if (new URLSearchParams(window.location.search).get("demo") === "reset") {
+  localStorage.removeItem("fusz-demo-session");
+  localStorage.removeItem("pipeline-workspace-view");
+  localStorage.removeItem("pipeline-status-overrides");
+  localStorage.removeItem("pipeline-aeo-overrides");
+  localStorage.removeItem("pipeline-signal-overrides");
+  localStorage.removeItem("pipeline-task-details");
+  localStorage.setItem("fusz-theme", "gray");
+  history.replaceState({}, "", window.location.pathname);
+}
+
+async function boot() {
+  applyTheme(state.selectedTheme);
+  normalizeSession();
+  bindEvents();
+  renderAuth();
+  const [tasks, sources, inventoryFeed] = [embeddedTracker, embeddedSources, await fetchInventoryFeed()];
+  state.sources = sources;
+  state.inventoryFeed = inventoryFeed;
+  state.tasks = tasks.map((task) => ({
+    ...task,
+    pageStatus: normalizePageStatus(state.overrides[task.id] || demoPageStatus(task) || task.pageStatus),
+    aeoStatus: state.aeoOverrides[task.id] || inferAeoStatus(state.overrides[task.id] || task.pageStatus),
+    details: state.details[task.id] || {},
+    inventorySignal: state.signalOverrides[task.id] || inferSignal(task),
+    accent: brandAccentOverrides[task.make]?.accent || dealerAccents[task.dealer] || "#2563a9",
+    accentStyle: accentStyleForTask(task),
+    inventoryUrl: sourceFor(task.dealer)?.inventoryUrl || "",
+  }));
+  applyInventoryFeedSignals();
+  populateYearFilter();
+  populateDealerFilter();
+  render();
+}
+
+function normalizeSession() {
+  if (!state.session) return;
+  if (state.session.primaryRole && typeof state.session.isAdmin === "boolean") return;
+
+  if (state.session.role === "Admin") {
+    state.session = {
+      ...state.session,
+      name: state.session.name || "Scott Toulou",
+      primaryRole: "AEO Writer",
+      role: "AEO Writer",
+      isAdmin: true,
+      defaultView: "admin",
+    };
+  } else if (state.session.role === "Builder") {
+    state.session = {
+      ...state.session,
+      name: state.session.name || "Jnuru Goodwin",
+      primaryRole: "Builder",
+      role: "Builder",
+      isAdmin: true,
+      defaultView: state.session.defaultView || "my_work",
+    };
+  }
+
+  localStorage.setItem("fusz-demo-session", JSON.stringify(state.session));
+}
+
+function demoPageStatus(task) {
+  if (state.overrides[task.id]) return null;
+  if (task.year !== 2027) return null;
+  const model = String(task.model || "").toLowerCase();
+  if (model.includes("1500 srt trx")) return "seo_done";
+  if (model.includes("cx-50")) return "page_built";
+  if (model.includes("seltos")) return "needs_review";
+  return null;
+}
+
+
 function applyInventoryFeedSignals() {
   if (!state.inventoryFeed.rows.length) return;
   state.tasks.forEach((task) => {
@@ -6748,16 +6768,21 @@ function populateYearFilter() {
   els.yearFilter.value = years.includes(2027) ? "2027" : String(years[0] || "all");
 }
 
+function on(element, eventName, handler) {
+  if (!element) return;
+  element.addEventListener(eventName, handler);
+}
+
 function bindEvents() {
-  els.continueLoginButton.addEventListener("click", () => {
+  on(els.continueLoginButton, "click", () => {
     state.onboardingStep = "theme";
     renderAuth();
   });
 
-  els.previewAdminButton.addEventListener("click", () => completeOnboarding("admin", "Admin"));
+  on(els.previewAdminButton, "click", () => completeOnboarding("admin", "Admin"));
 
   els.themeOptions.forEach((button) => {
-    button.addEventListener("click", () => {
+    on(button, "click", () => {
       state.selectedTheme = button.dataset.themeChoice;
       localStorage.setItem("fusz-theme", state.selectedTheme);
       applyTheme(state.selectedTheme);
@@ -6765,15 +6790,15 @@ function bindEvents() {
     });
   });
 
-  els.continueThemeButton.addEventListener("click", () => {
+  on(els.continueThemeButton, "click", () => {
     state.onboardingStep = "doorway";
     renderAuth();
   });
 
-  els.enterWorkspaceButton.addEventListener("click", () => completeOnboarding("my_work", "Builder"));
-  els.skipToBoardButton.addEventListener("click", () => completeOnboarding("team_board", "Builder"));
+  on(els.enterWorkspaceButton, "click", () => completeOnboarding("my_work", "Builder"));
+  on(els.skipToBoardButton, "click", () => completeOnboarding("team_board", "Builder"));
 
-  els.restartDemoButton.addEventListener("click", () => {
+  on(els.restartDemoButton, "click", () => {
     localStorage.removeItem("fusz-demo-session");
     state.session = null;
     state.onboardingStep = "login";
@@ -6784,10 +6809,10 @@ function bindEvents() {
   });
 
   [els.yearFilter, els.dealerFilter, els.statusFilter, els.searchInput].forEach((el) => {
-    el.addEventListener("input", render);
+    on(el, "input", render);
   });
 
-  els.clearFiltersButton.addEventListener("click", () => {
+  on(els.clearFiltersButton, "click", () => {
     els.yearFilter.value = "all";
     els.dealerFilter.value = "all";
     els.statusFilter.value = "all";
@@ -6796,9 +6821,9 @@ function bindEvents() {
     render();
   });
 
-  els.mobileMenuButton.addEventListener("click", openNavigation);
-  els.navCloseButton.addEventListener("click", closeNavigation);
-  els.navBackdrop.addEventListener("click", closeNavigation);
+  on(els.mobileMenuButton, "click", openNavigation);
+  on(els.navCloseButton, "click", closeNavigation);
+  on(els.navBackdrop, "click", closeNavigation);
 
   document.addEventListener("click", (event) => {
     const button = event.target.closest("[data-status]");
@@ -6836,23 +6861,23 @@ function bindEvents() {
     }
   });
 
-  els.digestButton.addEventListener("click", () => {
+  on(els.digestButton, "click", () => {
     els.digestText.textContent = buildDigest();
     els.digestDialog.showModal();
   });
 
-  els.scanButton.addEventListener("click", runScan);
+  on(els.scanButton, "click", runScan);
 
   els.workspaceButtons.forEach((button) => {
-    button.addEventListener("click", () => setWorkspaceView(button.dataset.workspaceView));
+    on(button, "click", () => setWorkspaceView(button.dataset.workspaceView));
   });
 
-  els.docsDigestButton.addEventListener("click", () => {
+  on(els.docsDigestButton, "click", () => {
     els.digestText.textContent = buildDigest();
     els.digestDialog.showModal();
   });
 
-  els.saveTaskDetailsButton.addEventListener("click", saveTaskDetails);
+  on(els.saveTaskDetailsButton, "click", saveTaskDetails);
 }
 
 function filteredTasks() {
@@ -7031,7 +7056,7 @@ function renderFocusTask() {
 
   applyAccentStyle(els.focusPanel, task.accentStyle);
   els.focusTitle.textContent = taskTitle(task);
-  els.focusMeta.textContent = `${task.dealer} • ${statusLabels[task.pageStatus]}`;
+  els.focusMeta.textContent = `${task.dealer} â€¢ ${statusLabels[task.pageStatus]}`;
   els.focusTags.innerHTML = summaryStatusLine(task);
   els.focusActions.innerHTML = `
     <div class="task-actions">${primaryActionButton(task)}<button class="button button-quiet" type="button" data-details="${escapeAttr(task.id)}">Details</button></div>
