@@ -18,6 +18,7 @@
   --green-soft: rgba(111, 207, 151, 0.12);
   --blue: #6aa8ff;
   --blue-soft: rgba(106, 168, 255, 0.14);
+  --action-blue: #2f72d6;
   --amber: #d6a84f;
   --amber-soft: rgba(214, 168, 79, 0.14);
   --red: #ff6b62;
@@ -70,6 +71,8 @@ body {
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 body[data-theme] {
@@ -82,6 +85,7 @@ body[data-theme] {
   --soft-line: rgba(255, 255, 255, 0.12);
   --green: #6fcf97;
   --blue: #6aa8ff;
+  --action-blue: #2f72d6;
   --amber: #d6a84f;
   --red: #ff6b62;
   --violet: #b99cff;
@@ -121,6 +125,7 @@ body[data-theme="gray"] {
   --green-soft: rgba(111, 207, 151, 0.12);
   --blue: #6aa8ff;
   --blue-soft: rgba(106, 168, 255, 0.14);
+  --action-blue: #2f72d6;
   --amber: #d6a84f;
   --amber-soft: rgba(214, 168, 79, 0.14);
   --red: #ff6b62;
@@ -202,9 +207,22 @@ body[data-auth="signed_in"] .auth-screen {
   flex-direction: column;
   min-height: 100vh;
   padding: 30px 22px 28px;
-  border-right: 1px solid rgba(255, 255, 255, 0.04);
-  background: #071018;
-  color: #eef3f7;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  background: #101010;
+  color: #f2f2f2;
+}
+
+.nav-backdrop,
+.mobile-menu-button,
+.nav-close-button {
+  display: none;
+}
+
+.sidebar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .sidebar-logo {
@@ -232,12 +250,14 @@ body[data-auth="signed_in"] .auth-screen {
 }
 
 .sidebar-link {
+  display: inline-flex;
+  align-items: center;
   min-height: 36px;
   padding: 0 18px;
   border: 1px solid transparent;
   border-radius: 6px;
   background: transparent;
-  color: #9aa7b2;
+  color: #9a9a9a;
   cursor: pointer;
   font: inherit;
   font-size: 12px;
@@ -252,28 +272,39 @@ body[data-auth="signed_in"] .auth-screen {
 .sidebar-link:hover,
 .sidebar-link.is-active {
   border-color: #4f9cff;
-  background: #102234;
+  background: rgba(47, 114, 214, 0.18);
   color: #ffffff;
+}
+
+.admin-only {
+  display: none;
+}
+
+body[data-admin-access="true"] .admin-only {
+  display: inline-flex;
 }
 
 .sidebar-footer {
   margin-top: auto;
-  color: #9aa7b2;
+  color: #9a9a9a;
 }
 
 .auth-screen {
   min-height: 100vh;
-  padding: 34px;
+  padding: 0;
   display: grid;
   place-items: center;
+  background: #151515;
 }
 
 .auth-shell {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(360px, 460px);
-  gap: 24px;
-  width: min(1120px, 100%);
-  min-height: 640px;
+  grid-template-columns: 350px minmax(0, 1fr);
+  gap: 0;
+  width: min(1280px, 100%);
+  min-height: min(760px, 100vh);
+  background: #151515;
+  align-items: center;
 }
 
 .auth-brand,
@@ -287,44 +318,41 @@ body[data-auth="signed_in"] .auth-screen {
 .auth-brand {
   display: grid;
   align-content: center;
-  padding: 46px;
+  padding: 56px 50px;
   overflow: hidden;
   position: relative;
+  border-color: transparent;
+  border-right-color: rgba(255, 255, 255, 0.05);
+  border-radius: 0;
+  background: #101010;
+  align-self: stretch;
 }
 
 .auth-brand::after {
-  content: "";
-  position: absolute;
-  inset: auto -20% -18% 16%;
-  height: 220px;
-  background:
-    linear-gradient(90deg, rgba(124, 183, 255, 0.28), rgba(81, 215, 154, 0.22)),
-    var(--blue-soft);
-  filter: blur(44px);
-  opacity: 0.8;
+  display: none;
 }
 
 .auth-brand h1 {
-  font-size: 58px;
+  font-size: 22px;
   line-height: 1;
   position: relative;
 }
 
 .auth-brand p:not(.eyebrow) {
-  max-width: 620px;
-  margin: 18px 0 0;
+  max-width: 260px;
+  margin: 28px 0 0;
   color: var(--muted);
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 650;
-  line-height: 1.45;
+  line-height: 1.35;
   position: relative;
 }
 
 .auth-flow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 42px;
+  display: grid;
+  gap: 14px;
+  margin-top: 26px;
+  max-width: 180px;
   position: relative;
 }
 
@@ -332,24 +360,28 @@ body[data-auth="signed_in"] .auth-screen {
 .doorway-list span {
   display: inline-flex;
   align-items: center;
-  min-height: 30px;
-  padding: 0 11px;
+  min-height: 24px;
+  padding: 0 12px;
   border: 1px solid var(--line);
   border-radius: 999px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 900;
 }
 
 .auth-flow span.is-active {
-  border-color: var(--blue);
-  background: var(--blue-soft);
-  color: var(--blue);
+  border-color: #4f9cff;
+  background: rgba(47, 114, 214, 0.18);
+  color: #ffffff;
 }
 
 .auth-card {
   display: none;
   align-content: center;
+  justify-self: center;
+  align-self: center;
+  width: min(360px, calc(100% - 48px));
+  min-height: 208px;
   padding: 30px;
   animation: panelIn 220ms ease both;
 }
@@ -360,13 +392,13 @@ body[data-auth="signed_in"] .auth-screen {
 
 .auth-card h2 {
   margin-top: 4px;
-  font-size: 28px;
+  font-size: 22px;
 }
 
 .auth-copy {
-  margin: 12px 0 22px;
+  margin: 8px 0 18px;
   color: var(--muted);
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 650;
   line-height: 1.45;
 }
@@ -374,9 +406,9 @@ body[data-auth="signed_in"] .auth-screen {
 .profile-preview {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   margin: 0 0 18px;
-  padding: 14px;
+  padding: 12px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: color-mix(in srgb, var(--panel) 74%, var(--line));
@@ -385,11 +417,12 @@ body[data-auth="signed_in"] .auth-screen {
 .profile-preview > span {
   display: inline-grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
+  width: 22px;
+  height: 22px;
   border-radius: 999px;
-  background: var(--blue-soft);
-  color: var(--blue);
+  background: var(--action-blue);
+  color: #ffffff;
+  font-size: 0;
   font-weight: 950;
 }
 
@@ -402,6 +435,11 @@ body[data-auth="signed_in"] .auth-screen {
   margin-top: 3px;
   color: var(--muted);
   font-weight: 800;
+}
+
+.profile-preview strong,
+.profile-preview small {
+  font-size: 11px;
 }
 
 .theme-options {
@@ -530,12 +568,14 @@ h2 {
 }
 
 h1 {
-  font-size: 30px;
+  font-size: 34px;
+  font-weight: 700;
   line-height: 1.15;
 }
 
 h2 {
-  font-size: 18px;
+  font-size: 21px;
+  font-weight: 700;
 }
 
 main {
@@ -640,9 +680,13 @@ input {
 }
 
 .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0 14px;
   cursor: pointer;
-  font-weight: 750;
+  font-weight: 700;
+  text-decoration: none;
   transition:
     transform 160ms ease,
     border-color 160ms ease,
@@ -682,15 +726,15 @@ input:focus-visible,
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 24px;
-  margin-bottom: 36px;
+  gap: 18px;
+  margin-bottom: 28px;
 }
 
 .metric {
   position: relative;
   overflow: hidden;
-  min-height: 104px;
-  padding: 18px;
+  min-height: 90px;
+  padding: 16px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
@@ -709,14 +753,14 @@ input:focus-visible,
 .metric-label {
   display: block;
   color: var(--muted);
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 650;
 }
 
 .metric strong {
   display: block;
-  margin-top: 10px;
-  font-size: 34px;
+  margin-top: 9px;
+  font-size: 31px;
   line-height: 1;
 }
 
@@ -738,8 +782,8 @@ input:focus-visible,
 
 .toolbar {
   flex-wrap: wrap;
-  margin: 22px 0;
-  padding: 14px;
+  margin: 18px 0;
+  padding: 12px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
@@ -760,8 +804,8 @@ input:focus-visible,
 }
 
 .builder-panel {
-  min-height: 470px;
-  padding: 28px;
+  min-height: auto;
+  padding: 24px;
   border: 1px solid var(--line);
   border-radius: 12px;
   background: var(--panel);
@@ -772,8 +816,13 @@ input:focus-visible,
   min-width: 0;
 }
 
-.builder-checklist-panel {
+.builder-detail-panel {
   min-width: 300px;
+  min-height: auto;
+}
+
+.builder-detail-panel.is-empty {
+  display: none;
 }
 
 .builder-queue-panel .count-pill {
@@ -782,20 +831,29 @@ input:focus-visible,
 
 .my-work-grid,
 .watchlist-grid,
-.automation-grid {
+.automation-grid,
+.resource-hub-grid {
   display: grid;
   gap: 14px;
 }
 
 .my-work-grid {
-  grid-template-columns: minmax(280px, 332px);
+  grid-template-columns: minmax(300px, 420px);
   align-content: start;
-  gap: 28px;
+  gap: 20px;
 }
 
-.watchlist-grid,
+.watchlist-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .automation-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.resource-hub-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
 }
 
 .work-card,
@@ -803,8 +861,8 @@ input:focus-visible,
 .automation-card {
   position: relative;
   overflow: hidden;
-  min-height: 132px;
-  padding: 20px 24px 16px 26px;
+  min-height: 110px;
+  padding: 18px 20px;
   border: 1px solid var(--accent-border, var(--line));
   border-radius: 10px;
   background: var(--panel);
@@ -821,12 +879,21 @@ input:focus-visible,
   background: var(--accent-visible, var(--blue));
 }
 
+.work-card::before {
+  display: none;
+}
+
+.watch-card::before {
+  display: none;
+}
+
 .work-card h3,
 .watch-card h3,
 .automation-card h3 {
   margin: 0 0 8px;
   max-width: 94%;
   font-size: 17px;
+  font-weight: 650;
   line-height: 1.22;
 }
 
@@ -836,8 +903,652 @@ input:focus-visible,
   margin: 0;
   color: var(--muted);
   font-size: 12px;
-  font-weight: 650;
+  font-weight: 500;
   line-height: 1.45;
+}
+
+.resource-card {
+  min-height: auto;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+}
+
+.resource-card-wide {
+  grid-column: 1 / -1;
+}
+
+.resource-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.resource-card h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.resource-card p {
+  margin: 0;
+  max-width: 680px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.resource-rule-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.resource-rule-list div {
+  min-height: 76px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #1b1b1b;
+}
+
+.resource-rule-list span,
+.resource-rule-list strong {
+  display: block;
+}
+
+.resource-rule-list span {
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.resource-rule-list strong {
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.resource-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.resource-status {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.resource-card > .resource-status {
+  margin: 0 0 12px;
+}
+
+.resource-status.status-green {
+  border-color: rgba(78, 216, 149, 0.24);
+  background: rgba(78, 216, 149, 0.08);
+  color: var(--green);
+}
+
+.resource-status.status-gray {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.045);
+  color: #b8b8b8;
+}
+
+.resource-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.resource-mini-grid span {
+  min-height: 34px;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #1b1b1b;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.resource-card-muted {
+  opacity: 0.82;
+}
+
+.settings-shell {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.settings-page-header {
+  margin-bottom: 14px;
+}
+
+.settings-page-header h2 {
+  font-size: 23px;
+}
+
+.settings-stack {
+  display: grid;
+  gap: 12px;
+}
+
+.settings-section {
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+}
+
+.settings-section-head {
+  margin-bottom: 10px;
+}
+
+.settings-section-head h3 {
+  margin: 0 0 5px;
+  font-size: 16px;
+}
+
+.settings-section-head p,
+.settings-row span,
+.integration-row span,
+.settings-note,
+.team-table-row span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.38;
+}
+
+.account-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 2px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.settings-avatar,
+.settings-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background: #2f72d6;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 950;
+}
+
+.settings-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(47, 114, 214, 0.16);
+  color: var(--blue);
+  font-size: 11px;
+}
+
+.account-summary h3,
+.account-summary p {
+  margin: 0;
+}
+
+.account-summary p {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.settings-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, auto);
+  align-items: center;
+  gap: 14px;
+  min-height: 48px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+}
+
+.settings-section .settings-row:last-child {
+  border-bottom: 0;
+}
+
+.settings-row strong,
+.settings-row span {
+  display: block;
+}
+
+.settings-row strong {
+  margin-bottom: 2px;
+  font-size: 13px;
+}
+
+.settings-control,
+.quiet-hours-grid input,
+.quiet-hours-grid select {
+  width: min(260px, 100%);
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #1b1b1b;
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+.role-badge-list {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.role-badge-list span,
+.settings-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 22px;
+  padding: 0 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.settings-row .settings-status,
+.team-table-row .settings-status {
+  display: inline-flex;
+  width: max-content;
+  color: var(--text);
+}
+
+.settings-note,
+.quiet-hours-title {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.quiet-hours-title {
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+
+.switch-input {
+  justify-self: end;
+  width: 36px;
+  min-width: 36px;
+  max-width: 36px;
+  height: 24px;
+  min-height: 24px;
+  max-height: 24px;
+  padding: 0;
+  appearance: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #303030;
+  cursor: pointer;
+  position: relative;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.switch-input::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: #e8e8e8;
+  transition: transform 160ms ease;
+}
+
+.switch-input:checked {
+  border-color: rgba(47, 114, 214, 0.8);
+  background: rgba(47, 114, 214, 0.85);
+}
+
+.switch-input:checked::after {
+  transform: translateX(12px);
+}
+
+.quiet-hours-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 8px;
+  padding: 8px 0 0 12px;
+  border-left: 2px solid rgba(47, 114, 214, 0.32);
+}
+
+.team-table-row,
+.team-table-head {
+  display: grid;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.integration-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 150px 170px;
+  gap: 16px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.integration-row:last-child,
+.team-table-row:last-child {
+  border-bottom: 0;
+}
+
+.integration-row .integration-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(79, 156, 255, 0.16);
+  border-radius: 9px;
+  background: rgba(79, 156, 255, 0.08);
+  color: #9ec7ff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.integration-identity {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  min-width: 0;
+}
+
+.integration-identity > div {
+  min-width: 0;
+}
+
+.integration-row strong,
+.integration-row span {
+  display: block;
+}
+
+.integration-row strong {
+  margin-bottom: 3px;
+  font-size: 13px;
+}
+
+.integration-row .integration-identity span:not(.integration-icon) {
+  color: color-mix(in srgb, var(--muted) 82%, #ffffff);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.integration-row .integration-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+  width: max-content;
+  min-height: 26px;
+  line-height: 1;
+}
+
+.integration-action {
+  justify-self: stretch;
+  width: 100%;
+  min-width: 150px;
+  min-height: 40px;
+  padding-inline: 16px;
+  white-space: nowrap;
+}
+
+.button-secondary-action {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: #1b1b1b;
+  color: var(--text);
+}
+
+.button-secondary-action:hover {
+  border-color: rgba(79, 156, 255, 0.45);
+  background: rgba(47, 114, 214, 0.1);
+  color: #ffffff;
+}
+
+.button-secondary-action:active {
+  transform: translateY(1px);
+  background: rgba(47, 114, 214, 0.16);
+}
+
+.button-secondary-action:disabled,
+.button-secondary-action.is-loading {
+  cursor: not-allowed;
+  opacity: 0.52;
+}
+
+.button-corrective-action {
+  border-color: rgba(214, 168, 79, 0.32);
+  background: rgba(214, 168, 79, 0.1);
+  color: #e8c66f;
+}
+
+.button-corrective-action:hover {
+  border-color: rgba(214, 168, 79, 0.5);
+  background: rgba(214, 168, 79, 0.16);
+  box-shadow: none;
+}
+
+.button-primary-action:active {
+  transform: translateY(1px);
+}
+
+.integration-action:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.integration-row .status-green,
+.team-table-row .status-green {
+  border-color: rgba(78, 216, 149, 0.24);
+  background: rgba(78, 216, 149, 0.08);
+  color: var(--green);
+}
+
+.integration-row .status-amber,
+.team-table-row .status-amber {
+  border-color: rgba(255, 206, 91, 0.28);
+  background: rgba(255, 206, 91, 0.08);
+  color: #e8c66f;
+}
+
+.integration-row .status-blue,
+.team-table-row .status-blue {
+  border-color: rgba(79, 156, 255, 0.26);
+  background: rgba(79, 156, 255, 0.08);
+  color: #8dbfff;
+}
+
+.integration-row .status-gray,
+.team-table-row .status-gray {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.045);
+  color: #b8b8b8;
+}
+
+.team-table {
+  display: grid;
+}
+
+.team-table-head,
+.team-table-row {
+  grid-template-columns: minmax(120px, 1fr) minmax(160px, 1.2fr) minmax(130px, 1fr) auto auto;
+}
+
+.team-table-head {
+  min-height: 28px;
+  padding-top: 0;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.team-table-row strong {
+  font-size: 13px;
+}
+
+.work-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  min-height: 82px;
+  padding: 16px 16px 16px 18px;
+  border-color: var(--line);
+  border-radius: 8px;
+  background: #1b1b1b;
+}
+
+.work-card.is-selected {
+  border-color: var(--action-blue);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--action-blue) 24%, transparent);
+}
+
+.work-card-main {
+  min-width: 0;
+}
+
+.work-card h3 {
+  max-width: none;
+  margin-bottom: 6px;
+  font-size: 16px;
+}
+
+.work-card-dealer {
+  margin-bottom: 10px;
+}
+
+.work-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.work-card-side {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.owner-avatar {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #303030;
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.watch-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  min-height: 94px;
+  padding: 16px 18px;
+  border-color: var(--line);
+  background: #1b1b1b;
+  cursor: default;
+}
+
+.watch-card:hover {
+  border-color: color-mix(in srgb, var(--blue) 28%, var(--line));
+}
+
+.watch-card-main {
+  min-width: 0;
+}
+
+.watch-card h3 {
+  margin-top: 7px;
+  max-width: none;
+  font-size: 18px;
+}
+
+.watch-card-summary {
+  max-width: 620px;
+}
+
+.watch-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.watch-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.watch-card-actions .button {
+  min-height: 38px;
+  white-space: nowrap;
 }
 
 .work-card-topline {
@@ -921,34 +1632,6 @@ input:focus-visible,
   font-weight: 850;
 }
 
-.checklist-list {
-  display: grid;
-  gap: 10px;
-  margin-top: 12px;
-}
-
-.checklist-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 40px;
-  padding: 0 18px;
-  border: 1px solid var(--line);
-  border-radius: 7px;
-  background: #1b1b1b;
-  color: var(--ink);
-  cursor: pointer;
-  font: inherit;
-  font-size: 13px;
-  font-weight: 800;
-  text-align: left;
-}
-
-.checklist-row input {
-  width: auto;
-  accent-color: var(--green);
-}
-
 .panel-subtitle {
   margin: 6px 0 0;
   color: var(--muted);
@@ -962,7 +1645,7 @@ input:focus-visible,
 }
 
 .detail-section-title {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   font-size: 14px;
 }
 
@@ -974,8 +1657,11 @@ input:focus-visible,
 }
 
 .resource-row {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 32px;
-  padding: 0 14px;
+  padding: 0 16px;
   border: 1px solid var(--line);
   border-radius: 7px;
   background: #1b1b1b;
@@ -984,7 +1670,62 @@ input:focus-visible,
   font: inherit;
   font-size: 12px;
   font-weight: 800;
-  text-align: left;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.resource-row:hover {
+  border-color: rgba(79, 156, 255, 0.42);
+  background: rgba(47, 114, 214, 0.1);
+  color: var(--ink);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.resource-list-compact {
+  grid-template-columns: repeat(3, minmax(74px, 1fr));
+  gap: 9px;
+}
+
+.resource-list-compact .resource-row {
+  min-width: 0;
+  padding-inline: 10px;
+  overflow: hidden;
+  font-size: 11px;
+  line-height: 1.05;
+  text-overflow: ellipsis;
+}
+
+.next-step-card {
+  margin-top: 18px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #1b1b1b;
+}
+
+.next-step-card span,
+.next-step-card strong {
+  display: block;
+}
+
+.next-step-card span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.next-step-card strong {
+  margin-top: 6px;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.35;
 }
 
 .detail-actions {
@@ -1030,10 +1771,54 @@ input:focus-visible,
   white-space: nowrap;
 }
 
+.admin-permission-note {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.admin-permission-note h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+
+.permission-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.permission-grid div {
+  min-height: 76px;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #1b1b1b;
+}
+
+.permission-grid span,
+.permission-grid strong {
+  display: block;
+}
+
+.permission-grid span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.permission-grid strong {
+  margin-top: 7px;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
 .work-card .button-primary-action {
-  min-width: 92px;
+  min-width: 74px;
   min-height: 40px;
-  padding: 0 18px;
+  padding: 0 16px;
 }
 
 .why-panel {
@@ -1293,6 +2078,10 @@ body[data-workspace-view="upcoming"] #upcomingPanel {
   display: block;
 }
 
+body[data-workspace-view="upcoming"] .summary-grid {
+  display: none;
+}
+
 body[data-workspace-view="upcoming"] .toolbar,
 body[data-workspace-view="upcoming"] .achievement-strip,
 body[data-workspace-view="upcoming"] .board,
@@ -1308,6 +2097,18 @@ body[data-workspace-view="docs"] .toolbar,
 body[data-workspace-view="docs"] .achievement-strip,
 body[data-workspace-view="docs"] .board,
 body[data-workspace-view="docs"] .table-section {
+  display: none;
+}
+
+body[data-workspace-view="settings"] #settingsPanel {
+  display: block;
+}
+
+body[data-workspace-view="settings"] .summary-grid,
+body[data-workspace-view="settings"] .toolbar,
+body[data-workspace-view="settings"] .achievement-strip,
+body[data-workspace-view="settings"] .board,
+body[data-workspace-view="settings"] .table-section {
   display: none;
 }
 
@@ -1499,8 +2300,8 @@ body[data-workspace-view="docs"] .table-section {
 
 .status-ignored,
 .status-snoozed {
-  background: #f0eeee;
-  color: #615b57;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--muted);
 }
 
 .status-needs_review {
@@ -1513,8 +2314,8 @@ body[data-workspace-view="docs"] .table-section {
 }
 
 .aeo-not_started {
-  background: #f0eeee;
-  color: #615b57;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--muted);
 }
 
 .aeo-in_progress {
@@ -1590,14 +2391,20 @@ body[data-workspace-view="docs"] .table-section {
 }
 
 .button-primary-action {
-  border-color: color-mix(in srgb, var(--blue) 58%, var(--line));
-  background: linear-gradient(135deg, color-mix(in srgb, var(--blue) 82%, #ffffff), var(--blue));
+  border-color: var(--action-blue);
+  background: var(--action-blue);
   color: #ffffff;
-  box-shadow: 0 10px 22px color-mix(in srgb, var(--blue) 24%, transparent);
+  box-shadow: none;
+}
+
+.button-primary-action:hover {
+  border-color: #3b82f6;
+  background: #3b82f6;
+  box-shadow: none;
 }
 
 .button-quiet {
-  border-color: transparent;
+  border-color: rgba(255, 255, 255, 0.08);
   background: transparent;
   color: var(--muted);
   box-shadow: none;
@@ -1609,7 +2416,7 @@ body[data-workspace-view="docs"] .table-section {
 }
 
 .table-section {
-  margin-top: 26px;
+  margin-top: 22px;
 }
 
 .table-wrap {
@@ -1628,13 +2435,17 @@ table {
 
 th,
 td {
-  padding: 12px 14px;
+  padding: 10px 14px;
   border-bottom: 1px solid var(--line);
   text-align: left;
   vertical-align: middle;
 }
 
 th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #1b1b1b;
   color: var(--muted);
   font-size: 12px;
   text-transform: uppercase;
@@ -1835,8 +2646,20 @@ pre {
     grid-template-columns: 1fr;
   }
 
-  .builder-checklist-panel {
+  .builder-detail-panel {
     min-width: 0;
+  }
+
+  body[data-workspace-view="admin"] #adminPanel {
+    grid-template-columns: 1fr;
+  }
+
+  .integration-row {
+    grid-template-columns: minmax(0, 1fr) 140px 150px;
+  }
+
+  .integration-action {
+    min-width: 140px;
   }
 }
 
@@ -1895,14 +2718,142 @@ pre {
     grid-template-columns: 1fr;
   }
 
+  body[data-workspace-view="admin"] #adminPanel {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
   .achievement-strip {
     grid-template-columns: 1fr;
   }
 
   .my-work-grid,
   .watchlist-grid,
-  .automation-grid {
+  .automation-grid,
+  .resource-hub-grid,
+  .resource-rule-list,
+  .settings-layout,
+  .quiet-hours-grid {
     grid-template-columns: 1fr;
+  }
+
+  .settings-profile-card {
+    grid-row: auto;
+  }
+
+  .settings-row,
+  .integration-row,
+  .team-table-head,
+  .team-table-row {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .integration-row {
+    gap: 12px;
+  }
+
+  .integration-identity {
+    align-items: start;
+  }
+
+  .integration-status,
+  .integration-action {
+    justify-self: stretch;
+  }
+
+  .integration-status {
+    width: fit-content;
+  }
+
+  .settings-shell {
+    max-width: none;
+  }
+
+  .settings-page-header {
+    margin-bottom: 16px;
+  }
+
+  .settings-page-header h2 {
+    font-size: 26px;
+  }
+
+  .settings-section {
+    padding: 20px 16px;
+  }
+
+  .settings-section-head {
+    margin-bottom: 12px;
+  }
+
+  .settings-section-head h3 {
+    font-size: 18px;
+  }
+
+  .settings-row {
+    gap: 12px;
+    min-height: auto;
+    padding: 14px 0;
+  }
+
+  .settings-control,
+  .quiet-hours-grid input,
+  .quiet-hours-grid select {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .role-badge-list {
+    justify-content: flex-start;
+  }
+
+  #notificationSettingsTitle ~ p {
+    margin-bottom: 4px;
+  }
+
+  #notificationSettingsTitle {
+    margin-bottom: 5px;
+  }
+
+  .settings-section[aria-labelledby="notificationSettingsTitle"] .settings-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+  }
+
+  .settings-section[aria-labelledby="notificationSettingsTitle"] .settings-row div {
+    min-width: 0;
+  }
+
+  .settings-section[aria-labelledby="notificationSettingsTitle"] .settings-row span {
+    overflow-wrap: anywhere;
+  }
+
+  .team-table-head {
+    display: none;
+  }
+
+  .team-table-row {
+    gap: 8px;
+    padding: 16px 0;
+  }
+
+  .team-table-row span[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 2px;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .permission-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-row,
+  .pipeline-snapshot article {
+    align-items: flex-start;
   }
 
   .focus-panel {
@@ -1919,10 +2870,13 @@ pre {
 
   .auth-shell {
     grid-template-columns: 1fr;
+    min-height: 100vh;
   }
 
   .auth-brand {
     min-height: 320px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
   .why-panel {
@@ -1932,8 +2886,308 @@ pre {
 }
 
 @media (max-width: 560px) {
-  .summary-grid {
+  body[data-auth="signed_in"] {
+    padding-bottom: 0;
+  }
+
+  .mobile-menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-height: 38px;
+    margin-bottom: 12px;
+    padding: 0 14px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #1b1b1b;
+    color: var(--ink);
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .nav-close-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 0 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .nav-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 19;
+    display: block;
+    border: 0;
+    background: rgba(0, 0, 0, 0.52);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 160ms ease;
+  }
+
+  .app-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 20;
+    width: min(300px, calc(100vw - 48px));
+    min-height: 100vh;
+    padding: 24px 18px calc(24px + env(safe-area-inset-bottom));
+    border-top: 0;
+    border-right: 1px solid var(--line);
+    background: #101010;
+    overflow-y: auto;
+    transform: translateX(-105%);
+    transition: transform 190ms ease;
+  }
+
+  .sidebar-logo {
+    display: block;
+  }
+
+  .sidebar-nav {
+    display: grid;
     grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 36px;
+    min-width: 0;
+    overflow: visible;
+  }
+
+  .sidebar-link {
+    width: 100%;
+    height: auto;
+    min-height: 42px;
+    align-items: center;
+    padding: 0 14px;
+    justify-content: flex-start;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow: visible;
+    font-size: 13px;
+    line-height: 1;
+    text-align: left;
+    white-space: normal;
+  }
+
+  .sidebar-link::after {
+    content: none;
+  }
+
+  .app-header {
+    gap: 16px;
+    padding-top: 24px;
+  }
+
+  .app-header h1 {
+    font-size: 28px;
+  }
+
+  .header-actions {
+    gap: 10px;
+  }
+
+  .header-search,
+  #scanButton,
+  #digestButton {
+    display: none;
+  }
+
+  .user-pill {
+    width: fit-content;
+    min-width: 112px;
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  body[data-workspace-view="admin"] #adminPanel {
+    gap: 14px;
+  }
+
+  body[data-workspace-view="admin"] .builder-panel {
+    padding: 18px;
+  }
+
+  .admin-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    min-height: auto;
+  }
+
+  .admin-row .button {
+    width: 100%;
+    min-height: 40px;
+  }
+
+  .pipeline-snapshot article {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .pipeline-snapshot em {
+    white-space: normal;
+  }
+
+  .integration-row .button,
+  .team-table-row .button {
+    width: 100%;
+  }
+
+  .metric {
+    min-height: 72px;
+    padding: 13px 14px 12px;
+    border-radius: 7px;
+  }
+
+  .metric-label {
+    font-size: 10px;
+  }
+
+  .metric strong {
+    margin-top: 8px;
+    font-size: 26px;
+  }
+
+  .builder-panel {
+    min-height: auto;
+    padding: 18px;
+  }
+
+  .my-work-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .work-card {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .work-card-side {
+    justify-content: space-between;
+  }
+
+  .watch-card {
+    grid-template-columns: 1fr;
+  }
+
+  .watch-card-actions {
+    justify-content: stretch;
+  }
+
+  .watch-card-actions .button {
+    flex: 1 1 auto;
+  }
+
+  body[data-workspace-view="team_board"] .table-section {
+    margin-top: 16px;
+  }
+
+  body[data-workspace-view="team_board"] .table-wrap {
+    overflow: visible;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  body[data-workspace-view="team_board"] table,
+  body[data-workspace-view="team_board"] tbody,
+  body[data-workspace-view="team_board"] tr,
+  body[data-workspace-view="team_board"] td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  body[data-workspace-view="team_board"] thead {
+    display: none;
+  }
+
+  body[data-workspace-view="team_board"] tbody {
+    display: grid;
+    gap: 12px;
+  }
+
+  body[data-workspace-view="team_board"] tr {
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--panel);
+  }
+
+  body[data-workspace-view="team_board"] tr:hover {
+    background: var(--panel);
+  }
+
+  body[data-workspace-view="team_board"] td {
+    padding: 0;
+    border: 0;
+  }
+
+  body[data-workspace-view="team_board"] td:nth-child(1) strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 17px;
+    line-height: 1.22;
+  }
+
+  body[data-workspace-view="team_board"] td:nth-child(2) {
+    margin-bottom: 14px;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 750;
+  }
+
+  body[data-workspace-view="team_board"] td:nth-child(3),
+  body[data-workspace-view="team_board"] td:nth-child(4) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    min-height: 34px;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 850;
+  }
+
+  body[data-workspace-view="team_board"] td:nth-child(3)::before {
+    content: "Stage";
+    color: var(--muted);
+  }
+
+  body[data-workspace-view="team_board"] td:nth-child(4)::before {
+    content: "Inventory";
+    color: var(--muted);
+  }
+
+  body[data-workspace-view="team_board"] td:nth-child(5) {
+    margin-top: 14px;
+  }
+
+  body[data-workspace-view="team_board"] .table-dealer {
+    align-items: flex-start;
+  }
+
+  body[data-workspace-view="team_board"] .row-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 
   .header-actions,
@@ -1952,6 +3206,24 @@ pre {
   .view-tab {
     width: 100%;
   }
+
+  .work-card-side .button {
+    width: auto;
+    min-width: 88px;
+  }
+
+  .resource-list-compact {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-nav-open="true"] .nav-backdrop {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  body[data-nav-open="true"] .app-sidebar {
+    transform: translateX(0) !important;
+  }
 }
 
     </style>
@@ -1969,7 +3241,7 @@ pre {
           <div class="auth-flow">
             <span class="is-active" data-flow-dot="login">1 Sign in</span>
             <span data-flow-dot="theme">2 Confirm role</span>
-            <span data-flow-dot="doorway">3 My Work</span>
+            <span data-flow-dot="doorway">3 Start My Work</span>
           </div>
         </div>
 
@@ -2034,22 +3306,27 @@ pre {
       </div>
     </section>
 
-    <aside class="app-sidebar" aria-label="Workspace navigation">
-      <div>
+    <button id="navBackdrop" class="nav-backdrop" type="button" aria-label="Close navigation"></button>
+
+    <aside id="appSidebar" class="app-sidebar" aria-label="Workspace navigation">
+      <div class="sidebar-head">
         <strong class="sidebar-logo">Fusz+</strong>
+        <button id="navCloseButton" class="nav-close-button" type="button" aria-label="Close navigation">Close</button>
       </div>
       <nav class="sidebar-nav">
-        <button class="sidebar-link is-active" type="button" data-workspace-view="my_work">My Work</button>
-        <button class="sidebar-link" type="button" data-workspace-view="team_board">Team Pipeline</button>
-        <button class="sidebar-link" type="button" data-workspace-view="upcoming">Upcoming</button>
-        <button class="sidebar-link" type="button" data-workspace-view="docs">Resources</button>
-        <button class="sidebar-link" type="button" data-workspace-view="settings">Settings</button>
+        <button class="sidebar-link is-active" type="button" data-workspace-view="my_work" data-mobile-label="Work">My Work</button>
+        <button class="sidebar-link admin-only" type="button" data-workspace-view="admin" data-mobile-label="Admin">Admin</button>
+        <button class="sidebar-link" type="button" data-workspace-view="team_board" data-mobile-label="Team">Team Pipeline</button>
+        <button class="sidebar-link" type="button" data-workspace-view="upcoming" data-mobile-label="Watch">Upcoming</button>
+        <button class="sidebar-link" type="button" data-workspace-view="docs" data-mobile-label="Docs">Resources</button>
+        <button class="sidebar-link" type="button" data-workspace-view="settings" data-mobile-label="Settings">Settings</button>
       </nav>
       <span class="sidebar-footer">Lou Fusz Marketing</span>
     </aside>
 
     <header class="app-header">
       <div>
+        <button id="mobileMenuButton" class="mobile-menu-button" type="button" aria-controls="appSidebar" aria-expanded="false">Menu</button>
         <h1 id="pageTitle">Builder Workspace</h1>
         <p id="userContext" class="header-context">Builder workspace</p>
       </div>
@@ -2095,74 +3372,50 @@ pre {
       <section id="myWorkPanel" class="workspace-panel" aria-label="My work">
         <div class="builder-panel builder-queue-panel">
           <div class="section-heading">
-            <h2>Build queue</h2>
+            <h2>My build queue</h2>
             <span id="myWorkCount" class="count-pill">0</span>
           </div>
           <div id="myWorkList" class="my-work-grid"></div>
         </div>
-        <div class="builder-panel builder-checklist-panel">
-          <div class="section-heading">
-            <div>
-              <h2>2027 Ram 1500 SRT TRX</h2>
-              <p class="panel-subtitle">Lou Fusz CJDR</p>
-            </div>
-          </div>
-          <div class="selected-task-status">
-            <span class="stage stage-blue"><span></span>Ready to build</span>
-          </div>
-          <h3 class="detail-section-title">Resources</h3>
-          <div class="resource-list">
-            <button class="resource-row" type="button">Open SEO document</button>
-            <button class="resource-row" type="button">Open model reference</button>
-            <button class="resource-row" type="button">Open inventory</button>
-          </div>
-          <h3 class="detail-section-title">Build checklist</h3>
-          <div class="checklist-list">
-            <label class="checklist-row"><input type="checkbox" checked /> Page created</label>
-            <label class="checklist-row"><input type="checkbox" checked /> Model blocks added</label>
-            <label class="checklist-row"><input type="checkbox" /> Links and CTAs checked</label>
-            <label class="checklist-row"><input type="checkbox" /> Mobile QA complete</label>
-            <label class="checklist-row"><input type="checkbox" /> Published</label>
-            <label class="checklist-row"><input type="checkbox" /> Live page verified</label>
-          </div>
-          <div class="detail-actions">
-            <button class="button button-primary-action" type="button">Continue build</button>
-            <button class="button button-quiet" type="button">Mark blocked</button>
-          </div>
+        <div id="builderDetailPanel" class="builder-panel builder-detail-panel">
+          <div id="builderDetailContent"></div>
         </div>
       </section>
 
       <section id="adminPanel" class="workspace-panel admin-panel" aria-label="Admin command center">
         <div class="builder-panel admin-action-panel">
           <div class="section-heading">
-            <h2>Admin actions</h2>
+            <div>
+              <p class="eyebrow">Admin only</p>
+              <h2>Controls</h2>
+            </div>
           </div>
           <div class="admin-action-list">
             <article class="admin-row">
               <div>
-                <strong>Invite Sarah</strong>
-                <span>SEO writer role</span>
+                <strong>Invite SEO writer</strong>
+                <span>Send access with the right role</span>
               </div>
               <button class="button button-primary-action" type="button">Send invite</button>
             </article>
             <article class="admin-row">
               <div>
-                <strong>Feed approval</strong>
-                <span>Dealer Inspire source</span>
+                <strong>Approve sources</strong>
+                <span>Google Drive folder and inventory feeds</span>
               </div>
               <button class="button button-quiet" type="button">Review</button>
             </article>
             <article class="admin-row">
               <div>
                 <strong>Blocked models</strong>
-                <span>12 items need owner</span>
+                <span>Items missing owner or source</span>
               </div>
               <button class="button button-quiet" type="button">Filter</button>
             </article>
             <article class="admin-row">
               <div>
                 <strong>Alert rules</strong>
-                <span>Daily digest active</span>
+                <span>Daily digest, urgent pings, quiet hours</span>
               </div>
               <button class="button button-quiet" type="button">Open</button>
             </article>
@@ -2170,13 +3423,25 @@ pre {
         </div>
         <div class="builder-panel admin-pipeline-panel">
           <div class="section-heading">
-            <h2>Team pipeline snapshot</h2>
+            <div>
+              <p class="eyebrow">Full visibility</p>
+              <h2>Team Snapshot</h2>
+            </div>
           </div>
           <div class="pipeline-snapshot">
-            <article><strong>2027 Kia EV3</strong><span>Lou Fusz Kia</span><em>Needs SEO</em></article>
-            <article><strong>2027 Ram TRX</strong><span>Lou Fusz CJDR</span><em>Ready to build</em></article>
-            <article><strong>2027 Mazda CX-50</strong><span>Lou Fusz Mazda</span><em>Needs live check</em></article>
-            <article><strong>2027 Toyota Land Cruiser</strong><span>Lou Fusz Toyota</span><em>Blocked</em></article>
+            <article><strong>2027 Kia EV3</strong><span>SEO copy needed</span><em>Assign writer</em></article>
+            <article><strong>2027 Ram TRX</strong><span>Ready for build</span><em>Jnuru</em></article>
+            <article><strong>2027 Mazda CX-50</strong><span>Needs live check</span><em>Builder</em></article>
+            <article><strong>2027 Toyota Land Cruiser</strong><span>Blocked by source</span><em>Needs admin</em></article>
+          </div>
+          <div class="admin-permission-note">
+            <h3>What admin sees that the team does not</h3>
+            <div class="permission-grid">
+              <div><span>Can approve</span><strong>Feeds, folders, invites</strong></div>
+              <div><span>Can change</span><strong>Alert rules and role access</strong></div>
+              <div><span>Can view</span><strong>All owners and blocked work</strong></div>
+              <div><span>Team sees</span><strong>Only their work plus pipeline status</strong></div>
+            </div>
           </div>
         </div>
       </section>
@@ -2192,32 +3457,215 @@ pre {
         <div id="upcomingList" class="watchlist-grid"></div>
       </section>
 
-      <section id="docsPanel" class="workspace-panel" aria-label="Google Docs and alert workflow">
+      <section id="docsPanel" class="workspace-panel" aria-label="Fusz+ resources and handoff rules">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">Automation preview</p>
+            <p class="eyebrow">Source hub</p>
             <h2>Resources</h2>
+            <p class="section-note">The place for SEO docs, source links, and alert rules before the feeds are connected.</p>
           </div>
         </div>
-        <div class="automation-grid">
-          <article class="automation-card">
-            <span class="automation-icon">DOC</span>
-            <h3>Google Doc Match</h3>
-            <p>Writers keep using Google Docs. When a doc follows the naming rule, the app can attach it to the matching model task.</p>
-            <div class="doc-example">2027 Kia EV3 - SEO Copy</div>
+        <div class="resource-hub-grid">
+          <article class="resource-card resource-card-wide">
+            <div class="resource-card-header">
+              <span class="automation-icon">DOC</span>
+              <div>
+                <h3>SEO Doc Folder</h3>
+                <p>Connect one shared folder so completed copy can be matched to each model page handoff.</p>
+              </div>
+            </div>
+            <div class="resource-rule-list">
+              <div>
+                <span>Folder status</span>
+                <strong>Waiting on shared Google Drive folder</strong>
+              </div>
+              <div>
+                <span>Naming rule</span>
+                <strong>2027 Kia EV3 - SEO Copy</strong>
+              </div>
+              <div>
+                <span>Ready means</span>
+                <strong>Copy is final enough for the builder to start the page</strong>
+              </div>
+            </div>
+            <div class="resource-actions">
+              <button class="button button-primary-action" type="button" data-settings-action="Request Drive folder">Request access</button>
+              <a class="button button-secondary-action" href="https://docs.google.com/document/d/1bKVl7pnVmd3MBl3Q-AiKqUZ0xphg1ZWsaSpb15syhps/edit?tab=t.0" target="_blank" rel="noreferrer">Open example doc</a>
+              <span class="resource-status status-gray">Not connected</span>
+            </div>
           </article>
-          <article class="automation-card">
+
+          <article class="resource-card">
+            <span class="automation-icon">INV</span>
+            <h3>Inventory Sources</h3>
+            <p>Dealer links and approved feeds become the scan targets for shipped and on-lot signals.</p>
+            <div class="resource-mini-grid">
+              <span id="feedVehicleCount">Feed waiting</span>
+              <span id="feedSampleVehicle">No sample yet</span>
+            </div>
+            <span id="feedConnectionStatus" class="resource-status status-gray">Waiting on CSV</span>
+            <button class="button button-secondary-action" type="button" data-settings-action="Review inventory sources">Review sources</button>
+          </article>
+
+          <article class="resource-card">
             <span class="automation-icon">OEM</span>
             <h3>OEM Watch</h3>
-            <p>Future feeds can add 2028+ models into the watchlist before they become active SEO or build work.</p>
-            <div class="timeline-mini"><span>Upcoming</span><span>Shipped</span><span>On lot</span></div>
+            <p>Future-model watchlist for 2028+ pages before inventory appears. Commercial models stay lower priority.</p>
+            <div class="resource-mini-grid"><span>12 watched</span><span>Manual source</span></div>
+            <button class="button button-secondary-action" type="button" data-settings-action="Manage OEM watch">Manage watchlist</button>
           </article>
-          <article class="automation-card">
+
+          <article class="resource-card">
             <span class="automation-icon">PING</span>
-            <h3>Calm Digest</h3>
-            <p>Normal updates go into one daily digest. Instant alerts are reserved for high-priority vehicles on the lot with no page owner.</p>
-            <button id="docsDigestButton" class="button button-primary-action" type="button">Preview digest</button>
+            <h3>Alert Rules</h3>
+            <p>Daily digest by default. Urgent pings are reserved for on-lot models with no page owner.</p>
+            <div class="resource-mini-grid"><span>Digest on</span><span>Quiet hours on</span></div>
+            <button id="docsDigestButton" class="button button-secondary-action" type="button">Preview digest</button>
           </article>
+
+          <article class="resource-card resource-card-muted">
+            <span class="automation-icon">AEO</span>
+            <h3>AEO Notes</h3>
+            <p>AEO remains visible and useful, but it does not block SEO writing, page build, or live checks.</p>
+            <div class="resource-mini-grid"><span>Optional layer</span><span>Boss visibility</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="settingsPanel" class="workspace-panel" aria-label="Workspace settings">
+        <div class="settings-shell">
+          <div class="settings-page-header">
+            <h2>Settings</h2>
+            <p class="section-note">Keep the defaults simple: open the right work first, keep alerts calm, and make every source easy to verify.</p>
+          </div>
+
+          <div class="settings-stack">
+            <section class="settings-section" aria-labelledby="accountSettingsTitle">
+              <div class="settings-section-head">
+                <h3 id="accountSettingsTitle">Account</h3>
+                <p>Your sign-in, start page, and access level.</p>
+              </div>
+              <div class="account-summary">
+              <span id="settingsAvatar" class="settings-avatar">JG</span>
+              <div>
+                <h3 id="settingsName">Jnuru Goodwin</h3>
+                  <p id="settingsRole">Builder + Admin</p>
+              </div>
+            </div>
+              <div class="settings-row">
+                <div>
+                  <strong>Start page</strong>
+                  <span>Choose where Fusz+ opens after sign-in.</span>
+              </div>
+                <select id="settingsLandingSelect" class="settings-control">
+                  <option>My Work</option>
+                  <option>Admin Command Center</option>
+                  <option>Team Pipeline</option>
+                  <option>Alerts</option>
+                </select>
+              </div>
+              <div class="settings-row">
+                <div>
+                  <strong>Your access</strong>
+                  <span>The workspaces and controls available to this account.</span>
+              </div>
+                <div id="settingsAccessBadges" class="role-badge-list">
+                  <span>Builder</span>
+                  <span>Admin</span>
+              </div>
+            </div>
+              <p class="settings-note">Access is managed by workspace admins.</p>
+              <div class="settings-row">
+                <div>
+                  <strong>Appearance</strong>
+                  <span>Choose how Fusz+ appears on this device.</span>
+              </div>
+                <select class="settings-control">
+                  <option>System</option>
+                  <option>Light</option>
+                  <option selected>Dark</option>
+                </select>
+            </div>
+            </section>
+
+            <section class="settings-section" aria-labelledby="notificationSettingsTitle">
+              <div class="settings-section-head">
+                <h3 id="notificationSettingsTitle">Notifications</h3>
+                <p>Keep the team informed without creating noise.</p>
+              </div>
+              <label class="settings-row">
+                <div>
+                  <strong>Daily digest</strong>
+                  <span>Receive one summary for normal model updates instead of individual alerts.</span>
+              </div>
+                <input class="switch-input" type="checkbox" checked />
+              </label>
+              <label class="settings-row">
+              <div>
+                  <strong>Unowned on-lot model alerts</strong>
+                  <span>Notify admins immediately when an on-lot model does not have a page owner.</span>
+              </div>
+                <input class="switch-input" type="checkbox" checked />
+              </label>
+              <label class="settings-row">
+              <div>
+                  <strong>Quiet hours</strong>
+                  <span>Suppress non-urgent alerts outside normal working hours.</span>
+              </div>
+                <input class="switch-input" type="checkbox" checked />
+              </label>
+              <p class="quiet-hours-title">Quiet-hour schedule</p>
+              <div class="quiet-hours-grid" aria-label="Quiet hours schedule">
+                <label>Start time<input type="time" value="18:00" /></label>
+                <label>End time<input type="time" value="08:00" /></label>
+                <label>Time zone<select><option>Central Time</option><option>Eastern Time</option></select></label>
+            </div>
+            </section>
+
+            <section class="settings-section" aria-labelledby="integrationSettingsTitle">
+              <div class="settings-section-head">
+                <h3 id="integrationSettingsTitle">Integrations</h3>
+                <p>Connect the sources Fusz+ uses to verify inventory, SEO handoffs, and upcoming model activity.</p>
+              </div>
+              <div class="integration-row">
+                <div class="integration-identity">
+                  <span class="integration-icon">GD</span>
+                  <div><strong>SEO Google Drive folder</strong><span>Used to locate completed SEO documents and confirm handoff status.</span></div>
+                </div>
+                <span class="settings-status integration-status status-gray">Not connected</span>
+                <button class="button button-primary-action integration-action" type="button" data-settings-action="Connect Drive" aria-label="Connect SEO Google Drive folder">Connect Drive</button>
+            </div>
+              <div class="integration-row">
+                <div class="integration-identity">
+                  <span class="integration-icon">INV</span>
+                  <div><strong>Dealer inventory feeds</strong><span>Used to detect on-lot models and identify missing model pages.</span></div>
+                </div>
+                <span class="settings-status integration-status status-amber">Pending approval</span>
+                <button class="button button-secondary-action integration-action" type="button" data-settings-action="Review setup" aria-label="Review dealer inventory feed setup">Review setup</button>
+              </div>
+              <div class="integration-row">
+                <div class="integration-identity">
+                  <span class="integration-icon">OEM</span>
+                  <div><strong>OEM upcoming model watch</strong><span>Tracks upcoming model years and launch announcements that may require new pages.</span></div>
+                </div>
+                <span class="settings-status integration-status status-blue">Manual</span>
+                <button class="button button-secondary-action integration-action" type="button" data-settings-action="Manage watchlist" aria-label="Manage OEM upcoming model watchlist">Manage watchlist</button>
+              </div>
+            </section>
+
+            <section class="settings-section" aria-labelledby="teamSettingsTitle">
+              <div class="settings-section-head">
+                <h3 id="teamSettingsTitle">Team & permissions</h3>
+                <p>Manage who can access the workspace and what work they can perform.</p>
+              </div>
+              <div class="team-table" role="table" aria-label="Team permissions">
+                <div class="team-table-head" role="row"><span>Member</span><span>Email</span><span>Role</span><span>Status</span><span>Action</span></div>
+                <div class="team-table-row" role="row"><strong>Jnuru</strong><span data-label="Email">jnuru.goodwin@fusz.com</span><span data-label="Role">Admin, Builder</span><span class="settings-status status-green">Active</span><button class="button button-quiet" type="button">Manage</button></div>
+                <div class="team-table-row" role="row"><strong>Scott Toulou</strong><span data-label="Email">scott.toulou@fusz.com</span><span data-label="Role">Admin, AEO Writer</span><span class="settings-status status-green">Active</span><button class="button button-quiet" type="button">Manage</button></div>
+                <div class="team-table-row" role="row"><strong>SEO Writer position</strong><span data-label="Email">Not assigned</span><span data-label="Role">SEO Writer</span><span class="settings-status status-gray">Unassigned</span><button class="button button-primary-action" type="button">Invite member</button></div>
+              </div>
+            </section>
+          </div>
         </div>
       </section>
 
@@ -2248,10 +3696,7 @@ pre {
             <option value="snoozed">Snoozed</option>
           </select>
         </label>
-        <label>
-          Search
-          <input id="toolbarSearchInput" type="search" placeholder="Use the top search field" disabled />
-        </label>
+        <button id="clearFiltersButton" class="button button-quiet" type="button">Clear filters</button>
       </section>
 
       <section class="achievement-strip" aria-label="Team progress">
@@ -2415,6 +3860,7 @@ if (new URLSearchParams(window.location.search).get("demo") === "reset") {
   localStorage.removeItem("pipeline-status-overrides");
   localStorage.removeItem("pipeline-aeo-overrides");
   localStorage.removeItem("pipeline-signal-overrides");
+  localStorage.removeItem("pipeline-task-details");
   localStorage.setItem("fusz-theme", "gray");
   history.replaceState({}, "", window.location.pathname);
 }
@@ -5028,6 +6474,11 @@ const embeddedSources = [
 const state = {
   tasks: [],
   sources: [],
+  inventoryFeed: {
+    connected: false,
+    rows: [],
+    message: "Waiting on CSV",
+  },
   session: JSON.parse(localStorage.getItem("fusz-demo-session") || "null"),
   overrides: JSON.parse(localStorage.getItem("pipeline-status-overrides") || "{}"),
   aeoOverrides: JSON.parse(localStorage.getItem("pipeline-aeo-overrides") || "{}"),
@@ -5053,9 +6504,13 @@ const els = {
   userContext: document.querySelector("#userContext"),
   pageTitle: document.querySelector("#pageTitle"),
   rolePill: document.querySelector("#rolePill"),
+  mobileMenuButton: document.querySelector("#mobileMenuButton"),
+  navCloseButton: document.querySelector("#navCloseButton"),
+  navBackdrop: document.querySelector("#navBackdrop"),
   yearFilter: document.querySelector("#yearFilter"),
   dealerFilter: document.querySelector("#dealerFilter"),
   statusFilter: document.querySelector("#statusFilter"),
+  clearFiltersButton: document.querySelector("#clearFiltersButton"),
   searchInput: document.querySelector("#searchInput"),
   seoQueue: document.querySelector("#seoQueue"),
   aeoQueue: document.querySelector("#aeoQueue"),
@@ -5084,6 +6539,8 @@ const els = {
   myWorkPanel: document.querySelector("#myWorkPanel"),
   myWorkList: document.querySelector("#myWorkList"),
   myWorkCount: document.querySelector("#myWorkCount"),
+  builderDetailPanel: document.querySelector("#builderDetailPanel"),
+  builderDetailContent: document.querySelector("#builderDetailContent"),
   adminPanel: document.querySelector("#adminPanel"),
   upcomingPanel: document.querySelector("#upcomingPanel"),
   upcomingList: document.querySelector("#upcomingList"),
@@ -5101,13 +6558,27 @@ const els = {
   buildOwnerInput: document.querySelector("#buildOwnerInput"),
   taskNotesInput: document.querySelector("#taskNotesInput"),
   saveTaskDetailsButton: document.querySelector("#saveTaskDetailsButton"),
+  settingsAvatar: document.querySelector("#settingsAvatar"),
+  settingsName: document.querySelector("#settingsName"),
+  settingsRole: document.querySelector("#settingsRole"),
+  settingsLandingSelect: document.querySelector("#settingsLandingSelect"),
+  settingsAccessBadges: document.querySelector("#settingsAccessBadges"),
+  feedVehicleCount: document.querySelector("#feedVehicleCount"),
+  feedSampleVehicle: document.querySelector("#feedSampleVehicle"),
+  feedConnectionStatus: document.querySelector("#feedConnectionStatus"),
   toast: document.querySelector("#toast"),
 };
 
 async function boot() {
   applyTheme(state.selectedTheme);
-  const [tasks, sources] = [embeddedTracker, embeddedSources];
+  normalizeSession();
+  const [tasks, sources, inventoryFeed] = await Promise.all([
+    fetchJson("/data/tracker-models.json").catch(() => fetchJson("/data/tracker-2027.json")),
+    fetchJson("/data/inventory-sources.json"),
+    fetchInventoryFeed(),
+  ]);
   state.sources = sources;
+  state.inventoryFeed = inventoryFeed;
   state.tasks = tasks.map((task) => ({
     ...task,
     pageStatus: normalizePageStatus(state.overrides[task.id] || demoPageStatus(task) || task.pageStatus),
@@ -5118,11 +6589,39 @@ async function boot() {
     accentStyle: accentStyleForTask(task),
     inventoryUrl: sourceFor(task.dealer)?.inventoryUrl || "",
   }));
+  applyInventoryFeedSignals();
   populateYearFilter();
   populateDealerFilter();
   bindEvents();
   renderAuth();
   render();
+}
+
+function normalizeSession() {
+  if (!state.session) return;
+  if (state.session.primaryRole && typeof state.session.isAdmin === "boolean") return;
+
+  if (state.session.role === "Admin") {
+    state.session = {
+      ...state.session,
+      name: state.session.name || "Scott Toulou",
+      primaryRole: "AEO Writer",
+      role: "AEO Writer",
+      isAdmin: true,
+      defaultView: "admin",
+    };
+  } else if (state.session.role === "Builder") {
+    state.session = {
+      ...state.session,
+      name: state.session.name || "Jnuru Goodwin",
+      primaryRole: "Builder",
+      role: "Builder",
+      isAdmin: true,
+      defaultView: state.session.defaultView || "my_work",
+    };
+  }
+
+  localStorage.setItem("fusz-demo-session", JSON.stringify(state.session));
 }
 
 function demoPageStatus(task) {
@@ -5141,6 +6640,95 @@ async function fetchJson(url) {
     throw new Error(`Unable to load ${url}`);
   }
   return response.json();
+}
+
+async function fetchInventoryFeed() {
+  try {
+    const response = await fetch("/data/inventory-feed.csv", { cache: "no-store" });
+    if (!response.ok) throw new Error("feed missing");
+    const csv = await response.text();
+    const rows = parseCsv(csv);
+    return {
+      connected: rows.length > 0,
+      rows,
+      message: rows.length ? "CSV connected" : "CSV is empty",
+    };
+  } catch {
+    return {
+      connected: false,
+      rows: [],
+      message: "Waiting on CSV",
+    };
+  }
+}
+
+function parseCsv(csv) {
+  const lines = String(csv || "").trim().split(/\r?\n/).filter(Boolean);
+  if (lines.length < 2) return [];
+  const headers = splitCsvLine(lines[0]).map((header) => normalizeFeedKey(header));
+  return lines.slice(1).map((line) => {
+    const values = splitCsvLine(line);
+    return headers.reduce((row, header, index) => {
+      row[header] = (values[index] || "").trim();
+      return row;
+    }, {});
+  });
+}
+
+function splitCsvLine(line) {
+  const values = [];
+  let current = "";
+  let quoted = false;
+  for (let index = 0; index < line.length; index += 1) {
+    const char = line[index];
+    const next = line[index + 1];
+    if (char === '"' && quoted && next === '"') {
+      current += '"';
+      index += 1;
+    } else if (char === '"') {
+      quoted = !quoted;
+    } else if (char === "," && !quoted) {
+      values.push(current);
+      current = "";
+    } else {
+      current += char;
+    }
+  }
+  values.push(current);
+  return values;
+}
+
+function normalizeFeedKey(key) {
+  return String(key || "").trim().toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
+}
+
+function applyInventoryFeedSignals() {
+  if (!state.inventoryFeed.rows.length) return;
+  state.tasks.forEach((task) => {
+    if (state.signalOverrides[task.id]) return;
+    const feedRow = state.inventoryFeed.rows.find((row) => feedRowMatchesTask(row, task));
+    if (!feedRow) return;
+    task.inventorySignal = signalFromFeedStatus(feedRow.status || feedRow.vehicle_status || "");
+    task.inventoryUrl = feedRow.inventory_url || feedRow.vdp_url || task.inventoryUrl;
+  });
+}
+
+function feedRowMatchesTask(row, task) {
+  return normalizeCompare(row.dealer) === normalizeCompare(task.dealer)
+    && String(row.year || "") === String(task.year || "")
+    && normalizeCompare(row.make) === normalizeCompare(task.make)
+    && normalizeCompare(row.model) === normalizeCompare(task.model);
+}
+
+function signalFromFeedStatus(status) {
+  const normalized = normalizeCompare(status);
+  if (normalized.includes("lot") || normalized.includes("available") || normalized.includes("instock")) return "on_lot";
+  if (normalized.includes("ship") || normalized.includes("transit") || normalized.includes("intransit")) return "shipped";
+  return "upcoming";
+}
+
+function normalizeCompare(value) {
+  return String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
 }
 
 function sourceFor(dealer) {
@@ -5203,6 +6791,19 @@ function bindEvents() {
     el.addEventListener("input", render);
   });
 
+  els.clearFiltersButton.addEventListener("click", () => {
+    els.yearFilter.value = "all";
+    els.dealerFilter.value = "all";
+    els.statusFilter.value = "all";
+    els.searchInput.value = "";
+    showToast("Filters cleared");
+    render();
+  });
+
+  els.mobileMenuButton.addEventListener("click", openNavigation);
+  els.navCloseButton.addEventListener("click", closeNavigation);
+  els.navBackdrop.addEventListener("click", closeNavigation);
+
   document.addEventListener("click", (event) => {
     const button = event.target.closest("[data-status]");
     if (button) {
@@ -5222,9 +6823,21 @@ function bindEvents() {
       return;
     }
 
+    const settingsAction = event.target.closest("[data-settings-action]");
+    if (settingsAction) {
+      handleSettingsAction(settingsAction);
+      return;
+    }
+
     const signalButton = event.target.closest("[data-signal]");
     if (!signalButton) return;
     updateSignal(signalButton.dataset.taskId, signalButton.dataset.signal);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && document.body.dataset.navOpen === "true") {
+      closeNavigation();
+    }
   });
 
   els.digestButton.addEventListener("click", () => {
@@ -5278,11 +6891,12 @@ function render() {
   renderFocusTask();
   renderMyWork(tasks);
   renderUpcomingModels(tasks);
+  renderInventoryFeedStatus();
   renderQueue(els.seoQueue, seoTasks, "seo");
   renderQueue(els.aeoQueue, aeoTasks, "aeo");
   renderQueue(els.buildQueue, buildTasks, "build");
   renderTable(tasks);
-  renderTableTitle();
+  renderTableTitle(tasks.length);
 
   els.seoCount.textContent = seoTasks.length;
   els.aeoCount.textContent = aeoTasks.length;
@@ -5293,11 +6907,13 @@ function render() {
 function renderAuth() {
   const isSignedIn = Boolean(state.session);
   document.body.dataset.auth = isSignedIn ? "signed_in" : "signed_out";
+  document.body.dataset.userRole = isSignedIn ? primaryRole(state.session).toLowerCase().replace(/\s+/g, "_") : "builder";
+  document.body.dataset.adminAccess = isSignedIn && hasAdminAccess(state.session) ? "true" : "false";
   document.body.dataset.onboardingStep = state.onboardingStep;
   els.userContext.textContent = isSignedIn
-    ? workspaceSubtitle(state.workspaceView, state.session.role)
+    ? workspaceSubtitle(state.workspaceView, primaryRole(state.session))
     : "Jnuru Goodwin / Builder";
-  if (els.rolePill) els.rolePill.textContent = isSignedIn ? state.session.role : "Builder";
+  if (els.rolePill) els.rolePill.textContent = isSignedIn ? rolePillLabel(state.session) : "Builder";
 
   els.authCards.forEach((card) => {
     card.classList.toggle("is-active", card.dataset.authStep === state.onboardingStep);
@@ -5308,33 +6924,78 @@ function renderAuth() {
   els.themeOptions.forEach((option) => {
     option.classList.toggle("is-selected", option.dataset.themeChoice === state.selectedTheme);
   });
+  renderSettingsProfile();
+}
+
+function renderSettingsProfile() {
+  const session = state.session || { name: "Jnuru Goodwin", primaryRole: "Builder", isAdmin: true };
+  const isAdmin = hasAdminAccess(session);
+  if (els.settingsAvatar) els.settingsAvatar.textContent = initials(session.name);
+  if (els.settingsName) els.settingsName.textContent = session.name;
+  if (els.settingsRole) els.settingsRole.textContent = rolePillLabel(session);
+  if (els.settingsLandingSelect) els.settingsLandingSelect.value = defaultLandingLabel(session);
+  if (els.settingsAccessBadges) {
+    const badges = [primaryRole(session), ...(isAdmin ? ["Admin"] : [])];
+    els.settingsAccessBadges.innerHTML = badges.map((badge) => `<span>${escapeHtml(badge)}</span>`).join("");
+  }
 }
 
 function completeOnboarding(workspaceView, role = "Builder") {
-  state.session = {
-    name: role === "Admin" ? "Scott Toulou" : "Jnuru Goodwin",
-    role,
-    defaultView: workspaceView,
-    theme: "gray",
-  };
+  state.session =
+    role === "Admin"
+      ? {
+          name: "Scott Toulou",
+          primaryRole: "AEO Writer",
+          role: "AEO Writer",
+          isAdmin: true,
+          defaultView: "admin",
+          theme: "gray",
+        }
+      : {
+          name: "Jnuru Goodwin",
+          primaryRole: "Builder",
+          role: "Builder",
+          isAdmin: true,
+          defaultView: workspaceView,
+          theme: "gray",
+        };
   localStorage.setItem("fusz-demo-session", JSON.stringify(state.session));
-  setWorkspaceView(workspaceView, { silent: true });
+  setWorkspaceView(state.session.defaultView, { silent: true });
   renderAuth();
-  showToast(role === "Admin" ? "Admin Command Center opened" : workspaceView === "my_work" ? "Welcome to My Work" : "Team Pipeline opened");
+  showToast(role === "Admin" ? "Scott admin + AEO preview opened" : workspaceView === "my_work" ? "Welcome to My Work" : "Team Pipeline opened");
 }
 
-function renderTableTitle() {
+function primaryRole(session) {
+  return session?.primaryRole || session?.role || "Builder";
+}
+
+function hasAdminAccess(session) {
+  return Boolean(session?.isAdmin || session?.role === "Admin");
+}
+
+function rolePillLabel(session) {
+  const role = primaryRole(session);
+  return hasAdminAccess(session) ? `${role} + Admin` : role;
+}
+
+function defaultLandingLabel(session) {
+  if (primaryRole(session) === "AEO Writer") return "Admin Command Center";
+  return session?.defaultView === "team_board" ? "Team Pipeline" : "My Work";
+}
+
+function renderTableTitle(count = 0) {
   const year = els.yearFilter.value;
   const dealer = els.dealerFilter.value;
   const yearLabel = year === "all" ? "All Years" : year;
   const dealerLabel = dealer === "all" ? "All Dealerships" : dealer;
-  els.tableTitle.textContent = `Team Pipeline - ${yearLabel} / ${dealerLabel}`;
+  els.tableTitle.textContent = `Team Pipeline - ${count} models`;
+  els.tableTitle.title = `${yearLabel} / ${dealerLabel}`;
 }
 
 function renderWorkspaceView() {
   document.body.dataset.workspaceView = state.workspaceView;
   if (els.pageTitle) els.pageTitle.textContent = workspaceTitle(state.workspaceView);
-  if (els.userContext) els.userContext.textContent = workspaceSubtitle(state.workspaceView, state.session?.role || "Builder");
+  if (els.userContext) els.userContext.textContent = workspaceSubtitle(state.workspaceView, primaryRole(state.session));
   els.workspaceButtons.forEach((button) => {
     button.classList.toggle("is-active", button.dataset.workspaceView === state.workspaceView);
   });
@@ -5383,7 +7044,7 @@ function renderFocusTask() {
 
 function renderMyWork(tasks) {
   const mine = tasks
-    .filter((task) => ownerBucket(task) === "Jnuru")
+    .filter((task) => ownerBucket(task).startsWith("Jnuru"))
     .sort((a, b) => workPriority(a) - workPriority(b))
     .filter((task, index, list) => list.findIndex((candidate) => taskTitle(candidate) === taskTitle(task)) === index)
     .slice(0, 2);
@@ -5392,20 +7053,67 @@ function renderMyWork(tasks) {
   els.myWorkList.innerHTML = mine.length
     ? mine.map(renderMyWorkCard).join("")
     : `<div class="empty"><strong>You're caught up</strong><br>No builder tasks are currently assigned to you.</div>`;
+  renderBuilderDetail(mine[0]);
 }
 
-function renderMyWorkCard(task) {
+function renderMyWorkCard(task, index = 0) {
+  const owner = ownerBucket(task);
   return `
-    <article class="work-card" style="${escapeAttr(task.accentStyle)}" data-details="${escapeAttr(task.id)}">
-      <div>
+    <article class="work-card${index === 0 ? " is-selected" : ""}" style="${escapeAttr(task.accentStyle)}" data-details="${escapeAttr(task.id)}">
+      <div class="work-card-main">
         <h3>${escapeHtml(taskTitle(task))}</h3>
-        <p>${builderCardMeta(task)}</p>
+        <p class="work-card-dealer">${escapeHtml(task.dealer)}</p>
+        <div class="work-card-meta">
+          <span class="brand-badge">${escapeHtml(task.make || "Brand")}</span>
+          <span class="status-dot signal-${escapeAttr(task.inventorySignal)}" aria-hidden="true"></span>
+          <span>${escapeHtml(builderCardMeta(task))}</span>
+        </div>
       </div>
-      <div class="work-card-footer">
-        <span class="build-ready-chip">Build Ready</span>
+      <div class="work-card-side">
+        <span class="owner-avatar">${escapeHtml(initials(owner))}</span>
         ${builderActionButton(task)}
       </div>
     </article>
+  `;
+}
+
+function renderBuilderDetail(task) {
+  if (!task) {
+    els.builderDetailPanel.classList.add("is-empty");
+    els.builderDetailContent.innerHTML = `
+      <div class="empty detail-empty">
+        <strong>No build task selected</strong><br>
+        New build work appears here when SEO copy is ready.
+      </div>
+    `;
+    return;
+  }
+
+  els.builderDetailPanel.classList.remove("is-empty");
+  els.builderDetailContent.innerHTML = `
+    <div class="section-heading">
+      <div>
+        <h2>${escapeHtml(taskTitle(task))}</h2>
+        <p class="panel-subtitle">${escapeHtml(task.dealer)}</p>
+      </div>
+    </div>
+    <div class="selected-task-status">
+      ${workflowStage(task)}
+    </div>
+    <h3 class="detail-section-title">Resources</h3>
+    <div class="resource-list resource-list-compact">
+      <button class="resource-row" type="button">SEO Doc</button>
+      <a class="resource-row" href="${escapeAttr(modelInfoUrl(task))}" target="_blank" rel="noreferrer">Model Info</a>
+      ${task.inventoryUrl ? `<a class="resource-row" href="${escapeAttr(task.inventoryUrl)}" target="_blank" rel="noreferrer">Inventory</a>` : `<button class="resource-row" type="button">Inventory</button>`}
+    </div>
+    <div class="next-step-card">
+      <span>Next step</span>
+      <strong>${escapeHtml(builderNextStep(task))}</strong>
+    </div>
+    <div class="detail-actions">
+      ${builderActionButton(task)}
+      <button class="button button-quiet" type="button" data-details="${escapeAttr(task.id)}">Flag issue</button>
+    </div>
   `;
 }
 
@@ -5415,29 +7123,50 @@ function renderUpcomingModels(tasks) {
     ...syntheticUpcomingModels(),
   ]
     .sort((a, b) => b.year - a.year || String(a.make).localeCompare(String(b.make)))
-    .slice(0, 12);
+    .filter((task, index, list) => list.findIndex((candidate) => taskTitle(candidate) === taskTitle(task)) === index)
+    .slice(0, 8);
 
   els.upcomingCount.textContent = futureModels.length;
-  els.upcomingList.innerHTML = futureModels.map(renderUpcomingCard).join("");
+  els.upcomingList.innerHTML = futureModels.length
+    ? futureModels.map(renderUpcomingCard).join("")
+    : `<div class="empty"><strong>No upcoming models in this view</strong><br>When an OEM or inventory feed flags one, it will appear here.</div>`;
 }
 
 function renderUpcomingCard(task) {
+  const signal = task.inventorySignal || "upcoming";
   return `
     <article class="watch-card" style="${escapeAttr(task.accentStyle || accentStyleForTask(task))}">
-      <div class="watch-top">
+      <div class="watch-card-main">
         <span class="brand-badge">${escapeHtml(task.make || "OEM")}</span>
-        ${signalPill(task.inventorySignal || "upcoming")}
+        <h3>${escapeHtml(taskTitle(task))}</h3>
+        <p class="watch-card-summary">${escapeHtml(upcomingSummary(task))}</p>
+        <p class="watch-card-meta">
+          <span class="status-dot signal-${escapeAttr(signal)}" aria-hidden="true"></span>
+          ${escapeHtml(signalLabels[signal] || signal)}
+          <span aria-hidden="true">/</span>
+          ${escapeHtml(task.dealer || "OEM watchlist")}
+        </p>
       </div>
-      <h3>${escapeHtml(taskTitle(task))}</h3>
-      <p>${escapeHtml(task.summary || upcomingSummary(task))}</p>
-      <div class="timeline-mini">
-        <span class="${task.inventorySignal === "upcoming" ? "is-current" : ""}">Upcoming</span>
-        <span class="${task.inventorySignal === "shipped" ? "is-current" : ""}">Shipped</span>
-        <span class="${task.inventorySignal === "on_lot" ? "is-current" : ""}">On lot</span>
+      <div class="watch-card-actions">
+        <a class="button button-quiet" href="${escapeAttr(modelInfoUrl(task))}" target="_blank" rel="noreferrer">Model info</a>
       </div>
-      ${task.id ? `<button class="button" type="button" data-details="${escapeAttr(task.id)}">Details</button>` : ""}
     </article>
   `;
+}
+
+function renderInventoryFeedStatus() {
+  if (!els.feedVehicleCount || !els.feedSampleVehicle || !els.feedConnectionStatus) return;
+  const rows = state.inventoryFeed.rows || [];
+  const first = rows[0];
+  els.feedVehicleCount.textContent = rows.length
+    ? `${rows.length} new vehicle${rows.length === 1 ? "" : "s"} found`
+    : "Feed waiting";
+  els.feedSampleVehicle.textContent = first
+    ? `${first.year || "Year"} ${first.make || "Make"} ${first.model || "Model"}`
+    : "No sample yet";
+  els.feedConnectionStatus.textContent = state.inventoryFeed.message;
+  els.feedConnectionStatus.classList.toggle("status-green", state.inventoryFeed.connected);
+  els.feedConnectionStatus.classList.toggle("status-gray", !state.inventoryFeed.connected);
 }
 
 function renderMetrics(tasks) {
@@ -5451,7 +7180,7 @@ function renderMetrics(tasks) {
     els.metricAeo.textContent = tasks.filter((task) => task.pageStatus === "needs_review").length;
     els.metricLive.textContent = tasks.filter((task) => task.pageStatus === "live").length;
   } else {
-    ["Ready to build", "Needs live check", "Blocked", "Completed this month"].forEach((label, index) => {
+    ["Ready to build", "Needs live check", "Needs review", "Completed this month"].forEach((label, index) => {
       if (labels[index]) labels[index].textContent = label;
     });
     els.metricDetected.textContent = tasks.filter((task) =>
@@ -5501,12 +7230,12 @@ function renderTable(tasks) {
   els.taskTable.innerHTML = tasks
     .map(
       (task) => `
-        <tr data-details="${escapeAttr(task.id)}">
-          <td><strong>${escapeHtml(taskTitle(task))}</strong></td>
-          <td><span class="table-dealer"><span class="brand-badge">${escapeHtml(task.make || "Brand")}</span>${escapeHtml(task.dealer)}</span></td>
-          <td>${workflowStage(task)}</td>
-          <td><span class="inventory-cell">${escapeHtml(signalLabels[task.inventorySignal] || task.inventorySignal)}</span></td>
-          <td><div class="row-actions">${primaryActionButton(task)}<button class="button button-quiet" type="button" data-details="${escapeAttr(task.id)}">Details</button></div></td>
+        <tr>
+          <td data-label="Model"><strong>${escapeHtml(taskTitle(task))}</strong></td>
+          <td data-label="Dealer"><span class="table-dealer"><span class="brand-badge">${escapeHtml(task.make || "Brand")}</span>${escapeHtml(task.dealer)}</span></td>
+          <td data-label="Stage">${workflowStage(task)}</td>
+          <td data-label="Inventory"><span class="inventory-cell">${escapeHtml(signalLabels[task.inventorySignal] || task.inventorySignal)}</span></td>
+          <td data-label="Action"><div class="row-actions">${primaryActionButton(task)}</div></td>
         </tr>
       `,
     )
@@ -5521,7 +7250,7 @@ function workflowStage(task) {
     needs_build: ["Ready to build", "blue"],
     page_built: ["Needs live check", "amber"],
     live: ["Complete", "green"],
-    needs_review: ["Blocked", "red"],
+    needs_review: ["Needs review", "red"],
     ignored: ["Skipped", "gray"],
     snoozed: ["Paused", "gray"],
   };
@@ -5583,7 +7312,7 @@ function queuePrimaryActionButton(task, type) {
     not_needed: ["not_started", "Reopen AEO"],
   };
   const [nextStatus, label] = actions[task.aeoStatus] || actions.not_started;
-  return `<button class="button button-primary-action" type="button" data-task-id="${escapeAttr(task.id)}" data-aeo-status="${escapeAttr(nextStatus)}">${escapeHtml(label)}</button>`;
+  return `<button class="button button-secondary-action" type="button" data-task-id="${escapeAttr(task.id)}" data-aeo-status="${escapeAttr(nextStatus)}">${escapeHtml(label)}</button>`;
 }
 
 function actionButtons(task) {
@@ -5599,7 +7328,7 @@ function primaryActionButton(task) {
   const primary = (transitions[task.pageStatus] || [])[0];
   if (!primary) return "";
   const [nextStatus, label] = primary;
-  return `<button class="button button-primary-action" type="button" data-task-id="${escapeAttr(task.id)}" data-status="${escapeAttr(nextStatus)}">${escapeHtml(label)}</button>`;
+  return `<button class="button ${actionButtonClass(nextStatus, label)}" type="button" data-task-id="${escapeAttr(task.id)}" data-status="${escapeAttr(nextStatus)}">${escapeHtml(label)}</button>`;
 }
 
 function builderCardMeta(task) {
@@ -5615,7 +7344,37 @@ function builderActionButton(task) {
     page_built: ["live", "Mark live"],
   };
   const [nextStatus, label] = actions[task.pageStatus] || ["needs_build", "Build"];
-  return `<button class="button button-primary-action" type="button" data-task-id="${escapeAttr(task.id)}" data-status="${escapeAttr(nextStatus)}">${escapeHtml(label)}</button>`;
+  return `<button class="button ${actionButtonClass(nextStatus, label)}" type="button" data-task-id="${escapeAttr(task.id)}" data-status="${escapeAttr(nextStatus)}">${escapeHtml(label)}</button>`;
+}
+
+function actionButtonClass(nextStatus, label = "") {
+  const lowerLabel = label.toLowerCase();
+  if (["send back", "return", "reopen", "unclaim", "restore", "unsnooze", "ignore", "snooze"].some((term) => lowerLabel.includes(term))) {
+    return "button-corrective-action";
+  }
+  if (["live", "needs_review"].includes(nextStatus) || ["review", "mark live", "already live", "keep live"].some((term) => lowerLabel.includes(term))) {
+    return "button-secondary-action";
+  }
+  return "button-primary-action";
+}
+
+function openNavigation() {
+  document.body.dataset.navOpen = "true";
+  els.mobileMenuButton.setAttribute("aria-expanded", "true");
+  els.navCloseButton.focus();
+}
+
+function closeNavigation(options = {}) {
+  document.body.dataset.navOpen = "false";
+  els.mobileMenuButton.setAttribute("aria-expanded", "false");
+  if (options.restoreFocus !== false) els.mobileMenuButton.focus();
+}
+
+function builderNextStep(task) {
+  if (task.pageStatus === "page_built") return "Check the live page, then mark it live.";
+  if (task.pageStatus === "needs_build") return "Build the model page from the SEO doc.";
+  if (task.pageStatus === "seo_done") return "SEO is ready. Start the page build.";
+  return actionLabel(task);
 }
 
 function signalButtons(task) {
@@ -5677,8 +7436,24 @@ function updateSignal(taskId, signal) {
 function setWorkspaceView(workspaceView, options = {}) {
   state.workspaceView = workspaceView;
   localStorage.setItem("pipeline-workspace-view", workspaceView);
+  if (document.body.dataset.navOpen === "true") closeNavigation({ restoreFocus: false });
   if (!options.silent) showToast(`${workspaceLabel(workspaceView)} view enabled`);
   render();
+}
+
+function handleSettingsAction(button) {
+  if (button.disabled) return;
+  const label = button.dataset.settingsAction || "Action";
+  const originalText = button.textContent;
+  button.disabled = true;
+  button.classList.add("is-loading");
+  button.textContent = "Working";
+  window.setTimeout(() => {
+    button.disabled = false;
+    button.classList.remove("is-loading");
+    button.textContent = originalText;
+    showToast(`${label} queued for setup`);
+  }, 650);
 }
 
 function openTaskDetails(taskId) {
@@ -5818,10 +7593,17 @@ function nextBestTask(tasks = state.tasks) {
 function ownerBucket(task) {
   if (task.details?.buildOwner) return task.details.buildOwner;
   if (task.details?.seoOwner) return task.details.seoOwner;
-  if (["seo_done", "needs_build", "page_built"].includes(task.pageStatus)) return "Jnuru";
+  if (["seo_done", "needs_build", "page_built"].includes(task.pageStatus)) return "Jnuru Goodwin";
   if (["needs_seo", "seo_in_progress"].includes(task.pageStatus)) return "SEO Writer";
   if (!["done", "not_needed"].includes(task.aeoStatus)) return "Scott";
   return "Team";
+}
+
+function initials(name) {
+  const words = String(name || "Team").trim().split(/\s+/).filter(Boolean);
+  if (!words.length) return "T";
+  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
+  return `${words[0][0]}${words[1][0]}`.toUpperCase();
 }
 
 function workPriority(task) {
@@ -5876,162 +7658,11 @@ function syntheticUpcomingModels() {
 function upcomingSummary(task) {
   if (task.inventorySignal === "on_lot") return "Vehicle has hit the lot. Page status should be reviewed.";
   if (task.inventorySignal === "shipped") return "Vehicle appears shipped or in transit. Prepare copy/build timing.";
-  return "Upcoming model being watched before it becomes active page work.";
+  return task.summary || "Watched before it becomes active page work.";
 }
 
-function workspaceLabel(view) {
-  return {
-    admin: "Admin Command Center",
-    my_work: "My Work",
-    team_board: "Team Pipeline",
-    upcoming: "Upcoming Models",
-    docs: "Resources",
-    settings: "Settings",
-  }[view] || "Workspace";
-}
-
-let toastTimer;
-function showToast(message) {
-  els.toast.textContent = message;
-  els.toast.classList.add("is-visible");
-  window.clearTimeout(toastTimer);
-  toastTimer = window.setTimeout(() => {
-    els.toast.classList.remove("is-visible");
-  }, 2200);
-}
-
-function buildDigest() {
-  const needsSeo = state.tasks.filter((task) => task.pageStatus === "needs_seo");
-  const aeo = state.tasks.filter((task) => !["done", "not_needed"].includes(task.aeoStatus));
-  const readyBuild = state.tasks.filter((task) =>
-    ["seo_done", "needs_build", "page_built"].includes(task.pageStatus),
-  );
-  const live = state.tasks.filter((task) => task.pageStatus === "live");
-
-  const lines = [
-    "Fusz+ Daily Digest",
-    "For: Jnuru Goodwin / Builder",
-    "",
-    `Needs SEO: ${needsSeo.length}`,
-    ...needsSeo.slice(0, 12).map((task) => `- ${task.dealer}: ${taskTitle(task)}`),
-    "",
-    `Needs / In AEO: ${aeo.length}`,
-    ...aeo.slice(0, 12).map((task) => `- ${task.dealer}: ${taskTitle(task)} (${aeoLabels[task.aeoStatus]})`),
-    "",
-    `Ready / In Build: ${readyBuild.length}`,
-    ...readyBuild.slice(0, 12).map((task) => `- ${task.dealer}: ${taskTitle(task)} (${statusLabels[task.pageStatus]})`),
-    "",
-    `Live / Checked: ${live.length}`,
-  ];
-
-  return lines.join("\n");
-}
-
-function applyTheme(theme) {
-  document.body.dataset.theme = theme;
-}
-
-function showDigest(text) {
-  els.digestText.textContent = text;
-  els.digestDialog.showModal();
-}
-
-function formatScanErrors(errors) {
-  return errors
-    .slice(0, 12)
-    .map((error) => `- ${error.dealer}: ${error.message}`)
-    .join("\n");
-}
-
-function escapeHtml(value) {
-  return String(value ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-function displayModel(task) {
-  const model = String(task.model || "").trim();
-  const make = String(task.make || "").trim();
-  return make && model.toLowerCase().startsWith(`${make.toLowerCase()} `)
-    ? model.slice(make.length).trim()
-    : model;
-}
-
-function taskTitle(task) {
-  return `${task.year} ${task.make} ${displayModel(task)}`.trim();
-}
-
-function escapeAttr(value) {
-  return escapeHtml(value);
-}
-
-function accentStyle(hex) {
-  const rgb = hexToRgb(hex);
-  if (!rgb) {
-    return "--accent:#2563a9;--accent-soft:rgba(37,99,169,.18);--accent-border:rgba(37,99,169,.55);--accent-ink:#78b7ff;";
-  }
-  const { r, g, b } = rgb;
-  return [
-    `--accent:${hex}`,
-    `--accent-visible:${hex}`,
-    `--accent-soft:rgba(${r},${g},${b},.18)`,
-    `--accent-card:rgba(${r},${g},${b},.13)`,
-    `--accent-border:rgba(${r},${g},${b},.58)`,
-    `--accent-glow:rgba(${r},${g},${b},.42)`,
-    `--accent-ink:${brighten(hex, 42)}`,
-  ].join(";");
-}
-
-function accentStyleForTask(task) {
-  const make = task.make;
-  const override = brandAccentOverrides[make];
-  if (!override) return accentStyle(dealerAccents[task.dealer] || "#2563a9");
-
-  const rgb = hexToRgb(override.visible);
-  if (!rgb) return accentStyle(override.accent);
-  const { r, g, b } = rgb;
-  return [
-    `--accent:${override.accent}`,
-    `--accent-visible:${override.visible}`,
-    `--accent-soft:rgba(${r},${g},${b},.22)`,
-    `--accent-card:rgba(${r},${g},${b},.16)`,
-    `--accent-border:rgba(${r},${g},${b},.68)`,
-    `--accent-glow:rgba(${r},${g},${b},.54)`,
-    `--accent-ink:${override.ink}`,
-  ].join(";");
-}
-
-function applyAccentStyle(element, styleText) {
-  styleText.split(";").forEach((declaration) => {
-    const [property, value] = declaration.split(":");
-    if (property && value) element.style.setProperty(property.trim(), value.trim());
-  });
-}
-
-function hexToRgb(hex) {
-  const clean = String(hex).replace("#", "").trim();
-  if (!/^[0-9a-f]{6}$/i.test(clean)) return null;
-  return {
-    r: parseInt(clean.slice(0, 2), 16),
-    g: parseInt(clean.slice(2, 4), 16),
-    b: parseInt(clean.slice(4, 6), 16),
-  };
-}
-
-function brighten(hex, amount) {
-  const rgb = hexToRgb(hex);
-  if (!rgb) return "#78b7ff";
-  const toHex = (value) => Math.max(0, Math.min(255, value)).toString(16).padStart(2, "0");
-  return `#${toHex(rgb.r + amount)}${toHex(rgb.g + amount)}${toHex(rgb.b + amount)}`;
-}
-
-boot().catch((error) => {
-  document.body.innerHTML = `<main><div class="empty">${escapeHtml(error.message)}</div></main>`;
-});
-
-    </script>
-  </body>
-</html>
+function modelInfoUrl(task) {
+  if (task.modelUrl) return task.modelUrl;
+  if (task.oemUrl) return task.oemUrl;
+  const query = `${task.year || ""} ${task.make || ""} ${displayModel(task)} official model`;
+  return `https://www.google.com/search?q=${encodeURIComponent(query.trim())}`;
