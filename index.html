@@ -6572,11 +6572,9 @@ const els = {
 async function boot() {
   applyTheme(state.selectedTheme);
   normalizeSession();
-  const [tasks, sources, inventoryFeed] = await Promise.all([
-    fetchJson("/data/tracker-models.json").catch(() => fetchJson("/data/tracker-2027.json")),
-    fetchJson("/data/inventory-sources.json"),
-    fetchInventoryFeed(),
-  ]);
+  bindEvents();
+  renderAuth();
+  const [tasks, sources, inventoryFeed] = [embeddedTracker, embeddedSources, await fetchInventoryFeed()];
   state.sources = sources;
   state.inventoryFeed = inventoryFeed;
   state.tasks = tasks.map((task) => ({
@@ -6592,8 +6590,6 @@ async function boot() {
   applyInventoryFeedSignals();
   populateYearFilter();
   populateDealerFilter();
-  bindEvents();
-  renderAuth();
   render();
 }
 
@@ -7666,3 +7662,159 @@ function modelInfoUrl(task) {
   if (task.oemUrl) return task.oemUrl;
   const query = `${task.year || ""} ${task.make || ""} ${displayModel(task)} official model`;
   return `https://www.google.com/search?q=${encodeURIComponent(query.trim())}`;
+}
+
+function workspaceLabel(view) {
+  return {
+    admin: "Admin Command Center",
+    my_work: "My Work",
+    team_board: "Team Pipeline",
+    upcoming: "Upcoming Models",
+    docs: "Resources",
+    settings: "Settings",
+  }[view] || "Workspace";
+}
+
+let toastTimer;
+function showToast(message) {
+  els.toast.textContent = message;
+  els.toast.classList.add("is-visible");
+  window.clearTimeout(toastTimer);
+  toastTimer = window.setTimeout(() => {
+    els.toast.classList.remove("is-visible");
+  }, 2200);
+}
+
+function buildDigest() {
+  const needsSeo = state.tasks.filter((task) => task.pageStatus === "needs_seo");
+  const aeo = state.tasks.filter((task) => !["done", "not_needed"].includes(task.aeoStatus));
+  const readyBuild = state.tasks.filter((task) =>
+    ["seo_done", "needs_build", "page_built"].includes(task.pageStatus),
+  );
+  const live = state.tasks.filter((task) => task.pageStatus === "live");
+
+  const lines = [
+    "Fusz+ Daily Digest",
+    "For: Jnuru Goodwin / Builder",
+    "",
+    `Needs SEO: ${needsSeo.length}`,
+    ...needsSeo.slice(0, 12).map((task) => `- ${task.dealer}: ${taskTitle(task)}`),
+    "",
+    `Needs / In AEO: ${aeo.length}`,
+    ...aeo.slice(0, 12).map((task) => `- ${task.dealer}: ${taskTitle(task)} (${aeoLabels[task.aeoStatus]})`),
+    "",
+    `Ready / In Build: ${readyBuild.length}`,
+    ...readyBuild.slice(0, 12).map((task) => `- ${task.dealer}: ${taskTitle(task)} (${statusLabels[task.pageStatus]})`),
+    "",
+    `Live / Checked: ${live.length}`,
+  ];
+
+  return lines.join("\n");
+}
+
+function applyTheme(theme) {
+  document.body.dataset.theme = theme;
+}
+
+function showDigest(text) {
+  els.digestText.textContent = text;
+  els.digestDialog.showModal();
+}
+
+function formatScanErrors(errors) {
+  return errors
+    .slice(0, 12)
+    .map((error) => `- ${error.dealer}: ${error.message}`)
+    .join("\n");
+}
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function displayModel(task) {
+  const model = String(task.model || "").trim();
+  const make = String(task.make || "").trim();
+  return make && model.toLowerCase().startsWith(`${make.toLowerCase()} `)
+    ? model.slice(make.length).trim()
+    : model;
+}
+
+function taskTitle(task) {
+  return `${task.year} ${task.make} ${displayModel(task)}`.trim();
+}
+
+function escapeAttr(value) {
+  return escapeHtml(value);
+}
+
+function accentStyle(hex) {
+  const rgb = hexToRgb(hex);
+  if (!rgb) {
+    return "--accent:#2563a9;--accent-soft:rgba(37,99,169,.18);--accent-border:rgba(37,99,169,.55);--accent-ink:#78b7ff;";
+  }
+  const { r, g, b } = rgb;
+  return [
+    `--accent:${hex}`,
+    `--accent-visible:${hex}`,
+    `--accent-soft:rgba(${r},${g},${b},.18)`,
+    `--accent-card:rgba(${r},${g},${b},.13)`,
+    `--accent-border:rgba(${r},${g},${b},.58)`,
+    `--accent-glow:rgba(${r},${g},${b},.42)`,
+    `--accent-ink:${brighten(hex, 42)}`,
+  ].join(";");
+}
+
+function accentStyleForTask(task) {
+  const make = task.make;
+  const override = brandAccentOverrides[make];
+  if (!override) return accentStyle(dealerAccents[task.dealer] || "#2563a9");
+
+  const rgb = hexToRgb(override.visible);
+  if (!rgb) return accentStyle(override.accent);
+  const { r, g, b } = rgb;
+  return [
+    `--accent:${override.accent}`,
+    `--accent-visible:${override.visible}`,
+    `--accent-soft:rgba(${r},${g},${b},.22)`,
+    `--accent-card:rgba(${r},${g},${b},.16)`,
+    `--accent-border:rgba(${r},${g},${b},.68)`,
+    `--accent-glow:rgba(${r},${g},${b},.54)`,
+    `--accent-ink:${override.ink}`,
+  ].join(";");
+}
+
+function applyAccentStyle(element, styleText) {
+  styleText.split(";").forEach((declaration) => {
+    const [property, value] = declaration.split(":");
+    if (property && value) element.style.setProperty(property.trim(), value.trim());
+  });
+}
+
+function hexToRgb(hex) {
+  const clean = String(hex).replace("#", "").trim();
+  if (!/^[0-9a-f]{6}$/i.test(clean)) return null;
+  return {
+    r: parseInt(clean.slice(0, 2), 16),
+    g: parseInt(clean.slice(2, 4), 16),
+    b: parseInt(clean.slice(4, 6), 16),
+  };
+}
+
+function brighten(hex, amount) {
+  const rgb = hexToRgb(hex);
+  if (!rgb) return "#78b7ff";
+  const toHex = (value) => Math.max(0, Math.min(255, value)).toString(16).padStart(2, "0");
+  return `#${toHex(rgb.r + amount)}${toHex(rgb.g + amount)}${toHex(rgb.b + amount)}`;
+}
+
+boot().catch((error) => {
+  console.error(error);
+  showToast("Some source data could not load yet");
+  renderAuth();
+  render();
