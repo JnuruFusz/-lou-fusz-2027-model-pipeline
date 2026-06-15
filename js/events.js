@@ -1,15 +1,214 @@
+function configureInviteOnboarding() {
+  if (!els.authScreen) return;
+
+  const shell = els.authScreen.querySelector(".auth-shell");
+  if (!shell) return;
+
+  shell.innerHTML = `
+    <div class="auth-card is-active" data-auth-step="login">
+      <strong class="auth-logo">Fusz+</strong>
+      <p class="eyebrow">Invite accepted</p>
+      <h2>Welcome to Fusz+, Jnuru</h2>
+      <p class="auth-copy">
+        You've been added as a Builder. Your default workspace is My Work,
+        where you'll see pages ready to build and pages that need live
+        verification.
+      </p>
+      <div class="profile-preview" aria-label="Signed in as Jnuru Goodwin, Builder">
+        <span aria-hidden="true">JG</span>
+        <div>
+          <strong>Jnuru Goodwin</strong>
+          <small>Builder</small>
+        </div>
+      </div>
+      <button id="continueLoginButton" class="button button-primary" type="button">
+        Open My Work
+      </button>
+      <button id="authHelpButton" class="auth-help-link" type="button">View Builder access</button>
+    </div>
+  `;
+
+  let style = document.querySelector("#auth-confirmation-style");
+  if (!style) {
+    style = document.createElement("style");
+    style.id = "auth-confirmation-style";
+    document.head.append(style);
+  }
+
+  style.textContent = `
+    .auth-screen {
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: #151515;
+    }
+
+    .auth-shell {
+      display: block;
+      width: 100%;
+      max-width: 480px;
+      min-height: 0;
+      margin-inline: auto;
+      background: transparent;
+    }
+
+    .auth-card {
+      display: none;
+      width: 100%;
+      min-height: 0;
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      animation: panelIn 220ms ease both;
+    }
+
+    .auth-card.is-active {
+      display: block;
+    }
+
+    .auth-logo {
+      display: block;
+      margin-bottom: 28px;
+      color: var(--ink);
+      font-size: 18px;
+      font-weight: 850;
+      line-height: 1;
+    }
+
+    .auth-card h2 {
+      margin-top: 4px;
+      font-size: clamp(24px, 5vw, 28px);
+      line-height: 1.12;
+    }
+
+    .auth-copy {
+      margin: 12px 0 20px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+      line-height: 1.5;
+    }
+
+    .profile-preview {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 20px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .profile-preview > span {
+      display: inline-grid;
+      flex: 0 0 auto;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      background: var(--action-blue);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 950;
+    }
+
+    .profile-preview strong,
+    .profile-preview small {
+      display: block;
+    }
+
+    .profile-preview strong {
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 850;
+    }
+
+    .profile-preview small {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .auth-card .button {
+      width: 100%;
+      min-height: 46px;
+      justify-content: center;
+    }
+
+    .auth-help-link {
+      display: block;
+      width: fit-content;
+      margin: 14px auto 0;
+      padding: 4px;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .auth-help-link:hover,
+    .auth-help-link:focus-visible {
+      color: var(--blue);
+    }
+
+    @media (max-width: 560px) {
+      .auth-screen {
+        align-items: start;
+        padding: 20px 16px 32px;
+      }
+
+      .auth-shell {
+        max-width: none;
+      }
+
+      .auth-card {
+        padding: 22px;
+      }
+
+      .auth-logo {
+        margin-bottom: 24px;
+      }
+    }
+  `;
+
+  els.authCards = document.querySelectorAll("[data-auth-step]");
+  els.flowDots = document.querySelectorAll("[data-flow-dot]");
+  els.continueLoginButton = document.querySelector("#continueLoginButton");
+  els.previewAdminButton = null;
+  els.continueThemeButton = null;
+  els.enterWorkspaceButton = null;
+  els.skipToBoardButton = null;
+  els.themeOptions = document.querySelectorAll("[data-theme-choice]");
+  els.authHelpButton = document.querySelector("#authHelpButton");
+}
+
 function on(element, eventName, handler) {
   if (!element) return;
   element.addEventListener(eventName, handler);
 }
 
 function bindEvents() {
-  on(els.continueLoginButton, "click", () => {
-    state.onboardingStep = "theme";
-    renderAuth();
+  configureInviteOnboarding();
+
+  on(els.continueLoginButton, "click", (event) => {
+    const button = event.currentTarget;
+    if (button.disabled) return;
+    button.disabled = true;
+    button.textContent = "Opening";
+    completeOnboarding("my_work", "Builder");
   });
 
-  on(els.previewAdminButton, "click", () => completeOnboarding("admin", "Admin"));
+  on(els.authHelpButton, "click", () => {
+    showToast("Builder access opens My Work and the Team Pipeline.");
+  });
 
   els.themeOptions.forEach((button) => {
     on(button, "click", () => {
