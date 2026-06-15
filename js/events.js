@@ -1,4 +1,24 @@
 function configureInviteOnboarding() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("demo") === "reset") {
+    localStorage.removeItem("fusz-demo-session");
+    localStorage.removeItem("pipeline-workspace-view");
+    localStorage.removeItem("pipeline-status-overrides");
+    localStorage.removeItem("pipeline-aeo-overrides");
+    localStorage.removeItem("pipeline-signal-overrides");
+    localStorage.removeItem("pipeline-task-details");
+    localStorage.setItem("fusz-theme", "gray");
+    state.session = null;
+    state.overrides = {};
+    state.aeoOverrides = {};
+    state.details = {};
+    state.signalOverrides = {};
+    state.workspaceView = "my_work";
+    state.onboardingStep = "login";
+    state.selectedTheme = "gray";
+    history.replaceState({}, "", window.location.pathname);
+  }
+
   if (!els.authScreen) return;
 
   const shell = els.authScreen.querySelector(".auth-shell");
@@ -36,6 +56,12 @@ function configureInviteOnboarding() {
   }
 
   style.textContent = `
+    body[data-view="focus"][data-workspace-view="docs"] .focus-panel,
+    body[data-view="focus"][data-workspace-view="settings"] .focus-panel,
+    body[data-view="focus"][data-workspace-view="upcoming"] .focus-panel {
+      display: none !important;
+    }
+
     .auth-screen {
       min-height: 100dvh;
       display: grid;
