@@ -424,7 +424,7 @@
 
   function renderMyWorkRow(task, tone, selected) {
     const dotClass = ["workbench-dot", tone === "verify" ? "is-verify" : "", tone === "blocked" ? "is-blocked" : "", tone === "ready" && task.aeoStatus !== "done" ? "is-dim" : ""].filter(Boolean).join(" ");
-    return `<article class="workbench-row${selected ? " is-selected" : ""}" data-details="${escapeAttr(task.id)}"><span class="${dotClass}"></span><div><span class="workbench-title">${escapeHtml(taskTitle(task))}</span><span class="workbench-meta">${escapeHtml(workbenchMeta(task, tone))}</span></div></article>`;
+    return `<article class="workbench-row${selected ? " is-selected" : ""}" data-workbench-task="${escapeAttr(task.id)}"><span class="${dotClass}"></span><div><span class="workbench-title">${escapeHtml(taskTitle(task))}</span><span class="workbench-meta">${escapeHtml(workbenchMeta(task, tone))}</span></div></article>`;
   }
 
   function workbenchMeta(task, tone) {
@@ -486,6 +486,15 @@
     return `<button class="button button-secondary-action" type="button" data-workbench-return>Return to SEO</button><button class="button button-primary-action" type="button" data-status="page_built" data-task-id="${escapeAttr(task.id)}">Mark Page Built</button>`;
   }
 
+  function selectWorkbenchTask(taskId) {
+    const task = state.tasks?.find((item) => item.id === taskId);
+    if (!task) return;
+    document.querySelectorAll(".workbench-row").forEach((row) => {
+      row.classList.toggle("is-selected", row.dataset.workbenchTask === taskId);
+    });
+    renderBuilderDetail(task);
+  }
+
   window.renderMyWork = function renderMyWorkWorkbench(tasks) {
     installMyWorkStyles();
     const { work, groups } = myWorkGroups(tasks);
@@ -512,6 +521,13 @@
   };
 
   document.addEventListener("click", (event) => {
+    const workbenchRow = event.target.closest("[data-workbench-task]");
+    if (workbenchRow) {
+      event.preventDefault();
+      selectWorkbenchTask(workbenchRow.dataset.workbenchTask);
+      return;
+    }
+
     const aiButton = event.target.closest("[data-workbench-ai]");
     if (aiButton) {
       aiButton.nextElementSibling?.classList.toggle("is-visible");
