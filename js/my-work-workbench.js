@@ -150,6 +150,10 @@
         line-height: 1.4;
       }
 
+      body[data-workspace-view="my_work"] .selected-task-status {
+        margin-bottom: 12px;
+      }
+
       .workbench-next-step {
         margin: 0 0 16px;
         padding: 12px 0 12px 14px;
