@@ -1,0 +1,15 @@
+body[data-auth="signed_out"] .app-sidebar,
+body[data-auth="signed_out"] .app-header,
+body[data-auth="signed_out"] main {
+  display: none;
+}
+
+body[data-auth="signed_in"] {
+  display: grid;
+  grid-template-columns: 248px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+body[data-auth="signed_in"] .auth-screen {
+  display: none;
+}
