@@ -6,6 +6,21 @@ async function fetchJson(url) {
   return response.json();
 }
 
+function loadClassicScript(url) {
+  return new Promise((resolve, reject) => {
+    if (document.querySelector(`script[src="${url}"]`)) {
+      resolve();
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = url;
+    script.defer = true;
+    script.onload = resolve;
+    script.onerror = () => reject(new Error(`Unable to load ${url}`));
+    document.head.append(script);
+  });
+}
+
 async function fetchInventoryFeed() {
   try {
     const response = await fetch("/data/inventory-feed.csv", { cache: "no-store" });
@@ -68,6 +83,7 @@ function normalizeFeedKey(key) {
 
 async function boot() {
   applyTheme(state.selectedTheme);
+  await loadClassicScript("js/my-work-workbench.js");
   normalizeSession();
   bindEvents();
   renderAuth();
