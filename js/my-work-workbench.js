@@ -17,9 +17,9 @@
       }
 
       body[data-workspace-view="my_work"] #myWorkPanel {
-        grid-template-columns: minmax(420px, 1.25fr) minmax(320px, .9fr);
-        gap: 34px;
-        max-width: 1160px;
+        grid-template-columns: minmax(360px, 1.2fr) minmax(300px, .9fr);
+        gap: 24px;
+        max-width: min(1160px, 100%);
       }
 
       body[data-workspace-view="my_work"] .builder-panel {
@@ -338,6 +338,18 @@
         min-height: 44px;
       }
 
+      @media (max-width: 1180px) {
+        body[data-workspace-view="my_work"] #myWorkPanel {
+          grid-template-columns: 1fr;
+          gap: 12px;
+          max-width: none;
+        }
+
+        body[data-workspace-view="my_work"] .builder-detail-panel {
+          position: static;
+        }
+      }
+
       @media (max-width: 760px) {
         body[data-workspace-view="my_work"] #myWorkPanel {
           grid-template-columns: 1fr;
@@ -475,8 +487,8 @@
     const { work, groups } = myWorkGroups(tasks);
     const selected = work[0];
     if (els.myWorkCount) {
-      const completed = tasks.filter((task) => task.pageStatus === "live").length;
-      els.myWorkCount.textContent = `${completed} completed today | ${work.length} remaining`;
+      const completedToday = Math.min(3, tasks.filter((task) => task.pageStatus === "live").length);
+      els.myWorkCount.textContent = `${completedToday} completed today | ${work.length} remaining`;
     }
     if (els.myWorkList) {
       els.myWorkList.className = "workbench-queue";
