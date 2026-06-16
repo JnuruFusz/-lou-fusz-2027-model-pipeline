@@ -83,12 +83,13 @@ function normalizeFeedKey(key) {
 
 async function boot() {
   applyTheme(state.selectedTheme);
-  await loadClassicScript("js/my-work-workbench.js");
+  await loadClassicScript("js/my-work-workbench.js?v=20260616");
   normalizeSession();
   bindEvents();
   renderAuth();
   const [tasks, sources, inventoryFeed] = [embeddedTracker, embeddedSources, await fetchInventoryFeed()];
   state.sources = sources;
+  state.rooftops = loadRooftops(sources);
   state.inventoryFeed = inventoryFeed;
   state.tasks = tasks.map((task) => ({
     ...task,
@@ -104,6 +105,17 @@ async function boot() {
   populateYearFilter();
   populateDealerFilter();
   render();
+}
+
+function loadRooftops(sources) {
+  if (Array.isArray(state.rooftops)) return state.rooftops;
+  return sources.map((source) => ({
+    id: normalizeCompare(source.dealer),
+    name: source.dealer,
+    brand: source.brands?.join(", ") || "Brand",
+    feedUrl: source.inventoryUrl || "",
+    active: true,
+  }));
 }
 
 function normalizeSession() {
