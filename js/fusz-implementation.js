@@ -20,6 +20,63 @@
         display: block !important;
       }
 
+      body[data-workspace-view="team_board"] .task-list {
+        gap: 16px;
+      }
+
+      body[data-workspace-view="team_board"] .task {
+        display: grid;
+        gap: 12px;
+        padding: 18px 18px 20px;
+        overflow: visible;
+      }
+
+      body[data-workspace-view="team_board"] .task-state {
+        margin: 0;
+      }
+
+      body[data-workspace-view="team_board"] .task-card-title {
+        margin: 0;
+        line-height: 1.28;
+      }
+
+      body[data-workspace-view="team_board"] .queue-reason {
+        margin: 0;
+        line-height: 1.45;
+      }
+
+      body[data-workspace-view="team_board"] .task-meta {
+        gap: 10px 12px;
+        margin: 0;
+        min-width: 0;
+      }
+
+      body[data-workspace-view="team_board"] .task-meta .table-dealer {
+        max-width: 100%;
+      }
+
+      body[data-workspace-view="team_board"] .task-meta .status,
+      body[data-workspace-view="team_board"] .task-meta .signal {
+        margin-top: 0;
+      }
+
+      body[data-workspace-view="team_board"] .task-actions {
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 2px;
+      }
+
+      body[data-workspace-view="team_board"] .task-actions .button {
+        flex: 0 1 auto;
+        min-width: 112px;
+      }
+
+      body[data-workspace-view="team_board"] .task-actions .button-primary-action,
+      body[data-workspace-view="team_board"] .task-actions .button-secondary-action {
+        min-width: 148px;
+      }
+
       .rooftops-manager {
         margin-top: 16px;
         padding-top: 16px;
