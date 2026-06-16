@@ -84,6 +84,7 @@ function normalizeFeedKey(key) {
 async function boot() {
   applyTheme(state.selectedTheme);
   await loadClassicScript("js/my-work-workbench.js?v=20260616");
+  await loadClassicScript("js/fusz-implementation.js?v=20260616");
   normalizeSession();
   bindEvents();
   renderAuth();
