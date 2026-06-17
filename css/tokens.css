@@ -193,6 +193,7 @@ body[data-theme="light"] .task {
 
   html body[data-workspace-view="team_board"] table {
     width: 100% !important;
+    min-width: 1120px !important;
     border-collapse: separate !important;
     border-spacing: 0 !important;
     table-layout: fixed !important;
@@ -234,21 +235,24 @@ body[data-theme="light"] .task {
     border-bottom: 0 !important;
   }
 
-  html body[data-workspace-view="team_board"] td:nth-child(1) {
-    width: 28% !important;
+  html body[data-workspace-view="team_board"] :is(th, td):nth-child(1) {
+    width: 25% !important;
   }
 
-  html body[data-workspace-view="team_board"] td:nth-child(2) {
-    width: 28% !important;
+  html body[data-workspace-view="team_board"] :is(th, td):nth-child(2) {
+    width: 27% !important;
   }
 
-  html body[data-workspace-view="team_board"] td:nth-child(3),
-  html body[data-workspace-view="team_board"] td:nth-child(4) {
+  html body[data-workspace-view="team_board"] :is(th, td):nth-child(3) {
+    width: 18% !important;
+  }
+
+  html body[data-workspace-view="team_board"] :is(th, td):nth-child(4) {
+    width: 14% !important;
+  }
+
+  html body[data-workspace-view="team_board"] :is(th, td):nth-child(5) {
     width: 16% !important;
-  }
-
-  html body[data-workspace-view="team_board"] td:nth-child(5) {
-    width: 12% !important;
   }
 
   html body[data-workspace-view="team_board"] .table-dealer {
@@ -270,9 +274,14 @@ body[data-theme="light"] .task {
   }
 
   html body[data-workspace-view="team_board"] .row-actions .button {
-    width: 148px !important;
-    min-height: 36px !important;
+    width: 164px !important;
+    max-width: 100% !important;
+    min-height: 38px !important;
+    padding: 0 12px !important;
+    box-sizing: border-box !important;
     justify-content: center !important;
+    font-size: 14px !important;
+    line-height: 1.15 !important;
     white-space: nowrap !important;
   }
 }
