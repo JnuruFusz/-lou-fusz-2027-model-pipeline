@@ -167,41 +167,46 @@
         font-size: 12px;
       }
 
-      .rooftop-status-toggle {
+      .rooftop-status-switch {
+        position: relative;
         display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 7px;
-        min-width: 92px;
-        min-height: 30px;
-        padding: 0 10px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        justify-self: end;
+        width: 36px;
+        min-width: 36px;
+        height: 24px;
+        min-height: 24px;
+        padding: 0;
+        border: 1px solid var(--line);
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.045);
-        color: var(--muted);
+        background: #303030;
         cursor: pointer;
-        font: inherit;
-        font-size: 12px;
-        font-weight: 850;
-        white-space: nowrap;
+        transition: background 160ms ease, border-color 160ms ease;
       }
 
-      .rooftop-status-toggle::before {
+      .rooftop-status-switch::after {
         content: "";
-        width: 7px;
-        height: 7px;
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 16px;
+        height: 16px;
         border-radius: 999px;
-        background: #777;
+        background: #e8e8e8;
+        transition: transform 160ms ease;
       }
 
-      .rooftop-status-toggle.is-active {
-        border-color: rgba(78, 216, 149, 0.28);
-        background: rgba(78, 216, 149, 0.08);
-        color: var(--green);
+      .rooftop-status-switch.is-active {
+        border-color: rgba(78, 216, 149, 0.42);
+        background: rgba(78, 216, 149, 0.85);
       }
 
-      .rooftop-status-toggle.is-active::before {
-        background: var(--green);
+      .rooftop-status-switch.is-active::after {
+        transform: translateX(12px);
+      }
+
+      .rooftop-status-switch:focus-visible {
+        outline: 2px solid var(--blue);
+        outline-offset: 2px;
       }
 
       @media (max-width: 760px) {
@@ -210,7 +215,7 @@
           grid-template-columns: 1fr;
         }
 
-        .rooftop-status-toggle {
+        .rooftop-status-switch {
           justify-self: start;
         }
       }
@@ -352,9 +357,7 @@
           <strong>${escapeHtml(rooftop.name)}</strong>
           <span>${escapeHtml(rooftop.brand)} / ${escapeHtml(rooftop.feedUrl || "No feed URL")}</span>
         </div>
-        <button class="rooftop-status-toggle${rooftop.active ? " is-active" : ""}" type="button" data-rooftop-active="${escapeAttr(rooftop.id)}">
-          ${rooftop.active ? "Active" : "Inactive"}
-        </button>
+        <button class="rooftop-status-switch${rooftop.active ? " is-active" : ""}" type="button" data-rooftop-active="${escapeAttr(rooftop.id)}" aria-label="${escapeAttr(`${rooftop.active ? "Deactivate" : "Activate"} ${rooftop.name}`)}"></button>
       </article>
     `).join("") : `<div class="empty">No rooftops configured.</div>`;
   }
