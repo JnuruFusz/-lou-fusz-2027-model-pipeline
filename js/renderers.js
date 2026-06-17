@@ -26,9 +26,15 @@ function render() {
   renderMyWork(tasks);
   renderUpcomingModels(syntheticUpcomingModels());
   renderInventoryFeedStatus();
-  renderQueue(els.seoQueue, tasks.filter((task) => ["needs_seo", "seo_in_progress"].includes(task.pageStatus)), "seo");
-  renderQueue(els.aeoQueue, tasks.filter((task) => !["done", "not_needed"].includes(task.aeoStatus)), "aeo");
-  renderQueue(els.buildQueue, tasks.filter((task) => ["seo_done", "needs_build", "page_built"].includes(task.pageStatus)), "build");
+  if (isAeoTableFilter()) {
+    renderQueue(els.seoQueue, [], "seo");
+    renderQueue(els.aeoQueue, tasks, "aeo");
+    renderQueue(els.buildQueue, [], "build");
+  } else {
+    renderQueue(els.seoQueue, tasks.filter((task) => ["needs_seo", "seo_in_progress"].includes(task.pageStatus)), "seo");
+    renderQueue(els.aeoQueue, tasks.filter((task) => !["done", "not_needed"].includes(task.aeoStatus)), "aeo");
+    renderQueue(els.buildQueue, tasks.filter((task) => ["seo_done", "needs_build", "page_built"].includes(task.pageStatus)), "build");
+  }
   renderTable(tasks);
 }
 
@@ -208,7 +214,7 @@ function aeoPill(status) { return `<span class="status aeo-status aeo-${escapeAt
 function summaryStatusLine(task) { return `<span>${escapeHtml(signalLabels[task.inventorySignal] || task.inventorySignal)}</span><span>/</span><span>${escapeHtml(statusLabels[task.pageStatus] || task.pageStatus)}</span><span>/</span><span>${escapeHtml(aeoLabels[task.aeoStatus] || task.aeoStatus)}</span>`; }
 function queuePill(task, type) { return type === "aeo" ? aeoPill(task.aeoStatus) : statusPill(task.pageStatus); }
 function queueReason(task, type) { return type === "aeo" ? `AEO layer status: ${aeoLabels[task.aeoStatus] || task.aeoStatus}.` : builderNextStep(task); }
-function queuePrimaryActionButton(task, type) { return type === "aeo" ? `<button class="button button-secondary-action" type="button" data-task-id="${escapeAttr(task.id)}" data-aeo-status="${task.aeoStatus === "done" ? "not_needed" : "done"}">Mark AEO Complete</button>` : primaryActionButton(task); }
+function queuePrimaryActionButton(task, type) { return type === "aeo" ? aeoTableActionButton(task) : primaryActionButton(task); }
 function actionButtons(task) { return (transitions[task.pageStatus] || []).map(([nextStatus, label]) => `<button class="button ${actionButtonClass(nextStatus, label)}" type="button" data-task-id="${escapeAttr(task.id)}" data-status="${escapeAttr(nextStatus)}">${escapeHtml(label)}</button>`).join(""); }
 function primaryActionButton(task) { const primary = (transitions[task.pageStatus] || [])[0]; return primary ? `<button class="button ${actionButtonClass(primary[0], primary[1])}" type="button" data-task-id="${escapeAttr(task.id)}" data-status="${escapeAttr(primary[0])}">${escapeHtml(primary[1])}</button>` : ""; }
 function builderCardMeta(task) { return task.pageStatus === "page_built" ? "Needs live check" : task.pageStatus === "needs_build" ? "Page build ready" : "SEO done"; }
