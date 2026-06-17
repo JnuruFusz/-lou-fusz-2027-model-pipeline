@@ -1,6 +1,7 @@
 (function () {
   const ROOFTOPS_KEY = "fusz-rooftops";
   const DRIVE_KEY = "fusz-drive-connection";
+  let rooftopFormOpen = false;
 
   function installImplementationStyles() {
     if (document.querySelector("#fusz-implementation-style")) return;
@@ -94,15 +95,55 @@
         font-size: 16px;
       }
 
+      .rooftop-form {
+        display: grid;
+        gap: 10px;
+        margin: 0 0 12px;
+        padding: 12px;
+        border: 1px solid rgba(79, 156, 255, 0.22);
+        border-radius: 8px;
+        background: rgba(47, 114, 214, 0.08);
+      }
+
+      .rooftop-form[hidden] {
+        display: none;
+      }
+
+      .rooftop-form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .rooftop-form label:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .rooftop-form input {
+        width: 100%;
+        min-height: 36px;
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        background: #151515;
+        color: var(--text);
+        box-sizing: border-box;
+      }
+
+      .rooftop-form-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+
       .rooftops-list {
         display: grid;
         gap: 8px;
       }
 
       .rooftop-row {
-        display: flex;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
         align-items: center;
-        justify-content: space-between;
         gap: 16px;
         padding: 12px;
         border: 1px solid var(--line);
@@ -126,17 +167,52 @@
         font-size: 12px;
       }
 
-      .rooftop-toggle {
+      .rooftop-status-toggle {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
+        justify-content: center;
+        gap: 7px;
+        min-width: 92px;
+        min-height: 30px;
+        padding: 0 10px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.045);
         color: var(--muted);
+        cursor: pointer;
+        font: inherit;
         font-size: 12px;
         font-weight: 850;
+        white-space: nowrap;
       }
 
-      .rooftop-toggle input {
-        accent-color: var(--action-blue);
+      .rooftop-status-toggle::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: #777;
+      }
+
+      .rooftop-status-toggle.is-active {
+        border-color: rgba(78, 216, 149, 0.28);
+        background: rgba(78, 216, 149, 0.08);
+        color: var(--green);
+      }
+
+      .rooftop-status-toggle.is-active::before {
+        background: var(--green);
+      }
+
+      @media (max-width: 760px) {
+        .rooftop-row,
+        .rooftop-form-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .rooftop-status-toggle {
+          justify-self: start;
+        }
       }
     `;
     document.head.append(style);
@@ -247,6 +323,17 @@
           </div>
           <button id="addRooftopButton" class="button button-primary-action" type="button">Add rooftop</button>
         </div>
+        <form id="rooftopForm" class="rooftop-form" hidden>
+          <div class="rooftop-form-grid">
+            <label>Rooftop name<input id="rooftopNameInput" type="text" placeholder="Lou Fusz Honda" /></label>
+            <label>Brand<input id="rooftopBrandInput" type="text" placeholder="Honda" /></label>
+            <label>Feed URL<input id="rooftopFeedInput" type="url" placeholder="https://example.com/new-vehicles/" /></label>
+          </div>
+          <div class="rooftop-form-actions">
+            <button class="button button-quiet" type="button" data-rooftop-cancel>Cancel</button>
+            <button class="button button-primary-action" type="button" data-rooftop-save>Save rooftop</button>
+          </div>
+        </form>
         <div id="rooftopsList" class="rooftops-list"></div>
       </section>
     `);
@@ -254,6 +341,8 @@
 
   function renderRooftops() {
     ensureRooftopControls();
+    const form = document.querySelector("#rooftopForm");
+    if (form) form.hidden = !rooftopFormOpen;
     const list = document.querySelector("#rooftopsList");
     if (!list) return;
     const rooftops = ensureRooftops();
@@ -263,40 +352,55 @@
           <strong>${escapeHtml(rooftop.name)}</strong>
           <span>${escapeHtml(rooftop.brand)} / ${escapeHtml(rooftop.feedUrl || "No feed URL")}</span>
         </div>
-        <label class="rooftop-toggle">
-          <input type="checkbox" data-rooftop-active="${escapeAttr(rooftop.id)}" ${rooftop.active ? "checked" : ""} />
-          <span>${rooftop.active ? "Active" : "Inactive"}</span>
-        </label>
+        <button class="rooftop-status-toggle${rooftop.active ? " is-active" : ""}" type="button" data-rooftop-active="${escapeAttr(rooftop.id)}">
+          ${rooftop.active ? "Active" : "Inactive"}
+        </button>
       </article>
     `).join("") : `<div class="empty">No rooftops configured.</div>`;
   }
 
-  function addRooftop() {
-    const name = window.prompt("Rooftop name");
-    if (!name || !name.trim()) return;
-    const brand = window.prompt("Brand");
-    if (!brand || !brand.trim()) return;
-    const feedUrl = window.prompt("DealerInspire feed URL");
-    if (!feedUrl || !feedUrl.trim()) return;
+  function openRooftopForm() {
+    rooftopFormOpen = true;
+    renderRooftops();
+    document.querySelector("#rooftopNameInput")?.focus();
+  }
+
+  function closeRooftopForm() {
+    rooftopFormOpen = false;
+    ["#rooftopNameInput", "#rooftopBrandInput", "#rooftopFeedInput"].forEach((selector) => {
+      const input = document.querySelector(selector);
+      if (input) input.value = "";
+    });
+    renderRooftops();
+  }
+
+  function addRooftopFromForm() {
+    const name = document.querySelector("#rooftopNameInput")?.value.trim();
+    const brand = document.querySelector("#rooftopBrandInput")?.value.trim();
+    const feedUrl = document.querySelector("#rooftopFeedInput")?.value.trim() || "";
+    if (!name || !brand) {
+      showToast("Add a rooftop name and brand first");
+      return;
+    }
     state.rooftops = [
       ...ensureRooftops(),
       {
         id: `${normalizeCompare(name)}-${Date.now()}`,
-        name: name.trim(),
-        brand: brand.trim(),
-        feedUrl: feedUrl.trim(),
+        name,
+        brand,
+        feedUrl,
         active: true,
       },
     ];
     saveRooftops();
-    renderRooftops();
+    closeRooftopForm();
     showToast("Rooftop added");
   }
 
-  function updateRooftopStatus(input) {
-    const rooftop = ensureRooftops().find((item) => item.id === input.dataset.rooftopActive);
+  function updateRooftopStatus(button) {
+    const rooftop = ensureRooftops().find((item) => item.id === button.dataset.rooftopActive);
     if (!rooftop) return;
-    rooftop.active = input.checked;
+    rooftop.active = !rooftop.active;
     saveRooftops();
     renderRooftops();
     showToast(`${rooftop.name} set ${rooftop.active ? "active" : "inactive"}`);
@@ -348,12 +452,31 @@
     const addButton = event.target.closest("#addRooftopButton");
     if (addButton) {
       event.preventDefault();
-      addRooftop();
+      event.stopPropagation();
+      openRooftopForm();
+      return;
+    }
+
+    const saveButton = event.target.closest("[data-rooftop-save]");
+    if (saveButton) {
+      event.preventDefault();
+      event.stopPropagation();
+      addRooftopFromForm();
+      return;
+    }
+
+    const cancelButton = event.target.closest("[data-rooftop-cancel]");
+    if (cancelButton) {
+      event.preventDefault();
+      event.stopPropagation();
+      closeRooftopForm();
       return;
     }
 
     const rooftopToggle = event.target.closest("[data-rooftop-active]");
     if (rooftopToggle) {
+      event.preventDefault();
+      event.stopPropagation();
       updateRooftopStatus(rooftopToggle);
       return;
     }
