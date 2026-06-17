@@ -171,13 +171,35 @@ function renderTable(tasks) {
   if (els.tableTitle) els.tableTitle.textContent = renderTableTitle(tasks.length);
   if (els.visibleCount) els.visibleCount.textContent = tasks.length;
   if (!els.taskTable) return;
-  els.taskTable.innerHTML = tasks.map((task) => `<tr><td data-label="Model"><strong>${escapeHtml(taskTitle(task))}</strong></td><td data-label="Dealer"><span class="table-dealer"><span class="brand-badge">${escapeHtml(task.make || "Brand")}</span>${escapeHtml(task.dealer)}</span></td><td data-label="Stage">${workflowStage(task)}</td><td data-label="Inventory"><span class="inventory-cell">${escapeHtml(signalLabels[task.inventorySignal] || task.inventorySignal)}</span></td><td data-label="Action"><div class="row-actions">${primaryActionButton(task)}</div></td></tr>`).join("");
+  const useAeoContext = isAeoTableFilter();
+  els.taskTable.innerHTML = tasks.map((task) => {
+    const stage = useAeoContext ? aeoWorkflowStage(task) : workflowStage(task);
+    const action = useAeoContext ? aeoTableActionButton(task) : primaryActionButton(task);
+    return `<tr><td data-label="Model"><strong>${escapeHtml(taskTitle(task))}</strong></td><td data-label="Dealer"><span class="table-dealer"><span class="brand-badge">${escapeHtml(task.make || "Brand")}</span>${escapeHtml(task.dealer)}</span></td><td data-label="Stage">${stage}</td><td data-label="Inventory"><span class="inventory-cell">${escapeHtml(signalLabels[task.inventorySignal] || task.inventorySignal)}</span></td><td data-label="Action"><div class="row-actions">${action}</div></td></tr>`;
+  }).join("");
+}
+
+function isAeoTableFilter(status = els.statusFilter?.value || "all") {
+  return ["not_started", "in_progress", "done", "not_needed"].includes(status);
 }
 
 function workflowStage(task) {
   const map = { needs_seo: ["Needs SEO", "amber"], seo_in_progress: ["SEO in progress", "blue"], seo_done: ["Ready to build", "blue"], needs_build: ["Ready to build", "blue"], page_built: ["Needs live check", "amber"], live: ["Complete", "green"], needs_review: ["Needs review", "red"], ignored: ["Skipped", "gray"], snoozed: ["Paused", "gray"] };
   const [label, tone] = map[task.pageStatus] || ["Queued", "gray"];
   return `<span class="stage stage-${tone}"><span></span>${escapeHtml(label)}</span>`;
+}
+
+function aeoWorkflowStage(task) {
+  const map = { not_started: ["AEO not started", "gray"], in_progress: ["AEO in progress", "blue"], done: ["AEO done", "green"], not_needed: ["AEO not needed", "gray"] };
+  const [label, tone] = map[task.aeoStatus] || ["AEO pending", "gray"];
+  return `<span class="stage stage-${tone}"><span></span>${escapeHtml(label)}</span>`;
+}
+
+function aeoTableActionButton(task) {
+  if (["done", "not_needed"].includes(task.aeoStatus)) {
+    return `<button class="button button-secondary-action" type="button" data-details="${escapeAttr(task.id)}">Review Page</button>`;
+  }
+  return `<button class="button button-primary-action" type="button" data-task-id="${escapeAttr(task.id)}" data-aeo-status="done">Mark AEO Complete</button>`;
 }
 
 function statusPill(status) { return `<span class="status status-${escapeAttr(status)}">${escapeHtml(statusLabels[status] || status)}</span>`; }
