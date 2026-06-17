@@ -89,19 +89,23 @@ async function boot() {
   bindEvents();
   renderAuth();
   const [tasks, sources, inventoryFeed] = [embeddedTracker, embeddedSources, await fetchInventoryFeed()];
+  const sourceTasks = mergeInventoryFeedTasks(tasks, inventoryFeed.rows);
   state.sources = sources;
   state.rooftops = loadRooftops(sources);
   state.inventoryFeed = inventoryFeed;
-  state.tasks = tasks.map((task) => ({
-    ...task,
-    pageStatus: normalizePageStatus(state.overrides[task.id] || demoPageStatus(task) || task.pageStatus),
-    aeoStatus: state.aeoOverrides[task.id] || inferAeoStatus(state.overrides[task.id] || task.pageStatus),
-    details: state.details[task.id] || {},
-    inventorySignal: state.signalOverrides[task.id] || inferSignal(task),
-    accent: brandAccentOverrides[task.make]?.accent || dealerAccents[task.dealer] || "#2563a9",
-    accentStyle: accentStyleForTask(task),
-    inventoryUrl: sourceFor(task.dealer)?.inventoryUrl || "",
-  }));
+  state.tasks = sourceTasks.map((task) => {
+    const pageStatus = normalizePageStatus(state.overrides[task.id] || demoPageStatus(task) || task.pageStatus);
+    return {
+      ...task,
+      pageStatus,
+      aeoStatus: state.aeoOverrides[task.id] || normalizeAeoStatus(task.aeoStatus) || demoAeoStatus(task, pageStatus),
+      details: state.details[task.id] || {},
+      inventorySignal: state.signalOverrides[task.id] || inferSignal(task),
+      accent: brandAccentOverrides[task.make]?.accent || dealerAccents[task.dealer] || "#2563a9",
+      accentStyle: accentStyleForTask(task),
+      inventoryUrl: sourceFor(task.dealer)?.inventoryUrl || task.inventoryUrl || "",
+    };
+  });
   applyInventoryFeedSignals();
   populateYearFilter();
   populateDealerFilter();
@@ -146,6 +150,39 @@ function normalizeSession() {
   localStorage.setItem("fusz-demo-session", JSON.stringify(state.session));
 }
 
+function mergeInventoryFeedTasks(tasks, rows = []) {
+  const existing = new Set(tasks.map((task) => task.id));
+  const feedTasks = rows
+    .filter((row) => row.dealer && row.year && row.make && row.model)
+    .map((row) => inventoryRowToTask(row))
+    .filter((task) => {
+      if (existing.has(task.id)) return false;
+      existing.add(task.id);
+      return true;
+    });
+  return [...tasks, ...feedTasks];
+}
+
+function inventoryRowToTask(row) {
+  const task = {
+    dealer: row.dealer,
+    year: Number(row.year),
+    make: row.make,
+    model: row.model,
+  };
+  return {
+    ...task,
+    id: `${normalizeCompare(task.dealer)}|${task.year}|${normalizeCompare(task.make)}-${normalizeCompare(task.model)}`,
+    pageStatus: normalizePageStatus(row.page_status || row.page_status_raw || "needs_seo"),
+    aeoStatus: normalizeAeoStatus(row.aeo_status),
+    trackerStatusRaw: null,
+    trackerRow: null,
+    source: "inventory-feed",
+    inventorySignal: signalFromFeedStatus(row.status || row.vehicle_status || ""),
+    inventoryUrl: row.inventory_url || row.vdp_url || sourceFor(task.dealer)?.inventoryUrl || "",
+  };
+}
+
 function demoPageStatus(task) {
   if (state.overrides[task.id]) return null;
   if (task.year !== 2027) return null;
@@ -153,6 +190,23 @@ function demoPageStatus(task) {
   if (model.includes("1500 srt trx")) return "seo_done";
   if (model.includes("cx-50")) return "page_built";
   if (model.includes("seltos")) return "needs_review";
+  return null;
+}
+
+function demoAeoStatus(task, pageStatus) {
+  const title = `${task.make || ""} ${task.model || ""}`.toLowerCase();
+  if (["page_built", "live"].includes(pageStatus) || task.trackerStatusRaw === true) return "done";
+  if (title.includes("cx-50") || title.includes("telluride") || title.includes("land cruiser")) return "done";
+  if (pageStatus === "seo_done") return "in_progress";
+  return "not_started";
+}
+
+function normalizeAeoStatus(status) {
+  const normalized = normalizeFeedKey(status);
+  if (["not_started", "in_progress", "done", "not_needed"].includes(normalized)) return normalized;
+  if (normalized === "complete" || normalized === "completed" || normalized === "aeo_done" || normalized === "aeo_complete") return "done";
+  if (normalized === "pending" || normalized === "notstarted" || normalized === "aeo_not_started") return "not_started";
+  if (normalized === "inprogress" || normalized === "aeo_in_progress") return "in_progress";
   return null;
 }
 
@@ -203,7 +257,7 @@ function populateYearFilter() {
     `<option value="all">All years</option>`,
     ...years.map((year) => `<option value="${year}">${year}</option>`),
   ].join("");
-  els.yearFilter.value = years.includes(2027) ? "2027" : String(years[0] || "all");
+  els.yearFilter.value = "all";
 }
 
 boot().catch((error) => {
