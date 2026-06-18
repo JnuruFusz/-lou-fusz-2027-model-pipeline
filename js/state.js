@@ -1,7 +1,10 @@
 const storedThemeChoice = localStorage.getItem("fusz-theme");
-const initialThemeChoice = ["system", "light", "dark", "gray"].includes(storedThemeChoice)
-  ? (storedThemeChoice === "gray" ? "dark" : storedThemeChoice)
-  : "dark";
+const isDemoReset = new URLSearchParams(window.location.search).get("demo") === "reset";
+const initialThemeChoice = isDemoReset
+  ? "dark"
+  : ["system", "light", "dark", "gray"].includes(storedThemeChoice)
+    ? (storedThemeChoice === "gray" ? "dark" : storedThemeChoice)
+    : "dark";
 
 const state = {
   tasks: [],
