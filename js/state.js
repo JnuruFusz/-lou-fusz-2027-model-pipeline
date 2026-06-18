@@ -1,3 +1,8 @@
+const storedThemeChoice = localStorage.getItem("fusz-theme");
+const initialThemeChoice = ["system", "light", "dark", "gray"].includes(storedThemeChoice)
+  ? (storedThemeChoice === "gray" ? "dark" : storedThemeChoice)
+  : "dark";
+
 const state = {
   tasks: [],
   sources: [],
@@ -15,7 +20,7 @@ const state = {
   driveConnection: localStorage.getItem("fusz-drive-connection") || "not_connected",
   workspaceView: localStorage.getItem("pipeline-workspace-view") || "my_work",
   onboardingStep: "login",
-  selectedTheme: "gray",
+  selectedTheme: initialThemeChoice,
   activeTaskId: null,
 };
 
@@ -95,6 +100,7 @@ const els = {
   settingsName: document.querySelector("#settingsName"),
   settingsRole: document.querySelector("#settingsRole"),
   settingsLandingSelect: document.querySelector("#settingsLandingSelect"),
+  settingsThemeSelect: document.querySelector('[aria-labelledby="accountSettingsTitle"] .settings-row:last-of-type select'),
   settingsAccessBadges: document.querySelector("#settingsAccessBadges"),
   driveConnectionStatus: document.querySelector("#driveConnectionStatus"),
   connectDriveButton: document.querySelector("#connectDriveButton"),
