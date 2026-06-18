@@ -266,8 +266,10 @@ body[data-theme="light"] :is(.resource-status.status-gray, .settings-status.stat
     background: color-mix(in srgb, var(--panel) 92%, #000) !important;
   }
 
-  html body[data-theme="light"][data-workspace-view="team_board"] thead {
-    background: #182028 !important;
+  html body[data-theme="light"][data-workspace-view="team_board"] thead,
+  html body[data-theme="light"][data-workspace-view="team_board"] thead tr,
+  html body[data-theme="light"][data-workspace-view="team_board"] th {
+    background: #ffffff !important;
   }
 
   html body[data-workspace-view="team_board"] th {
@@ -281,7 +283,8 @@ body[data-theme="light"] :is(.resource-status.status-gray, .settings-status.stat
   }
 
   html body[data-theme="light"][data-workspace-view="team_board"] th {
-    color: #d7e8fb !important;
+    color: #536372 !important;
+    border-bottom-color: var(--line) !important;
   }
 
   html body[data-workspace-view="team_board"] td {
