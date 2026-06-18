@@ -410,6 +410,13 @@ main {
   font-size: 12px;
 }
 
+body[data-workspace-view="admin"] .header-search,
+body[data-workspace-view="upcoming"] .header-search,
+body[data-workspace-view="docs"] .header-search,
+body[data-workspace-view="settings"] .header-search {
+  display: none;
+}
+
 .user-pill {
   display: inline-flex;
   align-items: center;
