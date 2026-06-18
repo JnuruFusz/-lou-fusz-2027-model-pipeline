@@ -175,6 +175,57 @@ body[data-theme="light"] .task {
   box-shadow: 0 8px 20px rgba(39, 55, 70, 0.07);
 }
 
+body[data-theme="light"] :is(.settings-control, .quiet-hours-grid input, .quiet-hours-grid select, .rooftop-form input, .workbench-return-note textarea) {
+  background: #ffffff !important;
+  color: var(--ink) !important;
+  border-color: var(--line) !important;
+}
+
+body[data-theme="light"] :is(.resource-rule-list div, .resource-mini-grid span, .workbench-section, .workbench-checklist, .workbench-ai-result, .workbench-detail-actions, .work-card, .watch-card, .rooftop-row) {
+  background: #ffffff !important;
+  color: var(--ink) !important;
+}
+
+body[data-theme="light"] :is(.button-secondary-action, .mobile-menu-button) {
+  background: #ffffff !important;
+  color: var(--ink) !important;
+  border-color: var(--line) !important;
+}
+
+body[data-theme="light"] :is(.button-secondary-action, .mobile-menu-button):hover {
+  background: var(--blue-soft) !important;
+  color: var(--ink) !important;
+}
+
+body[data-theme="light"] :is(.owner-avatar, .rooftop-status-switch, .switch-input) {
+  background: #d8e0e7 !important;
+  color: var(--ink) !important;
+}
+
+body[data-theme="light"] :is(.rooftop-status-switch::after, .switch-input::after) {
+  background: #ffffff !important;
+}
+
+body[data-theme="light"] :is(.rooftop-status-switch.is-active, .switch-input:checked) {
+  background: rgba(27, 127, 83, 0.72) !important;
+  border-color: rgba(27, 127, 83, 0.42) !important;
+}
+
+body[data-theme="light"] :is(.workbench-resource-primary, .workbench-next-step) {
+  background: var(--blue-soft) !important;
+  color: var(--blue) !important;
+}
+
+body[data-theme="light"] :is(.workbench-resource-link, a) {
+  color: var(--blue);
+}
+
+body[data-theme="light"] :is(.resource-status.status-gray, .settings-status.status-gray, .integration-row .status-gray, .team-table-row .status-gray) {
+  background: #eef3f6 !important;
+  border-color: var(--line) !important;
+  color: var(--muted) !important;
+}
+
 @media (min-width: 769px) {
   html body[data-workspace-view="team_board"] .board {
     display: none !important;
