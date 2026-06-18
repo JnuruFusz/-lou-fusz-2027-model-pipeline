@@ -181,9 +181,18 @@ body[data-theme="light"] :is(.settings-control, .quiet-hours-grid input, .quiet-
   border-color: var(--line) !important;
 }
 
-body[data-theme="light"] :is(.resource-rule-list div, .resource-mini-grid span, .workbench-section, .workbench-checklist, .workbench-ai-result, .workbench-detail-actions, .work-card, .watch-card, .rooftop-row) {
+body[data-theme="light"] :is(.resource-rule-list div, .resource-mini-grid span, .workbench-section, .workbench-checklist, .workbench-ai-result, .workbench-detail-actions, .work-card, .watch-card, .rooftop-row, .admin-row, .pipeline-snapshot article, .permission-grid div, .resource-row, .next-step-card) {
   background: #ffffff !important;
   color: var(--ink) !important;
+  border-color: var(--line) !important;
+}
+
+body[data-theme="light"] :is(.admin-row strong, .pipeline-snapshot strong, .permission-grid strong, .next-step-card strong, .resource-rule-list strong) {
+  color: var(--ink) !important;
+}
+
+body[data-theme="light"] :is(.admin-row span, .pipeline-snapshot span, .pipeline-snapshot em, .permission-grid span, .next-step-card span) {
+  color: var(--muted) !important;
 }
 
 body[data-theme="light"] :is(.button-secondary-action, .mobile-menu-button) {
@@ -257,6 +266,10 @@ body[data-theme="light"] :is(.resource-status.status-gray, .settings-status.stat
     background: color-mix(in srgb, var(--panel) 92%, #000) !important;
   }
 
+  html body[data-theme="light"][data-workspace-view="team_board"] thead {
+    background: #182028 !important;
+  }
+
   html body[data-workspace-view="team_board"] th {
     padding: 12px 14px !important;
     border-bottom: 1px solid var(--line) !important;
@@ -265,6 +278,10 @@ body[data-theme="light"] :is(.resource-status.status-gray, .settings-status.stat
     font-weight: 900 !important;
     text-align: left !important;
     text-transform: uppercase !important;
+  }
+
+  html body[data-theme="light"][data-workspace-view="team_board"] th {
+    color: #d7e8fb !important;
   }
 
   html body[data-workspace-view="team_board"] td {
@@ -280,6 +297,10 @@ body[data-theme="light"] :is(.resource-status.status-gray, .settings-status.stat
 
   html body[data-workspace-view="team_board"] tbody tr:hover {
     background: rgba(255, 255, 255, 0.035) !important;
+  }
+
+  html body[data-theme="light"][data-workspace-view="team_board"] tbody tr:hover {
+    background: #f7fafd !important;
   }
 
   html body[data-workspace-view="team_board"] tbody tr:last-child td {
