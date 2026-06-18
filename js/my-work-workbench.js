@@ -12,10 +12,6 @@
         display: none;
       }
 
-      body[data-workspace-view="my_work"] .summary-grid .metric::after {
-        display: none;
-      }
-
       body[data-workspace-view="my_work"] #myWorkPanel {
         grid-template-columns: minmax(360px, 1.2fr) minmax(300px, .9fr);
         gap: 24px;
