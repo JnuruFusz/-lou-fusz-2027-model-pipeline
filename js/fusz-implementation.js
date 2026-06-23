@@ -1,6 +1,9 @@
 (function () {
   const ROOFTOPS_KEY = "fusz-rooftops";
   const DRIVE_KEY = "fusz-drive-connection";
+  const FEED_SOURCE_PATH = "data/inventory-feed.csv";
+  const FEED_SAMPLE_PATH = "data/inventory-feed.sample.csv";
+  const REQUIRED_FEED_COLUMNS = ["dealer", "vin", "year", "make", "model", "status", "inventory_url", "last_updated"];
   let rooftopFormOpen = false;
 
   function installImplementationStyles() {
@@ -76,6 +79,47 @@
       body[data-workspace-view="team_board"] .task-actions .button-primary-action,
       body[data-workspace-view="team_board"] .task-actions .button-secondary-action {
         min-width: 148px;
+      }
+
+      .feed-health-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        margin: 12px 0 14px;
+      }
+
+      .feed-health-list div {
+        min-height: 56px;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #1b1b1b;
+      }
+
+      .feed-health-list span,
+      .feed-health-list strong {
+        display: block;
+      }
+
+      .feed-health-list span {
+        margin-bottom: 5px;
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 850;
+        text-transform: uppercase;
+      }
+
+      .feed-health-list strong {
+        color: var(--ink);
+        font-size: 12px;
+        line-height: 1.3;
+        overflow-wrap: anywhere;
+      }
+
+      .resource-status.status-amber {
+        border-color: rgba(255, 206, 91, 0.28);
+        background: rgba(255, 206, 91, 0.08);
+        color: #e8c66f;
       }
 
       .rooftops-manager {
@@ -210,6 +254,7 @@
       }
 
       @media (max-width: 760px) {
+        .feed-health-list,
         .rooftop-row,
         .rooftop-form-grid {
           grid-template-columns: 1fr;
@@ -409,6 +454,111 @@
     showToast(`${rooftop.name} set ${rooftop.active ? "active" : "inactive"}`);
   }
 
+  function normalizedValue(value) {
+    return String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+  }
+
+  function uniqueList(values) {
+    return [...new Set(values.filter(Boolean))];
+  }
+
+  function feedHealth() {
+    const rows = state.inventoryFeed?.rows || [];
+    const headers = uniqueList(rows.flatMap((row) => Object.keys(row || {})));
+    const missingColumns = REQUIRED_FEED_COLUMNS.filter((column) => !headers.includes(column));
+    const sourceDealers = new Set((state.sources || []).map((source) => normalizedValue(source.dealer)));
+    const unknownDealers = uniqueList(rows
+      .map((row) => row.dealer)
+      .filter((dealer) => dealer && !sourceDealers.has(normalizedValue(dealer))));
+    const incompleteRows = rows.filter((row) => !row.dealer || !row.year || !row.make || !row.model).length;
+    const vinCounts = rows.reduce((counts, row) => {
+      const vin = String(row.vin || "").trim();
+      if (vin) counts[vin] = (counts[vin] || 0) + 1;
+      return counts;
+    }, {});
+    const duplicateVins = Object.entries(vinCounts).filter(([, count]) => count > 1).map(([vin]) => vin);
+    const lastUpdated = rows
+      .map((row) => row.last_updated || row.updated_at || row.lastmodified)
+      .filter(Boolean)
+      .sort()
+      .at(-1) || "No date in feed";
+    const hasWarnings = missingColumns.length || unknownDealers.length || duplicateVins.length || incompleteRows;
+    return {
+      rows,
+      missingColumns,
+      unknownDealers,
+      duplicateVins,
+      incompleteRows,
+      lastUpdated,
+      hasWarnings,
+    };
+  }
+
+  function ensureFeedHealthControls() {
+    const count = document.querySelector("#feedVehicleCount");
+    const card = count?.closest(".resource-card");
+    if (!card || document.querySelector("#feedHealthList")) return;
+    const status = document.querySelector("#feedConnectionStatus");
+    status?.insertAdjacentHTML("afterend", `
+      <div id="feedHealthList" class="feed-health-list" aria-label="Inventory feed health">
+        <div><span>Live file</span><strong id="feedLivePath">${FEED_SOURCE_PATH}</strong></div>
+        <div><span>Backup</span><strong id="feedBackupPath">${FEED_SAMPLE_PATH}</strong></div>
+        <div><span>Last updated</span><strong id="feedLastUpdated">No date in feed</strong></div>
+        <div><span>Health</span><strong id="feedHealthSummary">Waiting on CSV</strong></div>
+      </div>
+    `);
+  }
+
+  function renderFeedHealth() {
+    ensureFeedHealthControls();
+    const rows = state.inventoryFeed?.rows || [];
+    const health = feedHealth();
+    const connected = Boolean(state.inventoryFeed?.connected && rows.length);
+    const sample = rows[0];
+    const statusText = !connected
+      ? "Waiting on CSV"
+      : health.hasWarnings
+        ? "CSV loaded - review warnings"
+        : "CSV connected";
+    const statusClass = !connected ? "status-gray" : health.hasWarnings ? "status-amber" : "status-green";
+
+    const count = document.querySelector("#feedVehicleCount");
+    const sampleVehicle = document.querySelector("#feedSampleVehicle");
+    const status = document.querySelector("#feedConnectionStatus");
+    const lastUpdated = document.querySelector("#feedLastUpdated");
+    const healthSummary = document.querySelector("#feedHealthSummary");
+
+    if (count) count.textContent = connected ? `${rows.length} feed rows` : "Feed waiting";
+    if (sampleVehicle) sampleVehicle.textContent = sample ? `${sample.year || ""} ${sample.make || ""} ${sample.model || ""}`.trim() : "No sample yet";
+    if (status) {
+      status.textContent = statusText;
+      status.className = `resource-status ${statusClass}`;
+    }
+    if (lastUpdated) lastUpdated.textContent = health.lastUpdated;
+    if (healthSummary) {
+      if (!connected) {
+        healthSummary.textContent = "No rows loaded";
+      } else if (!health.hasWarnings) {
+        healthSummary.textContent = "Required fields look good";
+      } else {
+        const warnings = [];
+        if (health.missingColumns.length) warnings.push(`Missing ${health.missingColumns.join(", ")}`);
+        if (health.unknownDealers.length) warnings.push(`${health.unknownDealers.length} unknown dealer${health.unknownDealers.length === 1 ? "" : "s"}`);
+        if (health.duplicateVins.length) warnings.push(`${health.duplicateVins.length} duplicate VIN${health.duplicateVins.length === 1 ? "" : "s"}`);
+        if (health.incompleteRows) warnings.push(`${health.incompleteRows} incomplete row${health.incompleteRows === 1 ? "" : "s"}`);
+        healthSummary.textContent = warnings.join(" / ");
+      }
+    }
+
+    const feedIntegration = [...document.querySelectorAll(".integration-row")]
+      .find((row) => row.textContent.includes("Dealer inventory feeds"));
+    const feedIntegrationStatus = feedIntegration?.querySelector(".integration-status");
+    if (feedIntegrationStatus) {
+      feedIntegrationStatus.textContent = connected ? (health.hasWarnings ? "Review feed" : "Connected") : "Pending approval";
+      feedIntegrationStatus.className = `settings-status integration-status ${connected ? (health.hasWarnings ? "status-amber" : "status-green") : "status-amber"}`;
+    }
+  }
+
   function driveParts() {
     const button = document.querySelector('[data-settings-action="Connect Drive"]');
     const row = button?.closest(".integration-row");
@@ -492,6 +642,14 @@
     }
   }, true);
 
+  const originalRenderInventoryFeedStatus = window.renderInventoryFeedStatus;
+  if (typeof originalRenderInventoryFeedStatus === "function") {
+    window.renderInventoryFeedStatus = function renderInventoryFeedStatusWithHealth() {
+      originalRenderInventoryFeedStatus();
+      renderFeedHealth();
+    };
+  }
+
   const originalRenderWorkspaceView = window.renderWorkspaceView;
   if (typeof originalRenderWorkspaceView === "function") {
     window.renderWorkspaceView = function renderWorkspaceViewWithImplementation() {
@@ -499,10 +657,12 @@
       ensureRooftopControls();
       renderRooftops();
       renderDriveConnection();
+      renderFeedHealth();
     };
   }
 
   installImplementationStyles();
   ensureRooftopControls();
   renderDriveConnection();
+  renderFeedHealth();
 })();
