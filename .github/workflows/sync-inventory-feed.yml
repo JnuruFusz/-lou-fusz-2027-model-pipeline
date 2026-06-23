@@ -1,0 +1,39 @@
+name: Sync Nightly Inventory Feed
+
+on:
+  schedule:
+    - cron: "0 8 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sync-feed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Download latest inventory CSV
+        run: |
+          curl -f -sS -o data/inventory-feed.csv \
+            "https://wgq.ccx.mybluehost.me/website_a56b5af5/fusz_inventory.csv"
+
+      - name: Check for changes
+        id: git_status
+        run: |
+          git add data/inventory-feed.csv
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit and push updated inventory file
+        if: steps.git_status.outputs.changed == 'true'
+        run: |
+          git config user.name "inventory-feed-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -m "Update nightly inventory feed [automated]"
+          git push
