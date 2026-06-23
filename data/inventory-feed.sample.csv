@@ -1,0 +1,7 @@
+dealer,vin,year,make,model,trim,status,stock_number,inventory_url,last_updated
+Lou Fusz Kia,TESTVIN123,2027,Kia,Seltos,SX,On lot,K12345,https://example.com,2026-06-12
+Lou Fusz Kia,TESTVIN124,2026,Kia,Telluride,EX,On lot,K22345,https://www.kia.fusz.com/new-vehicles/,2026-06-17
+Lou Fusz Mazda,TESTVIN125,2026,Mazda,CX-50,Premium,On lot,MZ22345,https://www.mazda.fusz.com/new-vehicles/,2026-06-17
+Lou Fusz Toyota,TESTVIN126,2026,Toyota,Land Cruiser,1958,Shipped,TY22345,https://www.fusztoyota.com/new-vehicles/,2026-06-17
+Lou Fusz Chevrolet,TESTVIN127,2026,Chevrolet,Equinox,LT,On lot,CH22345,https://www.loufuszchevrolet.com/new-vehicles/,2026-06-17
+Lou Fusz Buick GMC,TESTVIN128,2026,GMC,Terrain,Elevation,Available,BG22345,https://www.loufuszbuickgmc.com/new-vehicles/,2026-06-17
