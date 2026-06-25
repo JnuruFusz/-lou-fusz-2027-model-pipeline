@@ -15,7 +15,7 @@ function filteredTasks() {
 }
 
 const DEFAULT_TEAM_PAGE_STATUSES = ["needs_seo", "seo_in_progress", "seo_done", "needs_build", "needs_review"];
-const MY_WORK_SECTION_LIMIT = 12;
+const MY_WORK_SECTION_LIMIT = 8;
 const expandedMyWorkSections = new Set();
 
 function currentRoleKey() {
