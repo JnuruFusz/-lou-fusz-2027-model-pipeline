@@ -23,10 +23,43 @@ function loadClassicScript(url) {
 
 const inventoryFeedFiles = [
   "FuszToyota.csv",
+  "FuszChevrolet.csv",
+  "CDJRVincennes.csv",
+  "LouFuszBuickGMC.csv",
+  "LouFuszGroup.csv",
+  "SubaruStLouis.csv",
+  "SubaruStPeters.csv",
+  "NissanMoline.csv",
+  "MazdaEvansville.csv",
+  "LouFuszMazda.csv",
+  "TerreHauteKIA.csv",
+  "KIAOhio.csv",
+  "KIAMoline.csv",
+  "KIAEvansville.csv",
+  "LouFuszKIA.csv",
+  "LouFuszFord.csv",
+  "LouFuszEvansville.csv",
+  "FuszCDJRF.csv",
 ];
 
 const dealerNameAliases = {
   "fusz toyota": "Lou Fusz Toyota",
+  "fusz chevrolet": "Lou Fusz Chevrolet",
+  "lou fusz chevrolet": "Lou Fusz Chevrolet",
+  "lou fusz buick gmc": "Lou Fusz Buick GMC",
+  "lou fusz ford": "Lou Fusz Ford",
+  "lou fusz kia": "Lou Fusz Kia",
+  "lou fusz mazda": "Lou Fusz Mazda",
+  "fusz cdjrf": "Lou Fusz Chrysler Jeep Dodge RAM",
+  "cdjr vincennes": "Lou Fusz Chrysler Jeep Dodge Ram Vincennes",
+  "kia evansville": "Lou Fusz Kia Evansville",
+  "kia moline": "Lou Fusz Kia of Moline",
+  "kia ohio": "Lou Fusz Kia Columbus",
+  "terre haute kia": "Lou Fusz Kia Terre Haute",
+  "mazda evansville": "Lou Fusz Mazda Evansville",
+  "nissan moline": "Lou Fusz Nissan Moline",
+  "subaru st louis": "Lou Fusz Subaru St. Louis",
+  "subaru st peters": "Lou Fusz Subaru O'Fallon",
 };
 
 async function fetchInventoryFeed() {
@@ -39,7 +72,9 @@ async function fetchInventoryFeed() {
       const response = await fetch(`data/${file}`, { cache: "no-store" });
       if (!response.ok) throw new Error(`feed missing: ${file}`);
       const csv = await response.text();
-      const feedRows = parseCsv(csv).map((row) => normalizeInventoryRow(row, file));
+      const feedRows = parseCsv(csv)
+        .map((row) => normalizeInventoryRow(row, file))
+        .filter((row) => isInInventoryYearWindow(row.year));
       rows.push(...feedRows);
       loadedFiles.push(file);
     } catch {
@@ -134,7 +169,22 @@ function normalizeInventoryRow(row, file) {
 
 function normalizeDealerName(name) {
   const clean = String(name || "").trim();
-  return dealerNameAliases[clean.toLowerCase()] || clean;
+  return dealerNameAliases[normalizeWords(clean)] || clean;
+}
+
+function normalizeWords(value) {
+  return String(value || "").trim().toLowerCase().replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function minimumInventoryYear(date = new Date()) {
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  return month < 2 ? year - 1 : year;
+}
+
+function isInInventoryYearWindow(year) {
+  const numericYear = Number(year);
+  return Number.isFinite(numericYear) && numericYear >= minimumInventoryYear();
 }
 
 async function boot() {
