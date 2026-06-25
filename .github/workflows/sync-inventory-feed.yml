@@ -12,6 +12,23 @@ env:
   FEED_BASE_URL: "https://wgq.ccx.mybluehost.me/website_a56b5af5"
   FEED_FILES: |
     FuszToyota.csv
+    FuszChevrolet.csv
+    CDJRVincennes.csv
+    LouFuszBuickGMC.csv
+    LouFuszGroup.csv
+    SubaruStLouis
+    SubaruStPeters
+    NissanMoline.csv
+    MazdaEvansville.csv
+    LouFuszMazda.csv
+    TerreHauteKIA.csv
+    KIAOhio.csv
+    KIAMoline.csv
+    KIAEvansville.csv
+    LouFuszKIA.csv
+    LouFuszFord.csv
+    LouFuszEvansville.csv
+    FuszCDJRF.csv
 
 jobs:
   sync-feed:
