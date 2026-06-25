@@ -400,8 +400,13 @@
     document.head.append(style);
   }
 
-  function myWorkGroups(tasks) {
-    const work = tasks
+  function isRenderableTask(task) {
+    return Boolean(task && task.id && task.pageStatus);
+  }
+
+  function myWorkGroups(tasks = []) {
+    const safeTasks = Array.isArray(tasks) ? tasks.filter(isRenderableTask) : [];
+    const work = safeTasks
       .filter((task) => ["seo_done", "needs_build", "page_built", "needs_review"].includes(task.pageStatus))
       .sort((a, b) => workPriority(a) - workPriority(b));
     return {
@@ -414,11 +419,13 @@
     };
   }
 
-  function renderMyWorkSection([label, tone, tasks], selectedId) {
-    return `<section class="workbench-section"><div class="workbench-section-head"><span>${escapeHtml(label)}</span><span>${tasks.length}</span></div>${tasks.length ? tasks.map((task) => renderMyWorkRow(task, tone, task.id === selectedId)).join("") : `<div class="empty">No tasks here.</div>`}</section>`;
+  function renderMyWorkSection([label, tone, tasks = []], selectedId) {
+    const sectionTasks = tasks.filter(isRenderableTask);
+    return `<section class="workbench-section"><div class="workbench-section-head"><span>${escapeHtml(label)}</span><span>${sectionTasks.length}</span></div>${sectionTasks.length ? sectionTasks.map((task) => renderMyWorkRow(task, tone, task.id === selectedId)).join("") : `<div class="empty">No tasks here.</div>`}</section>`;
   }
 
   function renderMyWorkRow(task, tone, selected) {
+    if (!isRenderableTask(task)) return "";
     const dotClass = ["workbench-dot", tone === "verify" ? "is-verify" : "", tone === "blocked" ? "is-blocked" : "", tone === "ready" && task.aeoStatus !== "done" ? "is-dim" : ""].filter(Boolean).join(" ");
     return `<article class="workbench-row${selected ? " is-selected" : ""}" data-workbench-task="${escapeAttr(task.id)}"><span class="${dotClass}"></span><div><span class="workbench-title">${escapeHtml(taskTitle(task))}</span><span class="workbench-meta">${escapeHtml(workbenchMeta(task, tone))}</span></div></article>`;
   }
@@ -483,20 +490,22 @@
   }
 
   function selectWorkbenchTask(taskId) {
-    const task = state.tasks?.find((item) => item.id === taskId);
-    if (!task) return;
+    if (!taskId) return;
+    const task = state.tasks?.find((item) => item?.id === taskId);
+    if (!isRenderableTask(task)) return;
     document.querySelectorAll(".workbench-row").forEach((row) => {
       row.classList.toggle("is-selected", row.dataset.workbenchTask === taskId);
     });
     renderBuilderDetail(task);
   }
 
-  window.renderMyWork = function renderMyWorkWorkbench(tasks) {
+  window.renderMyWork = function renderMyWorkWorkbench(tasks = []) {
     installMyWorkStyles();
-    const { work, groups } = myWorkGroups(tasks);
-    const selected = work[0];
+    const safeTasks = Array.isArray(tasks) ? tasks.filter(isRenderableTask) : [];
+    const { work, groups } = myWorkGroups(safeTasks);
+    const selected = work.find(isRenderableTask) || null;
     if (els.myWorkCount) {
-      const completedToday = Math.min(3, tasks.filter((task) => task.pageStatus === "live").length);
+      const completedToday = Math.min(3, safeTasks.filter((task) => task.pageStatus === "live").length);
       els.myWorkCount.textContent = `${completedToday} completed today | ${work.length} remaining`;
     }
     if (els.myWorkList) {
@@ -508,12 +517,13 @@
 
   window.renderBuilderDetail = function renderBuilderDetailWorkbench(task) {
     if (!els.builderDetailPanel || !els.builderDetailContent) return;
-    els.builderDetailPanel.classList.toggle("is-empty", !task);
-    if (!task) {
+    const selectedTask = isRenderableTask(task) ? task : null;
+    els.builderDetailPanel.classList.toggle("is-empty", !selectedTask);
+    if (!selectedTask) {
       els.builderDetailContent.innerHTML = "";
       return;
     }
-    els.builderDetailContent.innerHTML = `<p class="eyebrow">Selected task</p><h2>${escapeHtml(taskTitle(task))}</h2><p class="workbench-detail-subtitle">${escapeHtml(task.dealer)} - ${escapeHtml(statusLabels[task.pageStatus] || task.pageStatus)} - ${escapeHtml(signalLabels[task.inventorySignal] || task.inventorySignal)}</p><div class="selected-task-status">${statusPill(task.pageStatus)} ${signalPill(task.inventorySignal)} ${aeoPill(task.aeoStatus)}</div><section class="workbench-next-step"><span>Next step</span><strong>${escapeHtml(builderNextStep(task))}</strong><small>SEO finalized ${escapeHtml(relativeTime(task))} - Owner: ${escapeHtml(ownerBucket(task))}</small></section><nav class="workbench-resources" aria-label="Task resources"><a class="workbench-resource-primary" href="#">Open SEO doc</a><div class="workbench-resource-row"><a class="workbench-resource-link" href="#">Open CMS</a><a class="workbench-resource-link" href="${escapeAttr(modelInfoUrl(task))}" target="_blank" rel="noreferrer">View reference</a></div></nav><section class="workbench-checklist" aria-label="Task progress">${checklist(task)}</section><section class="workbench-ai"><button class="workbench-ai-pill" type="button" data-workbench-ai>Check SEO handoff</button><div class="workbench-ai-result"><span>Handoff check</span><div>7 of 8 expected sections found</div><div>Missing: meta description</div><div>Present: H1, hero copy, CTA, local dealership mention</div></div></section><section class="workbench-return-note"><label for="workbenchReturnNote">What needs to be fixed?</label><textarea id="workbenchReturnNote" placeholder="Example: missing trim-level section and local phone number"></textarea></section><footer class="workbench-detail-actions">${workbenchActions(task)}</footer>`;
+    els.builderDetailContent.innerHTML = `<p class="eyebrow">Selected task</p><h2>${escapeHtml(taskTitle(selectedTask))}</h2><p class="workbench-detail-subtitle">${escapeHtml(selectedTask.dealer)} - ${escapeHtml(statusLabels[selectedTask.pageStatus] || selectedTask.pageStatus)} - ${escapeHtml(signalLabels[selectedTask.inventorySignal] || selectedTask.inventorySignal)}</p><div class="selected-task-status">${statusPill(selectedTask.pageStatus)} ${signalPill(selectedTask.inventorySignal)} ${aeoPill(selectedTask.aeoStatus)}</div><section class="workbench-next-step"><span>Next step</span><strong>${escapeHtml(builderNextStep(selectedTask))}</strong><small>SEO finalized ${escapeHtml(relativeTime(selectedTask))} - Owner: ${escapeHtml(ownerBucket(selectedTask))}</small></section><nav class="workbench-resources" aria-label="Task resources"><a class="workbench-resource-primary" href="#">Open SEO doc</a><div class="workbench-resource-row"><a class="workbench-resource-link" href="#">Open CMS</a><a class="workbench-resource-link" href="${escapeAttr(modelInfoUrl(selectedTask))}" target="_blank" rel="noreferrer">View reference</a></div></nav><section class="workbench-checklist" aria-label="Task progress">${checklist(selectedTask)}</section><section class="workbench-ai"><button class="workbench-ai-pill" type="button" data-workbench-ai>Check SEO handoff</button><div class="workbench-ai-result"><span>Handoff check</span><div>7 of 8 expected sections found</div><div>Missing: meta description</div><div>Present: H1, hero copy, CTA, local dealership mention</div></div></section><section class="workbench-return-note"><label for="workbenchReturnNote">What needs to be fixed?</label><textarea id="workbenchReturnNote" placeholder="Example: missing trim-level section and local phone number"></textarea></section><footer class="workbench-detail-actions">${workbenchActions(selectedTask)}</footer>`;
   };
 
   document.addEventListener("click", (event) => {
