@@ -62,6 +62,196 @@ const dealerNameAliases = {
   "subaru st peters": "Lou Fusz Subaru O'Fallon",
 };
 
+const completedModelOverrideKeys = new Set(`
+loufuszbuickgmc|2026|acadia
+loufuszbuickgmc|2026|canyon
+loufuszbuickgmc|2026|enclave
+loufuszbuickgmc|2026|encoregx
+loufuszbuickgmc|2026|envision
+loufuszbuickgmc|2026|envista
+loufuszbuickgmc|2026|hummerevpickup
+loufuszbuickgmc|2026|hummerevsuv
+loufuszbuickgmc|2026|sierra1500
+loufuszbuickgmc|2026|sierra2500
+loufuszbuickgmc|2026|sierraev
+loufuszbuickgmc|2026|terrain
+loufuszbuickgmc|2026|yukon
+loufuszbuickgmc|2026|yukonxl
+loufuszchevrolet|2026|blazer
+loufuszchevrolet|2026|blazerev
+loufuszchevrolet|2026|colorado
+loufuszchevrolet|2026|corvettestingray
+loufuszchevrolet|2026|equinox
+loufuszchevrolet|2026|equinoxev
+loufuszchevrolet|2026|silverado1500
+loufuszchevrolet|2026|silverado2500
+loufuszchevrolet|2026|suburban
+loufuszchevrolet|2026|tahoe
+loufuszchevrolet|2026|trailblazer
+loufuszchevrolet|2026|traverse
+loufuszchevrolet|2026|trax
+loufuszchevrolet|2027|bolt
+loufuszchryslerjeepdodgeramvincennes|2026|1500
+loufuszchryslerjeepdodgeramvincennes|2026|1500rho
+loufuszchryslerjeepdodgeramvincennes|2026|2500
+loufuszchryslerjeepdodgeramvincennes|2026|3500
+loufuszchryslerjeepdodgeramvincennes|2026|cherokee
+loufuszchryslerjeepdodgeramvincennes|2026|compass
+loufuszchryslerjeepdodgeramvincennes|2026|dodgecharger
+loufuszchryslerjeepdodgeramvincennes|2026|durango
+loufuszchryslerjeepdodgeramvincennes|2026|gladiator
+loufuszchryslerjeepdodgeramvincennes|2026|grandcherokee
+loufuszchryslerjeepdodgeramvincennes|2026|grandwagoneer
+loufuszchryslerjeepdodgeramvincennes|2026|pacifica
+loufuszchryslerjeepdodgeramvincennes|2026|voyager
+loufuszchryslerjeepdodgeramvincennes|2026|wrangler
+loufuszchryslerjeepdodgeramvincennes|2027|pacifica
+loufuszchryslerjeepdodgeram|2026|1500
+loufuszchryslerjeepdodgeram|2026|2500
+loufuszchryslerjeepdodgeram|2026|charger
+loufuszchryslerjeepdodgeram|2026|cherokee
+loufuszchryslerjeepdodgeram|2026|compass
+loufuszchryslerjeepdodgeram|2026|durango
+loufuszchryslerjeepdodgeram|2026|gladiator
+loufuszchryslerjeepdodgeram|2026|grandcherokee
+loufuszchryslerjeepdodgeram|2026|grandwagoneer
+loufuszchryslerjeepdodgeram|2026|pacifica
+loufuszchryslerjeepdodgeram|2026|voyager
+loufuszchryslerjeepdodgeram|2026|wrangler
+loufuszchryslerjeepdodgeram|2027|pacifica
+loufuszford|2026|bronco
+loufuszford|2026|broncosport
+loufuszford|2026|escape
+loufuszford|2026|expedition
+loufuszford|2026|explorer
+loufuszford|2026|f150
+loufuszford|2026|maverick
+loufuszford|2026|mustang
+loufuszford|2026|mustangmache
+loufuszford|2026|ranger
+loufuszford|2026|superdutyf250
+loufuszkiacolumbus|2026|carnivalhybrid
+loufuszkiacolumbus|2026|ev9
+loufuszkiacolumbus|2026|k4
+loufuszkiacolumbus|2026|k4hatchback
+loufuszkiacolumbus|2026|k5
+loufuszkiacolumbus|2026|niro
+loufuszkiacolumbus|2026|seltos
+loufuszkiacolumbus|2026|sorento
+loufuszkiacolumbus|2026|sportage
+loufuszkiacolumbus|2027|kiatelluride
+loufuszkiaevansville|2026|carnivalhybrid
+loufuszkiaevansville|2026|ev9
+loufuszkiaevansville|2026|k4
+loufuszkiaevansville|2026|k4hatchback
+loufuszkiaevansville|2026|k5
+loufuszkiaevansville|2026|niro
+loufuszkiaevansville|2026|seltos
+loufuszkiaevansville|2026|sorento
+loufuszkiaevansville|2026|sportage
+loufuszkiaevansville|2027|kiatelluride
+loufuszkiaofmoline|2026|carnivalhybrid
+loufuszkiaofmoline|2026|ev9
+loufuszkiaofmoline|2026|k4
+loufuszkiaofmoline|2026|k4hatchback
+loufuszkiaofmoline|2026|k5
+loufuszkiaofmoline|2026|niro
+loufuszkiaofmoline|2026|seltos
+loufuszkiaofmoline|2026|sorento
+loufuszkiaofmoline|2026|sportage
+loufuszkiaofmoline|2027|kiatelluride
+loufuszkiaterrehaute|2026|carnivalhybrid
+loufuszkiaterrehaute|2026|ev9
+loufuszkiaterrehaute|2026|k4
+loufuszkiaterrehaute|2026|k4hatchback
+loufuszkiaterrehaute|2026|k5
+loufuszkiaterrehaute|2026|niro
+loufuszkiaterrehaute|2026|seltos
+loufuszkiaterrehaute|2026|sorento
+loufuszkiaterrehaute|2026|sportage
+loufuszkiaterrehaute|2027|kiatelluride
+loufuszkia|2026|carnivalhybrid
+loufuszkia|2026|ev9
+loufuszkia|2026|k4
+loufuszkia|2026|k4hatchback
+loufuszkia|2026|k5
+loufuszkia|2026|niro
+loufuszkia|2026|seltos
+loufuszkia|2026|sorento
+loufuszkia|2026|sportage
+loufuszkia|2027|kiatelluride
+loufuszmazdaevansville|2026|cx30
+loufuszmazdaevansville|2026|cx5
+loufuszmazdaevansville|2026|cx50
+loufuszmazdaevansville|2026|cx70
+loufuszmazdaevansville|2026|cx90
+loufuszmazdaevansville|2026|mazda3hatchback
+loufuszmazdaevansville|2026|mazda3sedan
+loufuszmazdaevansville|2026|mazdamx5miata
+loufuszmazdaevansville|2026|mazdamx5miatarf
+loufuszmazda|2026|cx5
+loufuszmazda|2026|mazda3hatchback
+loufuszmazda|2026|mazda3sedan
+loufuszmazda|2026|mazdacx30
+loufuszmazda|2026|mazdacx50
+loufuszmazda|2026|mazdacx70
+loufuszmazda|2026|mazdacx90
+loufuszmazda|2026|mazdamx5miata
+loufuszmazda|2026|mazdamx5miatarf
+loufusznissanmoline|2026|altima
+loufusznissanmoline|2026|armada
+loufusznissanmoline|2026|frontier
+loufusznissanmoline|2026|kicks
+loufusznissanmoline|2026|leaf
+loufusznissanmoline|2026|murano
+loufusznissanmoline|2026|pathfinder
+loufusznissanmoline|2026|rogue
+loufusznissanmoline|2026|sentra
+loufusznissanmoline|2026|z
+loufuszsubaruofallon|2026|ascent
+loufuszsubaruofallon|2026|brz
+loufuszsubaruofallon|2026|crosstrekhybrid
+loufuszsubaruofallon|2026|forester
+loufuszsubaruofallon|2026|impreza
+loufuszsubaruofallon|2026|outback
+loufuszsubaruofallon|2026|solterra
+loufuszsubaruofallon|2026|trailseeker
+loufuszsubaruofallon|2026|uncharted
+loufuszsubaruofallon|2026|wrx
+loufuszsubarustlouis|2026|ascent
+loufuszsubarustlouis|2026|brz
+loufuszsubarustlouis|2026|crosstrekhybrid
+loufuszsubarustlouis|2026|forester
+loufuszsubarustlouis|2026|impreza
+loufuszsubarustlouis|2026|outback
+loufuszsubarustlouis|2026|solterra
+loufuszsubarustlouis|2026|trailseeker
+loufuszsubarustlouis|2026|uncharted
+loufuszsubarustlouis|2026|wrx
+loufusztoyota|2026|4runner
+loufusztoyota|2026|bz
+loufusztoyota|2026|camry
+loufusztoyota|2026|chr
+loufusztoyota|2026|corolla
+loufusztoyota|2026|corollacross
+loufusztoyota|2026|corollahatchback
+loufusztoyota|2026|crown
+loufusztoyota|2026|gr86
+loufusztoyota|2026|grandhighlander
+loufusztoyota|2026|grcorolla
+loufusztoyota|2026|grsupra
+loufusztoyota|2026|highlander
+loufusztoyota|2026|landcrsuier
+loufusztoyota|2026|landcruiser
+loufusztoyota|2026|prius
+loufusztoyota|2026|rav4
+loufusztoyota|2026|rav4pluginhybrid
+loufusztoyota|2026|sequoia
+loufusztoyota|2026|sienna
+loufusztoyota|2026|tacoma
+loufusztoyota|2026|tundra
+`.trim().split(/\s+/));
+
 async function fetchInventoryFeed() {
   const rows = [];
   const loadedFiles = [];
@@ -187,6 +377,23 @@ function isInInventoryYearWindow(year) {
   return Number.isFinite(numericYear) && numericYear >= minimumInventoryYear();
 }
 
+function completedOverrideFor(task) {
+  if (!task) return null;
+  const modelCandidates = [task.model, modelWithoutMake(task)].filter(Boolean);
+  const hasCompletedMatch = modelCandidates.some((model) => completedModelOverrideKeys.has(completedOverrideKey(task.dealer, task.year, model)));
+  return hasCompletedMatch ? { pageStatus: "page_built", aeoStatus: "done" } : null;
+}
+
+function completedOverrideKey(dealer, year, model) {
+  return `${normalizeCompare(dealer)}|${year}|${normalizeCompare(model)}`;
+}
+
+function modelWithoutMake(task) {
+  const model = String(task.model || "").trim();
+  const make = String(task.make || "").trim();
+  return make && model.toLowerCase().startsWith(`${make.toLowerCase()} `) ? model.slice(make.length).trim() : model;
+}
+
 async function boot() {
   applyTheme(state.selectedTheme);
   await loadClassicScript("js/my-work-workbench.js?v=20260616");
@@ -200,11 +407,13 @@ async function boot() {
   state.rooftops = loadRooftops(sources);
   state.inventoryFeed = inventoryFeed;
   state.tasks = sourceTasks.map((task) => {
-    const pageStatus = normalizePageStatus(state.overrides[task.id] || demoPageStatus(task) || task.pageStatus);
+    const completedOverride = completedOverrideFor(task);
+    const existingLiveStatus = task.pageStatus === "live" ? "live" : null;
+    const pageStatus = normalizePageStatus(state.overrides[task.id] || existingLiveStatus || completedOverride?.pageStatus || demoPageStatus(task) || task.pageStatus);
     return {
       ...task,
       pageStatus,
-      aeoStatus: state.aeoOverrides[task.id] || normalizeAeoStatus(task.aeoStatus) || demoAeoStatus(task, pageStatus),
+      aeoStatus: state.aeoOverrides[task.id] || completedOverride?.aeoStatus || normalizeAeoStatus(task.aeoStatus) || demoAeoStatus(task, pageStatus),
       details: state.details[task.id] || {},
       inventorySignal: state.signalOverrides[task.id] || inferSignal(task),
       accent: brandAccentOverrides[task.make]?.accent || dealerAccents[task.dealer] || "#2563a9",
