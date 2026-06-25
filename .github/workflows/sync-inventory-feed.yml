@@ -8,6 +8,11 @@ on:
 permissions:
   contents: write
 
+env:
+  FEED_BASE_URL: "https://wgq.ccx.mybluehost.me/website_a56b5af5"
+  FEED_FILES: |
+    FuszToyota.csv
+
 jobs:
   sync-feed:
     runs-on: ubuntu-latest
@@ -15,22 +20,37 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Download latest inventory CSV
+      - name: Download latest inventory CSV files
         run: |
-          curl -f -sS -o data/inventory-feed.csv \
-            "https://wgq.ccx.mybluehost.me/website_a56b5af5/fusz_inventory.csv"
+          mkdir -p data
+
+          while IFS= read -r file; do
+            if [ -z "$file" ]; then
+              continue
+            fi
+
+            curl -f -sS -o "data/${file}" \
+              "${FEED_BASE_URL}/${file}"
+          done <<< "$FEED_FILES"
 
       - name: Check for changes
         id: git_status
         run: |
-          git add data/inventory-feed.csv
+          while IFS= read -r file; do
+            if [ -z "$file" ]; then
+              continue
+            fi
+
+            git add "data/${file}"
+          done <<< "$FEED_FILES"
+
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Commit and push updated inventory file
+      - name: Commit and push updated inventory files
         if: steps.git_status.outputs.changed == 'true'
         run: |
           git config user.name "inventory-feed-bot"
