@@ -21,24 +21,49 @@ function loadClassicScript(url) {
   });
 }
 
+const inventoryFeedFiles = [
+  "FuszToyota.csv",
+];
+
+const dealerNameAliases = {
+  "fusz toyota": "Lou Fusz Toyota",
+};
+
 async function fetchInventoryFeed() {
-  try {
-    const response = await fetch("/data/inventory-feed.csv", { cache: "no-store" });
-    if (!response.ok) throw new Error("feed missing");
-    const csv = await response.text();
-    const rows = parseCsv(csv);
-    return {
-      connected: rows.length > 0,
-      rows,
-      message: rows.length ? "CSV connected" : "CSV is empty",
-    };
-  } catch {
+  const rows = [];
+  const loadedFiles = [];
+  const failedFiles = [];
+
+  for (const file of inventoryFeedFiles) {
+    try {
+      const response = await fetch(`data/${file}`, { cache: "no-store" });
+      if (!response.ok) throw new Error(`feed missing: ${file}`);
+      const csv = await response.text();
+      const feedRows = parseCsv(csv).map((row) => normalizeInventoryRow(row, file));
+      rows.push(...feedRows);
+      loadedFiles.push(file);
+    } catch {
+      failedFiles.push(file);
+    }
+  }
+
+  if (!rows.length) {
     return {
       connected: false,
       rows: [],
+      files: loadedFiles,
+      failedFiles,
       message: "Waiting on CSV",
     };
   }
+
+  return {
+    connected: true,
+    rows,
+    files: loadedFiles,
+    failedFiles,
+    message: `${rows.length} feed rows from ${loadedFiles.length} CSV${loadedFiles.length === 1 ? "" : "s"}`,
+  };
 }
 
 function parseCsv(csv) {
@@ -79,6 +104,31 @@ function splitCsvLine(line) {
 
 function normalizeFeedKey(key) {
   return String(key || "").trim().toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
+}
+
+function normalizeInventoryRow(row, file) {
+  const dealer = normalizeDealerName(row.dealer || row.dealership || row.dealership_name);
+  return {
+    ...row,
+    dealer,
+    dealership_name: dealer,
+    year: row.year,
+    make: row.make,
+    model: row.model,
+    trim: row.trim,
+    vehicle_status: row.vehicle_status || row.status,
+    stock_number: row.stock_number,
+    vin: row.vin,
+    date_in_stock: row.date_in_stock || row.date_instock || row.date_instock_raw,
+    inventory_url: row.inventory_url || row.vdp_url || row.vdp_urls,
+    vdp_url: row.vdp_url || row.vdp_urls || row.inventory_url,
+    feedFile: file,
+  };
+}
+
+function normalizeDealerName(name) {
+  const clean = String(name || "").trim();
+  return dealerNameAliases[clean.toLowerCase()] || clean;
 }
 
 async function boot() {
@@ -177,9 +227,13 @@ function inventoryRowToTask(row) {
     aeoStatus: normalizeAeoStatus(row.aeo_status),
     trackerStatusRaw: null,
     trackerRow: null,
-    source: "inventory-feed",
-    inventorySignal: signalFromFeedStatus(row.status || row.vehicle_status || ""),
+    source: row.feedFile || "inventory-feed",
+    inventorySignal: signalFromFeedStatus(row.vehicle_status || row.status || "", row),
     inventoryUrl: row.inventory_url || row.vdp_url || sourceFor(task.dealer)?.inventoryUrl || "",
+    vin: row.vin || "",
+    stockNumber: row.stock_number || "",
+    trim: row.trim || "",
+    dateInStock: row.date_in_stock || "",
   };
 }
 
@@ -216,7 +270,7 @@ function applyInventoryFeedSignals() {
     if (state.signalOverrides[task.id]) return;
     const feedRow = state.inventoryFeed.rows.find((row) => feedRowMatchesTask(row, task));
     if (!feedRow) return;
-    task.inventorySignal = signalFromFeedStatus(feedRow.status || feedRow.vehicle_status || "");
+    task.inventorySignal = signalFromFeedStatus(feedRow.status || feedRow.vehicle_status || "", feedRow);
     task.inventoryUrl = feedRow.inventory_url || feedRow.vdp_url || task.inventoryUrl;
   });
 }
@@ -228,10 +282,11 @@ function feedRowMatchesTask(row, task) {
     && normalizeCompare(row.model) === normalizeCompare(task.model);
 }
 
-function signalFromFeedStatus(status) {
+function signalFromFeedStatus(status, row = {}) {
   const normalized = normalizeCompare(status);
   if (normalized.includes("lot") || normalized.includes("available") || normalized.includes("instock")) return "on_lot";
   if (normalized.includes("ship") || normalized.includes("transit") || normalized.includes("intransit")) return "shipped";
+  if (row.stock_number || row.vin || row.inventory_url || row.vdp_url || row.vdp_urls) return "on_lot";
   return "upcoming";
 }
 
