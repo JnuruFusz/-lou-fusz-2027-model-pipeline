@@ -91,3 +91,7 @@ input:focus-visible,
   background: var(--blue);
   color: light-dark(#fff, #071018);
 }
+
+#visibleCount {
+  display: none;
+}
