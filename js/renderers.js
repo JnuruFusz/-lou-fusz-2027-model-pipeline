@@ -17,6 +17,7 @@ function filteredTasks() {
 const DEFAULT_TEAM_PAGE_STATUSES = ["needs_seo", "seo_in_progress", "seo_done", "needs_build", "needs_review"];
 const MY_WORK_GROUP_COLLAPSE_KEY = "fusz-my-work-collapsed-groups";
 const MY_WORK_GROUP_VISIBLE_LIMIT = 8;
+const MY_WORK_HEAVY_GROUP_THRESHOLD = 10;
 
 function currentRoleKey() {
   return primaryRole(state.session).toLowerCase();
@@ -79,6 +80,14 @@ function saveCollapsedMyWorkGroups(value) {
   localStorage.setItem(MY_WORK_GROUP_COLLAPSE_KEY, JSON.stringify(value));
 }
 
+function myWorkBucketName(section) {
+  return (section.querySelector(".workbench-section-head span")?.textContent || "bucket").trim().toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "") || "bucket";
+}
+
+function myWorkGroupStorageKey(bucketName, groupName) {
+  return `${bucketName}:${groupName}`;
+}
+
 function installMyWorkGroupingStyles() {
   if (document.querySelector("#my-work-grouping-style")) return;
   const style = document.createElement("style");
@@ -108,11 +117,31 @@ function installMyWorkGroupingStyles() {
       background: rgba(47, 114, 214, .08);
     }
 
-    .workbench-group-chevron,
+    .workbench-group-chevron {
+      display: inline-block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+      transform: rotate(0deg);
+      transition: transform .15s ease;
+    }
+
+    .workbench-group-chevron.collapsed {
+      transform: rotate(-90deg);
+    }
+
     .workbench-group-count {
       color: var(--muted);
       font-size: 11px;
       font-weight: 850;
+    }
+
+    .workbench-group-count.heavy {
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      font-weight: 950;
     }
 
     .workbench-group-name {
@@ -144,7 +173,13 @@ function myWorkGroupNameForRow(row) {
   return task?.make || task?.brand || "Other";
 }
 
-function cleanMyWorkRow(row) {
+function myWorkRowTitleKey(row) {
+  const task = state.tasks.find((candidate) => candidate.id === row.dataset.workbenchTask);
+  if (!task) return row.textContent.trim().toLowerCase();
+  return `${task.year}|${task.make}|${displayModel(task)}`.toLowerCase();
+}
+
+function cleanMyWorkRow(row, shouldShowDealer = false) {
   const task = state.tasks.find((candidate) => candidate.id === row.dataset.workbenchTask);
   if (!task) return;
   const title = row.querySelector(".workbench-title");
@@ -154,9 +189,11 @@ function cleanMyWorkRow(row) {
   const current = meta.textContent;
   const built = current.match(/Built\s+[^-]+/i)?.[0];
   const seoReady = current.match(/SEO ready\s+[^-]+/i)?.[0];
-  if (task.pageStatus === "page_built" && built) meta.textContent = built.trim();
-  else if (["seo_done", "needs_build"].includes(task.pageStatus) && seoReady) meta.textContent = seoReady.trim();
-  else meta.textContent = current.replace(/^.*?\s-\s/, "").replace(/\s-\sAEO .*$/i, "");
+  let cleaned;
+  if (task.pageStatus === "page_built" && built) cleaned = built.trim();
+  else if (["seo_done", "needs_build"].includes(task.pageStatus) && seoReady) cleaned = seoReady.trim();
+  else cleaned = current.replace(/^.*?\s-\s/, "").replace(/\s-\sAEO .*$/i, "");
+  meta.textContent = shouldShowDealer ? `${cleaned} · ${dealerShortName(task.dealer)}` : cleaned;
 }
 
 function groupRowsByBrand(rows = []) {
@@ -168,11 +205,19 @@ function groupRowsByBrand(rows = []) {
   }, {})).sort((a, b) => a.groupName.localeCompare(b.groupName));
 }
 
-function isMyWorkGroupCollapsed(groupName, rows, selectedId) {
+function duplicateTitleCounts(rows = []) {
+  return rows.reduce((counts, row) => {
+    const key = myWorkRowTitleKey(row);
+    counts[key] = (counts[key] || 0) + 1;
+    return counts;
+  }, {});
+}
+
+function isMyWorkGroupCollapsed(groupKey, rows, selectedId) {
   const stored = collapsedMyWorkGroups();
   const containsSelected = selectedId && rows.some((row) => row.dataset.workbenchTask === selectedId);
-  if (containsSelected && stored[groupName] === undefined) return false;
-  return stored[groupName] !== false;
+  if (containsSelected && stored[groupKey] === undefined) return false;
+  return stored[groupKey] !== false;
 }
 
 function applyMyWorkGroupVisibility(groupElement, collapsed) {
@@ -190,7 +235,7 @@ function applyMyWorkGroupVisibility(groupElement, collapsed) {
   const header = groupElement.querySelector(".workbench-group-head");
   if (header) header.setAttribute("aria-expanded", String(!collapsed));
   const chevron = groupElement.querySelector(".workbench-group-chevron");
-  if (chevron) chevron.textContent = collapsed ? "▶" : "▼";
+  if (chevron) chevron.classList.toggle("collapsed", collapsed);
   const more = groupElement.querySelector(".workbench-group-more");
   if (more) more.hidden = collapsed || rows.length <= MY_WORK_GROUP_VISIBLE_LIMIT;
 }
@@ -202,17 +247,22 @@ function groupMyWorkSections() {
     if (section.querySelector(".workbench-group")) return;
     const directRows = [...section.children].filter((child) => child.classList?.contains("workbench-row"));
     if (!directRows.length) return;
+    const bucketName = myWorkBucketName(section);
     const selectedId = section.querySelector(".workbench-row.is-selected")?.dataset.workbenchTask || document.querySelector(".workbench-row.is-selected")?.dataset.workbenchTask;
     const groups = groupRowsByBrand(directRows);
     groups.forEach((group) => {
-      const collapsed = isMyWorkGroupCollapsed(group.groupName, group.rows, selectedId);
+      const groupKey = myWorkGroupStorageKey(bucketName, group.groupName);
+      const collapsed = isMyWorkGroupCollapsed(groupKey, group.rows, selectedId);
+      const titleCounts = duplicateTitleCounts(group.rows);
       const wrapper = document.createElement("div");
       wrapper.className = "workbench-group";
       wrapper.dataset.workbenchGroup = group.groupName;
-      wrapper.innerHTML = `<button class="workbench-group-head" type="button" data-workbench-group-toggle="${escapeAttr(group.groupName)}" aria-expanded="${String(!collapsed)}"><span class="workbench-group-chevron">${collapsed ? "▶" : "▼"}</span><span class="workbench-group-name">${escapeHtml(group.groupName)}</span><span class="workbench-group-count">${group.rows.length}</span></button><div class="workbench-group-items"${collapsed ? " hidden" : ""}></div>`;
+      wrapper.dataset.workbenchGroupKey = groupKey;
+      const heavyClass = group.rows.length >= MY_WORK_HEAVY_GROUP_THRESHOLD ? " heavy" : "";
+      wrapper.innerHTML = `<button class="workbench-group-head" type="button" data-workbench-group-toggle="${escapeAttr(groupKey)}" aria-expanded="${String(!collapsed)}"><span class="workbench-group-chevron${collapsed ? " collapsed" : ""}">⌄</span><span class="workbench-group-name">${escapeHtml(group.groupName)}</span><span class="workbench-group-count${heavyClass}">${group.rows.length}</span></button><div class="workbench-group-items"${collapsed ? " hidden" : ""}></div>`;
       const items = wrapper.querySelector(".workbench-group-items");
       group.rows.forEach((row) => {
-        cleanMyWorkRow(row);
+        cleanMyWorkRow(row, titleCounts[myWorkRowTitleKey(row)] > 1);
         items.append(row);
       });
       if (group.rows.length > MY_WORK_GROUP_VISIBLE_LIMIT) {
@@ -229,13 +279,13 @@ function groupMyWorkSections() {
 }
 
 function toggleMyWorkGroup(button) {
-  const groupName = button.dataset.workbenchGroupToggle;
+  const groupKey = button.dataset.workbenchGroupToggle;
   const groupElement = button.closest(".workbench-group");
-  if (!groupName || !groupElement) return;
+  if (!groupKey || !groupElement) return;
   const expanded = button.getAttribute("aria-expanded") === "true";
   const collapsed = expanded;
   const stored = collapsedMyWorkGroups();
-  stored[groupName] = collapsed;
+  stored[groupKey] = collapsed;
   saveCollapsedMyWorkGroups(stored);
   applyMyWorkGroupVisibility(groupElement, collapsed);
 }
@@ -457,6 +507,7 @@ function builderNextStep(task) { if (task.pageStatus === "page_built") return "C
 function signalButtons(task) { return Object.entries(signalLabels).map(([signal, label]) => `<button class="mini-button${task.inventorySignal === signal ? " is-active" : ""}" type="button" data-task-id="${escapeAttr(task.id)}" data-signal="${escapeAttr(signal)}">${escapeHtml(label)}</button>`).join(""); }
 function aeoButtons(task) { return Object.entries(aeoLabels).map(([status, label]) => `<button class="mini-button${task.aeoStatus === status ? " is-active" : ""}" type="button" data-task-id="${escapeAttr(task.id)}" data-aeo-status="${escapeAttr(status)}">${escapeHtml(label)}</button>`).join(""); }
 function nextBestTask(tasks = state.tasks) { return [...tasks].filter((task) => !["live", "ignored", "snoozed"].includes(task.pageStatus)).sort((a, b) => workPriority(a) - workPriority(b))[0]; }
+function dealerShortName(dealer) { const source = state.sources?.find((item) => item.dealer === dealer); return source?.shortName || String(dealer || "Dealer").replace("Lou Fusz ", ""); }
 function ownerBucket(task) { if (task.details?.buildOwner) return task.details.buildOwner; if (task.details?.seoOwner) return task.details.seoOwner; if (["seo_done", "needs_build", "page_built"].includes(task.pageStatus)) return "Jnuru Goodwin"; if (["needs_seo", "seo_in_progress"].includes(task.pageStatus)) return "SEO Writer"; return "Team"; }
 function initials(name) { const words = String(name || "Team").trim().split(/\s+/).filter(Boolean); return words.length > 1 ? `${words[0][0]}${words[1][0]}`.toUpperCase() : (words[0] || "T").slice(0, 2).toUpperCase(); }
 function workPriority(task) { return ({ needs_build: 0, seo_done: 1, page_built: 2, needs_review: 3, needs_seo: 4, seo_in_progress: 5, live: 9 }[task.pageStatus] ?? 6); }
