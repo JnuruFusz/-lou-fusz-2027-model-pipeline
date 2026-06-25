@@ -18,6 +18,14 @@ const DEFAULT_TEAM_PAGE_STATUSES = ["needs_seo", "seo_in_progress", "seo_done", 
 const MY_WORK_SECTION_LIMIT = 12;
 const expandedMyWorkSections = new Set();
 
+function currentRoleKey() {
+  return primaryRole(state.session).toLowerCase();
+}
+
+function isBuilderMyWorkView() {
+  return state.workspaceView === "my_work" && currentRoleKey().includes("builder");
+}
+
 function usesDefaultTeamPipelineView() {
   return state.workspaceView === "team_board" && (els.statusFilter?.value || "all") === "all";
 }
@@ -25,6 +33,38 @@ function usesDefaultTeamPipelineView() {
 function teamPipelineTasks(tasks = []) {
   if (!usesDefaultTeamPipelineView()) return tasks;
   return tasks.filter((task) => DEFAULT_TEAM_PAGE_STATUSES.includes(task.pageStatus));
+}
+
+function personalWorkTasks(tasks = []) {
+  if (state.workspaceView !== "my_work") return tasks;
+  const role = currentRoleKey();
+  if (role.includes("builder")) {
+    return tasks.filter((task) => ["seo_done", "needs_build", "page_built", "needs_review"].includes(task.pageStatus));
+  }
+  if (role.includes("seo")) {
+    return tasks.filter((task) => ["needs_seo", "seo_in_progress", "needs_review"].includes(task.pageStatus));
+  }
+  if (role.includes("aeo")) {
+    return tasks.filter((task) => !["live", "ignored", "snoozed"].includes(task.pageStatus) && !["done", "not_needed"].includes(task.aeoStatus));
+  }
+  return tasks.filter((task) => !["live", "ignored", "snoozed"].includes(task.pageStatus));
+}
+
+function personalStatusTags(task) {
+  const tags = [statusPill(task.pageStatus), signalPill(task.inventorySignal)];
+  if (!isBuilderMyWorkView()) tags.push(aeoPill(task.aeoStatus));
+  return tags.join(" ");
+}
+
+function removeBuilderAeoNoise() {
+  if (!isBuilderMyWorkView()) return;
+  document.querySelectorAll("#myWorkPanel .workbench-meta").forEach((meta) => {
+    meta.textContent = meta.textContent.replace(/\s-\sAEO (complete|in progress|not needed|pending)$/i, "");
+  });
+  document.querySelectorAll("#myWorkPanel .aeo-status").forEach((pill) => pill.remove());
+  document.querySelectorAll("#myWorkPanel .workbench-step").forEach((step) => {
+    if (step.textContent.toLowerCase().includes("aeo review")) step.remove();
+  });
 }
 
 function capMyWorkSections() {
@@ -52,10 +92,12 @@ function capMyWorkSections() {
     }
     toggle.textContent = isExpanded ? "Show less" : `View all ${rows.length}`;
   });
+  removeBuilderAeoNoise();
 }
 
 function render() {
   const tasks = filteredTasks();
+  const personalTasks = personalWorkTasks(tasks);
   const visiblePipelineTasks = teamPipelineTasks(tasks);
   document.body.dataset.view = "focus";
   document.body.dataset.workspaceView = state.workspaceView;
@@ -63,8 +105,8 @@ function render() {
   renderWorkspaceView();
   renderMetrics(tasks);
   renderAchievements(tasks);
-  renderFocusTask();
-  renderMyWork(tasks);
+  renderFocusTask(personalTasks);
+  renderMyWork(personalTasks);
   capMyWorkSections();
   renderUpcomingModels(syntheticUpcomingModels());
   renderInventoryFeedStatus();
@@ -139,13 +181,13 @@ function workspaceSubtitle(view, role) {
   return { admin: "Admin controls and full visibility", my_work: `${role || "Builder"} workspace`, team_board: "All active model page work", upcoming: "Future model watchlist", docs: "Source hub and handoff rules", settings: "Workspace preferences" }[view] || "Builder workspace";
 }
 
-function renderFocusTask() {
-  const task = nextBestTask();
+function renderFocusTask(tasks = state.tasks) {
+  const task = nextBestTask(tasks);
   if (!task) return;
   applyAccentStyle(els.focusPanel, task.accentStyle || accentStyle(task.accent || "#2563a9"));
   els.focusTitle.textContent = taskTitle(task);
   els.focusMeta.textContent = `${task.dealer} / ${builderNextStep(task)}`;
-  els.focusTags.innerHTML = `${statusPill(task.pageStatus)}${signalPill(task.inventorySignal)}${aeoPill(task.aeoStatus)}`;
+  els.focusTags.innerHTML = personalStatusTags(task);
   els.focusActions.innerHTML = actionButtons(task);
 }
 
@@ -163,7 +205,7 @@ function renderMyWorkCard(task, index = 0) {
 function renderBuilderDetail(task) {
   if (!els.builderDetailPanel || !els.builderDetailContent) return;
   els.builderDetailPanel.classList.toggle("is-empty", !task);
-  els.builderDetailContent.innerHTML = task ? `<p class="eyebrow">Selected task</p><h2>${escapeHtml(taskTitle(task))}</h2><p class="panel-subtitle">${escapeHtml(task.dealer)}</p><div class="selected-task-status">${statusPill(task.pageStatus)} ${signalPill(task.inventorySignal)} ${aeoPill(task.aeoStatus)}</div><h3 class="detail-section-title">Next step</h3><div class="next-step-card"><span>Recommended action</span><strong>${escapeHtml(builderNextStep(task))}</strong></div><div class="detail-actions">${actionButtons(task)}<button class="button button-secondary-action" type="button" data-details="${escapeAttr(task.id)}">Details</button></div>` : "";
+  els.builderDetailContent.innerHTML = task ? `<p class="eyebrow">Selected task</p><h2>${escapeHtml(taskTitle(task))}</h2><p class="panel-subtitle">${escapeHtml(task.dealer)}</p><div class="selected-task-status">${personalStatusTags(task)}</div><h3 class="detail-section-title">Next step</h3><div class="next-step-card"><span>Recommended action</span><strong>${escapeHtml(builderNextStep(task))}</strong></div><div class="detail-actions">${actionButtons(task)}<button class="button button-secondary-action" type="button" data-details="${escapeAttr(task.id)}">Details</button></div>` : "";
 }
 
 function renderUpcomingModels(tasks) {
