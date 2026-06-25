@@ -108,6 +108,10 @@ function normalizeFeedKey(key) {
 
 function normalizeInventoryRow(row, file) {
   const dealer = normalizeDealerName(row.dealer || row.dealership || row.dealership_name);
+  const vehicleStatus = row.status || row.vehicle_status || "";
+  const inventoryUrl = row.inventory_url || row.vdp_url || row.vdp_urls || "";
+  const stockDate = row.last_updated || row.updated_at || row.date_in_stock || row.date_instock || row.date_instock_raw || "";
+
   return {
     ...row,
     dealer,
@@ -116,11 +120,13 @@ function normalizeInventoryRow(row, file) {
     make: row.make,
     model: row.model,
     trim: row.trim,
-    vehicle_status: row.vehicle_status || row.status,
+    status: vehicleStatus,
+    vehicle_status: vehicleStatus,
     stock_number: row.stock_number,
     vin: row.vin,
     date_in_stock: row.date_in_stock || row.date_instock || row.date_instock_raw,
-    inventory_url: row.inventory_url || row.vdp_url || row.vdp_urls,
+    last_updated: stockDate,
+    inventory_url: inventoryUrl,
     vdp_url: row.vdp_url || row.vdp_urls || row.inventory_url,
     feedFile: file,
   };
