@@ -1,8 +1,8 @@
 (function () {
   const ROOFTOPS_KEY = "fusz-rooftops";
   const DRIVE_KEY = "fusz-drive-connection";
-  const FEED_SOURCE_PATH = "data/inventory-feed.csv";
-  const FEED_SAMPLE_PATH = "data/inventory-feed.sample.csv";
+  const FEED_SOURCE_PATH = "Dealer CSV files";
+  const FEED_SAMPLE_PATH = "Legacy sample backup";
   const REQUIRED_FEED_COLUMNS = ["dealer", "vin", "year", "make", "model", "status", "inventory_url", "last_updated"];
   let rooftopFormOpen = false;
 
@@ -464,6 +464,8 @@
 
   function feedHealth() {
     const rows = state.inventoryFeed?.rows || [];
+    const loadedFiles = state.inventoryFeed?.files || [];
+    const failedFiles = state.inventoryFeed?.failedFiles || [];
     const headers = uniqueList(rows.flatMap((row) => Object.keys(row || {})));
     const missingColumns = REQUIRED_FEED_COLUMNS.filter((column) => !headers.includes(column));
     const sourceDealers = new Set((state.sources || []).map((source) => normalizedValue(source.dealer)));
@@ -485,6 +487,8 @@
     const hasWarnings = missingColumns.length || unknownDealers.length || duplicateVins.length || incompleteRows;
     return {
       rows,
+      loadedFiles,
+      failedFiles,
       missingColumns,
       unknownDealers,
       duplicateVins,
@@ -501,8 +505,8 @@
     const status = document.querySelector("#feedConnectionStatus");
     status?.insertAdjacentHTML("afterend", `
       <div id="feedHealthList" class="feed-health-list" aria-label="Inventory feed health">
-        <div><span>Live file</span><strong id="feedLivePath">${FEED_SOURCE_PATH}</strong></div>
-        <div><span>Backup</span><strong id="feedBackupPath">${FEED_SAMPLE_PATH}</strong></div>
+        <div><span>Feed set</span><strong id="feedLivePath">${FEED_SOURCE_PATH}</strong></div>
+        <div><span>Source files</span><strong id="feedBackupPath">${FEED_SAMPLE_PATH}</strong></div>
         <div><span>Last updated</span><strong id="feedLastUpdated">No date in feed</strong></div>
         <div><span>Health</span><strong id="feedHealthSummary">Waiting on CSV</strong></div>
       </div>
@@ -515,21 +519,27 @@
     const health = feedHealth();
     const connected = Boolean(state.inventoryFeed?.connected && rows.length);
     const sample = rows[0];
+    const loadedCount = health.loadedFiles.length;
+    const failedCount = health.failedFiles.length;
     const statusText = !connected
       ? "Waiting on CSV"
-      : health.hasWarnings
-        ? "CSV loaded - review warnings"
-        : "CSV connected";
-    const statusClass = !connected ? "status-gray" : health.hasWarnings ? "status-amber" : "status-green";
+      : failedCount || health.hasWarnings
+        ? "Dealer feeds loaded - review warnings"
+        : "Dealer feeds connected";
+    const statusClass = !connected ? "status-gray" : failedCount || health.hasWarnings ? "status-amber" : "status-green";
 
     const count = document.querySelector("#feedVehicleCount");
     const sampleVehicle = document.querySelector("#feedSampleVehicle");
     const status = document.querySelector("#feedConnectionStatus");
+    const livePath = document.querySelector("#feedLivePath");
+    const backupPath = document.querySelector("#feedBackupPath");
     const lastUpdated = document.querySelector("#feedLastUpdated");
     const healthSummary = document.querySelector("#feedHealthSummary");
 
     if (count) count.textContent = connected ? `${rows.length} feed rows` : "Feed waiting";
     if (sampleVehicle) sampleVehicle.textContent = sample ? `${sample.year || ""} ${sample.make || ""} ${sample.model || ""}`.trim() : "No sample yet";
+    if (livePath) livePath.textContent = connected ? `${loadedCount} dealer CSV${loadedCount === 1 ? "" : "s"} loaded` : FEED_SOURCE_PATH;
+    if (backupPath) backupPath.textContent = failedCount ? `${failedCount} source file${failedCount === 1 ? "" : "s"} missing` : "All expected CSVs reached";
     if (status) {
       status.textContent = statusText;
       status.className = `resource-status ${statusClass}`;
@@ -538,10 +548,11 @@
     if (healthSummary) {
       if (!connected) {
         healthSummary.textContent = "No rows loaded";
-      } else if (!health.hasWarnings) {
+      } else if (!failedCount && !health.hasWarnings) {
         healthSummary.textContent = "Required fields look good";
       } else {
         const warnings = [];
+        if (failedCount) warnings.push(`${failedCount} failed file${failedCount === 1 ? "" : "s"}`);
         if (health.missingColumns.length) warnings.push(`Missing ${health.missingColumns.join(", ")}`);
         if (health.unknownDealers.length) warnings.push(`${health.unknownDealers.length} unknown dealer${health.unknownDealers.length === 1 ? "" : "s"}`);
         if (health.duplicateVins.length) warnings.push(`${health.duplicateVins.length} duplicate VIN${health.duplicateVins.length === 1 ? "" : "s"}`);
@@ -554,8 +565,8 @@
       .find((row) => row.textContent.includes("Dealer inventory feeds"));
     const feedIntegrationStatus = feedIntegration?.querySelector(".integration-status");
     if (feedIntegrationStatus) {
-      feedIntegrationStatus.textContent = connected ? (health.hasWarnings ? "Review feed" : "Connected") : "Pending approval";
-      feedIntegrationStatus.className = `settings-status integration-status ${connected ? (health.hasWarnings ? "status-amber" : "status-green") : "status-amber"}`;
+      feedIntegrationStatus.textContent = connected ? (failedCount || health.hasWarnings ? "Review feed" : "Connected") : "Pending approval";
+      feedIntegrationStatus.className = `settings-status integration-status ${connected ? (failedCount || health.hasWarnings ? "status-amber" : "status-green") : "status-amber"}`;
     }
   }
 
