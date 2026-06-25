@@ -121,3 +121,167 @@ const embeddedSources = [
   { dealer: "Lou Fusz Subaru O'Fallon", shortName: "Subaru O'Fallon", brands: ["Subaru"], inventoryUrl: "https://www.fuszsubaru.com/new-vehicles/" },
   { dealer: "Lou Fusz Kia Columbus", shortName: "Kia Columbus", brands: ["Kia"], inventoryUrl: "https://www.loufuszkia.com/new-vehicles/" },
 ];
+
+(function installMyWorkLiveCheckMvp() {
+  const STYLE_ID = "my-work-live-check-mvp-style";
+  let observerInstalled = false;
+
+  function installStyle() {
+    if (document.querySelector(`#${STYLE_ID}`)) return;
+    const style = document.createElement("style");
+    style.id = STYLE_ID;
+    style.textContent = `
+      body[data-workspace-view="my_work"] .workbench-live-card {
+        display: grid;
+        gap: 10px;
+        width: 100%;
+        padding: 14px 12px 15px;
+        border: 0;
+        border-top: 1px solid var(--line);
+        background: #1b1b1b;
+        color: var(--text);
+        cursor: pointer;
+        font: inherit;
+        text-align: left;
+      }
+
+      body[data-workspace-view="my_work"] .workbench-live-card:hover {
+        background: rgba(47, 114, 214, .08);
+      }
+
+      body[data-workspace-view="my_work"] .workbench-live-topline {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 850;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+      }
+
+      body[data-workspace-view="my_work"] .workbench-live-count {
+        display: inline-flex;
+        align-items: center;
+        min-height: 22px;
+        padding: 0 8px;
+        border-radius: 999px;
+        background: rgba(255, 206, 91, .12);
+        color: #e8c66f;
+        font-size: 11px;
+        font-weight: 950;
+      }
+
+      body[data-workspace-view="my_work"] .workbench-live-title {
+        display: block;
+        color: var(--text);
+        font-size: 14px;
+        font-weight: 900;
+        line-height: 1.25;
+      }
+
+      body[data-workspace-view="my_work"] .workbench-live-meta {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 650;
+      }
+
+      body[data-workspace-view="my_work"] .workbench-live-action {
+        justify-self: start;
+        color: #8ec1ff;
+        font-size: 12px;
+        font-weight: 850;
+      }
+    `;
+    document.head.append(style);
+  }
+
+  function canRun() {
+    return document.body?.dataset.workspaceView === "my_work" && typeof state !== "undefined" && Array.isArray(state.tasks);
+  }
+
+  function sectionLabel(section) {
+    return section.querySelector(".workbench-section-head span")?.textContent?.trim().toLowerCase() || "";
+  }
+
+  function verifySection() {
+    return [...document.querySelectorAll(".workbench-section")].find((section) => sectionLabel(section).includes("ready to verify"));
+  }
+
+  function taskForRow(row) {
+    return state.tasks.find((task) => task.id === row?.dataset?.workbenchTask) || null;
+  }
+
+  function modelLabel(task) {
+    if (!task) return "Next live check";
+    const model = typeof displayModel === "function" ? displayModel(task) : String(task.model || "").replace(new RegExp(`^${task.make}\\s+`, "i"), "").trim();
+    return `${task.year || ""} ${model || task.model || "Model page"}`.trim();
+  }
+
+  function dealerShortNameFor(task) {
+    const source = state.sources?.find((item) => item.dealer === task?.dealer);
+    return source?.shortName || String(task?.dealer || "Dealer").replace("Lou Fusz ", "");
+  }
+
+  function applyLiveCheckMvp() {
+    if (!canRun()) return;
+    const section = verifySection();
+    if (!section) return;
+
+    installStyle();
+    const rows = [...section.querySelectorAll(".workbench-row[data-workbench-task]")];
+    if (!rows.length && section.querySelector(".workbench-live-card")) return;
+    if (!rows.length) return;
+
+    const header = section.querySelector(".workbench-section-head");
+    const headerSpans = header ? [...header.querySelectorAll("span")] : [];
+    const selectedRow = rows.find((row) => row.classList.contains("is-selected"));
+    const nextRow = selectedRow || rows[0];
+    const nextTask = taskForRow(nextRow);
+    const count = rows.length;
+
+    if (headerSpans[0]) headerSpans[0].textContent = "Needs live check";
+    if (headerSpans[1]) headerSpans[1].textContent = String(count);
+
+    [...section.children].forEach((child) => {
+      if (child !== header) child.remove();
+    });
+
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "workbench-live-card";
+    card.dataset.workbenchTask = nextTask?.id || nextRow.dataset.workbenchTask || "";
+    card.innerHTML = `
+      <span class="workbench-live-topline"><span>Live checks ready</span><span class="workbench-live-count">${count}</span></span>
+      <span><strong class="workbench-live-title">${escapeHtml(modelLabel(nextTask))}</strong><span class="workbench-live-meta">${escapeHtml(dealerShortNameFor(nextTask))} · next page to verify</span></span>
+      <span class="workbench-live-action">Open next live check</span>
+    `;
+    section.append(card);
+  }
+
+  function scheduleApply() {
+    window.requestAnimationFrame(applyLiveCheckMvp);
+  }
+
+  function installObserver() {
+    if (observerInstalled || !document.body) return;
+    observerInstalled = true;
+    const observer = new MutationObserver(scheduleApply);
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    installObserver();
+    scheduleApply();
+  });
+
+  const startupTimer = window.setInterval(() => {
+    installObserver();
+    applyLiveCheckMvp();
+  }, 150);
+
+  window.setTimeout(() => window.clearInterval(startupTimer), 6000);
+})();
