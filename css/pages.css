@@ -244,3 +244,215 @@ automation-grid,
   display: grid;
   gap: 10px;
 }
+
+/* Restored workspace visibility rules. Keep this block at the end so My Work stays focused. */
+body[data-view="focus"] .focus-panel {
+  display: grid;
+}
+
+body[data-view="focus"] .board {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body[data-view="focus"] .table-section {
+  display: none;
+}
+
+body[data-workspace-view="my_work"] #myWorkPanel {
+  display: grid;
+}
+
+#myWorkPanel {
+  grid-template-columns: minmax(0, 680px) minmax(280px, 340px);
+  gap: 32px;
+  align-items: start;
+}
+
+body[data-workspace-view="my_work"] .focus-panel,
+body[data-workspace-view="my_work"] .toolbar,
+body[data-workspace-view="my_work"] .achievement-strip,
+body[data-workspace-view="my_work"] .board,
+body[data-workspace-view="my_work"] .table-section {
+  display: none !important;
+}
+
+body[data-workspace-view="team_board"] .table-section {
+  display: block;
+}
+
+body[data-workspace-view="team_board"] .board,
+body[data-workspace-view="team_board"] .achievement-strip,
+body[data-workspace-view="team_board"] #myWorkPanel {
+  display: none;
+}
+
+body[data-workspace-view="admin"] #adminPanel {
+  display: grid;
+  grid-template-columns: minmax(320px, 420px) minmax(420px, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+
+body[data-workspace-view="admin"] .toolbar,
+body[data-workspace-view="admin"] .achievement-strip,
+body[data-workspace-view="admin"] .board,
+body[data-workspace-view="admin"] .table-section,
+body[data-workspace-view="admin"] #myWorkPanel {
+  display: none;
+}
+
+body[data-workspace-view="upcoming"] #upcomingPanel {
+  display: block;
+}
+
+body[data-workspace-view="upcoming"] .summary-grid,
+body[data-workspace-view="upcoming"] .toolbar,
+body[data-workspace-view="upcoming"] .achievement-strip,
+body[data-workspace-view="upcoming"] .board,
+body[data-workspace-view="upcoming"] .table-section,
+body[data-workspace-view="upcoming"] #myWorkPanel {
+  display: none;
+}
+
+body[data-workspace-view="docs"] #docsPanel {
+  display: block;
+}
+
+body[data-workspace-view="docs"] .toolbar,
+body[data-workspace-view="docs"] .achievement-strip,
+body[data-workspace-view="docs"] .board,
+body[data-workspace-view="docs"] .table-section,
+body[data-workspace-view="docs"] #myWorkPanel {
+  display: none;
+}
+
+body[data-workspace-view="settings"] #settingsPanel {
+  display: block;
+}
+
+body[data-workspace-view="settings"] .summary-grid,
+body[data-workspace-view="settings"] .toolbar,
+body[data-workspace-view="settings"] .achievement-strip,
+body[data-workspace-view="settings"] .board,
+body[data-workspace-view="settings"] .table-section,
+body[data-workspace-view="settings"] #myWorkPanel {
+  display: none;
+}
+
+.section-heading {
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.count-pill,
+.status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: #2b2b2b;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.stage {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.stage span {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--muted);
+}
+
+.stage-blue span { background: var(--blue); }
+.stage-amber span { background: var(--amber); }
+.stage-green span { background: var(--green); }
+.stage-red span { background: var(--red); }
+.stage-gray span { background: #5e5e5e; }
+
+.inventory-cell {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.table-dealer {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.table-section {
+  margin-top: 22px;
+}
+
+.table-wrap {
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: 0 12px 34px rgba(32, 36, 39, 0.06);
+}
+
+table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: middle;
+}
+
+th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #1b1b1b;
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+tr:last-child td {
+  border-bottom: 0;
+}
+
+tbody tr:hover {
+  background: color-mix(in srgb, var(--panel) 78%, var(--line));
+}
+
+.empty {
+  padding: 18px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  background: rgba(var(--panel-rgb), 0.6);
+}
+
+@media (max-width: 980px) {
+  #myWorkPanel,
+  body[data-workspace-view="admin"] #adminPanel {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-grid,
+  body[data-workspace-view="my_work"] .summary-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
