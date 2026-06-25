@@ -15,8 +15,8 @@ function filteredTasks() {
 }
 
 const DEFAULT_TEAM_PAGE_STATUSES = ["needs_seo", "seo_in_progress", "seo_done", "needs_build", "needs_review"];
-const MY_WORK_SECTION_LIMIT = 8;
-const expandedMyWorkSections = new Set();
+const MY_WORK_GROUP_COLLAPSE_KEY = "fusz-my-work-collapsed-groups";
+const MY_WORK_GROUP_VISIBLE_LIMIT = 8;
 
 function currentRoleKey() {
   return primaryRole(state.session).toLowerCase();
@@ -67,32 +67,181 @@ function removeBuilderAeoNoise() {
   });
 }
 
-function capMyWorkSections() {
+function collapsedMyWorkGroups() {
+  try {
+    return JSON.parse(localStorage.getItem(MY_WORK_GROUP_COLLAPSE_KEY) || "{}");
+  } catch {
+    return {};
+  }
+}
+
+function saveCollapsedMyWorkGroups(value) {
+  localStorage.setItem(MY_WORK_GROUP_COLLAPSE_KEY, JSON.stringify(value));
+}
+
+function installMyWorkGroupingStyles() {
+  if (document.querySelector("#my-work-grouping-style")) return;
+  const style = document.createElement("style");
+  style.id = "my-work-grouping-style";
+  style.textContent = `
+    .workbench-group {
+      border-top: 1px solid var(--line);
+    }
+
+    .workbench-group-head {
+      display: grid;
+      grid-template-columns: 18px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      min-height: 40px;
+      padding: 8px 12px;
+      border: 0;
+      background: #171717;
+      color: var(--text);
+      cursor: pointer;
+      font: inherit;
+      text-align: left;
+    }
+
+    .workbench-group-head:hover {
+      background: rgba(47, 114, 214, .08);
+    }
+
+    .workbench-group-chevron,
+    .workbench-group-count {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    .workbench-group-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .workbench-group-items[hidden] {
+      display: none;
+    }
+
+    .workbench-group-more {
+      min-height: 34px;
+      padding: 9px 12px;
+      border-top: 1px solid var(--line);
+      color: #8ec1ff;
+      font-size: 11px;
+      font-weight: 850;
+    }
+  `;
+  document.head.append(style);
+}
+
+function myWorkGroupNameForRow(row) {
+  const task = state.tasks.find((candidate) => candidate.id === row.dataset.workbenchTask);
+  return task?.make || task?.brand || "Other";
+}
+
+function cleanMyWorkRow(row) {
+  const task = state.tasks.find((candidate) => candidate.id === row.dataset.workbenchTask);
+  if (!task) return;
+  const title = row.querySelector(".workbench-title");
+  const meta = row.querySelector(".workbench-meta");
+  if (title) title.textContent = `${task.year || ""} ${displayModel(task)}`.trim() || taskTitle(task);
+  if (!meta) return;
+  const current = meta.textContent;
+  const built = current.match(/Built\s+[^-]+/i)?.[0];
+  const seoReady = current.match(/SEO ready\s+[^-]+/i)?.[0];
+  if (task.pageStatus === "page_built" && built) meta.textContent = built.trim();
+  else if (["seo_done", "needs_build"].includes(task.pageStatus) && seoReady) meta.textContent = seoReady.trim();
+  else meta.textContent = current.replace(/^.*?\s-\s/, "").replace(/\s-\sAEO .*$/i, "");
+}
+
+function groupRowsByBrand(rows = []) {
+  return Object.values(rows.reduce((groups, row) => {
+    const groupName = myWorkGroupNameForRow(row);
+    if (!groups[groupName]) groups[groupName] = { groupName, rows: [] };
+    groups[groupName].rows.push(row);
+    return groups;
+  }, {})).sort((a, b) => a.groupName.localeCompare(b.groupName));
+}
+
+function isMyWorkGroupCollapsed(groupName, rows, selectedId) {
+  const stored = collapsedMyWorkGroups();
+  const containsSelected = selectedId && rows.some((row) => row.dataset.workbenchTask === selectedId);
+  if (containsSelected && stored[groupName] === undefined) return false;
+  return stored[groupName] !== false;
+}
+
+function applyMyWorkGroupVisibility(groupElement, collapsed) {
+  const rows = [...groupElement.querySelectorAll(".workbench-row")];
+  const selectedIndex = rows.findIndex((row) => row.classList.contains("is-selected"));
+  const start = selectedIndex >= MY_WORK_GROUP_VISIBLE_LIMIT
+    ? Math.max(0, selectedIndex - Math.floor(MY_WORK_GROUP_VISIBLE_LIMIT / 2))
+    : 0;
+  const end = start + MY_WORK_GROUP_VISIBLE_LIMIT;
+  rows.forEach((row, index) => {
+    row.hidden = collapsed || index < start || index >= end;
+  });
+  const items = groupElement.querySelector(".workbench-group-items");
+  if (items) items.hidden = collapsed;
+  const header = groupElement.querySelector(".workbench-group-head");
+  if (header) header.setAttribute("aria-expanded", String(!collapsed));
+  const chevron = groupElement.querySelector(".workbench-group-chevron");
+  if (chevron) chevron.textContent = collapsed ? "▶" : "▼";
+  const more = groupElement.querySelector(".workbench-group-more");
+  if (more) more.hidden = collapsed || rows.length <= MY_WORK_GROUP_VISIBLE_LIMIT;
+}
+
+function groupMyWorkSections() {
   if (state.workspaceView !== "my_work") return;
-  document.querySelectorAll(".workbench-section").forEach((section, index) => {
-    const label = section.querySelector(".workbench-section-head span")?.textContent || `section-${index}`;
-    const rows = [...section.querySelectorAll(".workbench-row")];
-    const isExpanded = expandedMyWorkSections.has(label);
-    rows.forEach((row, rowIndex) => {
-      row.hidden = !isExpanded && rowIndex >= MY_WORK_SECTION_LIMIT;
+  installMyWorkGroupingStyles();
+  document.querySelectorAll(".workbench-section").forEach((section) => {
+    if (section.querySelector(".workbench-group")) return;
+    const directRows = [...section.children].filter((child) => child.classList?.contains("workbench-row"));
+    if (!directRows.length) return;
+    const selectedId = section.querySelector(".workbench-row.is-selected")?.dataset.workbenchTask || document.querySelector(".workbench-row.is-selected")?.dataset.workbenchTask;
+    const groups = groupRowsByBrand(directRows);
+    groups.forEach((group) => {
+      const collapsed = isMyWorkGroupCollapsed(group.groupName, group.rows, selectedId);
+      const wrapper = document.createElement("div");
+      wrapper.className = "workbench-group";
+      wrapper.dataset.workbenchGroup = group.groupName;
+      wrapper.innerHTML = `<button class="workbench-group-head" type="button" data-workbench-group-toggle="${escapeAttr(group.groupName)}" aria-expanded="${String(!collapsed)}"><span class="workbench-group-chevron">${collapsed ? "▶" : "▼"}</span><span class="workbench-group-name">${escapeHtml(group.groupName)}</span><span class="workbench-group-count">${group.rows.length}</span></button><div class="workbench-group-items"${collapsed ? " hidden" : ""}></div>`;
+      const items = wrapper.querySelector(".workbench-group-items");
+      group.rows.forEach((row) => {
+        cleanMyWorkRow(row);
+        items.append(row);
+      });
+      if (group.rows.length > MY_WORK_GROUP_VISIBLE_LIMIT) {
+        const more = document.createElement("div");
+        more.className = "workbench-group-more";
+        more.textContent = `Showing ${Math.min(MY_WORK_GROUP_VISIBLE_LIMIT, group.rows.length)} of ${group.rows.length}`;
+        items.append(more);
+      }
+      section.append(wrapper);
+      applyMyWorkGroupVisibility(wrapper, collapsed);
     });
-
-    let toggle = section.querySelector("[data-my-work-section-toggle]");
-    if (rows.length <= MY_WORK_SECTION_LIMIT) {
-      toggle?.remove();
-      return;
-    }
-
-    if (!toggle) {
-      toggle = document.createElement("button");
-      toggle.type = "button";
-      toggle.className = "button button-quiet workbench-more";
-      toggle.dataset.myWorkSectionToggle = label;
-      section.append(toggle);
-    }
-    toggle.textContent = isExpanded ? "Show less" : `View all ${rows.length}`;
   });
   removeBuilderAeoNoise();
+}
+
+function toggleMyWorkGroup(button) {
+  const groupName = button.dataset.workbenchGroupToggle;
+  const groupElement = button.closest(".workbench-group");
+  if (!groupName || !groupElement) return;
+  const expanded = button.getAttribute("aria-expanded") === "true";
+  const collapsed = expanded;
+  const stored = collapsedMyWorkGroups();
+  stored[groupName] = collapsed;
+  saveCollapsedMyWorkGroups(stored);
+  applyMyWorkGroupVisibility(groupElement, collapsed);
+}
+
+function capMyWorkSections() {
+  groupMyWorkSections();
 }
 
 function render() {
@@ -330,20 +479,17 @@ function hexToRgb(hex) { const clean = String(hex).replace("#", "").trim(); if (
 function brighten(hex, amount) { const rgb = hexToRgb(hex); if (!rgb) return "#78b7ff"; const toHex = (value) => Math.max(0, Math.min(255, value)).toString(16).padStart(2, "0"); return `#${toHex(rgb.r + amount)}${toHex(rgb.g + amount)}${toHex(rgb.b + amount)}`; }
 
 document.addEventListener("click", (event) => {
-  const toggle = event.target.closest("[data-my-work-section-toggle]");
-  if (toggle) {
+  const groupToggle = event.target.closest("[data-workbench-group-toggle]");
+  if (groupToggle) {
     event.preventDefault();
-    const section = toggle.dataset.myWorkSectionToggle;
-    if (expandedMyWorkSections.has(section)) {
-      expandedMyWorkSections.delete(section);
-    } else {
-      expandedMyWorkSections.add(section);
-    }
-    capMyWorkSections();
+    toggleMyWorkGroup(groupToggle);
     return;
   }
 
   if (isBuilderMyWorkView()) {
-    window.setTimeout(removeBuilderAeoNoise, 0);
+    window.setTimeout(() => {
+      groupMyWorkSections();
+      removeBuilderAeoNoise();
+    }, 0);
   }
 });
