@@ -58,11 +58,11 @@ function personalStatusTags(task) {
 
 function removeBuilderAeoNoise() {
   if (!isBuilderMyWorkView()) return;
-  document.querySelectorAll("#myWorkPanel .workbench-meta").forEach((meta) => {
+  document.querySelectorAll('body[data-workspace-view="my_work"] .workbench-meta').forEach((meta) => {
     meta.textContent = meta.textContent.replace(/\s-\sAEO (complete|in progress|not needed|pending)$/i, "");
   });
-  document.querySelectorAll("#myWorkPanel .aeo-status").forEach((pill) => pill.remove());
-  document.querySelectorAll("#myWorkPanel .workbench-step").forEach((step) => {
+  document.querySelectorAll('body[data-workspace-view="my_work"] .aeo-status').forEach((pill) => pill.remove());
+  document.querySelectorAll('body[data-workspace-view="my_work"] .workbench-step').forEach((step) => {
     if (step.textContent.toLowerCase().includes("aeo review")) step.remove();
   });
 }
@@ -331,13 +331,19 @@ function brighten(hex, amount) { const rgb = hexToRgb(hex); if (!rgb) return "#7
 
 document.addEventListener("click", (event) => {
   const toggle = event.target.closest("[data-my-work-section-toggle]");
-  if (!toggle) return;
-  event.preventDefault();
-  const section = toggle.dataset.myWorkSectionToggle;
-  if (expandedMyWorkSections.has(section)) {
-    expandedMyWorkSections.delete(section);
-  } else {
-    expandedMyWorkSections.add(section);
+  if (toggle) {
+    event.preventDefault();
+    const section = toggle.dataset.myWorkSectionToggle;
+    if (expandedMyWorkSections.has(section)) {
+      expandedMyWorkSections.delete(section);
+    } else {
+      expandedMyWorkSections.add(section);
+    }
+    capMyWorkSections();
+    return;
   }
-  capMyWorkSections();
+
+  if (isBuilderMyWorkView()) {
+    window.setTimeout(removeBuilderAeoNoise, 0);
+  }
 });
