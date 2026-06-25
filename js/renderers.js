@@ -15,6 +15,8 @@ function filteredTasks() {
 }
 
 const DEFAULT_TEAM_PAGE_STATUSES = ["needs_seo", "seo_in_progress", "seo_done", "needs_build", "needs_review"];
+const MY_WORK_SECTION_LIMIT = 12;
+const expandedMyWorkSections = new Set();
 
 function usesDefaultTeamPipelineView() {
   return state.workspaceView === "team_board" && (els.statusFilter?.value || "all") === "all";
@@ -23,6 +25,33 @@ function usesDefaultTeamPipelineView() {
 function teamPipelineTasks(tasks = []) {
   if (!usesDefaultTeamPipelineView()) return tasks;
   return tasks.filter((task) => DEFAULT_TEAM_PAGE_STATUSES.includes(task.pageStatus));
+}
+
+function capMyWorkSections() {
+  if (state.workspaceView !== "my_work") return;
+  document.querySelectorAll(".workbench-section").forEach((section, index) => {
+    const label = section.querySelector(".workbench-section-head span")?.textContent || `section-${index}`;
+    const rows = [...section.querySelectorAll(".workbench-row")];
+    const isExpanded = expandedMyWorkSections.has(label);
+    rows.forEach((row, rowIndex) => {
+      row.hidden = !isExpanded && rowIndex >= MY_WORK_SECTION_LIMIT;
+    });
+
+    let toggle = section.querySelector("[data-my-work-section-toggle]");
+    if (rows.length <= MY_WORK_SECTION_LIMIT) {
+      toggle?.remove();
+      return;
+    }
+
+    if (!toggle) {
+      toggle = document.createElement("button");
+      toggle.type = "button";
+      toggle.className = "button button-quiet workbench-more";
+      toggle.dataset.myWorkSectionToggle = label;
+      section.append(toggle);
+    }
+    toggle.textContent = isExpanded ? "Show less" : `View all ${rows.length}`;
+  });
 }
 
 function render() {
@@ -36,6 +65,7 @@ function render() {
   renderAchievements(tasks);
   renderFocusTask();
   renderMyWork(tasks);
+  capMyWorkSections();
   renderUpcomingModels(syntheticUpcomingModels());
   renderInventoryFeedStatus();
   if (isAeoTableFilter()) {
@@ -254,5 +284,18 @@ function escapeAttr(value) { return escapeHtml(value); }
 function accentStyle(hex) { const rgb = hexToRgb(hex); if (!rgb) return "--accent:#2563a9;--accent-visible:#2563a9;--accent-soft:rgba(37,99,169,.18);--accent-border:rgba(37,99,169,.55);--accent-ink:#78b7ff;"; const { r, g, b } = rgb; return [`--accent:${hex}`, `--accent-visible:${hex}`, `--accent-soft:rgba(${r},${g},${b},.18)`, `--accent-card:rgba(${r},${g},${b},.13)`, `--accent-border:rgba(${r},${g},${b},.58)`, `--accent-glow:rgba(${r},${g},${b},.42)`, `--accent-ink:${brighten(hex, 42)}`].join(";"); }
 function accentStyleForTask(task) { const override = brandAccentOverrides[task.make]; if (!override) return accentStyle(dealerAccents[task.dealer] || "#2563a9"); const rgb = hexToRgb(override.visible); if (!rgb) return accentStyle(override.accent); const { r, g, b } = rgb; return [`--accent:${override.accent}`, `--accent-visible:${override.visible}`, `--accent-soft:rgba(${r},${g},${b},.22)`, `--accent-card:rgba(${r},${g},${b},.16)`, `--accent-border:rgba(${r},${g},${b},.68)`, `--accent-glow:rgba(${r},${g},${b},.54)`, `--accent-ink:${override.ink}`].join(";"); }
 function applyAccentStyle(element, styleText) { if (!element) return; styleText.split(";").forEach((declaration) => { const [property, value] = declaration.split(":"); if (property && value) element.style.setProperty(property.trim(), value.trim()); }); }
-function hexToRgb(hex) { const clean = String(hex).replace("#", "").trim(); if (!/^[0-9a-f]{6}$/i.test(clean)) return null; return { r: parseInt(clean.slice(0, 2), 16), b: parseInt(clean.slice(4, 6), 16), g: parseInt(clean.slice(2, 4), 16) }; }
+function hexToRgb(hex) { const clean = String(hex).replace("#", "").trim(); if (!/^[0-9a-f]{6}$/i.test(clean)) return null; return { r: parseInt(clean.slice(0, 2), 16), g: parseInt(clean.slice(2, 4), 16), b: parseInt(clean.slice(4, 6), 16) }; }
 function brighten(hex, amount) { const rgb = hexToRgb(hex); if (!rgb) return "#78b7ff"; const toHex = (value) => Math.max(0, Math.min(255, value)).toString(16).padStart(2, "0"); return `#${toHex(rgb.r + amount)}${toHex(rgb.g + amount)}${toHex(rgb.b + amount)}`; }
+
+document.addEventListener("click", (event) => {
+  const toggle = event.target.closest("[data-my-work-section-toggle]");
+  if (!toggle) return;
+  event.preventDefault();
+  const section = toggle.dataset.myWorkSectionToggle;
+  if (expandedMyWorkSections.has(section)) {
+    expandedMyWorkSections.delete(section);
+  } else {
+    expandedMyWorkSections.add(section);
+  }
+  capMyWorkSections();
+});
