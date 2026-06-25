@@ -26,7 +26,6 @@ const inventoryFeedFiles = [
   "FuszChevrolet.csv",
   "CDJRVincennes.csv",
   "LouFuszBuickGMC.csv",
-  "LouFuszGroup.csv",
   "SubaruStLouis.csv",
   "SubaruStPeters.csv",
   "NissanMoline.csv",
@@ -49,17 +48,28 @@ const dealerNameAliases = {
   "lou fusz buick gmc": "Lou Fusz Buick GMC",
   "lou fusz ford": "Lou Fusz Ford",
   "lou fusz kia": "Lou Fusz Kia",
+  "lou fusz kia evansville": "Lou Fusz Kia Evansville",
+  "lou fusz kia of moline": "Lou Fusz Kia of Moline",
+  "lou fusz kia columbus": "Lou Fusz Kia Columbus",
+  "lou fusz kia terre haute": "Lou Fusz Kia Terre Haute",
   "lou fusz mazda": "Lou Fusz Mazda",
+  "lou fusz mazda evansville": "Lou Fusz Mazda Evansville",
+  "lou fusz cdjrf": "Lou Fusz Chrysler Jeep Dodge RAM",
   "fusz cdjrf": "Lou Fusz Chrysler Jeep Dodge RAM",
+  "lou fusz cdjr vincennes": "Lou Fusz Chrysler Jeep Dodge Ram Vincennes",
   "cdjr vincennes": "Lou Fusz Chrysler Jeep Dodge Ram Vincennes",
   "kia evansville": "Lou Fusz Kia Evansville",
+  "kiaevansville": "Lou Fusz Kia Evansville",
   "kia moline": "Lou Fusz Kia of Moline",
+  "kia of moline": "Lou Fusz Kia of Moline",
   "kia ohio": "Lou Fusz Kia Columbus",
   "terre haute kia": "Lou Fusz Kia Terre Haute",
   "mazda evansville": "Lou Fusz Mazda Evansville",
   "nissan moline": "Lou Fusz Nissan Moline",
   "subaru st louis": "Lou Fusz Subaru St. Louis",
+  "lou fusz subaru st louis": "Lou Fusz Subaru St. Louis",
   "subaru st peters": "Lou Fusz Subaru O'Fallon",
+  "lou fusz subaru st peters": "Lou Fusz Subaru O'Fallon",
 };
 
 const completedModelOverrideKeys = new Set(`
@@ -272,7 +282,9 @@ async function fetchInventoryFeed() {
     }
   }
 
-  if (!rows.length) {
+  const dedupedRows = dedupeInventoryRows(rows);
+
+  if (!dedupedRows.length) {
     return {
       connected: false,
       rows: [],
@@ -284,10 +296,11 @@ async function fetchInventoryFeed() {
 
   return {
     connected: true,
-    rows,
+    rows: dedupedRows,
     files: loadedFiles,
     failedFiles,
-    message: `${rows.length} feed rows from ${loadedFiles.length} CSV${loadedFiles.length === 1 ? "" : "s"}`,
+    duplicateRowsRemoved: rows.length - dedupedRows.length,
+    message: `${dedupedRows.length} feed rows from ${loadedFiles.length} CSV${loadedFiles.length === 1 ? "" : "s"}`,
   };
 }
 
@@ -355,6 +368,22 @@ function normalizeInventoryRow(row, file) {
     vdp_url: row.vdp_url || row.vdp_urls || row.inventory_url,
     feedFile: file,
   };
+}
+
+function dedupeInventoryRows(rows = []) {
+  const seen = new Set();
+  return rows.filter((row) => {
+    const key = inventoryRowKey(row);
+    if (!key || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function inventoryRowKey(row = {}) {
+  const vin = normalizeCompare(row.vin);
+  if (vin) return `vin:${vin}`;
+  return `row:${normalizeCompare(row.dealer)}|${row.year}|${normalizeCompare(row.make)}|${normalizeCompare(row.model)}|${normalizeCompare(row.trim)}|${normalizeCompare(row.stock_number)}`;
 }
 
 function normalizeDealerName(name) {
@@ -549,7 +578,7 @@ function feedRowMatchesTask(row, task) {
 
 function signalFromFeedStatus(status, row = {}) {
   const normalized = normalizeCompare(status);
-  if (normalized.includes("lot") || normalized.includes("available") || normalized.includes("instock")) return "on_lot";
+  if (normalized.includes("lot") || normalized.includes("available") || normalized.includes("instock") || normalized.includes("dealership")) return "on_lot";
   if (normalized.includes("ship") || normalized.includes("transit") || normalized.includes("intransit")) return "shipped";
   if (row.stock_number || row.vin || row.inventory_url || row.vdp_url || row.vdp_urls) return "on_lot";
   return "upcoming";
@@ -560,7 +589,7 @@ function normalizeCompare(value) {
 }
 
 function sourceFor(dealer) {
-  return state.sources.find((source) => source.dealer === dealer);
+  return state.sources.find((source) => normalizeCompare(source.dealer) === normalizeCompare(dealer));
 }
 
 function populateDealerFilter() {
