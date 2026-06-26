@@ -13,3 +13,25 @@ body[data-auth="signed_in"] {
 body[data-auth="signed_in"] .auth-screen {
   display: none;
 }
+
+body[data-theme="light"] .workbench-section-head {
+  background: var(--soft-line);
+  color: var(--muted);
+}
+
+body[data-theme="light"] .workbench-row:hover:not(.is-selected) {
+  background: var(--soft-line);
+}
+
+body[data-theme="light"] .workbench-row.is-selected {
+  background: var(--blue-soft);
+  box-shadow: inset 3px 0 0 var(--blue);
+}
+
+body[data-theme="light"] .workbench-step:has(.workbench-check.is-done) {
+  background: var(--green-soft);
+}
+
+body[data-theme="light"] .workbench-detail-actions {
+  background: var(--soft-line) !important;
+}

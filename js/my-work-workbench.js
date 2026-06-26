@@ -56,7 +56,7 @@
 
       .workbench-section {
         border-bottom: 1px solid var(--line);
-        background: #1b1b1b;
+        background: var(--panel);
       }
 
       .workbench-section:last-child {
@@ -68,7 +68,7 @@
         justify-content: space-between;
         gap: 12px;
         padding: 8px 14px 7px;
-        background: #161616;
+        background: var(--bg);
         border-bottom: 1px solid var(--line);
         color: var(--muted);
         font-size: 10px;
@@ -215,8 +215,8 @@
         padding: 0 10px;
         border: 1px solid var(--line);
         border-radius: 7px;
-        background: rgba(47, 114, 214, .14);
-        color: #b9d9ff;
+        background: var(--blue-soft);
+        color: var(--blue);
         font-size: 12px;
         font-weight: 850;
         text-decoration: none;
@@ -229,7 +229,7 @@
       }
 
       .workbench-resource-link {
-        color: #8ec1ff;
+        color: var(--blue);
         font-size: 12px;
         font-weight: 750;
         text-decoration: none;
@@ -239,7 +239,7 @@
         margin: 0 0 14px;
         border: 1px solid var(--line);
         border-radius: 7px;
-        background: #1b1b1b;
+        background: var(--panel);
         overflow: hidden;
       }
 
@@ -266,7 +266,7 @@
       }
 
       .workbench-step:has(.workbench-check.is-done) {
-        background: rgba(78, 216, 149, .04);
+        background: var(--green-soft);
         color: var(--muted);
       }
 
@@ -318,7 +318,7 @@
         padding: 9px;
         border: 1px solid var(--line);
         border-radius: 7px;
-        background: #1b1b1b;
+        background: var(--panel);
         color: var(--muted);
         font-size: 11px;
         line-height: 1.45;
@@ -338,8 +338,8 @@
         padding: 9px;
         border: 1px solid var(--line);
         border-radius: 7px;
-        background: #151515;
-        color: var(--text);
+        background: var(--bg);
+        color: var(--ink);
         font: inherit;
         resize: vertical;
       }
@@ -352,7 +352,7 @@
         padding: 15px 26px 26px;
         border-top: 1px solid var(--line);
         border-radius: 0 0 10px 10px;
-        background: #1b1b1b;
+        background: var(--panel);
       }
 
       .workbench-detail-actions .button {
