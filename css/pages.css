@@ -145,3 +145,72 @@ body[data-theme="light"] .integration-identity span,
 body[data-theme="light"] .team-table-row span {
   color: var(--muted) !important;
 }
+
+/* Light theme: status pills, badges, count pills */
+body[data-theme="light"] :is(.count-pill, .status, .settings-status, .resource-status, .signal) {
+  background: #edf2f7 !important;
+  color: var(--muted) !important;
+}
+
+body[data-theme="light"] .status-needs_seo,
+body[data-theme="light"] .status-needs_build {
+  background: var(--amber-soft) !important;
+  color: var(--amber) !important;
+}
+
+body[data-theme="light"] .status-seo_done,
+body[data-theme="light"] .status-page_built,
+body[data-theme="light"] .signal-shipped {
+  background: var(--blue-soft) !important;
+  color: var(--blue) !important;
+}
+
+body[data-theme="light"] .status-live,
+body[data-theme="light"] .signal-on_lot,
+body[data-theme="light"] .aeo-done {
+  background: var(--green-soft) !important;
+  color: var(--green) !important;
+}
+
+body[data-theme="light"] .status-needs_review {
+  background: var(--red-soft) !important;
+  color: var(--red) !important;
+}
+
+body[data-theme="light"] .signal-upcoming,
+body[data-theme="light"] .aeo-in_progress {
+  background: var(--violet-soft) !important;
+  color: var(--violet) !important;
+}
+
+body[data-theme="light"] :is(.aeo-not_started, .aeo-not_needed, .status-ignored, .status-snoozed) {
+  background: #edf2f7 !important;
+  color: var(--muted) !important;
+}
+
+/* Light theme: table headers */
+body[data-theme="light"] th {
+  background: #f5f8fb !important;
+  color: var(--muted) !important;
+  border-bottom-color: var(--line) !important;
+}
+
+/* Light theme: owner avatar */
+body[data-theme="light"] .owner-avatar {
+  background: #dbe4ea !important;
+  color: var(--ink) !important;
+}
+
+/* Light theme: permission grid, resource rule list, resource mini grid */
+body[data-theme="light"] :is(.permission-grid div, .resource-rule-list div, .resource-mini-grid span) {
+  background: #f5f8fb !important;
+  border-color: var(--line) !important;
+  color: var(--ink) !important;
+}
+
+/* Light theme: settings controls */
+body[data-theme="light"] :is(.settings-control, .quiet-hours-grid input, .quiet-hours-grid select) {
+  background: #ffffff !important;
+  color: var(--ink) !important;
+  border-color: var(--line) !important;
+}

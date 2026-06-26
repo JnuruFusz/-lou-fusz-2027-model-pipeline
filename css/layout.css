@@ -437,3 +437,12 @@ body[data-workspace-view="settings"] .header-search {
 .app-header #restartDemoButton {
   display: none;
 }
+
+/* Light theme: auth screen */
+body[data-theme="light"] .auth-screen {
+  background: linear-gradient(180deg, #eef4fb, #f5f8fc);
+}
+
+body[data-theme="light"] .auth-shell {
+  background: transparent;
+}
