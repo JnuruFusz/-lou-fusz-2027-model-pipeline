@@ -172,6 +172,7 @@ function groupMyWorkSections() {
     const bucketName = myWorkBucketName(section);
     const selectedId = section.querySelector(".workbench-row.is-selected")?.dataset.workbenchTask || document.querySelector(".workbench-row.is-selected")?.dataset.workbenchTask;
     const groups = groupRowsByBrand(directRows);
+    const singleGroup = groups.length === 1;
     groups.forEach((group) => {
       const groupKey = myWorkGroupStorageKey(bucketName, group.groupName);
       const collapsed = isMyWorkGroupCollapsed(groupKey, group.rows, selectedId);
@@ -182,7 +183,8 @@ function groupMyWorkSections() {
       wrapper.dataset.workbenchGroupKey = groupKey;
       const heavyClass = group.rows.length >= MY_WORK_HEAVY_GROUP_THRESHOLD ? " heavy" : "";
       const groupAccent = (brandAccentOverrides[group.groupName]?.accent) || "#9aa0aa";
-      wrapper.innerHTML = `<button class="workbench-group-head" type="button" data-workbench-group-toggle="${escapeAttr(groupKey)}" aria-expanded="${String(!collapsed)}" style="--group-accent:${groupAccent}"><span class="workbench-group-bar"></span><span class="workbench-group-chevron${collapsed ? " collapsed" : ""}"></span><span class="workbench-group-name">${escapeHtml(group.groupName)}</span><span class="workbench-group-count${heavyClass}">${group.rows.length}</span></button><div class="workbench-group-items"${collapsed ? " hidden" : ""}></div>`;
+      const countBadge = singleGroup ? "" : `<span class="workbench-group-count${heavyClass}">${group.rows.length}</span>`;
+      wrapper.innerHTML = `<button class="workbench-group-head" type="button" data-workbench-group-toggle="${escapeAttr(groupKey)}" aria-expanded="${String(!collapsed)}" style="--group-accent:${groupAccent}"><span class="workbench-group-bar"></span><span class="workbench-group-chevron${collapsed ? " collapsed" : ""}"></span><span class="workbench-group-name">${escapeHtml(group.groupName)}</span>${countBadge}</button><div class="workbench-group-items"${collapsed ? " hidden" : ""}></div>`;
       const items = wrapper.querySelector(".workbench-group-items");
       group.rows.forEach((row) => {
         cleanMyWorkRow(row, titleCounts[myWorkRowTitleKey(row)] > 1);
