@@ -341,18 +341,26 @@ body[data-workspace-view="team_board"] .metric {
   border-left-width: 3px;
 }
 
-/* Filter bar: slightly more breathing room + label refinement */
+/* Filter bar: single horizontal row, constrained select widths */
 body[data-workspace-view="team_board"] .toolbar {
+  flex-direction: row;
+  flex-wrap: nowrap;
   padding: 14px 18px;
-  gap: 20px;
+  gap: 16px;
   align-items: center;
 }
 
 body[data-workspace-view="team_board"] .toolbar label {
-  gap: 10px;
+  flex: 0 0 auto;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
 }
 
 body[data-workspace-view="team_board"] .toolbar select {
+  flex: 0 0 auto;
+  max-width: 180px;
   padding: 5px 10px;
   border: 1px solid var(--line);
   border-radius: 6px;
@@ -360,9 +368,12 @@ body[data-workspace-view="team_board"] .toolbar select {
   color: var(--ink);
   font-size: 13px;
   font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 body[data-workspace-view="team_board"] #clearFiltersButton {
+  flex: 0 0 auto;
   margin-left: auto;
   font-size: 13px;
 }
