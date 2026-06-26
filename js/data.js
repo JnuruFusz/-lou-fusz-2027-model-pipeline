@@ -1,20 +1,20 @@
 const statusLabels = {
   needs_seo: "Needs SEO",
-  seo_in_progress: "SEO In Progress",
-  seo_done: "SEO Done",
-  needs_build: "Needs Page Build",
-  page_built: "Page Built",
-  live: "Live / Checked",
+  seo_in_progress: "SEO in progress",
+  seo_done: "SEO ready",
+  needs_build: "Ready to build",
+  page_built: "Built — verify",
+  live: "Live",
   ignored: "Ignored",
   snoozed: "Snoozed",
-  needs_review: "Needs Review",
+  needs_review: "Returned",
 };
 
 const aeoLabels = {
-  not_started: "AEO Not Started",
-  in_progress: "AEO In Progress",
-  done: "AEO Done",
-  not_needed: "AEO Not Needed",
+  not_started: "AEO pending",
+  in_progress: "AEO in progress",
+  done: "AEO done",
+  not_needed: "AEO not needed",
 };
 
 const signalLabels = {

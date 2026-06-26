@@ -426,6 +426,93 @@
         border-top-color: var(--line) !important;
       }
 
+
+      /* --- Detail panel polish --- */
+      .workbench-detail-content .eyebrow {
+        margin: 0 0 6px;
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 850;
+        letter-spacing: .07em;
+        text-transform: uppercase;
+      }
+
+      .workbench-detail-content h2 {
+        margin: 0 0 4px;
+        font-size: 19px;
+        font-weight: 900;
+        letter-spacing: -.02em;
+        line-height: 1.2;
+        color: var(--ink);
+      }
+
+      .workbench-detail-subtitle {
+        margin: 4px 0 14px;
+      }
+
+      .selected-task-status {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 14px;
+      }
+
+      /* Tighter checklist steps */
+      .workbench-step {
+        min-height: 34px;
+        padding: 7px 10px;
+      }
+
+      /* Rounder check circles */
+      .workbench-check {
+        flex-shrink: 0;
+      }
+
+      /* Next step block — slightly warmer in light */
+      body[data-theme="light"] .workbench-next-step {
+        background: var(--blue-soft) !important;
+        border-left-color: var(--blue) !important;
+      }
+
+      /* Resource primary button — full width */
+      .workbench-resource-primary {
+        width: 100%;
+      }
+
+      /* AI pill — subtle */
+      .workbench-ai-pill {
+        border-radius: 6px;
+        background: var(--bg);
+        font-size: 11px;
+        transition: background 120ms ease;
+      }
+
+      .workbench-ai-pill:hover {
+        background: var(--blue-soft);
+        color: var(--blue);
+        border-color: var(--blue-soft);
+      }
+
+      body[data-theme="light"] .workbench-ai-pill {
+        background: #f5f1eb !important;
+        border-color: var(--line) !important;
+      }
+
+      body[data-theme="light"] .workbench-ai-pill:hover {
+        background: var(--blue-soft) !important;
+        color: var(--blue) !important;
+      }
+
+      /* Section head — slightly tighter */
+      .workbench-section-head {
+        padding: 7px 14px 6px;
+      }
+
+      /* Focus card accent bar (left) matches brand color */
+      .workbench-focus {
+        border-left: 3px solid var(--blue);
+      }
+
       @media (max-width: 760px) {
         body[data-workspace-view="my_work"] #myWorkPanel {
           grid-template-columns: 1fr;
@@ -534,7 +621,7 @@
   function workbenchMeta(task, tone) {
     const dealer = dealerShortName(task.dealer);
     if (tone === "verify") return `${dealer} - Built ${relativeTime(task)} - ${aeoShort(task.aeoStatus)}`;
-    if (tone === "blocked") return `${dealer} - ${task.pageStatus === "needs_review" ? "Returned to SEO" : "Blocked"} - ${blockerReason(task)}`;
+    if (tone === "blocked") return `${dealer} - ${task.pageStatus === "needs_review" ? "Returned" : "Blocked"} - ${blockerReason(task)}`;
     return `${dealer} - SEO ready ${relativeTime(task)} - ${aeoShort(task.aeoStatus)}`;
   }
 
@@ -579,15 +666,15 @@
 
   function workbenchActions(task) {
     if (task.pageStatus === "page_built") {
-      return `<button class="button button-secondary-action" type="button" data-status="needs_build" data-task-id="${escapeAttr(task.id)}">Reopen</button><button class="button button-primary-action" type="button" data-status="live" data-task-id="${escapeAttr(task.id)}">Mark Page Live</button>`;
+      return `<button class="button button-secondary-action" type="button" data-status="needs_build" data-task-id="${escapeAttr(task.id)}">Revert</button><button class="button button-primary-action" type="button" data-status="live" data-task-id="${escapeAttr(task.id)}">Mark live ↑</button>`;
     }
     if (task.pageStatus === "needs_review") {
-      return `<button class="button button-secondary-action" type="button" data-status="needs_seo" data-task-id="${escapeAttr(task.id)}">Send Back</button><button class="button button-primary-action" type="button" data-status="live" data-task-id="${escapeAttr(task.id)}">Keep Live</button>`;
+      return `<button class="button button-secondary-action" type="button" data-status="needs_seo" data-task-id="${escapeAttr(task.id)}">Return to SEO</button><button class="button button-primary-action" type="button" data-status="live" data-task-id="${escapeAttr(task.id)}">Keep live</button>`;
     }
     if (task.pageStatus === "seo_done") {
-      return `<button class="button button-secondary-action" type="button" data-workbench-return>Return to SEO</button><button class="button button-primary-action" type="button" data-status="needs_build" data-task-id="${escapeAttr(task.id)}">Start Build</button>`;
+      return `<button class="button button-secondary-action" type="button" data-workbench-return>Send back</button><button class="button button-primary-action" type="button" data-status="needs_build" data-task-id="${escapeAttr(task.id)}">Start build →</button>`;
     }
-    return `<button class="button button-secondary-action" type="button" data-workbench-return>Return to SEO</button><button class="button button-primary-action" type="button" data-status="page_built" data-task-id="${escapeAttr(task.id)}">Mark Page Built</button>`;
+    return `<button class="button button-secondary-action" type="button" data-workbench-return>Send back</button><button class="button button-primary-action" type="button" data-status="page_built" data-task-id="${escapeAttr(task.id)}">Mark built ↑</button>`;
   }
 
   function selectWorkbenchTask(taskId) {
@@ -632,7 +719,8 @@
       els.builderDetailContent.innerHTML = "";
       return;
     }
-    els.builderDetailContent.innerHTML = `<p class="eyebrow">Selected task</p><h2>${escapeHtml(taskTitle(selectedTask))}</h2><p class="workbench-detail-subtitle">${escapeHtml(selectedTask.dealer)} - ${escapeHtml(statusLabels[selectedTask.pageStatus] || selectedTask.pageStatus)} - ${escapeHtml(signalLabels[selectedTask.inventorySignal] || selectedTask.inventorySignal)}</p><div class="selected-task-status">${statusPill(selectedTask.pageStatus)} ${signalPill(selectedTask.inventorySignal)} ${aeoPill(selectedTask.aeoStatus)}</div><section class="workbench-next-step"><span>Next step</span><strong>${escapeHtml(builderNextStep(selectedTask))}</strong><small>SEO finalized ${escapeHtml(relativeTime(selectedTask))} - Owner: ${escapeHtml(ownerBucket(selectedTask))}</small></section><nav class="workbench-resources" aria-label="Task resources"><a class="workbench-resource-primary" href="#">Open SEO doc</a><div class="workbench-resource-row"><a class="workbench-resource-link" href="#">Open CMS</a><a class="workbench-resource-link" href="${escapeAttr(modelInfoUrl(selectedTask))}" target="_blank" rel="noreferrer">View reference</a></div></nav><section class="workbench-checklist" aria-label="Task progress">${checklist(selectedTask)}</section><section class="workbench-ai"><button class="workbench-ai-pill" type="button" data-workbench-ai>Check SEO handoff</button><div class="workbench-ai-result"><span>Handoff check</span><div>7 of 8 expected sections found</div><div>Missing: meta description</div><div>Present: H1, hero copy, CTA, local dealership mention</div></div></section><section class="workbench-return-note"><label for="workbenchReturnNote">What needs to be fixed?</label><textarea id="workbenchReturnNote" placeholder="Example: missing trim-level section and local phone number"></textarea></section><footer class="workbench-detail-actions">${workbenchActions(selectedTask)}</footer>`;
+    els.builderDetailContent.className = "workbench-detail-content";
+    els.builderDetailContent.innerHTML = `<p class="eyebrow">Task detail</p><h2>${escapeHtml(taskTitle(selectedTask))}</h2><p class="workbench-detail-subtitle">${escapeHtml(selectedTask.dealer)} - ${escapeHtml(statusLabels[selectedTask.pageStatus] || selectedTask.pageStatus)} - ${escapeHtml(signalLabels[selectedTask.inventorySignal] || selectedTask.inventorySignal)}</p><div class="selected-task-status">${statusPill(selectedTask.pageStatus)} ${signalPill(selectedTask.inventorySignal)} ${aeoPill(selectedTask.aeoStatus)}</div><section class="workbench-next-step"><span>Next step</span><strong>${escapeHtml(builderNextStep(selectedTask))}</strong><small>SEO finalized ${escapeHtml(relativeTime(selectedTask))} - Owner: ${escapeHtml(ownerBucket(selectedTask))}</small></section><nav class="workbench-resources" aria-label="Task resources"><a class="workbench-resource-primary" href="#">Open SEO doc</a><div class="workbench-resource-row"><a class="workbench-resource-link" href="#">Open CMS</a><a class="workbench-resource-link" href="${escapeAttr(modelInfoUrl(selectedTask))}" target="_blank" rel="noreferrer">View reference</a></div></nav><section class="workbench-checklist" aria-label="Task progress">${checklist(selectedTask)}</section><section class="workbench-ai"><button class="workbench-ai-pill" type="button" data-workbench-ai>Check handoff</button><div class="workbench-ai-result"><span>Handoff check</span><div>7 of 8 expected sections found</div><div>Missing: meta description</div><div>Present: H1, hero copy, CTA, local dealership mention</div></div></section><section class="workbench-return-note"><label for="workbenchReturnNote">What needs to be fixed?</label><textarea id="workbenchReturnNote" placeholder="Example: missing trim-level section and local phone number"></textarea></section><footer class="workbench-detail-actions">${workbenchActions(selectedTask)}</footer>`;
   };
 
   document.addEventListener("click", (event) => {
