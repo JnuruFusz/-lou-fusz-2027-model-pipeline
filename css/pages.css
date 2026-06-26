@@ -214,3 +214,82 @@ body[data-theme="light"] :is(.settings-control, .quiet-hours-grid input, .quiet-
   color: var(--ink) !important;
   border-color: var(--line) !important;
 }
+
+/* ── Admin page spacing pass ────────────────────────────────────────────────
+   The minified defaults have padding: 12px 14px / gap: 12px which reads
+   cramped. Bumped across all three zones: action rows, snapshot rows,
+   permission grid.                                                          */
+
+/* Action rows (Controls panel) */
+.admin-action-list {
+  gap: 10px;
+}
+
+.admin-row {
+  min-height: 64px;
+  padding: 16px 20px;
+  gap: 18px;
+}
+
+.admin-row strong {
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.admin-row p,
+.admin-row span:not([class]) {
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 3px 0 0;
+}
+
+/* Team Snapshot rows */
+.pipeline-snapshot {
+  gap: 10px;
+}
+
+.pipeline-snapshot article {
+  min-height: 60px;
+  padding: 16px 20px;
+  gap: 18px;
+}
+
+.pipeline-snapshot strong {
+  font-size: 14px;
+  font-weight: 750;
+  letter-spacing: -.01em;
+}
+
+.pipeline-snapshot em {
+  font-size: 13px;
+}
+
+/* Permission grid cells */
+.permission-grid {
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.permission-grid div {
+  padding: 16px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Admin panel column gap */
+body[data-workspace-view="admin"] #adminPanel {
+  gap: 28px;
+}
+
+/* "What admin sees" section heading */
+.admin-permission-note {
+  margin-top: 22px;
+  padding-top: 22px;
+}
+
+.admin-permission-note h3 {
+  margin: 0 0 12px;
+  font-size: 15px;
+  font-weight: 750;
+  letter-spacing: -.01em;
+}
