@@ -91,6 +91,7 @@ body[data-workspace-view="my_work"] .builder-queue-panel .count-pill {
 
 .workbench-section-head span:last-child {
   font-variant-numeric: tabular-nums;
+  padding-right: 7px;
   opacity: .55;
 }
 
