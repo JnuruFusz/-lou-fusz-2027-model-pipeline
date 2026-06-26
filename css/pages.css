@@ -313,3 +313,56 @@ body[data-workspace-view="admin"] #adminPanel {
   text-transform: uppercase;
   color: var(--muted);
 }
+
+/* ---------------------------------------------------------------
+   Team Pipeline page polish
+   --------------------------------------------------------------- */
+
+/* Fix ACTION column clipping — last column shrinks to content width,
+   button text never wraps */
+body[data-workspace-view="team_board"] th:last-child,
+body[data-workspace-view="team_board"] td:last-child {
+  width: 1%;
+  white-space: nowrap;
+}
+
+body[data-workspace-view="team_board"] .row-actions .button {
+  white-space: nowrap;
+}
+
+/* Stat card zero-state: mute the number so "0" reads as neutral */
+body[data-workspace-view="team_board"] .metric.is-zero strong {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+/* Metric cards on team pipeline: left-border accent variant */
+body[data-workspace-view="team_board"] .metric {
+  border-left-width: 3px;
+}
+
+/* Filter bar: slightly more breathing room + label refinement */
+body[data-workspace-view="team_board"] .toolbar {
+  padding: 14px 18px;
+  gap: 20px;
+  align-items: center;
+}
+
+body[data-workspace-view="team_board"] .toolbar label {
+  gap: 10px;
+}
+
+body[data-workspace-view="team_board"] .toolbar select {
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+body[data-workspace-view="team_board"] #clearFiltersButton {
+  margin-left: auto;
+  font-size: 13px;
+}

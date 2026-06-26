@@ -355,10 +355,11 @@ function renderMetrics(tasks) {
   const checks = tasks.filter((task) => task.pageStatus === "page_built").length;
   const blocked = tasks.filter((task) => task.pageStatus === "needs_review").length;
   const live = tasks.filter((task) => task.pageStatus === "live").length;
-  if (els.metricDetected) els.metricDetected.textContent = ready;
-  if (els.metricSeo) els.metricSeo.textContent = checks;
-  if (els.metricAeo) els.metricAeo.textContent = blocked;
-  if (els.metricLive) els.metricLive.textContent = live;
+  const setMetric = (el, value) => { if (!el) return; el.textContent = value; el.closest(".metric")?.classList.toggle("is-zero", value === 0); };
+  setMetric(els.metricDetected, ready);
+  setMetric(els.metricSeo, checks);
+  setMetric(els.metricAeo, blocked);
+  setMetric(els.metricLive, live);
 }
 
 function renderAchievements(tasks) {
@@ -389,7 +390,9 @@ function renderTable(tasks) {
   els.taskTable.innerHTML = tasks.map((task) => {
     const stage = useAeoContext ? aeoWorkflowStage(task) : workflowStage(task);
     const action = useAeoContext ? aeoTableActionButton(task) : primaryActionButton(task);
-    return `<tr><td data-label="Model"><strong>${escapeHtml(taskTitle(task))}</strong></td><td data-label="Dealer"><span class="table-dealer"><span class="brand-badge">${escapeHtml(task.make || "Brand")}</span>${escapeHtml(task.dealer)}</span></td><td data-label="Stage">${stage}</td><td data-label="Inventory"><span class="inventory-cell">${escapeHtml(signalLabels[task.inventorySignal] || task.inventorySignal)}</span></td><td data-label="Action"><div class="row-actions">${action}</div></td></tr>`;
+    const brandOverride = brandAccentOverrides[task.make];
+    const badgeStyle = brandOverride ? ` style="background:${brandOverride.ink};color:${brandOverride.visible}"` : "";
+    return `<tr><td data-label="Model"><strong>${escapeHtml(taskTitle(task))}</strong></td><td data-label="Dealer"><span class="table-dealer"><span class="brand-badge"${badgeStyle}>${escapeHtml(task.make || "Brand")}</span>${escapeHtml(task.dealer)}</span></td><td data-label="Stage">${stage}</td><td data-label="Inventory"><span class="inventory-cell">${escapeHtml(signalLabels[task.inventorySignal] || task.inventorySignal)}</span></td><td data-label="Action"><div class="row-actions">${action}</div></td></tr>`;
   }).join("");
 }
 
