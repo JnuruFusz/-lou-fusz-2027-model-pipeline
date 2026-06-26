@@ -71,7 +71,7 @@ function configureInviteOnboarding() {
     }
 
     body[data-theme="light"] .auth-screen {
-      background: linear-gradient(180deg, #eef4fb, #f5f8fc);
+      background: linear-gradient(180deg, #f5f1eb, #f0ebe3);
     }
 
     .auth-shell {
@@ -134,7 +134,7 @@ function configureInviteOnboarding() {
     }
 
     body[data-theme="light"] .profile-preview {
-      background: #f0f4f8;
+      background: #ede9e4;
       border-color: var(--line);
     }
 

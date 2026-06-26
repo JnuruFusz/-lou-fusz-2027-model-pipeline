@@ -126,7 +126,7 @@ body[data-workspace-view="my_work"] .builder-detail-panel h2 {
 body[data-theme="light"] .integration-row,
 body[data-theme="light"] .team-table-row,
 body[data-theme="light"] .team-table-head {
-  background: #ffffff !important;
+  background: #fffcf8 !important;
   border-color: var(--line) !important;
   color: var(--ink) !important;
 }
@@ -148,7 +148,7 @@ body[data-theme="light"] .team-table-row span {
 
 /* Light theme: status pills, badges, count pills */
 body[data-theme="light"] :is(.count-pill, .status, .settings-status, .resource-status, .signal) {
-  background: #edf2f7 !important;
+  background: #ede8e1 !important;
   color: var(--muted) !important;
 }
 
@@ -184,26 +184,26 @@ body[data-theme="light"] .aeo-in_progress {
 }
 
 body[data-theme="light"] :is(.aeo-not_started, .aeo-not_needed, .status-ignored, .status-snoozed) {
-  background: #edf2f7 !important;
+  background: #ede8e1 !important;
   color: var(--muted) !important;
 }
 
 /* Light theme: table headers */
 body[data-theme="light"] th {
-  background: #f5f8fb !important;
+  background: #f2ede7 !important;
   color: var(--muted) !important;
   border-bottom-color: var(--line) !important;
 }
 
 /* Light theme: owner avatar */
 body[data-theme="light"] .owner-avatar {
-  background: #dbe4ea !important;
+  background: #d9d0c8 !important;
   color: var(--ink) !important;
 }
 
 /* Light theme: permission grid, resource rule list, resource mini grid */
 body[data-theme="light"] :is(.permission-grid div, .resource-rule-list div, .resource-mini-grid span) {
-  background: #f5f8fb !important;
+  background: #f2ede7 !important;
   border-color: var(--line) !important;
   color: var(--ink) !important;
 }

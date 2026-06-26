@@ -197,7 +197,7 @@ const embeddedSources = [
       }
 
       body[data-theme="light"][data-workspace-view="my_work"] .workbench-live-card {
-        background: #ffffff !important;
+        background: #fffcf8 !important;
         color: var(--ink) !important;
         border-top-color: var(--line) !important;
       }

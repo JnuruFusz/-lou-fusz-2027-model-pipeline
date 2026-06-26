@@ -43,7 +43,7 @@ body[data-theme="light"] .workbench-detail-actions {
    no future hardcoded dark value can bleed through.
    ========================================================= */
 html body[data-theme="light"] .workbench-group-head {
-  background: #f0f4f8 !important;
+  background: #ede9e4 !important;
   color: var(--ink) !important;
 }
 html body[data-theme="light"] .workbench-group-head:hover {
@@ -59,7 +59,7 @@ html body[data-theme="light"] .workbench-group-more {
 }
 html body[data-theme="light"] .workbench-section,
 html body[data-theme="light"] .workbench-queue {
-  background: #ffffff !important;
+  background: #fffcf8 !important;
 }
 html body[data-theme="light"] .workbench-row {
   background: transparent !important;
@@ -67,10 +67,10 @@ html body[data-theme="light"] .workbench-row {
   border-top-color: var(--line) !important;
 }
 html body[data-theme="light"] .workbench-row:hover:not(.is-selected) {
-  background: #f5f8fb !important;
+  background: #f2ede7 !important;
 }
 html body[data-theme="light"] .workbench-live-card {
-  background: #ffffff !important;
+  background: #fffcf8 !important;
   color: var(--ink) !important;
 }
 html body[data-theme="light"] .workbench-live-card:hover {
@@ -84,14 +84,14 @@ html body[data-theme="light"] .workbench-live-action {
   color: var(--blue) !important;
 }
 html body[data-theme="light"] .workbench-checklist {
-  background: #f8fafc !important;
+  background: #f5f1eb !important;
 }
 html body[data-theme="light"] .workbench-detail-actions {
-  background: #f0f4f8 !important;
+  background: #ede9e4 !important;
 }
 html body[data-theme="light"] .workbench-next-step {
   background: var(--blue-soft) !important;
 }
 html body[data-theme="light"] .workbench-ai-result {
-  background: #f8fafc !important;
+  background: #f5f1eb !important;
 }

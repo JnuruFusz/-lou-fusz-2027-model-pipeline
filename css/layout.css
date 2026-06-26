@@ -440,7 +440,7 @@ body[data-workspace-view="settings"] .header-search {
 
 /* Light theme: auth screen */
 body[data-theme="light"] .auth-screen {
-  background: linear-gradient(180deg, #eef4fb, #f5f8fc);
+  background: linear-gradient(180deg, #f5f1eb, #f0ebe3);
 }
 
 body[data-theme="light"] .auth-shell {

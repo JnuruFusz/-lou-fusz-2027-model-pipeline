@@ -375,7 +375,7 @@
       /* Light theme overrides — scoped here so injected style wins cascade */
       html body[data-theme="light"] .workbench-section,
       html body[data-theme="light"] .workbench-queue {
-        background: #ffffff !important;
+        background: #fffcf8 !important;
         border-color: var(--line) !important;
       }
 
@@ -386,13 +386,13 @@
       }
 
       body[data-theme="light"] .workbench-section-head {
-        background: #f0f4f8 !important;
+        background: #ede9e4 !important;
         color: var(--muted) !important;
         border-bottom-color: var(--line) !important;
       }
 
       body[data-theme="light"] .workbench-row:hover:not(.is-selected) {
-        background: #f5f8fb !important;
+        background: #f2ede7 !important;
       }
 
       body[data-theme="light"] .workbench-row.is-selected {
@@ -401,7 +401,7 @@
       }
 
       body[data-theme="light"] .workbench-checklist {
-        background: #f8fafc !important;
+        background: #f5f1eb !important;
         border-color: var(--line) !important;
       }
 
@@ -410,19 +410,19 @@
       }
 
       body[data-theme="light"] .workbench-ai-result {
-        background: #f8fafc !important;
+        background: #f5f1eb !important;
         border-color: var(--line) !important;
         color: var(--muted) !important;
       }
 
       body[data-theme="light"] .workbench-return-note textarea {
-        background: #ffffff !important;
+        background: #fffcf8 !important;
         color: var(--ink) !important;
         border-color: var(--line) !important;
       }
 
       body[data-theme="light"] .workbench-detail-actions {
-        background: #f0f4f8 !important;
+        background: #ede9e4 !important;
         border-top-color: var(--line) !important;
       }
 

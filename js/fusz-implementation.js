@@ -254,7 +254,7 @@
       }
 
       body[data-theme="light"] .feed-health-list div {
-        background: #f0f4f8 !important;
+        background: #ede9e4 !important;
         border-color: var(--line) !important;
       }
 
@@ -264,7 +264,7 @@
       }
 
       body[data-theme="light"] .rooftop-form input {
-        background: #ffffff !important;
+        background: #fffcf8 !important;
         color: var(--ink) !important;
       }
 

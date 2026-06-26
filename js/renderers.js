@@ -166,7 +166,7 @@ function installMyWorkGroupingStyles() {
     }
 
     body[data-theme="light"] .workbench-group-head {
-      background: #f0f4f8 !important;
+      background: #ede9e4 !important;
       color: var(--ink) !important;
     }
 
