@@ -78,3 +78,46 @@ body[data-workspace-view=my_work] .summary-grid{grid-template-columns:repeat(3,m
 .button-quiet:hover {
   border-color: rgba(106, 168, 255, 0.42);
 }
+
+
+/* My Work premium polish */
+.metric {
+  border-left: 3px solid transparent;
+  border-bottom: 1px solid var(--line);
+}
+
+.metric:after {
+  display: none !important;
+}
+
+.summary-grid .metric:nth-child(1) { border-left-color: var(--green); }
+.summary-grid .metric:nth-child(2) { border-left-color: var(--blue); }
+.summary-grid .metric:nth-child(3) { border-left-color: var(--red); }
+.summary-grid .metric:nth-child(4) { border-left-color: var(--violet); }
+
+.metric strong {
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: -.03em;
+  line-height: 1;
+}
+
+.metric-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+body[data-workspace-view="my_work"] .builder-queue-panel .section-heading h2 {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -.025em;
+}
+
+body[data-workspace-view="my_work"] .builder-detail-panel h2 {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -.02em;
+  line-height: 1.2;
+}

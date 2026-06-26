@@ -35,7 +35,8 @@
       }
 
       body[data-workspace-view="my_work"] .builder-queue-panel .section-heading h2 {
-        font-size: 24px;
+        font-size: 22px;
+        letter-spacing: -.02em;
       }
 
       body[data-workspace-view="my_work"] .builder-queue-panel .count-pill {
@@ -66,44 +67,57 @@
         display: flex;
         justify-content: space-between;
         gap: 12px;
-        padding: 7px 12px 5px;
+        padding: 8px 14px 7px;
+        background: #161616;
+        border-bottom: 1px solid var(--line);
         color: var(--muted);
         font-size: 10px;
         font-weight: 850;
-        letter-spacing: .04em;
+        letter-spacing: .06em;
         text-transform: uppercase;
+      }
+
+      .workbench-section-head span:last-child {
+        font-variant-numeric: tabular-nums;
+        opacity: .55;
       }
 
       .workbench-row {
         display: grid;
-        grid-template-columns: 8px minmax(0, 1fr);
-        gap: 10px;
+        grid-template-columns: 3px minmax(0, 1fr);
+        gap: 13px;
         align-items: center;
-        min-height: 58px;
-        padding: 9px 12px;
+        min-height: 64px;
+        padding: 10px 14px 10px 0;
         border-top: 1px solid var(--line);
         color: var(--text);
         cursor: pointer;
+        transition: background 120ms ease;
+      }
+
+      .workbench-row:hover:not(.is-selected) {
+        background: rgba(255, 255, 255, .025);
       }
 
       .workbench-row.is-selected {
-        background: color-mix(in srgb, var(--panel) 74%, var(--blue));
+        background: rgba(47, 114, 214, .09);
         box-shadow: inset 3px 0 0 var(--action-blue, var(--blue));
       }
 
       .workbench-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 999px;
-        background: var(--amber);
+        align-self: stretch;
+        width: 3px;
+        height: auto;
+        border-radius: 0;
+        background: var(--row-accent, var(--amber));
       }
 
       .workbench-dot.is-dim {
-        opacity: .45;
+        opacity: .3;
       }
 
       .workbench-dot.is-verify {
-        background: var(--blue);
+        background: var(--row-accent, var(--blue));
       }
 
       .workbench-dot.is-blocked {
@@ -123,6 +137,7 @@
         font-size: 14px;
         font-weight: 850;
         line-height: 1.25;
+        letter-spacing: -.01em;
       }
 
       .workbench-meta {
@@ -139,11 +154,12 @@
       }
 
       .workbench-detail-subtitle {
-        margin: 8px 0 16px;
+        margin: 6px 0 18px;
         color: var(--muted);
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 700;
         line-height: 1.4;
+        letter-spacing: .01em;
       }
 
       body[data-workspace-view="my_work"] .selected-task-status {
@@ -152,9 +168,10 @@
 
       .workbench-next-step {
         margin: 0 0 16px;
-        padding: 12px 0 12px 14px;
+        padding: 12px 14px 12px 16px;
         border-left: 3px solid var(--action-blue, var(--blue));
-        background: rgba(47, 114, 214, .07);
+        border-radius: 0 8px 8px 0;
+        background: rgba(47, 114, 214, .09);
       }
 
       .workbench-next-step span,
@@ -246,6 +263,11 @@
       .workbench-step.is-current {
         color: var(--text);
         font-weight: 850;
+      }
+
+      .workbench-step:has(.workbench-check.is-done) {
+        background: rgba(78, 216, 149, .04);
+        color: var(--muted);
       }
 
       .workbench-check {
@@ -427,7 +449,8 @@
   function renderMyWorkRow(task, tone, selected) {
     if (!isRenderableTask(task)) return "";
     const dotClass = ["workbench-dot", tone === "verify" ? "is-verify" : "", tone === "blocked" ? "is-blocked" : "", tone === "ready" && task.aeoStatus !== "done" ? "is-dim" : ""].filter(Boolean).join(" ");
-    return `<article class="workbench-row${selected ? " is-selected" : ""}" data-workbench-task="${escapeAttr(task.id)}"><span class="${dotClass}"></span><div><span class="workbench-title">${escapeHtml(taskTitle(task))}</span><span class="workbench-meta">${escapeHtml(workbenchMeta(task, tone))}</span></div></article>`;
+    const accentColor = task.accent || (tone === "verify" ? "var(--blue)" : tone === "blocked" ? "var(--red)" : "var(--amber)");
+    return `<article class="workbench-row${selected ? " is-selected" : ""}" data-workbench-task="${escapeAttr(task.id)}" style="--row-accent:${accentColor}"><span class="${dotClass}"></span><div><span class="workbench-title">${escapeHtml(taskTitle(task))}</span><span class="workbench-meta">${escapeHtml(workbenchMeta(task, tone))}</span></div></article>`;
   }
 
   function workbenchMeta(task, tone) {
