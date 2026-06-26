@@ -76,6 +76,7 @@ body[data-workspace-view="my_work"] .builder-queue-panel .count-pill {
 
 .workbench-section-head {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 12px;
   padding: 8px 14px 7px;
