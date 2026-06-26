@@ -66,6 +66,9 @@ const dealerNameAliases = {
   "terre haute kia": "Lou Fusz Kia Terre Haute",
   "mazda evansville": "Lou Fusz Mazda Evansville",
   "nissan moline": "Lou Fusz Nissan Moline",
+  "nissan of moline": "Lou Fusz Nissan Moline",
+  "mazda of evansville": "Lou Fusz Mazda Evansville",
+  "lou fusz evansville": "Lou Fusz Mazda Evansville",
   "subaru st louis": "Lou Fusz Subaru St. Louis",
   "lou fusz subaru st louis": "Lou Fusz Subaru St. Louis",
   "subaru st peters": "Lou Fusz Subaru O'Fallon",
@@ -350,14 +353,20 @@ function normalizeInventoryRow(row, file) {
   const inventoryUrl = row.inventory_url || row.vdp_url || row.vdp_urls || "";
   const stockDate = row.last_updated || row.updated_at || row.date_in_stock || row.date_instock || row.date_instock_raw || "";
 
+  const rawModel = String(row.model || "").trim();
+  const rawMake = String(row.make || "").trim();
+  const model = rawMake && rawModel.toLowerCase().startsWith(rawMake.toLowerCase() + " ")
+    ? rawModel.slice(rawMake.length).trim()
+    : rawModel;
+
   return {
     ...row,
     dealer,
     dealership_name: dealer,
     year: row.year,
-    make: row.make,
-    model: row.model,
-    trim: row.trim,
+    make: rawMake,
+    model,
+    trim: String(row.trim || "").trim(),
     status: vehicleStatus,
     vehicle_status: vehicleStatus,
     stock_number: row.stock_number,
