@@ -43,12 +43,20 @@ const dealerAccents = {
 };
 
 const brandAccentOverrides = {
-  Kia: { accent: "#05141F", visible: "#05141F", ink: "#d7e6f2" },
-  Mazda: { accent: "#808080", visible: "#808080", ink: "#eeeeee" },
-  Chrysler: { accent: "#203B68", visible: "#203B68", ink: "#c9dcff" },
-  Dodge: { accent: "#DA0000", visible: "#DA0000", ink: "#ffd1d1" },
-  Jeep: { accent: "#424D07", visible: "#424D07", ink: "#e3ef9a" },
-  Ram: { accent: "#767676", visible: "#767676", ink: "#eeeeee" },
+  Kia:       { accent: "#05141F", visible: "#05141F", ink: "#d7e6f2" },
+  Mazda:     { accent: "#808080", visible: "#808080", ink: "#eeeeee" },
+  Chrysler:  { accent: "#203B68", visible: "#203B68", ink: "#c9dcff" },
+  Dodge:     { accent: "#DA0000", visible: "#DA0000", ink: "#ffd1d1" },
+  Jeep:      { accent: "#424D07", visible: "#424D07", ink: "#e3ef9a" },
+  Ram:       { accent: "#767676", visible: "#767676", ink: "#eeeeee" },
+  Toyota:    { accent: "#eb0a1e", visible: "#eb0a1e", ink: "#ffe0e0" },
+  Buick:     { accent: "#005daa", visible: "#005daa", ink: "#c9e0ff" },
+  Chevrolet: { accent: "#c8a95a", visible: "#a07a20", ink: "#fff4d8" },
+  GMC:       { accent: "#005daa", visible: "#005daa", ink: "#c9e0ff" },
+  Ford:      { accent: "#003478", visible: "#003478", ink: "#c9d8ff" },
+  Nissan:    { accent: "#c3002f", visible: "#c3002f", ink: "#ffe0e8" },
+  Subaru:    { accent: "#013c74", visible: "#013c74", ink: "#c9deff" },
+  RAM:       { accent: "#767676", visible: "#767676", ink: "#eeeeee" },
 };
 
 const transitions = {

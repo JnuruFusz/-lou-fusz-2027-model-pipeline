@@ -181,7 +181,8 @@ function groupMyWorkSections() {
       wrapper.dataset.workbenchGroup = group.groupName;
       wrapper.dataset.workbenchGroupKey = groupKey;
       const heavyClass = group.rows.length >= MY_WORK_HEAVY_GROUP_THRESHOLD ? " heavy" : "";
-      wrapper.innerHTML = `<button class="workbench-group-head" type="button" data-workbench-group-toggle="${escapeAttr(groupKey)}" aria-expanded="${String(!collapsed)}"><span class="workbench-group-chevron${collapsed ? " collapsed" : ""}">⌄</span><span class="workbench-group-name">${escapeHtml(group.groupName)}</span><span class="workbench-group-count${heavyClass}">${group.rows.length}</span></button><div class="workbench-group-items"${collapsed ? " hidden" : ""}></div>`;
+      const groupAccent = (brandAccentOverrides[group.groupName]?.accent) || "#9aa0aa";
+      wrapper.innerHTML = `<button class="workbench-group-head" type="button" data-workbench-group-toggle="${escapeAttr(groupKey)}" aria-expanded="${String(!collapsed)}" style="--group-accent:${groupAccent}"><span class="workbench-group-bar"></span><span class="workbench-group-chevron${collapsed ? " collapsed" : ""}"></span><span class="workbench-group-name">${escapeHtml(group.groupName)}</span><span class="workbench-group-count${heavyClass}">${group.rows.length}</span></button><div class="workbench-group-items"${collapsed ? " hidden" : ""}></div>`;
       const items = wrapper.querySelector(".workbench-group-items");
       group.rows.forEach((row) => {
         cleanMyWorkRow(row, titleCounts[myWorkRowTitleKey(row)] > 1);
