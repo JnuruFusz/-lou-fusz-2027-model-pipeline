@@ -67,7 +67,7 @@ function configureInviteOnboarding() {
       display: grid;
       place-items: center;
       padding: 24px;
-      background: #151515;
+      background: var(--bg); /* page bg token — dark: #151515, light: overridden below */
     }
 
     body[data-theme="light"] .auth-screen {

@@ -119,7 +119,7 @@
       .resource-status.status-amber {
         border-color: rgba(255, 206, 91, 0.28);
         background: rgba(255, 206, 91, 0.08);
-        color: #e8c66f;
+        color: var(--amber); /* amber token — theme-aware */
       }
 
       .rooftops-manager {

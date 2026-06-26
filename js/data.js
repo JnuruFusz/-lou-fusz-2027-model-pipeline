@@ -138,8 +138,8 @@ const embeddedSources = [
         padding: 14px 12px 15px;
         border: 0;
         border-top: 1px solid var(--line);
-        background: #1b1b1b;
-        color: var(--text);
+        background: var(--panel); /* dark panel — flips to white in light theme */
+        color: var(--ink);
         cursor: pointer;
         font: inherit;
         text-align: left;
@@ -168,7 +168,7 @@ const embeddedSources = [
         padding: 0 8px;
         border-radius: 999px;
         background: rgba(255, 206, 91, .12);
-        color: #e8c66f;
+        color: var(--amber); /* amber token — theme-aware */
         font-size: 11px;
         font-weight: 950;
       }
@@ -191,7 +191,7 @@ const embeddedSources = [
 
       body[data-workspace-view="my_work"] .workbench-live-action {
         justify-self: start;
-        color: #8ec1ff;
+        color: var(--blue); /* blue token — theme-aware */
         font-size: 12px;
         font-weight: 850;
       }
