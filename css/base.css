@@ -35,3 +35,63 @@ body[data-theme="light"] .workbench-step:has(.workbench-check.is-done) {
 body[data-theme="light"] .workbench-detail-actions {
   background: var(--soft-line) !important;
 }
+
+/* =========================================================
+   MASTER LIGHT THEME RESET — My Work workbench
+   Covers all injected styles from data.js, renderers.js,
+   my-work-workbench.js, and fusz-implementation.js so
+   no future hardcoded dark value can bleed through.
+   ========================================================= */
+html body[data-theme="light"] .workbench-group-head {
+  background: #f0f4f8 !important;
+  color: var(--ink) !important;
+}
+html body[data-theme="light"] .workbench-group-head:hover {
+  background: var(--blue-soft) !important;
+}
+html body[data-theme="light"] .workbench-group-count.heavy {
+  background: #e2e8f0 !important;
+  color: var(--ink) !important;
+}
+html body[data-theme="light"] .workbench-group-more {
+  color: var(--blue) !important;
+  border-top-color: var(--line) !important;
+}
+html body[data-theme="light"] .workbench-section,
+html body[data-theme="light"] .workbench-queue {
+  background: #ffffff !important;
+}
+html body[data-theme="light"] .workbench-row {
+  background: transparent !important;
+  color: var(--ink) !important;
+  border-top-color: var(--line) !important;
+}
+html body[data-theme="light"] .workbench-row:hover:not(.is-selected) {
+  background: #f5f8fb !important;
+}
+html body[data-theme="light"] .workbench-live-card {
+  background: #ffffff !important;
+  color: var(--ink) !important;
+}
+html body[data-theme="light"] .workbench-live-card:hover {
+  background: var(--blue-soft) !important;
+}
+html body[data-theme="light"] .workbench-live-count {
+  background: var(--amber-soft) !important;
+  color: var(--amber) !important;
+}
+html body[data-theme="light"] .workbench-live-action {
+  color: var(--blue) !important;
+}
+html body[data-theme="light"] .workbench-checklist {
+  background: #f8fafc !important;
+}
+html body[data-theme="light"] .workbench-detail-actions {
+  background: #f0f4f8 !important;
+}
+html body[data-theme="light"] .workbench-next-step {
+  background: var(--blue-soft) !important;
+}
+html body[data-theme="light"] .workbench-ai-result {
+  background: #f8fafc !important;
+}

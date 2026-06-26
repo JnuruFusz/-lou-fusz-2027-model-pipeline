@@ -106,8 +106,8 @@ function installMyWorkGroupingStyles() {
       min-height: 40px;
       padding: 8px 12px;
       border: 0;
-      background: #171717;
-      color: var(--text);
+      background: var(--bg);
+      color: var(--ink);
       cursor: pointer;
       font: inherit;
       text-align: left;
@@ -139,8 +139,8 @@ function installMyWorkGroupingStyles() {
     .workbench-group-count.heavy {
       padding: 2px 6px;
       border-radius: 999px;
-      background: rgba(255,255,255,.08);
-      color: var(--text);
+      background: var(--soft-line);
+      color: var(--ink);
       font-weight: 950;
     }
 
@@ -160,9 +160,23 @@ function installMyWorkGroupingStyles() {
       min-height: 34px;
       padding: 9px 12px;
       border-top: 1px solid var(--line);
-      color: #8ec1ff;
+      color: var(--blue);
       font-size: 11px;
       font-weight: 850;
+    }
+
+    body[data-theme="light"] .workbench-group-head {
+      background: #f0f4f8 !important;
+      color: var(--ink) !important;
+    }
+
+    body[data-theme="light"] .workbench-group-head:hover {
+      background: var(--blue-soft) !important;
+    }
+
+    body[data-theme="light"] .workbench-group-count.heavy {
+      background: #e2e8f0 !important;
+      color: var(--ink) !important;
     }
   `;
   document.head.append(style);
