@@ -22,10 +22,10 @@
 
 
   function focusCta(task) {
-    if (task.pageStatus === "page_built") return ["Mark Page Live", "live"];
-    if (task.pageStatus === "seo_done") return ["Start Build", "needs_build"];
-    if (task.pageStatus === "needs_build") return ["Mark Built", "page_built"];
-    if (task.pageStatus === "needs_review") return ["Keep Live", "live"];
+    if (task.pageStatus === "page_built") return ["Mark live ↑", "live"];
+    if (task.pageStatus === "seo_done") return ["Start build →", "needs_build"];
+    if (task.pageStatus === "needs_build") return ["Mark built ↑", "page_built"];
+    if (task.pageStatus === "needs_review") return ["Keep live", "live"];
     return ["Review", "live"];
   }
 
