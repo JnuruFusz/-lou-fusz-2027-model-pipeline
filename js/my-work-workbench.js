@@ -489,10 +489,34 @@
       work,
       groups: [
         ["Ready to build", "ready", work.filter((task) => ["seo_done", "needs_build"].includes(task.pageStatus))],
-        ["Ready to verify", "verify", work.filter((task) => task.pageStatus === "page_built")],
+        ["Needs live check", "verify", work.filter((task) => task.pageStatus === "page_built")],
         ["Returned or blocked", "blocked", work.filter((task) => task.pageStatus === "needs_review")],
       ],
     };
+  }
+
+
+  function focusCta(task) {
+    if (task.pageStatus === "page_built") return ["Mark Page Live", "live"];
+    if (task.pageStatus === "seo_done") return ["Start Build", "needs_build"];
+    if (task.pageStatus === "needs_build") return ["Mark Built", "page_built"];
+    if (task.pageStatus === "needs_review") return ["Keep Live", "live"];
+    return ["Review", "live"];
+  }
+
+  function renderFocusCard(task) {
+    if (!task) return "";
+    const step = builderNextStep(task);
+    const [ctaLabel, ctaStatus] = focusCta(task);
+    return `<div class="workbench-focus" data-workbench-task="${escapeAttr(task.id)}">
+      <div class="workbench-focus-eyebrow">Your next action</div>
+      <div class="workbench-focus-title">${escapeHtml(taskTitle(task))}</div>
+      <div class="workbench-focus-step">${escapeHtml(step)}</div>
+      <div class="workbench-focus-bar">
+        <button class="workbench-focus-cta" type="button" data-status="${escapeAttr(ctaStatus)}" data-task-id="${escapeAttr(task.id)}">${escapeHtml(ctaLabel)}</button>
+        <a class="workbench-focus-ghost" href="#">Open SEO doc</a>
+      </div>
+    </div>`;
   }
 
   function renderMyWorkSection([label, tone, tasks = []], selectedId) {
@@ -582,12 +606,20 @@
     const { work, groups } = myWorkGroups(safeTasks);
     const selected = work.find(isRenderableTask) || null;
     if (els.myWorkCount) {
-      const completedToday = Math.min(3, safeTasks.filter((task) => task.pageStatus === "live").length);
-      els.myWorkCount.textContent = `${completedToday} completed today | ${work.length} remaining`;
+      const nBuild = work.filter((t) => ["seo_done", "needs_build"].includes(t.pageStatus)).length;
+      const nVerify = work.filter((t) => t.pageStatus === "page_built").length;
+      const nBlocked = work.filter((t) => t.pageStatus === "needs_review").length;
+      const parts = [];
+      if (nBuild)   parts.push(`${nBuild} to build`);
+      if (nVerify)  parts.push(`${nVerify} to verify`);
+      if (nBlocked) parts.push(`${nBlocked} blocked`);
+      els.myWorkCount.textContent = parts.length ? parts.join(" · ") : "All clear";
     }
     if (els.myWorkList) {
       els.myWorkList.className = "workbench-queue";
-      els.myWorkList.innerHTML = work.length ? groups.map((group) => renderMyWorkSection(group, selected?.id)).join("") : `<div class="empty">No builder tasks match the current filters.</div>`;
+      els.myWorkList.innerHTML = work.length
+        ? renderFocusCard(selected) + groups.map((group) => renderMyWorkSection(group, selected?.id)).join("")
+        : `<div class="empty">No builder tasks match the current filters.</div>`;
     }
     renderBuilderDetail(selected);
   };
