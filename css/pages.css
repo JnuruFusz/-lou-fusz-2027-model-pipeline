@@ -9,3 +9,72 @@ body[data-workspace-view=my_work] .summary-grid{grid-template-columns:repeat(3,m
 .admin-row,.pipeline-snapshot article,.integration-row,.team-table-row,.team-table-head{display:grid;align-items:center;gap:14px;min-height:54px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:#1b1b1b}.admin-row{grid-template-columns:minmax(0,1fr) auto}.pipeline-snapshot article{grid-template-columns:minmax(130px,1fr) minmax(130px,1fr) auto}.pipeline-snapshot em{color:var(--muted);font-size:12px;font-style:normal;font-weight:800}.admin-permission-note{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}.permission-grid,.quiet-hours-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.permission-grid div,.resource-rule-list div,.resource-mini-grid span{padding:12px;border:1px solid var(--line);border-radius:8px;background:#1b1b1b}.resource-mini-grid{grid-template-columns:repeat(2,minmax(0,1fr));margin:16px 0}.resource-card-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px}.settings-shell{width:100%;max-width:1100px;margin:0 auto}.settings-page-header{margin-bottom:14px}.settings-section-head{margin-bottom:10px}.account-summary{display:flex;align-items:center;gap:12px;margin-bottom:2px;padding-bottom:12px;border-bottom:1px solid var(--line)}.settings-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,auto);align-items:center;gap:14px;min-height:48px;padding:10px 0;border-bottom:1px solid var(--line)}.settings-section .settings-row:last-child{border-bottom:0}.settings-control,.quiet-hours-grid input,.quiet-hours-grid select{width:min(260px,100%);min-height:34px;padding:0 12px;border:1px solid var(--line);border-radius:7px;background:#1b1b1b;color:var(--text);font:inherit;font-size:13px;font-weight:750}.role-badge-list{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:8px}.integration-row{grid-template-columns:minmax(0,1fr) auto auto}.integration-identity{display:flex;align-items:center;gap:12px;min-width:0}.team-table{gap:8px}.team-table-head,.team-table-row{grid-template-columns:minmax(120px,1fr) minmax(180px,1.2fr) minmax(120px,1fr) auto auto}.team-table-head{min-height:28px;padding-top:0;color:var(--muted);font-size:11px;font-weight:850;text-transform:uppercase;background:transparent;border-color:transparent}
 .table-section{margin-top:22px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:8px;background:var(--panel)}table{width:100%;min-width:900px;border-collapse:collapse}th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}th{position:sticky;top:0;z-index:1;background:#1b1b1b;color:var(--muted);font-size:12px;text-transform:uppercase}tr:last-child td{border-bottom:0}.table-dealer{display:inline-flex;align-items:center;gap:8px}.inventory-cell,.table-dealer{color:var(--muted);font-size:13px;font-weight:800}.empty{padding:18px;border:1px dashed var(--line);border-radius:8px;color:var(--muted);background:rgba(var(--panel-rgb),.6)}
 @media(max-width:980px){.summary-grid,body[data-workspace-view=my_work] .summary-grid,.board,#myWorkPanel,body[data-workspace-view=admin] #adminPanel,.resource-hub-grid,.permission-grid,.quiet-hours-grid,.integration-row,.team-table-head,.team-table-row{grid-template-columns:1fr!important}.integration-action,.settings-control,.quiet-hours-grid input,.quiet-hours-grid select{width:100%}.toolbar,.resource-actions,.focus-actions,.tag-stack{align-items:stretch}}
+
+/* Visual restore: bring the page layer back toward the original Fusz+ dashboard polish. */
+.builder-panel,
+.work-card,
+.watch-card,
+.automation-card,
+.resource-card,
+.settings-section,
+.task,
+.table-wrap {
+  border-radius: 10px;
+}
+
+.builder-panel {
+  border-radius: 12px;
+}
+
+.work-card h3,
+.watch-card h3,
+.resource-card h3,
+.automation-card h3 {
+  font-weight: 650;
+}
+
+.section-note,
+.panel-subtitle,
+.work-card p,
+.watch-card p,
+.automation-card p,
+.resource-card p,
+.settings-section-head p,
+.settings-note,
+.settings-row span,
+.integration-row span,
+.team-table-row span {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.queue-reason,
+.task-meta,
+.inventory-cell,
+.table-dealer {
+  font-weight: 700;
+}
+
+.button-primary-action {
+  border-color: var(--action-blue, var(--blue));
+  background: var(--action-blue, var(--blue));
+  color: #fff;
+}
+
+.button-secondary-action {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: #1b1b1b;
+  color: var(--ink);
+}
+
+.button-quiet {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: transparent;
+  color: var(--muted);
+}
+
+.button-primary-action:hover,
+.button-secondary-action:hover,
+.button-quiet:hover {
+  border-color: rgba(106, 168, 255, 0.42);
+}
