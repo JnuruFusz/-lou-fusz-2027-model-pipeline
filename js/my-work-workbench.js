@@ -372,6 +372,53 @@
         }
       }
 
+      /* Light theme overrides — scoped here so injected style wins cascade */
+      body[data-theme="light"] .workbench-section {
+        background: #ffffff !important;
+        border-color: var(--line) !important;
+      }
+
+      body[data-theme="light"] .workbench-section-head {
+        background: #f0f4f8 !important;
+        color: var(--muted) !important;
+        border-bottom-color: var(--line) !important;
+      }
+
+      body[data-theme="light"] .workbench-row:hover:not(.is-selected) {
+        background: #f5f8fb !important;
+      }
+
+      body[data-theme="light"] .workbench-row.is-selected {
+        background: var(--blue-soft) !important;
+        box-shadow: inset 3px 0 0 var(--blue) !important;
+      }
+
+      body[data-theme="light"] .workbench-checklist {
+        background: #f8fafc !important;
+        border-color: var(--line) !important;
+      }
+
+      body[data-theme="light"] .workbench-step:has(.workbench-check.is-done) {
+        background: var(--green-soft) !important;
+      }
+
+      body[data-theme="light"] .workbench-ai-result {
+        background: #f8fafc !important;
+        border-color: var(--line) !important;
+        color: var(--muted) !important;
+      }
+
+      body[data-theme="light"] .workbench-return-note textarea {
+        background: #ffffff !important;
+        color: var(--ink) !important;
+        border-color: var(--line) !important;
+      }
+
+      body[data-theme="light"] .workbench-detail-actions {
+        background: #f0f4f8 !important;
+        border-top-color: var(--line) !important;
+      }
+
       @media (max-width: 760px) {
         body[data-workspace-view="my_work"] #myWorkPanel {
           grid-template-columns: 1fr;

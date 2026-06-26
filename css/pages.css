@@ -121,3 +121,27 @@ body[data-workspace-view="my_work"] .builder-detail-panel h2 {
   letter-spacing: -.02em;
   line-height: 1.2;
 }
+
+/* Light theme: fix dark-hardcoded integration and team table rows */
+body[data-theme="light"] .integration-row,
+body[data-theme="light"] .team-table-row,
+body[data-theme="light"] .team-table-head {
+  background: #ffffff !important;
+  border-color: var(--line) !important;
+  color: var(--ink) !important;
+}
+
+body[data-theme="light"] .team-table-head {
+  background: transparent !important;
+  color: var(--muted) !important;
+}
+
+body[data-theme="light"] .integration-identity strong,
+body[data-theme="light"] .team-table-row strong {
+  color: var(--ink) !important;
+}
+
+body[data-theme="light"] .integration-identity span,
+body[data-theme="light"] .team-table-row span {
+  color: var(--muted) !important;
+}

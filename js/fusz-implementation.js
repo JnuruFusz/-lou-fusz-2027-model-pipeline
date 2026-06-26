@@ -93,7 +93,7 @@
         padding: 10px;
         border: 1px solid var(--line);
         border-radius: 8px;
-        background: #1b1b1b;
+        background: var(--panel);
       }
 
       .feed-health-list span,
@@ -168,8 +168,8 @@
         min-height: 36px;
         border: 1px solid var(--line);
         border-radius: 7px;
-        background: #151515;
-        color: var(--text);
+        background: var(--bg);
+        color: var(--ink);
         box-sizing: border-box;
       }
 
@@ -222,7 +222,7 @@
         padding: 0;
         border: 1px solid var(--line);
         border-radius: 999px;
-        background: #303030;
+        background: var(--soft-line);
         cursor: pointer;
         transition: background 160ms ease, border-color 160ms ease;
       }
@@ -235,7 +235,7 @@
         width: 16px;
         height: 16px;
         border-radius: 999px;
-        background: #e8e8e8;
+        background: var(--ink);
         transition: transform 160ms ease;
       }
 
@@ -251,6 +251,21 @@
       .rooftop-status-switch:focus-visible {
         outline: 2px solid var(--blue);
         outline-offset: 2px;
+      }
+
+      body[data-theme="light"] .feed-health-list div {
+        background: #f0f4f8 !important;
+        border-color: var(--line) !important;
+      }
+
+      body[data-theme="light"] .rooftop-form {
+        background: var(--blue-soft) !important;
+        border-color: rgba(37, 99, 169, 0.22) !important;
+      }
+
+      body[data-theme="light"] .rooftop-form input {
+        background: #ffffff !important;
+        color: var(--ink) !important;
       }
 
       @media (max-width: 760px) {
