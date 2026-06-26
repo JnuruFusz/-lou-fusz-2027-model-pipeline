@@ -195,6 +195,29 @@ const embeddedSources = [
         font-size: 12px;
         font-weight: 850;
       }
+
+      body[data-theme="light"][data-workspace-view="my_work"] .workbench-live-card {
+        background: #ffffff !important;
+        color: var(--ink) !important;
+        border-top-color: var(--line) !important;
+      }
+
+      body[data-theme="light"][data-workspace-view="my_work"] .workbench-live-card:hover {
+        background: var(--blue-soft) !important;
+      }
+
+      body[data-theme="light"][data-workspace-view="my_work"] .workbench-live-count {
+        background: var(--amber-soft) !important;
+        color: var(--amber) !important;
+      }
+
+      body[data-theme="light"][data-workspace-view="my_work"] .workbench-live-title {
+        color: var(--ink) !important;
+      }
+
+      body[data-theme="light"][data-workspace-view="my_work"] .workbench-live-action {
+        color: var(--blue) !important;
+      }
     `;
     document.head.append(style);
   }

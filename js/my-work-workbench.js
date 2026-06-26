@@ -373,9 +373,16 @@
       }
 
       /* Light theme overrides — scoped here so injected style wins cascade */
-      body[data-theme="light"] .workbench-section {
+      html body[data-theme="light"] .workbench-section,
+      html body[data-theme="light"] .workbench-queue {
         background: #ffffff !important;
         border-color: var(--line) !important;
+      }
+
+      html body[data-theme="light"] .workbench-row {
+        background: transparent !important;
+        border-top-color: var(--line) !important;
+        color: var(--ink) !important;
       }
 
       body[data-theme="light"] .workbench-section-head {
