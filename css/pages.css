@@ -408,3 +408,62 @@ body[data-workspace-view="team_board"] #clearFiltersButton {
   color: var(--muted);
   text-transform: uppercase;
 }
+
+/* ---------------------------------------------------------------
+   Resources page polish
+   --------------------------------------------------------------- */
+
+/* Automation icon → small pill badge */
+.automation-icon {
+  width: auto;
+  height: auto;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .04em;
+  flex-shrink: 0;
+}
+
+/* Per-card accent colors via nth-child (DOC, INV, OEM, PING, AEO) */
+.resource-hub-grid article:nth-child(1) .automation-icon { background: var(--blue-soft);   color: var(--blue); }
+.resource-hub-grid article:nth-child(2) .automation-icon { background: var(--green-soft);  color: var(--green); }
+.resource-hub-grid article:nth-child(3) .automation-icon { background: var(--violet-soft); color: var(--violet); }
+.resource-hub-grid article:nth-child(4) .automation-icon { background: var(--amber-soft);  color: var(--amber); }
+.resource-hub-grid article:nth-child(5) .automation-icon { background: var(--soft-line, rgba(0,0,0,.06)); color: var(--muted); }
+
+/* Resource rule rows: label on top, value below */
+.resource-rule-list div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+}
+
+.resource-rule-list div > span {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.resource-rule-list div > strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+/* Mini stat boxes: slightly more padding, consistent with rule rows */
+.resource-mini-grid span {
+  padding: 12px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.35;
+}
