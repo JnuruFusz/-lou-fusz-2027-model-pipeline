@@ -60,8 +60,8 @@ const brandAccentOverrides = {
 };
 
 const transitions = {
-  needs_seo: [["seo_in_progress", "Start SEO"], ["seo_done", "Mark SEO Complete"], ["ignored", "Ignore"], ["snoozed", "Snooze"]],
-  seo_in_progress: [["seo_done", "Mark SEO Complete"], ["needs_seo", "Unclaim"]],
+  needs_seo: [["seo_in_progress", "Start SEO"], ["seo_done", "Mark SEO done"], ["ignored", "Ignore"], ["snoozed", "Snooze"]],
+  seo_in_progress: [["seo_done", "Mark SEO done"], ["needs_seo", "Unclaim"]],
   seo_done: [["needs_build", "Send To Build"], ["live", "Mark Already Live"]],
   needs_build: [["page_built", "Mark Page Built"], ["seo_done", "Return To SEO Done"]],
   page_built: [["live", "Mark Page Live"], ["needs_build", "Reopen"]],

@@ -318,22 +318,30 @@ body[data-workspace-view="admin"] #adminPanel {
    Team Pipeline page polish
    --------------------------------------------------------------- */
 
-/* Fix ACTION column clipping — enforce min-width so button never clips */
-body[data-workspace-view="team_board"] th:last-child,
-body[data-workspace-view="team_board"] td:last-child {
-  min-width: 175px;
-  width: 175px;
-  white-space: nowrap;
+/* Fix ACTION column — use fixed layout with explicit column widths */
+body[data-workspace-view="team_board"] .table-wrap table {
+  table-layout: fixed;
+  min-width: 900px;
 }
+
+body[data-workspace-view="team_board"] th:nth-child(1),
+body[data-workspace-view="team_board"] td:nth-child(1) { width: 22%; }
+
+body[data-workspace-view="team_board"] th:nth-child(2),
+body[data-workspace-view="team_board"] td:nth-child(2) { width: 28%; }
+
+body[data-workspace-view="team_board"] th:nth-child(3),
+body[data-workspace-view="team_board"] td:nth-child(3) { width: 20%; }
+
+body[data-workspace-view="team_board"] th:nth-child(4),
+body[data-workspace-view="team_board"] td:nth-child(4) { width: 15%; }
+
+body[data-workspace-view="team_board"] th:nth-child(5),
+body[data-workspace-view="team_board"] td:nth-child(5) { width: 15%; }
 
 body[data-workspace-view="team_board"] .row-actions .button {
   white-space: nowrap;
   width: 100%;
-}
-
-/* Raise table min-width so it scrolls rather than squeezing columns */
-body[data-workspace-view="team_board"] .table-wrap table {
-  min-width: 1050px;
 }
 
 /* Stat card zero-state: mute the number so "0" reads as neutral */
