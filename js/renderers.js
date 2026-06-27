@@ -391,7 +391,7 @@ function renderTable(tasks) {
   const useAeoContext = isAeoTableFilter();
   els.taskTable.innerHTML = tasks.map((task) => {
     const stage = useAeoContext ? aeoWorkflowStage(task) : workflowStage(task);
-    const action = useAeoContext ? aeoTableActionButton(task) : primaryActionButton(task);
+    const action = useAeoContext ? aeoTableActionButton(task) : tablePrimaryActionButton(task);
     const brandOverride = brandAccentOverrides[task.make];
     const badgeStyle = brandOverride ? ` style="background:${brandOverride.ink};color:${brandOverride.visible}"` : "";
     return `<tr><td data-label="Model"><strong>${escapeHtml(taskTitle(task))}</strong></td><td data-label="Dealer"><span class="table-dealer"><span class="brand-badge"${badgeStyle}>${escapeHtml(task.make || "Brand")}</span>${escapeHtml(task.dealer)}</span></td><td data-label="Stage">${stage}</td><td data-label="Inventory"><span class="inventory-cell">${escapeHtml(signalLabels[task.inventorySignal] || task.inventorySignal)}</span></td><td data-label="Action"><div class="row-actions">${action}</div></td></tr>`;
@@ -430,6 +430,8 @@ function queueReason(task, type) { return type === "aeo" ? `AEO layer status: ${
 function queuePrimaryActionButton(task, type) { return type === "aeo" ? aeoTableActionButton(task) : primaryActionButton(task); }
 function actionButtons(task) { return (transitions[task.pageStatus] || []).map(([nextStatus, label]) => `<button class="button ${actionButtonClass(nextStatus, label)}" type="button" data-task-id="${escapeAttr(task.id)}" data-status="${escapeAttr(nextStatus)}">${escapeHtml(label)}</button>`).join(""); }
 function primaryActionButton(task) { const primary = (transitions[task.pageStatus] || [])[0]; return primary ? `<button class="button ${actionButtonClass(primary[0], primary[1])}" type="button" data-task-id="${escapeAttr(task.id)}" data-status="${escapeAttr(primary[0])}">${escapeHtml(primary[1])}</button>` : ""; }
+const tableActionLabels = { needs_seo: "Start SEO", seo_in_progress: "Mark SEO done", seo_done: "Send to build", needs_build: "Build", page_built: "Check", live: "Review", needs_review: "Resolve", ignored: "Restore", snoozed: "Unsnooze" };
+function tablePrimaryActionButton(task) { const primary = (transitions[task.pageStatus] || [])[0]; if (!primary) return ""; const label = tableActionLabels[task.pageStatus] || primary[1]; return `<button class="button ${actionButtonClass(primary[0], label)}" type="button" data-task-id="${escapeAttr(task.id)}" data-status="${escapeAttr(primary[0])}">${escapeHtml(label)}</button>`; }
 function builderCardMeta(task) { return task.pageStatus === "page_built" ? "Needs live check" : task.pageStatus === "needs_build" ? "Page build ready" : "SEO done"; }
 function builderActionButton(task) { return primaryActionButton(task); }
 function actionButtonClass(nextStatus, label = "") { const lower = label.toLowerCase(); if (["send back", "return", "reopen", "unclaim", "restore", "unsnooze", "ignore", "snooze"].some((term) => lower.includes(term))) return "button-corrective-action"; if (["live", "needs_review"].includes(nextStatus) || ["review", "mark live", "already live", "keep live"].some((term) => lower.includes(term))) return "button-secondary-action"; return "button-primary-action"; }
