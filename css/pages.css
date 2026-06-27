@@ -318,16 +318,22 @@ body[data-workspace-view="admin"] #adminPanel {
    Team Pipeline page polish
    --------------------------------------------------------------- */
 
-/* Fix ACTION column clipping — last column shrinks to content width,
-   button text never wraps */
+/* Fix ACTION column clipping — enforce min-width so button never clips */
 body[data-workspace-view="team_board"] th:last-child,
 body[data-workspace-view="team_board"] td:last-child {
-  width: 1%;
+  min-width: 175px;
+  width: 175px;
   white-space: nowrap;
 }
 
 body[data-workspace-view="team_board"] .row-actions .button {
   white-space: nowrap;
+  width: 100%;
+}
+
+/* Raise table min-width so it scrolls rather than squeezing columns */
+body[data-workspace-view="team_board"] .table-wrap table {
+  min-width: 1050px;
 }
 
 /* Stat card zero-state: mute the number so "0" reads as neutral */
