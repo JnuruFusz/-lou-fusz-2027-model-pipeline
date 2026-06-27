@@ -338,7 +338,9 @@ function renderUpcomingModels(tasks) {
 }
 
 function renderUpcomingCard(task) {
-  return `<article class="watch-card" style="${escapeAttr(task.accentStyle || "")}"><div class="watch-card-main"><div class="watch-top">${signalPill(task.inventorySignal)}</div><h3>${escapeHtml(taskTitle(task))}</h3><p class="watch-card-summary">${escapeHtml(upcomingSummary(task))}</p><div class="watch-card-meta"><span>${escapeHtml(task.dealer)}</span></div></div><div class="watch-card-actions"><a class="button button-secondary-action" href="${escapeAttr(modelInfoUrl(task))}" target="_blank" rel="noreferrer">Open source</a></div></article>`;
+  const brandOverride = brandAccentOverrides[task.make];
+  const badgeStyle = brandOverride ? ` style="background:${brandOverride.ink};color:${brandOverride.visible}"` : "";
+  return `<article class="watch-card" style="${escapeAttr(task.accentStyle || "")}"><div class="watch-card-main"><div class="watch-top"><span class="brand-badge"${badgeStyle}>${escapeHtml(task.make || "Brand")}</span><span class="watch-year-label">${escapeHtml(String(task.year))}</span></div><h3>${escapeHtml(taskTitle(task))}</h3><div class="watch-card-meta"><span>${escapeHtml(task.dealer)}</span></div></div><div class="watch-card-actions"><a class="button button-secondary-action" href="${escapeAttr(modelInfoUrl(task))}" target="_blank" rel="noreferrer">View reference</a></div></article>`;
 }
 
 function renderInventoryFeedStatus() {
@@ -440,7 +442,7 @@ function ownerBucket(task) { if (task.details?.buildOwner) return task.details.b
 function initials(name) { const words = String(name || "Team").trim().split(/\s+/).filter(Boolean); return words.length > 1 ? `${words[0][0]}${words[1][0]}`.toUpperCase() : (words[0] || "T").slice(0, 2).toUpperCase(); }
 function workPriority(task) { return ({ needs_build: 0, seo_done: 1, page_built: 2, needs_review: 3, needs_seo: 4, seo_in_progress: 5, live: 9 }[task.pageStatus] ?? 6); }
 function actionLabel(task) { return builderNextStep(task); }
-function syntheticUpcomingModels() { return [{ year: 2028, make: "Toyota", model: "RAV4", dealer: "Lou Fusz Toyota", inventorySignal: "upcoming", pageStatus: "watchlist", aeoStatus: "not_started", summary: "Watchlist example for OEM-confirmed or rumored future models before inventory appears." }, { year: 2028, make: "Subaru", model: "Outback", dealer: "Lou Fusz Subaru St. Louis", inventorySignal: "upcoming", pageStatus: "watchlist", aeoStatus: "not_started", summary: "Future model placeholder. This would come from an OEM source once feeds are connected." }].map((task) => ({ ...task, accentStyle: accentStyleForTask(task) })); }
+function syntheticUpcomingModels() { return [{ year: 2028, make: "Toyota", model: "RAV4", dealer: "Lou Fusz Toyota", inventorySignal: "upcoming", pageStatus: "watchlist", aeoStatus: "not_started", summary: "OEM-confirmed for 2028. Page work begins when inventory arrives." }, { year: 2028, make: "Subaru", model: "Outback", dealer: "Lou Fusz Subaru St. Louis", inventorySignal: "upcoming", pageStatus: "watchlist", aeoStatus: "not_started", summary: "Rumored refresh for 2028. Monitoring OEM announcements." }].map((task) => ({ ...task, accentStyle: accentStyleForTask(task) })); }
 function upcomingSummary(task) { return task.summary || "Watched before it becomes active page work."; }
 function modelInfoUrl(task) { return `https://www.google.com/search?q=${encodeURIComponent(`${task.year || ""} ${task.make || ""} ${displayModel(task)} official model`.trim())}`; }
 function showToast(message) { els.toast.textContent = message; els.toast.classList.add("is-visible"); window.clearTimeout(toastTimer); toastTimer = window.setTimeout(() => els.toast.classList.remove("is-visible"), 2200); }

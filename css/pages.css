@@ -379,3 +379,32 @@ body[data-workspace-view="team_board"] #clearFiltersButton {
   margin-left: auto;
   font-size: 13px;
 }
+
+/* ---------------------------------------------------------------
+   Upcoming Models page
+   --------------------------------------------------------------- */
+
+/* Awareness note — sets expectations before the list */
+.watch-note {
+  margin: 0 0 20px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+/* Brand badge + year label row at top of each card */
+.watch-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.watch-year-label {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
