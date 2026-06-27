@@ -467,3 +467,38 @@ body[data-workspace-view="team_board"] #clearFiltersButton {
   color: var(--ink);
   line-height: 1.35;
 }
+
+/* ---------------------------------------------------------------
+   Settings page polish
+   --------------------------------------------------------------- */
+
+/* Integration rows: title on its own line, description below */
+.integration-identity div strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 14px;
+  font-weight: 750;
+  color: var(--ink);
+}
+
+.integration-identity div span {
+  display: block;
+  font-size: 12px;
+  font-weight: 550;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* Access role badges → pill style */
+.role-badge-list span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+}
