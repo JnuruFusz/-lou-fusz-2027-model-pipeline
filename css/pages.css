@@ -659,3 +659,108 @@ body[data-theme="light"] .notif-toggle.is-active {
 .quiet-hours-grid select {
   margin-top: 0;
 }
+
+/* ---------------------------------------------------------------
+   Team table — member avatars, column fix, vacant row, status pill
+   --------------------------------------------------------------- */
+
+/* Column proportions: tighter member, wider email, compact role/status/action */
+.team-table-head,
+.team-table-row {
+  grid-template-columns: minmax(160px, 1.2fr) minmax(180px, 1.4fr) minmax(100px, 1fr) 110px 130px !important;
+}
+
+/* Member cell: avatar + name side by side */
+.member-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  color: var(--text);
+}
+
+.member-cell strong {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Avatar circle */
+.member-avatar {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: var(--blue-soft, rgba(37,99,235,.12));
+  color: var(--blue, #2563eb);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.02em;
+}
+
+.member-avatar--vacant {
+  background: var(--line);
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* Vacant row — dimmed appearance */
+.team-table-row--vacant {
+  opacity: 0.72;
+}
+
+.team-table-row--vacant:hover {
+  opacity: 1;
+}
+
+.vacant-label {
+  font-size: 13px;
+  font-weight: 650;
+  font-style: italic;
+  color: var(--muted) !important;
+}
+
+.vacant-dim {
+  color: var(--muted) !important;
+}
+
+/* Active status — green pill */
+.status-active {
+  background: var(--green-soft, rgba(34,197,94,.12)) !important;
+  color: var(--green, #22c55e) !important;
+}
+
+/* Manage button — outline style */
+.button-outline-action {
+  border-color: var(--line);
+  background: transparent;
+  color: var(--text);
+}
+
+.button-outline-action:hover {
+  background: var(--soft-line, rgba(255,255,255,.06));
+}
+
+/* Light theme overrides */
+body[data-theme="light"] .member-avatar {
+  background: rgba(37,99,235,.1);
+  color: var(--blue, #2563eb);
+}
+
+body[data-theme="light"] .member-avatar--vacant {
+  background: #e5e1da;
+  color: #9c9790;
+}
+
+body[data-theme="light"] .button-outline-action {
+  border-color: var(--line);
+  color: var(--text);
+}
+
+body[data-theme="light"] .button-outline-action:hover {
+  background: rgba(0,0,0,.04);
+}
