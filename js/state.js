@@ -4,7 +4,7 @@ const initialThemeChoice = isDemoReset
   ? "light"
   : ["system", "light", "dark", "gray"].includes(storedThemeChoice)
     ? (storedThemeChoice === "gray" ? "dark" : storedThemeChoice)
-    : "light";
+    : "system";
 
 const state = {
   tasks: [],
