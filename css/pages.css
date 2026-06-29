@@ -628,3 +628,34 @@ body[data-theme="light"] .notif-toggle.is-active {
   background: var(--blue, #2563eb);
   border-color: var(--blue, #2563eb);
 }
+
+/* ---------------------------------------------------------------
+   Quiet-hour schedule spacing
+   --------------------------------------------------------------- */
+.quiet-hours-title {
+  margin: 20px 0 10px;
+  font-size: 13px;
+  font-weight: 750;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.quiet-hours-grid {
+  gap: 14px !important;
+  row-gap: 12px !important;
+}
+
+.quiet-hours-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--muted);
+}
+
+.quiet-hours-grid input,
+.quiet-hours-grid select {
+  margin-top: 0;
+}
