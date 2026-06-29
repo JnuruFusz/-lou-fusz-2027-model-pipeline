@@ -241,10 +241,33 @@ function bindEvents() {
     toggle.setAttribute("aria-checked", on ? "true" : "false");
   });
 
-  // "Go to Settings" shortcut from Admin page
+  // Admin panel action buttons — navigate or filter
   document.addEventListener("click", (e) => {
-    if (e.target.closest("[data-nav-settings]")) {
-      document.querySelector("[data-nav='settings']")?.click();
+    const btn = e.target.closest("[data-admin-nav]");
+    if (!btn) return;
+    const view = btn.dataset.adminNav;
+    const filter = btn.dataset.adminFilter;
+    const scrollTo = btn.dataset.adminScroll;
+
+    setWorkspaceView(view);
+
+    if (filter === "blocked") {
+      // Switch to team_board then apply blocked filter (missing owner)
+      setTimeout(() => {
+        const statusFilter = document.getElementById("statusFilter");
+        if (statusFilter) {
+          statusFilter.value = "needs_seo";
+          statusFilter.dispatchEvent(new Event("change"));
+        }
+        showToast("Showing models that need attention — check SEO owner column.");
+      }, 120);
+    }
+
+    if (scrollTo) {
+      setTimeout(() => {
+        const target = document.getElementById(scrollTo);
+        if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 180);
     }
   });
 
