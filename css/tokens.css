@@ -133,8 +133,8 @@ body[data-theme="light"] {
   --bg: #f7f4f0;
   --panel: #fffcf8;
   --panel-rgb: 255, 252, 248;
-  --ink: #182028;
-  --muted: #536372;
+  --ink: #2C2C2A;
+  --muted: #5F5E5A;
   --line: #e0d9d1;
   --soft-line: #ece8e2;
   --green: #1b7f53;
@@ -282,7 +282,7 @@ body[data-theme="light"] :is(.resource-status.status-gray, .settings-status.stat
   }
 
   html body[data-theme="light"][data-workspace-view="team_board"] th {
-    color: #536372 !important;
+    color: #5F5E5A !important;
     border-bottom-color: var(--line) !important;
   }
 
