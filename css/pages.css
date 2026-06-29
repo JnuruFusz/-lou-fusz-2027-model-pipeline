@@ -529,3 +529,19 @@ body[data-workspace-view="team_board"] #clearFiltersButton {
   font-weight: 900;
   letter-spacing: .04em;
 }
+
+/* ---------------------------------------------------------------
+   App loading veil — hides empty state until boot() completes
+   --------------------------------------------------------------- */
+#app-veil {
+  position: fixed;
+  inset: 0;
+  background: var(--bg, #f7f4f0);
+  z-index: 9999;
+  transition: opacity 200ms ease;
+}
+
+#app-veil.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}

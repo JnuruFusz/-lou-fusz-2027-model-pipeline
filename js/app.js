@@ -463,6 +463,8 @@ async function boot() {
   populateYearFilter();
   populateDealerFilter();
   render();
+  const _veil = document.getElementById("app-veil");
+  if (_veil) { _veil.classList.add("is-hidden"); setTimeout(() => _veil.remove(), 220); }
 }
 
 function loadRooftops(sources) {
@@ -623,4 +625,6 @@ boot().catch((error) => {
   showToast("Some source data could not load yet");
   renderAuth();
   render();
+  const _veil2 = document.getElementById("app-veil");
+  if (_veil2) { _veil2.classList.add("is-hidden"); setTimeout(() => _veil2.remove(), 220); }
 });
