@@ -15,80 +15,8 @@
   <body data-auth="signed_in" data-theme="light">
   <div id="app-veil"><div id="load-bar"></div></div>
     <section id="authScreen" class="auth-screen" aria-label="Fusz+ onboarding">
-      <div class="auth-shell">
-        <div class="auth-brand">
-          <p class="eyebrow">Lou Fusz workspace</p>
-          <h1>Fusz+</h1>
-          <p>
-            A calmer way to know what model pages need SEO, build, AEO review,
-            and live checks before the team loses track.
-          </p>
-          <div class="auth-flow">
-            <span class="is-active" data-flow-dot="login">1 Sign in</span>
-            <span data-flow-dot="theme">2 Confirm role</span>
-            <span data-flow-dot="doorway">3 Start My Work</span>
-          </div>
-        </div>
-
-        <div class="auth-card is-active" data-auth-step="login">
-          <p class="eyebrow" id="authEyebrow">Invite accepted</p>
-          <h2 id="authHeading">Welcome back, Jnuru</h2>
-          <p class="auth-copy" id="authCopy">
-            Your role is set to Builder / Developer. Fusz+ will open your build
-            queue first so you do not have to search the whole board.
-          </p>
-          <div class="profile-preview">
-            <span id="authAvatar">JG</span>
-            <div>
-              <strong id="authName">Jnuru Goodwin</strong>
-              <small id="authRole">Builder / Developer</small>
-            </div>
-          </div>
-          <button id="continueLoginButton" class="button button-primary" type="button">
-            Continue as Jnuru
-          </button>
-          <button id="previewAdminButton" class="button" type="button" data-preview-role="admin">
-            Preview boss/admin path
-          </button>
-        </div>
-
-        <div class="auth-card" data-auth-step="theme">
-          <p class="eyebrow">Role confirmed</p>
-          <h2>Confirm your role</h2>
-          <p class="auth-copy">
-            Fusz+ opens to My Work first. Your Builder role decides which queue
-            and actions you see.
-          </p>
-          <div class="role-confirm-list" role="list">
-            <span>Builder workspace</span>
-            <span>My Work default</span>
-            <span>Team Pipeline one click away</span>
-          </div>
-          <button id="continueThemeButton" class="button button-primary" type="button">
-            Continue
-          </button>
-        </div>
-
-        <div class="auth-card" data-auth-step="doorway">
-          <p class="eyebrow">Your doorway</p>
-          <h2>Start in My Work</h2>
-          <p class="auth-copy">
-            You are seeing builder tasks because SEO is done and the page is
-            ready for build or live check.
-          </p>
-          <div class="doorway-list">
-            <span>Ready to Build</span>
-            <span>Live Check</span>
-            <span>Page link missing</span>
-          </div>
-          <button id="enterWorkspaceButton" class="button button-primary" type="button">
-            Enter My Work
-          </button>
-          <button id="skipToBoardButton" class="button" type="button">
-            Open Team Pipeline instead
-          </button>
-        </div>
-      </div>
+      <!-- Auth shell — populated by configureInviteOnboarding() in events.js -->
+      <div class="auth-shell"></div>
     </section>
 
     <button id="navBackdrop" class="nav-backdrop" type="button" aria-label="Close navigation"></button>
