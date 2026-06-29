@@ -774,3 +774,62 @@ body[data-theme="light"] .button-outline-action:hover {
 .team-table-row {
   padding: 14px 20px !important;
 }
+
+/* ---------------------------------------------------------------
+   Resources page — breathing room pass
+   --------------------------------------------------------------- */
+
+/* More space between cards */
+.resource-hub-grid {
+  gap: 20px !important;
+}
+
+/* Card itself: more padding */
+body[data-workspace-view="docs"] .resource-card,
+#docsPanel .resource-card {
+  padding: 26px 28px;
+}
+
+/* Card header: badge + title row, more bottom room */
+.resource-card-header {
+  margin-bottom: 24px !important;
+}
+
+/* Card description text: more space before rule list */
+#docsPanel .resource-card > p,
+body[data-workspace-view="docs"] .resource-card > p {
+  margin: 0 0 18px;
+  line-height: 1.6;
+}
+
+/* Rule rows: more padding so label/value breathe */
+.resource-rule-list {
+  gap: 10px !important;
+}
+
+.resource-rule-list div {
+  padding: 14px 16px !important;
+  gap: 6px !important;
+}
+
+/* Mini stat boxes */
+.resource-mini-grid {
+  gap: 10px !important;
+  margin: 20px 0 !important;
+}
+
+.resource-mini-grid span {
+  padding: 14px 16px !important;
+}
+
+/* Action buttons row at bottom of card */
+.resource-actions {
+  margin-top: 20px !important;
+  gap: 10px !important;
+}
+
+/* Page-level section heading + subtitle gap */
+body[data-workspace-view="docs"] .section-heading,
+#docsPanel .section-heading {
+  margin-bottom: 20px;
+}
