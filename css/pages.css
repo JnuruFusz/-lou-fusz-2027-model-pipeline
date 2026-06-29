@@ -968,3 +968,25 @@ body[data-theme="light"] dialog {
 body[data-theme="light"] .invite-note {
   background: #f0ece7;
 }
+
+/* ---------------------------------------------------------------
+   Rooftop toggles — align to blue brand color (not green)
+   --------------------------------------------------------------- */
+.rooftop-status-switch.is-active {
+  background: var(--blue, #2563eb) !important;
+  border-color: var(--blue, #2563eb) !important;
+}
+
+.rooftop-status-switch::after {
+  background: #fff !important;
+}
+
+body[data-theme="light"] .rooftop-status-switch {
+  background: #d8d4cd;
+  border-color: #c8c3bb;
+}
+
+body[data-theme="light"] .rooftop-status-switch.is-active {
+  background: var(--blue, #2563eb) !important;
+  border-color: var(--blue, #2563eb) !important;
+}
