@@ -479,6 +479,7 @@ function openTaskDetails(taskId) {
   els.aeoOwnerInput.value = details.aeoOwner || "";
   els.buildOwnerInput.value = details.buildOwner || "";
   els.taskNotesInput.value = details.notes || "";
+  document.getElementById("aeoNotesInput").value = details.aeoNotes || "";
   els.taskDialog.showModal();
 }
 
@@ -498,6 +499,7 @@ function saveTaskDetails() {
     aeoOwner: els.aeoOwnerInput.value.trim(),
     buildOwner: els.buildOwnerInput.value.trim(),
     notes: els.taskNotesInput.value.trim(),
+    aeoNotes: document.getElementById("aeoNotesInput").value.trim(),
     updatedAt: new Date().toISOString(),
   };
   state.details[task.id] = task.details;

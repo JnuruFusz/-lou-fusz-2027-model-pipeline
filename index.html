@@ -624,13 +624,19 @@
             Build Owner
             <input id="buildOwnerInput" type="text" placeholder="Name" />
           </label>
+          <label class="details-note details-aeo-note">
+            AEO notes
+            <span class="details-field-hint">AEO writer: describe what answer engine optimization was applied — schema added, questions targeted, or why it was skipped. This doesn't block anything, it's just visible to the whole team.</span>
+            <textarea id="aeoNotesInput" rows="3" placeholder="e.g. Added FAQ schema for top 3 questions. Targeted 'best midsize SUV 2027' intent. No structured data needed — page is informational only."></textarea>
+          </label>
           <label class="details-note">
-            Notes
-            <textarea id="taskNotesInput" rows="5" placeholder="Add blockers, copy notes, AEO questions, or build details"></textarea>
+            General notes
+            <span class="details-field-hint">Blockers, handoff context, anything the next person needs to know.</span>
+            <textarea id="taskNotesInput" rows="3" placeholder="e.g. Waiting on OEM hero image. Copy approved but images pending from Scott."></textarea>
           </label>
         </div>
         <div class="dialog-actions">
-          <button class="button" id="saveTaskDetailsButton" type="button">Save Details</button>
+          <button class="button" id="saveTaskDetailsButton" type="button">Save details</button>
         </div>
       </form>
     </dialog>

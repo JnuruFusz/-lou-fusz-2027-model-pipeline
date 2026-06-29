@@ -990,3 +990,25 @@ body[data-theme="light"] .rooftop-status-switch.is-active {
   background: var(--blue, #2563eb) !important;
   border-color: var(--blue, #2563eb) !important;
 }
+
+/* ---------------------------------------------------------------
+   Task dialog — field hints + AEO notes
+   --------------------------------------------------------------- */
+.details-field-hint {
+  display: block;
+  margin: 3px 0 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.details-aeo-note {
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  margin-top: 4px;
+}
+
+body[data-theme="light"] .details-field-hint {
+  color: #888780;
+}
