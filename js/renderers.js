@@ -302,11 +302,12 @@ function renderWorkspaceView() {
   if (els.userContext) els.userContext.textContent = workspaceSubtitle(state.workspaceView, primaryRole(state.session));
   if (els.rolePill) els.rolePill.textContent = rolePillLabel(state.session || { role: "Builder", primaryRole: "Builder" });
   els.workspaceButtons?.forEach((button) => button.classList.toggle("is-active", button.dataset.workspaceView === state.workspaceView));
+  document.querySelectorAll("[data-demo-only]").forEach((el) => { el.hidden = Boolean(state.session); });
   renderSettingsProfile();
 }
 
 function workspaceTitle(view) {
-  return { admin: "Admin Command Center", my_work: "Builder Workspace", team_board: "Team Pipeline", upcoming: "Upcoming Models", docs: "Resources", settings: "Settings" }[view] || "Builder Workspace";
+  return { admin: "Admin Command Center", my_work: "My Work", team_board: "Team Pipeline", upcoming: "Upcoming Models", docs: "Resources", settings: "Settings" }[view] || "My Work";
 }
 
 function workspaceSubtitle(view, role) {
@@ -448,7 +449,7 @@ function signalButtons(task) { return Object.entries(signalLabels).map(([signal,
 function aeoButtons(task) { return Object.entries(aeoLabels).map(([status, label]) => `<button class="mini-button${task.aeoStatus === status ? " is-active" : ""}" type="button" data-task-id="${escapeAttr(task.id)}" data-aeo-status="${escapeAttr(status)}">${escapeHtml(label)}</button>`).join(""); }
 function nextBestTask(tasks = state.tasks) { return [...tasks].filter((task) => !["live", "ignored", "snoozed"].includes(task.pageStatus)).sort((a, b) => workPriority(a) - workPriority(b))[0]; }
 function dealerShortName(dealer) { const source = state.sources?.find((item) => item.dealer === dealer); return source?.shortName || String(dealer || "Dealer").replace("Lou Fusz ", ""); }
-function ownerBucket(task) { if (task.details?.buildOwner) return task.details.buildOwner; if (task.details?.seoOwner) return task.details.seoOwner; if (["seo_done", "needs_build", "page_built"].includes(task.pageStatus)) return "Jnuru Goodwin"; if (["needs_seo", "seo_in_progress"].includes(task.pageStatus)) return "SEO Writer"; return "Team"; }
+function ownerBucket(task) { if (task.details?.buildOwner) return task.details.buildOwner; if (task.details?.seoOwner) return task.details.seoOwner; if (["seo_done", "needs_build", "page_built"].includes(task.pageStatus)) return state.session?.name || "Builder"; if (["needs_seo", "seo_in_progress"].includes(task.pageStatus)) return "SEO Writer"; return "Team"; }
 function initials(name) { const words = String(name || "Team").trim().split(/\s+/).filter(Boolean); return words.length > 1 ? `${words[0][0]}${words[1][0]}`.toUpperCase() : (words[0] || "T").slice(0, 2).toUpperCase(); }
 function workPriority(task) { return ({ needs_build: 0, seo_done: 1, page_built: 2, needs_review: 3, needs_seo: 4, seo_in_progress: 5, live: 9 }[task.pageStatus] ?? 6); }
 function actionLabel(task) { return builderNextStep(task); }
@@ -456,7 +457,7 @@ function syntheticUpcomingModels() { return [{ year: 2028, make: "Toyota", model
 function upcomingSummary(task) { return task.summary || "Watched before it becomes active page work."; }
 function modelInfoUrl(task) { return `https://www.google.com/search?q=${encodeURIComponent(`${task.year || ""} ${task.make || ""} ${displayModel(task)} official model`.trim())}`; }
 function showToast(message) { els.toast.textContent = message; els.toast.classList.add("is-visible"); window.clearTimeout(toastTimer); toastTimer = window.setTimeout(() => els.toast.classList.remove("is-visible"), 2200); }
-function buildDigest() { const tasks = state.tasks.filter((task) => task.year === 2027); return ["Fusz+ Daily Digest", "For: Jnuru Goodwin / Builder", "", `Needs SEO: ${tasks.filter((task) => task.pageStatus === "needs_seo").length}`, ...tasks.filter((task) => task.pageStatus === "needs_seo").slice(0, 12).map((task) => `- ${task.dealer}: ${taskTitle(task)}`), "", `Ready / In Build: ${tasks.filter((task) => ["seo_done", "needs_build", "page_built"].includes(task.pageStatus)).length}`, "", `Live / Checked: ${tasks.filter((task) => task.pageStatus === "live").length}`].join("\n"); }
+function buildDigest() { const tasks = state.tasks.filter((task) => task.year === 2027); return ["Fusz+ Daily Digest", `For: ${state.session?.name || "Team"} / ${primaryRole(state.session)}`, "", `Needs SEO: ${tasks.filter((task) => task.pageStatus === "needs_seo").length}`, ...tasks.filter((task) => task.pageStatus === "needs_seo").slice(0, 12).map((task) => `- ${task.dealer}: ${taskTitle(task)}`), "", `Ready / In Build: ${tasks.filter((task) => ["seo_done", "needs_build", "page_built"].includes(task.pageStatus)).length}`, "", `Live / Checked: ${tasks.filter((task) => task.pageStatus === "live").length}`].join("\n"); }
 function showDigest(text) { els.digestText.textContent = text; els.digestDialog.showModal(); }
 function formatScanErrors(errors) { return errors.slice(0, 12).map((error) => `- ${error.dealer}: ${error.message}`).join("\n"); }
 function escapeHtml(value) { return String(value ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;"); }

@@ -23,7 +23,7 @@ function themeChoiceLabel(theme) {
 }
 
 function themeSelectElement() {
-  return els.settingsThemeSelect || document.querySelector('[aria-labelledby="accountSettingsTitle"] .settings-row:last-of-type select');
+  return els.settingsThemeSelect || document.querySelector('#settingsThemeSelect');
 }
 
 function syncThemeSelect(choice) {

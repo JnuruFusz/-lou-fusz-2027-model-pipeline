@@ -119,8 +119,8 @@
         <input id="searchInput" class="header-search" type="search" placeholder="Search model, dealer, owner" />
         <span id="rolePill" class="user-pill">Builder</span>
         <button id="scanButton" class="button button-primary" type="button">Run Scan</button>
-        <button id="digestButton" class="button" type="button">Preview Digest</button>
-        <button id="restartDemoButton" class="button" type="button">Restart Demo</button>
+        <button id="digestButton" class="button" data-demo-only type="button">Preview Digest</button>
+        <button id="restartDemoButton" class="button" data-demo-only type="button">Restart Demo</button>
       </div>
     </header>
 
@@ -346,7 +346,6 @@
                   <option>My Work</option>
                   <option>Admin Command Center</option>
                   <option>Team Pipeline</option>
-                  <option>Alerts</option>
                 </select>
               </div>
               <div class="settings-row">
@@ -365,10 +364,10 @@
                   <strong>Appearance</strong>
                   <span>Choose how Fusz+ appears on this device.</span>
               </div>
-                <select class="settings-control">
-                  <option>System</option>
-                  <option>Light</option>
-                  <option>Dark</option>
+                <select id="settingsThemeSelect" class="settings-control">
+                  <option value="system">System</option>
+                  <option value="light">Light</option>
+                  <option value="dark">Dark</option>
                 </select>
             </div>
             </section>

@@ -7,7 +7,7 @@ function configureInviteOnboarding() {
     localStorage.removeItem("pipeline-aeo-overrides");
     localStorage.removeItem("pipeline-signal-overrides");
     localStorage.removeItem("pipeline-task-details");
-    localStorage.setItem("fusz-theme", "gray");
+    localStorage.setItem("fusz-theme", "system");
     state.session = null;
     state.overrides = {};
     state.aeoOverrides = {};
@@ -15,7 +15,7 @@ function configureInviteOnboarding() {
     state.signalOverrides = {};
     state.workspaceView = "my_work";
     state.onboardingStep = "login";
-    state.selectedTheme = "gray";
+    state.selectedTheme = "system";
     history.replaceState({}, "", window.location.pathname);
   }
 
@@ -67,7 +67,7 @@ function configureInviteOnboarding() {
       display: grid;
       place-items: center;
       padding: 24px;
-      background: var(--bg); /* page bg token — dark: #151515, light: overridden below */
+      background: var(--bg); /* page bg token — dark: #1a1917, light: overridden below */
     }
 
     body[data-theme="light"] .auth-screen {
@@ -350,7 +350,7 @@ function bindEvents() {
     state.onboardingStep = "login";
     setWorkspaceView("my_work", { silent: true });
     renderAuth();
-    applyTheme("gray");
+    applyTheme("system");
     showToast("Demo restarted");
   });
 

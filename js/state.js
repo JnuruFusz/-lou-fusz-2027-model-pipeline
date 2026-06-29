@@ -103,7 +103,7 @@ const els = {
   settingsName: document.querySelector("#settingsName"),
   settingsRole: document.querySelector("#settingsRole"),
   settingsLandingSelect: document.querySelector("#settingsLandingSelect"),
-  settingsThemeSelect: document.querySelector('[aria-labelledby="accountSettingsTitle"] .settings-row:last-of-type select'),
+  settingsThemeSelect: document.querySelector('#settingsThemeSelect'),
   settingsAccessBadges: document.querySelector("#settingsAccessBadges"),
   driveConnectionStatus: document.querySelector("#driveConnectionStatus"),
   connectDriveButton: document.querySelector("#connectDriveButton"),

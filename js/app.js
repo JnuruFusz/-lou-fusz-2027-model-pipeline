@@ -254,7 +254,6 @@ loufusztoyota|2026|grandhighlander
 loufusztoyota|2026|grcorolla
 loufusztoyota|2026|grsupra
 loufusztoyota|2026|highlander
-loufusztoyota|2026|landcrsuier
 loufusztoyota|2026|landcruiser
 loufusztoyota|2026|prius
 loufusztoyota|2026|rav4
@@ -514,7 +513,7 @@ function normalizeSession() {
   if (state.session.role === "Admin") {
     state.session = {
       ...state.session,
-      name: state.session.name || "Scott Toulou",
+      name: state.session.name || "Admin",
       primaryRole: "AEO Writer",
       role: "AEO Writer",
       isAdmin: true,
