@@ -764,3 +764,13 @@ body[data-theme="light"] .button-outline-action {
 body[data-theme="light"] .button-outline-action:hover {
   background: rgba(0,0,0,.04);
 }
+
+/* Team table head — more interior padding */
+.team-table-head {
+  padding: 10px 20px !important;
+  min-height: 38px !important;
+}
+
+.team-table-row {
+  padding: 14px 20px !important;
+}
