@@ -233,6 +233,14 @@ function on(element, eventName, handler) {
 function bindEvents() {
   configureInviteOnboarding();
 
+  // Notification toggles
+  document.addEventListener("click", (e) => {
+    const toggle = e.target.closest("[data-notif-toggle]");
+    if (!toggle) return;
+    const on = toggle.classList.toggle("is-active");
+    toggle.setAttribute("aria-checked", on ? "true" : "false");
+  });
+
   on(els.continueLoginButton, "click", (event) => {
     const button = event.currentTarget;
     if (button.disabled) return;

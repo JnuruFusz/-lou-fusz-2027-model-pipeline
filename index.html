@@ -378,27 +378,33 @@
                 <h3 id="notificationSettingsTitle">Notifications</h3>
                 <p>Keep the team informed without creating noise.</p>
               </div>
-              <label class="settings-row">
+              <div class="settings-row">
                 <div>
                   <strong>Daily digest</strong>
                   <span>Receive one summary for normal model updates instead of individual alerts.</span>
+                </div>
+                <button class="notif-toggle is-active" type="button" role="switch" aria-checked="true" aria-label="Daily digest" data-notif-toggle>
+                  <span class="notif-toggle-thumb"></span>
+                </button>
               </div>
-                <input class="switch-input" type="checkbox" checked />
-              </label>
-              <label class="settings-row">
-              <div>
+              <div class="settings-row">
+                <div>
                   <strong>Unowned on-lot model alerts</strong>
                   <span>Notify admins immediately when an on-lot model does not have a page owner.</span>
+                </div>
+                <button class="notif-toggle is-active" type="button" role="switch" aria-checked="true" aria-label="Unowned on-lot model alerts" data-notif-toggle>
+                  <span class="notif-toggle-thumb"></span>
+                </button>
               </div>
-                <input class="switch-input" type="checkbox" checked />
-              </label>
-              <label class="settings-row">
-              <div>
+              <div class="settings-row">
+                <div>
                   <strong>Quiet hours</strong>
                   <span>Suppress non-urgent alerts outside normal working hours.</span>
+                </div>
+                <button class="notif-toggle is-active" type="button" role="switch" aria-checked="true" aria-label="Quiet hours" data-notif-toggle>
+                  <span class="notif-toggle-thumb"></span>
+                </button>
               </div>
-                <input class="switch-input" type="checkbox" checked />
-              </label>
               <p class="quiet-hours-title">Quiet-hour schedule</p>
               <div class="quiet-hours-grid" aria-label="Quiet hours schedule">
                 <label>Start time<input type="time" value="18:00" /></label>

@@ -573,3 +573,58 @@ body[data-loaded] #adminPanel        { animation: fadeUp 260ms ease 0ms   both; 
 body[data-loaded] #upcomingPanel     { animation: fadeUp 260ms ease 0ms   both; }
 body[data-loaded] #docsPanel         { animation: fadeUp 260ms ease 0ms   both; }
 body[data-loaded] #settingsPanel     { animation: fadeUp 260ms ease 0ms   both; }
+
+/* ---------------------------------------------------------------
+   Notification toggle switches (Settings page)
+   --------------------------------------------------------------- */
+.notif-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-self: end;
+  flex-shrink: 0;
+  width: 44px;
+  height: 26px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--soft-line, #e5e1da);
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.notif-toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,.18);
+  transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.notif-toggle.is-active {
+  background: var(--blue, #2563eb);
+  border-color: var(--blue, #2563eb);
+}
+
+.notif-toggle.is-active .notif-toggle-thumb {
+  transform: translateX(18px);
+}
+
+.notif-toggle:focus-visible {
+  outline: 2px solid var(--blue, #2563eb);
+  outline-offset: 2px;
+}
+
+body[data-theme="light"] .notif-toggle {
+  background: #d8d4cd;
+  border-color: #c8c3bb;
+}
+
+body[data-theme="light"] .notif-toggle.is-active {
+  background: var(--blue, #2563eb);
+  border-color: var(--blue, #2563eb);
+}
