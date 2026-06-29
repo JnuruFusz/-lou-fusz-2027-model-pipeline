@@ -437,6 +437,27 @@ async function boot() {
   const prog = (pct) => { if (bar) bar.style.width = pct + "%"; };
   prog(10);
   applyTheme(state.selectedTheme);
+
+  // Detect invite link: ?invite=seo-writer → personalise welcome screen
+  const inviteParam = new URLSearchParams(window.location.search).get("invite");
+  if (inviteParam) {
+    const roleMap = {
+      "seo-writer":  { label: "SEO Writer",  initials: "SW" },
+      "builder":     { label: "Builder",      initials: "BU" },
+      "admin":       { label: "Admin",        initials: "AD" },
+      "aeo-writer":  { label: "AEO Writer",   initials: "AW" },
+    };
+    const invitee = roleMap[inviteParam] || { label: inviteParam, initials: inviteParam.slice(0,2).toUpperCase() };
+    const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+    set("authEyebrow",  "You've been invited");
+    set("authHeading",  "Welcome to Fusz+");
+    set("authCopy",     `Your role is set to ${invitee.label}. Fusz+ will open your workspace so you can get started right away.`);
+    set("authAvatar",   invitee.initials);
+    set("authName",     "New team member");
+    set("authRole",     invitee.label);
+    const btn = document.getElementById("continueLoginButton");
+    if (btn) btn.textContent = `Continue as ${invitee.label}`;
+  }
   await loadClassicScript("js/my-work-workbench.js?v=20260616");
   prog(38);
   await loadClassicScript("js/fusz-implementation.js?v=20260616");

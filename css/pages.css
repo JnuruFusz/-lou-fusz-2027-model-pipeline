@@ -833,3 +833,138 @@ body[data-workspace-view="docs"] .section-heading,
 #docsPanel .section-heading {
   margin-bottom: 20px;
 }
+
+/* ---------------------------------------------------------------
+   Dialogs — shared base styles
+   --------------------------------------------------------------- */
+dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(460px, 92vw);
+  max-height: 90vh;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: 0 8px 32px rgba(0,0,0,.28);
+  overflow: hidden;
+}
+
+dialog::backdrop {
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(2px);
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.dialog-header h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 750;
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.icon-button:hover {
+  background: var(--soft-line, rgba(255,255,255,.06));
+  color: var(--text);
+}
+
+.dialog-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px 18px;
+  border-top: 1px solid var(--line);
+}
+
+/* ---------------------------------------------------------------
+   Invite modal
+   --------------------------------------------------------------- */
+.invite-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.invite-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.invite-field input,
+.invite-field select {
+  width: 100%;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--bg, #f7f4f0);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  transition: border-color 140ms ease;
+}
+
+.invite-field input:focus,
+.invite-field select:focus {
+  outline: none;
+  border-color: var(--blue, #2563eb);
+}
+
+.invite-note {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.55;
+  padding: 10px 12px;
+  background: var(--soft-line, rgba(0,0,0,.04));
+  border-radius: 7px;
+}
+
+body[data-theme="light"] .invite-field input,
+body[data-theme="light"] .invite-field select {
+  background: #fff;
+  border-color: #d8d4cd;
+}
+
+body[data-theme="light"] .invite-field input:focus,
+body[data-theme="light"] .invite-field select:focus {
+  border-color: var(--blue, #2563eb);
+}
+
+body[data-theme="light"] dialog {
+  box-shadow: 0 8px 40px rgba(0,0,0,.14);
+}
+
+body[data-theme="light"] .invite-note {
+  background: #f0ece7;
+}

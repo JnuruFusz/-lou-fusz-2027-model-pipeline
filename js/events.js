@@ -241,6 +241,42 @@ function bindEvents() {
     toggle.setAttribute("aria-checked", on ? "true" : "false");
   });
 
+  // Invite modal — open
+  document.addEventListener("click", (e) => {
+    if (e.target.closest(".button-primary-action[type='button']")?.textContent?.trim() === "Invite member") {
+      const dialog = document.getElementById("inviteDialog");
+      if (dialog) {
+        document.getElementById("inviteName").value = "";
+        document.getElementById("inviteEmail").value = "";
+        dialog.showModal();
+      }
+    }
+  });
+
+  // Invite modal — send (fires mailto:)
+  on(document.getElementById("sendInviteButton"), "click", () => {
+    const name  = document.getElementById("inviteName").value.trim();
+    const email = document.getElementById("inviteEmail").value.trim();
+    const role  = document.getElementById("inviteRole").value;
+
+    if (!email) {
+      showToast("Please enter an email address.");
+      return;
+    }
+
+    const appUrl  = window.location.origin + window.location.pathname;
+    const param   = role.toLowerCase().replace(/\s+/g, "-");
+    const inviteUrl = `${appUrl}?invite=${param}`;
+    const subject = encodeURIComponent(`You've been invited to Fusz+`);
+    const body    = encodeURIComponent(
+      `Hi ${name || "there"},\n\nYou've been added as ${role} on the Lou Fusz 2027 model pipeline dashboard.\n\nClick the link below to open your workspace:\n${inviteUrl}\n\nLet me know if you have any questions.`
+    );
+
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    document.getElementById("inviteDialog").close();
+    showToast(`Invite opened for ${email}`);
+  });
+
   on(els.continueLoginButton, "click", (event) => {
     const button = event.currentTarget;
     if (button.disabled) return;

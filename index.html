@@ -31,17 +31,17 @@
         </div>
 
         <div class="auth-card is-active" data-auth-step="login">
-          <p class="eyebrow">Invite accepted</p>
-          <h2>Welcome back, Jnuru</h2>
-          <p class="auth-copy">
+          <p class="eyebrow" id="authEyebrow">Invite accepted</p>
+          <h2 id="authHeading">Welcome back, Jnuru</h2>
+          <p class="auth-copy" id="authCopy">
             Your role is set to Builder / Developer. Fusz+ will open your build
             queue first so you do not have to search the whole board.
           </p>
           <div class="profile-preview">
-            <span>JG</span>
+            <span id="authAvatar">JG</span>
             <div>
-              <strong>Jnuru Goodwin</strong>
-              <small>Builder / Developer</small>
+              <strong id="authName">Jnuru Goodwin</strong>
+              <small id="authRole">Builder / Developer</small>
             </div>
           </div>
           <button id="continueLoginButton" class="button button-primary" type="button">
@@ -631,6 +631,39 @@
         </div>
         <div class="dialog-actions">
           <button class="button" id="saveTaskDetailsButton" type="button">Save Details</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="inviteDialog">
+      <form id="inviteForm" method="dialog">
+        <div class="dialog-header">
+          <h2>Invite a team member</h2>
+          <button class="icon-button" value="close" aria-label="Close" type="submit">&#x2715;</button>
+        </div>
+        <div class="invite-body">
+          <label class="invite-field">
+            <span>Full name</span>
+            <input id="inviteName" type="text" placeholder="Sarah Mitchell" autocomplete="off" />
+          </label>
+          <label class="invite-field">
+            <span>Work email</span>
+            <input id="inviteEmail" type="email" placeholder="sarah.mitchell@fusz.com" autocomplete="off" />
+          </label>
+          <label class="invite-field">
+            <span>Role</span>
+            <select id="inviteRole">
+              <option value="SEO Writer">SEO Writer</option>
+              <option value="Builder">Builder</option>
+              <option value="Admin">Admin</option>
+              <option value="AEO Writer">AEO Writer</option>
+            </select>
+          </label>
+          <p class="invite-note">This will open your email client with a pre-written invite. Hit send to deliver it.</p>
+        </div>
+        <div class="dialog-actions">
+          <button class="button button-primary-action" id="sendInviteButton" type="button">Send invite</button>
+          <button class="button button-quiet" value="close" type="submit">Cancel</button>
         </div>
       </form>
     </dialog>
