@@ -234,6 +234,7 @@ function render() {
   capMyWorkSections();
   renderUpcomingModels(syntheticUpcomingModels());
   renderInventoryFeedStatus();
+  if (typeof renderWins === "function") renderWins();
   if (isAeoTableFilter()) {
     renderQueue(els.seoQueue, [], "seo");
     renderQueue(els.aeoQueue, visiblePipelineTasks, "aeo");
@@ -307,11 +308,11 @@ function renderWorkspaceView() {
 }
 
 function workspaceTitle(view) {
-  return { admin: "Admin Command Center", my_work: "My Work", team_board: "Team Pipeline", upcoming: "Upcoming Models", docs: "Resources", settings: "Settings" }[view] || "My Work";
+  return { admin: "Admin Command Center", my_work: "My Work", team_board: "Team Pipeline", upcoming: "Upcoming Models", wins: "Wins", docs: "Resources", settings: "Settings" }[view] || "My Work";
 }
 
 function workspaceSubtitle(view, role) {
-  return { admin: "Admin controls and full visibility", my_work: `${role || "Builder"} workspace`, team_board: "All active model page work", upcoming: "Future model watchlist", docs: "Source hub and handoff rules", settings: "Workspace preferences" }[view] || "Builder workspace";
+  return { admin: "Admin controls and full visibility", my_work: `${role || "Builder"} workspace`, team_board: "All active model page work", upcoming: "Future model watchlist", wins: "Celebrating what the team shipped", docs: "Source hub and handoff rules", settings: "Workspace preferences" }[view] || "Builder workspace";
 }
 
 function renderFocusTask(tasks = state.tasks) {

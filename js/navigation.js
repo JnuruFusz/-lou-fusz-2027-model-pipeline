@@ -24,6 +24,7 @@ function workspaceLabel(view) {
     my_work: "My Work",
     team_board: "Team Pipeline",
     upcoming: "Upcoming Models",
+    wins: "Wins",
     docs: "Resources",
     settings: "Settings",
   }[view] || "Workspace";
