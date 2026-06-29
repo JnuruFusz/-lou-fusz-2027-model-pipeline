@@ -109,6 +109,19 @@ const embeddedTracker = [
   { id: "lou-fusz-kia-columbus|2027|kia-telluride", dealer: "Lou Fusz Kia Columbus", year: 2027, make: "Kia", model: "Kia Telluride", pageStatus: "live", trackerStatusRaw: true, trackerRow: 2, source: "sharepoint-2027-tracker" },
   { id: "lou-fusz-kia-columbus|2027|seltos", dealer: "Lou Fusz Kia Columbus", year: 2027, make: "Kia", model: "Seltos", pageStatus: "needs_seo", trackerStatusRaw: null, trackerRow: 3, source: "sharepoint-2027-tracker" },
   { id: "lou-fusz-kia-columbus|2027|ev3", dealer: "Lou Fusz Kia Columbus", year: 2027, make: "Kia", model: "EV3", pageStatus: "needs_seo", trackerStatusRaw: null, trackerRow: 4, source: "sharepoint-2027-tracker" },
+  { id: "lou-fusz-toyota|2027|camry", dealer: "Lou Fusz Toyota", year: 2027, make: "Toyota", model: "Camry", pageStatus: "seo_done", trackerStatusRaw: null, trackerRow: 5, source: "sharepoint-2027-tracker" },
+  { id: "lou-fusz-toyota|2027|rav4", dealer: "Lou Fusz Toyota", year: 2027, make: "Toyota", model: "RAV4", pageStatus: "seo_done", trackerStatusRaw: null, trackerRow: 6, source: "sharepoint-2027-tracker" },
+  { id: "lou-fusz-chevrolet|2027|trax", dealer: "Lou Fusz Chevrolet", year: 2027, make: "Chevrolet", model: "Trax", pageStatus: "seo_done", trackerStatusRaw: null, trackerRow: 9, source: "sharepoint-2027-tracker" },
+  { id: "lou-fusz-ford|2027|bronco", dealer: "Lou Fusz Ford", year: 2027, make: "Ford", model: "Bronco", pageStatus: "seo_done", trackerStatusRaw: null, trackerRow: 6, source: "sharepoint-2027-tracker" },
+  { id: "lou-fusz-mazda|2027|cx-5", dealer: "Lou Fusz Mazda", year: 2027, make: "Mazda", model: "CX-5", pageStatus: "needs_build", trackerStatusRaw: null, trackerRow: 10, source: "sharepoint-2027-tracker" },
+  { id: "lou-fusz-kia|2027|sportage", dealer: "Lou Fusz Kia", year: 2027, make: "Kia", model: "Sportage", pageStatus: "needs_build", trackerStatusRaw: null, trackerRow: 6, source: "sharepoint-2027-tracker" },
+  { id: "lou-fusz-buick-gmc|2027|acadia", dealer: "Lou Fusz Buick GMC", year: 2027, make: "GMC", model: "Acadia", pageStatus: "needs_build", trackerStatusRaw: null, trackerRow: 14, source: "sharepoint-2027-tracker" },
+  { id: "lou-fusz-chrysler-jeep-dodge-ram|2027|wrangler", dealer: "Lou Fusz Chrysler Jeep Dodge RAM", year: 2027, make: "Jeep", model: "Wrangler", pageStatus: "needs_build", trackerStatusRaw: null, trackerRow: 9, source: "sharepoint-2027-tracker" },
+  { id: "lou-fusz-ford|2027|f-150-lightning", dealer: "Lou Fusz Ford", year: 2027, make: "Ford", model: "F-150 Lightning", pageStatus: "page_built", trackerStatusRaw: null, trackerRow: 8, source: "sharepoint-2027-tracker" },
+  { id: "lou-fusz-toyota|2027|4runner", dealer: "Lou Fusz Toyota", year: 2027, make: "Toyota", model: "4Runner", pageStatus: "page_built", trackerStatusRaw: null, trackerRow: 9, source: "sharepoint-2027-tracker" },
+  { id: "lou-fusz-chevrolet|2027|tahoe", dealer: "Lou Fusz Chevrolet", year: 2027, make: "Chevrolet", model: "Tahoe", pageStatus: "page_built", trackerStatusRaw: null, trackerRow: 11, source: "sharepoint-2027-tracker" },
+  { id: "lou-fusz-buick-gmc|2027|yukon", dealer: "Lou Fusz Buick GMC", year: 2027, make: "GMC", model: "Yukon", pageStatus: "needs_review", trackerStatusRaw: null, trackerRow: 15, source: "sharepoint-2027-tracker" },
+  { id: "lou-fusz-ford|2027|mustang-mach-e", dealer: "Lou Fusz Ford", year: 2027, make: "Ford", model: "Mustang Mach-E", pageStatus: "needs_review", trackerStatusRaw: null, trackerRow: 10, source: "sharepoint-2027-tracker" },
 ];
 
 const embeddedSources = [
