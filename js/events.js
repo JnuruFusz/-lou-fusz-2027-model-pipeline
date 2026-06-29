@@ -241,6 +241,14 @@ function bindEvents() {
     toggle.setAttribute("aria-checked", on ? "true" : "false");
   });
 
+  // Team member Manage buttons
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-manage-member]");
+    if (!btn) return;
+    const name = btn.dataset.manageMember;
+    showToast(`Role editing for ${name} coming in the next update.`);
+  });
+
   // Admin panel action buttons — navigate or filter
   document.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-admin-nav]");
