@@ -241,6 +241,13 @@ function bindEvents() {
     toggle.setAttribute("aria-checked", on ? "true" : "false");
   });
 
+  // "Go to Settings" shortcut from Admin page
+  document.addEventListener("click", (e) => {
+    if (e.target.closest("[data-nav-settings]")) {
+      document.querySelector("[data-nav='settings']")?.click();
+    }
+  });
+
   // Invite modal — open
   document.addEventListener("click", (e) => {
     if (e.target.closest(".button-primary-action[type='button']")?.textContent?.trim() === "Invite member") {

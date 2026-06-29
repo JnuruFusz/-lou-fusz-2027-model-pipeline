@@ -251,6 +251,14 @@ function renderAuth() {
   document.body.dataset.auth = signedIn ? "signed_in" : "signed_out";
   els.authCards?.forEach((card) => card.classList.toggle("is-active", card.dataset.authStep === state.onboardingStep));
   els.flowDots?.forEach((dot) => dot.classList.toggle("is-active", dot.dataset.flowDot === state.onboardingStep));
+  applyAdminGating();
+}
+
+function applyAdminGating() {
+  const isAdmin = state.session?.isAdmin === true;
+  document.querySelectorAll("[data-admin-only]").forEach((el) => {
+    el.style.display = isAdmin ? "" : "none";
+  });
 }
 
 function renderSettingsProfile() {
