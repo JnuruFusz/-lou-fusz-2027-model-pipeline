@@ -433,13 +433,19 @@ function modelWithoutMake(task) {
 }
 
 async function boot() {
+  const bar = document.getElementById("load-bar");
+  const prog = (pct) => { if (bar) bar.style.width = pct + "%"; };
+  prog(10);
   applyTheme(state.selectedTheme);
   await loadClassicScript("js/my-work-workbench.js?v=20260616");
+  prog(38);
   await loadClassicScript("js/fusz-implementation.js?v=20260616");
+  prog(60);
   normalizeSession();
   bindEvents();
   renderAuth();
   const [tasks, sources, inventoryFeed] = [embeddedTracker, embeddedSources, await fetchInventoryFeed()];
+  prog(82);
   const sourceTasks = mergeInventoryFeedTasks(tasks, inventoryFeed.rows);
   state.sources = sources;
   state.rooftops = loadRooftops(sources);
@@ -463,8 +469,10 @@ async function boot() {
   populateYearFilter();
   populateDealerFilter();
   render();
+  prog(100);
+  document.body.dataset.loaded = "true";
   const _veil = document.getElementById("app-veil");
-  if (_veil) { _veil.classList.add("is-hidden"); setTimeout(() => _veil.remove(), 220); }
+  if (_veil) { _veil.classList.add("is-hidden"); setTimeout(() => _veil.remove(), 260); }
 }
 
 function loadRooftops(sources) {
