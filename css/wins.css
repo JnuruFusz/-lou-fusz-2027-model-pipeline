@@ -12,11 +12,14 @@
   50%       { opacity: .3; }
 }
 
-/* Reveal animation — elements start hidden, JS adds .is-revealed */
+/* Reveal animation — elements animate in when JS adds .is-revealed.
+   Without it they are still fully visible so the page never shows blank. */
 .wins-root [data-reveal] {
+  transition: opacity 460ms ease, transform 460ms ease;
+}
+.wins-root [data-reveal].is-hidden-pre-reveal {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 460ms ease, transform 460ms ease;
 }
 .wins-root [data-reveal].is-revealed {
   opacity: 1;

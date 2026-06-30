@@ -259,7 +259,8 @@ function renderWins() {
 
   </div>`;
 
-  requestAnimationFrame(() => { initWinsReveal(panel); initWinsCounters(panel); });
+  initWinsReveal(panel);
+  initWinsCounters(panel);
 }
 
 // ─── Counters ─────────────────────────────────────────────────────────────────
@@ -283,9 +284,19 @@ function animateWinsCounter(el, from, to, dur, dec, suf) {
 // ─── Scroll reveal ────────────────────────────────────────────────────────────
 
 function initWinsReveal(panel) {
-  let delay = 80;
-  panel.querySelectorAll("[data-reveal]").forEach((el) => {
-    setTimeout(() => el.classList.add("is-revealed"), delay);
-    delay += 55;
+  // Mark elements hidden FIRST so the CSS transition has a starting state,
+  // then reveal each one on a stagger. If this never runs, elements are
+  // visible by default — page never shows blank.
+  const els = Array.from(panel.querySelectorAll("[data-reveal]"));
+  els.forEach((el) => el.classList.add("is-hidden-pre-reveal"));
+  requestAnimationFrame(() => {
+    let delay = 60;
+    els.forEach((el) => {
+      setTimeout(() => {
+        el.classList.remove("is-hidden-pre-reveal");
+        el.classList.add("is-revealed");
+      }, delay);
+      delay += 55;
+    });
   });
 }
