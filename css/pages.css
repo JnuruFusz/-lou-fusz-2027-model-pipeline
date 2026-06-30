@@ -1380,28 +1380,6 @@ body[data-theme="light"] .profile-preview {
 .intel-card:hover .intel-delete-btn { opacity: 1; }
 .intel-delete-btn:hover { color: var(--ink); background: var(--line); }
 
-.intel-add-card {
-  background: none;
-  border: 1px dashed var(--soft-line);
-  border-radius: 12px;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  cursor: pointer;
-  min-height: 130px;
-  color: var(--muted);
-  font-size: 13px;
-  font-family: inherit;
-  transition: border-color .15s, color .15s;
-}
-
-.intel-add-card:hover { border-color: var(--action-blue); color: var(--action-blue); }
-
-.intel-add-icon { font-size: 22px; line-height: 1; }
-
 .intel-empty {
   font-size: 14px;
   color: var(--muted);

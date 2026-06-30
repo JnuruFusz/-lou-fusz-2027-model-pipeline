@@ -3,16 +3,16 @@
    --------------------------------------------------------------- */
 
 const OEM_LINKS = [
-  { make: "Toyota",    label: "Toyota",    url: "https://pressroom.toyota.com/whats-new-for-2027/",         note: "Toyota USA Newsroom" },
-  { make: "Kia",       label: "Kia",       url: "https://www.kiamedia.com/us/en/media/pressreleases/list",  note: "Kia America Newsroom" },
-  { make: "Chevrolet", label: "Chevrolet", url: "https://news.gm.com/home.html",                            note: "GM Newsroom" },
-  { make: "GMC",       label: "GMC",       url: "https://www.gmc.com/future-vehicles",                      note: "GMC Future Vehicles" },
-  { make: "Buick",     label: "Buick",     url: "https://news.gm.com/home.html",                            note: "GM Newsroom" },
-  { make: "Cadillac",  label: "Cadillac",  url: "https://news.gm.com/home.html",                            note: "GM Newsroom" },
-  { make: "Nissan",    label: "Nissan",    url: "https://global.nissannews.com/en",                         note: "Nissan Global Newsroom" },
-  { make: "Honda",     label: "Honda",     url: "https://hondanews.com/en-US/releases",                     note: "Honda Newsroom" },
-  { make: "Hyundai",   label: "Hyundai",   url: "https://www.hyundainews.com/en-us",                        note: "Hyundai Newsroom" },
-  { make: "Subaru",    label: "Subaru",    url: "https://media.subaru.com/",                                note: "Subaru Media" },
+  { make: "Toyota",    label: "Toyota",           url: "https://pressroom.toyota.com/whats-new-for-2027/",             note: "Toyota USA Newsroom" },
+  { make: "Kia",       label: "Kia",              url: "https://www.kiamedia.com/us/en/media/pressreleases/list",      note: "Kia America Newsroom" },
+  { make: "Chevrolet", label: "Chevrolet",         url: "https://news.gm.com/home.html",                               note: "GM Newsroom" },
+  { make: "GMC",       label: "GMC",              url: "https://www.gmc.com/future-vehicles",                          note: "GMC Future Vehicles" },
+  { make: "Buick",     label: "Buick",            url: "https://news.gm.com/home.html",                               note: "GM Newsroom" },
+  { make: "Subaru",    label: "Subaru",           url: "https://media.subaru.com/",                                    note: "Subaru Media" },
+  { make: "Mazda",     label: "Mazda",            url: "https://news.mazdausa.com/concept-vehicles",                   note: "Mazda USA Newsroom" },
+  { make: "Ford",      label: "Ford",             url: "https://www.ford.com/future-vehicles/",                        note: "Ford Future Vehicles" },
+  { make: "Jeep",      label: "Jeep / Chrysler / Dodge / RAM", url: "https://media.stellantisnorthamerica.com/",       note: "Stellantis North America Media" },
+  { make: "Nissan",    label: "Nissan",           url: "https://global.nissannews.com/en",                             note: "Nissan Global Newsroom" },
 ];
 
 const INTEL_STORAGE_KEY = "fusz-upcoming-intel";
@@ -65,13 +65,6 @@ function renderIntelCard(item) {
       </div>
       ${isAdmin ? `<button class="intel-delete-btn" type="button" data-delete-intel="${escapeAttr(item.id)}" aria-label="Remove">&times;</button>` : ""}
     </div>`;
-}
-
-function renderAddIntelCard() {
-  return `<button class="intel-add-card" type="button" id="addIntelCardBtn" aria-label="Add model intel">
-    <span class="intel-add-icon">+</span>
-    <span>Add model intel</span>
-  </button>`;
 }
 
 function renderOemShelf() {
@@ -159,7 +152,7 @@ function renderUpcoming() {
 
   const items = loadIntel();
   const cards = items.map(renderIntelCard).join("");
-  intelGrid.innerHTML = cards + (isAdmin ? renderAddIntelCard() : (items.length === 0 ? `<p class="intel-empty">No model intel added yet.</p>` : ""));
+  intelGrid.innerHTML = cards || `<p class="intel-empty">No model intel added yet — click + Add intel to get started.</p>`;
   oemShelf.innerHTML = renderOemShelf();
 
   renderIntelDialog();
@@ -172,7 +165,6 @@ function renderUpcoming() {
     document.getElementById("intelDialog")?.showModal();
   };
   document.getElementById("addIntelButton")?.addEventListener("click", openDialog, { once: true });
-  document.getElementById("addIntelCardBtn")?.addEventListener("click", openDialog, { once: true });
 
   // Wire delete buttons
   intelGrid.querySelectorAll("[data-delete-intel]").forEach((btn) => {
