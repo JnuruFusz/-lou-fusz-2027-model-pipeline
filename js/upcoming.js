@@ -109,35 +109,122 @@ function timeAgo(isoString) {
   return `${months}mo ago`;
 }
 
-function renderIntelCard(item) {
-  const color = intelAccentColor(item.make);
-  const isAdmin = hasAdminAccess && hasAdminAccess(state.session);
-  return `
-    <div class="intel-card" data-intel-id="${escapeAttr(item.id)}" style="--accent:${color}">
-      <div class="intel-accent-bar"></div>
-      <div class="intel-tag-row">
-        <span class="intel-year-badge">${escapeHtml(String(item.year))}</span>
-        <span class="intel-make">${escapeHtml(item.make)}</span>
-      </div>
-      <h3 class="intel-title">${escapeHtml(item.title)}</h3>
-      <p class="intel-note">${escapeHtml(item.note)}</p>
-      <div class="intel-footer">
-        ${item.url ? `<a class="intel-source-link" href="${escapeAttr(item.url)}" target="_blank" rel="noopener">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 2h3v1H3v6h6V7h1v3H2V2z" fill="currentColor"/><path d="M7 2h3v3h-1V3.7L5.4 7.3l-.7-.7L8.3 3H7V2z" fill="currentColor"/></svg>
-          ${escapeHtml(item.sourceLabel || "Source")}
-        </a>` : `<span></span>`}
-        <span class="intel-meta">${escapeHtml(timeAgo(item.createdAt))}</span>
-      </div>
-      ${isAdmin ? `<button class="intel-delete-btn" type="button" data-delete-intel="${escapeAttr(item.id)}" aria-label="Remove">&times;</button>` : ""}
-    </div>`;
+function wireBrandColor(make) {
+  const map = {
+    Toyota:"#D81E05", Kia:"#BB162B", Chevrolet:"#C4922F", GMC:"#B8112B",
+    Buick:"#5A5A5A", Subaru:"#004B91", Mazda:"#8B1A2B", Ford:"#1C3FAA",
+    Jeep:"#6B6B6B", Nissan:"#C3002F",
+  };
+  return map[make] || "#888";
 }
 
-function renderOemShelf() {
-  return OEM_LINKS.map((oem) => `
-    <a class="oem-tile" href="${oem.url}" target="_blank" rel="noopener" aria-label="${oem.label} — ${oem.note}">
-      <span class="oem-tile-name">${escapeHtml(oem.label)}</span>
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 2h3v1H3v6h6V7h1v3H2V2z" fill="currentColor"/><path d="M7 2h3v3h-1V3.7L5.4 7.3l-.7-.7L8.3 3H7V2z" fill="currentColor"/></svg>
-    </a>`).join("");
+function wireFeaturedHTML(item, isAdmin) {
+  const color = wireBrandColor(item.make);
+  return `<div class="wire-featured" style="position:relative">
+    <div class="wire-featured-meta">
+      <span class="wire-featured-label">Featured intel</span>
+      <span class="wire-featured-brand">
+        <span class="wire-brand-dot" style="background:${color}"></span>
+        ${escapeHtml(item.make)} · ${escapeHtml(String(item.year))}
+      </span>
+      <span class="wire-featured-updated">${escapeHtml(timeAgo(item.createdAt))}</span>
+    </div>
+    <h2 class="wire-featured-h2">${escapeHtml(item.title)}</h2>
+    <p class="wire-featured-body">${escapeHtml(item.note)}</p>
+    ${item.url ? `<a class="wire-featured-source" href="${escapeAttr(item.url)}" target="_blank" rel="noopener">${escapeHtml(item.sourceLabel || "Source")} ↗</a>` : ""}
+    ${isAdmin ? `<button class="wire-featured-delete" type="button" data-delete-intel="${escapeAttr(item.id)}" aria-label="Remove">×</button>` : ""}
+  </div>`;
+}
+
+function wireRowHTML(item, isAdmin) {
+  const color = wireBrandColor(item.make);
+  return `<div class="wire-row">
+    <div class="wire-row-left">
+      <span class="wire-row-year">${escapeHtml(String(item.year))}</span>
+      <span class="wire-row-brand">
+        <span class="wire-brand-dot" style="background:${color}"></span>
+        ${escapeHtml(item.make)}
+      </span>
+    </div>
+    <div class="wire-row-mid">
+      <div class="wire-row-title">${escapeHtml(item.title)}</div>
+      ${item.note ? `<div class="wire-row-note">${escapeHtml(item.note)}</div>` : ""}
+    </div>
+    <div class="wire-row-right">
+      ${item.url ? `<a class="wire-row-source" href="${escapeAttr(item.url)}" target="_blank" rel="noopener">${escapeHtml(item.sourceLabel || "Source")} ↗</a>` : ""}
+      <span class="wire-row-time">${escapeHtml(timeAgo(item.createdAt))}</span>
+    </div>
+    ${isAdmin ? `<button class="wire-row-delete" type="button" data-delete-intel="${escapeAttr(item.id)}" aria-label="Remove">×</button>` : ""}
+  </div>`;
+}
+
+function wireOemShelfHTML() {
+  return `<div class="wire-oem-section">
+    <div class="wire-oem-header">
+      <span class="wire-oem-label">OEM Source Pages</span>
+      <div class="wire-oem-rule"></div>
+    </div>
+    <p class="wire-oem-sublabel">Brand newsrooms · ${OEM_LINKS.length} sources</p>
+    <div class="wire-oem-grid">
+      ${OEM_LINKS.map((oem) => `
+        <a class="wire-oem-row" href="${oem.url}" target="_blank" rel="noopener" aria-label="${oem.label}">
+          <span class="wire-oem-brand">
+            <span class="wire-brand-dot" style="background:${wireBrandColor(oem.make)}"></span>
+            ${escapeHtml(oem.label)}
+          </span>
+          <span class="wire-oem-arrow">↗</span>
+        </a>`).join("")}
+    </div>
+  </div>`;
+}
+
+function renderUpcoming() {
+  const panel = document.getElementById("upcomingPanel");
+  if (!panel) return;
+
+  const isAdmin = typeof hasAdminAccess === "function" && hasAdminAccess(state.session);
+  const items = loadIntel();
+  const [featured, ...rest] = items;
+
+  panel.innerHTML = `
+    <div class="wire-header">
+      <div class="wire-header-left">
+        <p class="wire-eyebrow">Model Intel</p>
+        <h1 class="wire-title">Upcoming Models</h1>
+        <p class="wire-subtitle">Future model watchlist for Lou Fusz</p>
+      </div>
+      ${isAdmin ? `<button class="wire-add-btn" id="addIntelButton" type="button">+ Add intel</button>` : ""}
+    </div>
+
+    ${featured ? wireFeaturedHTML(featured, isAdmin) : ""}
+
+    <div class="wire-list" id="wireList">
+      ${rest.length
+        ? rest.map((item) => wireRowHTML(item, isAdmin)).join("")
+        : `<p class="wire-empty">No additional intel — ${isAdmin ? "click + Add intel to get started" : "check back soon"}.</p>`
+      }
+    </div>
+
+    ${wireOemShelfHTML()}
+  `;
+
+  renderIntelDialog();
+
+  document.getElementById("addIntelButton")?.addEventListener("click", () => {
+    ["intelTitle","intelNote","intelUrl","intelSourceLabel"].forEach((id) => {
+      const el = document.getElementById(id); if (el) el.value = "";
+    });
+    document.getElementById("intelDialog")?.showModal();
+  });
+
+  panel.querySelectorAll("[data-delete-intel]").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const id = e.currentTarget.dataset.deleteIntel;
+      saveIntel(loadIntel().filter((i) => i.id !== id));
+      renderUpcoming();
+    });
+  });
 }
 
 function renderIntelDialog() {
