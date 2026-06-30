@@ -1,3 +1,44 @@
+/* ---------------------------------------------------------------
+   Team Roster — single source of truth for users + roles
+   --------------------------------------------------------------- */
+const TEAM_ROSTER = [
+  {
+    name: "Jnuru Goodwin",
+    email: "jnurugoodwin48@gmail.com",
+    initials: "JG",
+    primaryRole: "Builder",
+    isAdmin: true,
+    defaultView: "my_work",
+    inviteKey: "jnuru",
+  },
+  {
+    name: "Scott Touloo",
+    email: "scott.touloo@fusz.com",
+    initials: "ST",
+    primaryRole: "AEO Writer",
+    isAdmin: true,
+    defaultView: "my_work",
+    inviteKey: "scott",
+  },
+  {
+    name: "Chris Pajda",
+    email: "chris.pajda@fusz.com",
+    initials: "CP",
+    primaryRole: "SEO Writer",
+    isAdmin: false,
+    defaultView: "my_work",
+    inviteKey: "chris",
+  },
+];
+
+function rosterByEmail(email) {
+  return TEAM_ROSTER.find((m) => m.email.toLowerCase() === (email || "").toLowerCase()) || null;
+}
+
+function rosterByInviteKey(key) {
+  return TEAM_ROSTER.find((m) => m.inviteKey === (key || "").toLowerCase()) || null;
+}
+
 const statusLabels = {
   needs_seo: "Needs SEO",
   seo_in_progress: "SEO in progress",

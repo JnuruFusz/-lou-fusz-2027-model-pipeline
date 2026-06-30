@@ -508,28 +508,24 @@ function loadRooftops(sources) {
 
 function normalizeSession() {
   if (!state.session) return;
-  if (state.session.primaryRole && typeof state.session.isAdmin === "boolean") return;
 
-  if (state.session.role === "Admin") {
+  // If session has an email, reconcile against roster (handles stale localStorage)
+  const member = rosterByEmail(state.session.email) || null;
+  if (member) {
     state.session = {
-      ...state.session,
-      name: state.session.name || "Admin",
-      primaryRole: "AEO Writer",
-      role: "AEO Writer",
-      isAdmin: true,
-      defaultView: "admin",
+      email: member.email,
+      name: member.name,
+      initials: member.initials,
+      primaryRole: member.primaryRole,
+      isAdmin: member.isAdmin,
+      defaultView: member.defaultView,
     };
-  } else if (state.session.role === "Builder") {
-    state.session = {
-      ...state.session,
-      name: state.session.name || "Jnuru Goodwin",
-      primaryRole: "Builder",
-      role: "Builder",
-      isAdmin: true,
-      defaultView: state.session.defaultView || "my_work",
-    };
+    localStorage.setItem("fusz-demo-session", JSON.stringify(state.session));
+    return;
   }
 
+  // Legacy fallback: sessions without email
+  if (state.session.primaryRole && typeof state.session.isAdmin === "boolean") return;
   localStorage.setItem("fusz-demo-session", JSON.stringify(state.session));
 }
 

@@ -276,20 +276,22 @@ function renderSettingsProfile() {
   }
 }
 
-function completeOnboarding(workspaceView, role = "Builder") {
+function completeOnboarding(member) {
+  // member is a TEAM_ROSTER entry (or compatible object)
   state.session = {
-    name: role === "Admin" ? "Scott Toulou" : "Jnuru Goodwin",
-    role,
-    primaryRole: role === "Admin" ? "AEO Writer" : "Builder",
-    isAdmin: true,
-    defaultView: workspaceView,
+    email:       member.email,
+    name:        member.name,
+    initials:    member.initials,
+    primaryRole: member.primaryRole,
+    isAdmin:     member.isAdmin,
+    defaultView: member.defaultView,
   };
   localStorage.setItem("fusz-demo-session", JSON.stringify(state.session));
-  state.workspaceView = workspaceView;
-  localStorage.setItem("pipeline-workspace-view", workspaceView);
+  state.workspaceView = member.defaultView;
+  localStorage.setItem("pipeline-workspace-view", member.defaultView);
   renderAuth();
-  showToast(`${workspaceLabel(workspaceView)} opened`);
   render();
+  showToast(`Welcome, ${member.name.split(" ")[0]} — ${member.primaryRole} workspace open`);
 }
 
 function primaryRole(session) { return session?.primaryRole || session?.role || "Builder"; }
@@ -326,9 +328,22 @@ function renderFocusTask(tasks = state.tasks) {
 }
 
 function renderMyWork(tasks) {
-  const work = tasks.filter((task) => ["seo_done", "needs_build", "page_built", "needs_review"].includes(task.pageStatus)).sort((a, b) => workPriority(a) - workPriority(b));
+  const role = currentRoleKey();
+  let work;
+  let emptyMsg;
+  if (role.includes("aeo")) {
+    work = tasks.filter((task) => !["done", "not_needed"].includes(task.aeoStatus) && !["live", "ignored", "snoozed"].includes(task.pageStatus));
+    emptyMsg = "No AEO tasks match the current filters.";
+  } else if (role.includes("seo")) {
+    work = tasks.filter((task) => ["needs_seo", "seo_in_progress", "needs_review"].includes(task.pageStatus));
+    emptyMsg = "No SEO tasks match the current filters.";
+  } else {
+    work = tasks.filter((task) => ["seo_done", "needs_build", "page_built", "needs_review"].includes(task.pageStatus));
+    emptyMsg = "No builder tasks match the current filters.";
+  }
+  work = work.sort((a, b) => workPriority(a) - workPriority(b));
   if (els.myWorkCount) els.myWorkCount.textContent = work.length;
-  if (els.myWorkList) els.myWorkList.innerHTML = work.length ? work.map(renderMyWorkCard).join("") : `<div class="empty">No builder tasks match the current filters.</div>`;
+  if (els.myWorkList) els.myWorkList.innerHTML = work.length ? work.map(renderMyWorkCard).join("") : `<div class="empty">${emptyMsg}</div>`;
   renderBuilderDetail(work[0]);
 }
 

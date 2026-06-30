@@ -1,3 +1,21 @@
+function roleAccessDescription(member) {
+  if (member.primaryRole === "AEO Writer") return "Your AEO workspace is ready — you'll see pages that need AEO content added.";
+  if (member.primaryRole === "SEO Writer") return "Your SEO workspace is ready — you'll see pages that need copy written.";
+  return "Your My Work queue shows pages ready to build and pages that need live verification.";
+}
+
+function roleAccessHelp(member) {
+  if (member.primaryRole === "AEO Writer") return member.isAdmin ? "AEO Writer + Admin access" : "View AEO Writer access";
+  if (member.primaryRole === "SEO Writer") return "View SEO Writer access";
+  return member.isAdmin ? "Builder + Admin access" : "View Builder access";
+}
+
+function roleAccessHelpToast(member) {
+  if (member.primaryRole === "AEO Writer") return "AEO Writer access: My Work (AEO tasks)" + (member.isAdmin ? " + Team Pipeline + Admin" : "") + ".";
+  if (member.primaryRole === "SEO Writer") return "SEO Writer access: My Work (SEO tasks).";
+  return "Builder access: My Work + Team Pipeline" + (member.isAdmin ? " + Admin" : "") + ".";
+}
+
 function configureInviteOnboarding() {
   const params = new URLSearchParams(window.location.search);
   if (params.get("demo") === "reset") {
@@ -20,31 +38,36 @@ function configureInviteOnboarding() {
   }
 
   if (!els.authScreen) return;
-
   const shell = els.authScreen.querySelector(".auth-shell");
   if (!shell) return;
+
+  // Resolve who is being onboarded: ?invite=scott / ?invite=chris / default = Jnuru
+  const inviteKey = params.get("invite") || "jnuru";
+  const member = rosterByInviteKey(inviteKey) || TEAM_ROSTER[0];
+
+  // Store pending member on state so continueLoginButton handler can read it
+  state._pendingMember = member;
+
+  const firstName = member.name.split(" ")[0];
+  const roleLabel = member.isAdmin ? `${member.primaryRole} + Admin` : member.primaryRole;
 
   shell.innerHTML = `
     <div class="auth-card is-active" data-auth-step="login">
       <strong class="auth-logo">Fusz<span class="sidebar-logo-plus">+</span></strong>
       <p class="eyebrow">Invite accepted</p>
-      <h2>Welcome to Fusz+, Jnuru</h2>
-      <p class="auth-copy">
-        You've been added as a Builder. Your default workspace is My Work,
-        where you'll see pages ready to build and pages that need live
-        verification.
-      </p>
-      <div class="profile-preview" aria-label="Signed in as Jnuru Goodwin, Builder">
-        <span aria-hidden="true">JG</span>
+      <h2>Welcome to Fusz+, ${firstName}</h2>
+      <p class="auth-copy">${roleAccessDescription(member)}</p>
+      <div class="profile-preview" aria-label="Signed in as ${member.name}, ${roleLabel}">
+        <span aria-hidden="true">${member.initials}</span>
         <div>
-          <strong>Jnuru Goodwin</strong>
-          <small>Builder</small>
+          <strong>${member.name}</strong>
+          <small>${roleLabel}</small>
         </div>
       </div>
       <button id="continueLoginButton" class="button button-primary" type="button">
         Open My Work
       </button>
-      <button id="authHelpButton" class="auth-help-link" type="button">View Builder access</button>
+      <button id="authHelpButton" class="auth-help-link" type="button">${roleAccessHelp(member)}</button>
     </div>
   `;
 
@@ -156,12 +179,14 @@ function bindEvents() {
     const button = event.currentTarget;
     if (button.disabled) return;
     button.disabled = true;
-    button.textContent = "Opening";
-    completeOnboarding("my_work", "Builder");
+    button.textContent = "Opening…";
+    const member = state._pendingMember || TEAM_ROSTER[0];
+    completeOnboarding(member);
   });
 
   on(els.authHelpButton, "click", () => {
-    showToast("Builder access opens My Work and the Team Pipeline.");
+    const member = state._pendingMember || TEAM_ROSTER[0];
+    showToast(roleAccessHelpToast(member));
   });
 
   els.themeOptions.forEach((button) => {
@@ -178,8 +203,11 @@ function bindEvents() {
     renderAuth();
   });
 
-  on(els.enterWorkspaceButton, "click", () => completeOnboarding("my_work", "Builder"));
-  on(els.skipToBoardButton, "click", () => completeOnboarding("team_board", "Builder"));
+  on(els.enterWorkspaceButton, "click", () => completeOnboarding(state._pendingMember || TEAM_ROSTER[0]));
+  on(els.skipToBoardButton, "click", () => {
+    const m = { ...(state._pendingMember || TEAM_ROSTER[0]), defaultView: "team_board" };
+    completeOnboarding(m);
+  });
 
   on(els.restartDemoButton, "click", () => {
     localStorage.removeItem("fusz-demo-session");
