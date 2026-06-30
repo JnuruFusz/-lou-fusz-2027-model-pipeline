@@ -58,9 +58,17 @@ function winsComputeData() {
       ...winsBrandMeta(b.name),
     }));
 
-  // Team leaderboard
+  // Team leaderboard — pre-seed from TEAM_ROSTER so all members always appear
   const teamMap = {};
-  const sessionName = state.session?.name;
+
+  // Baseline: every roster member starts at 0
+  if (typeof TEAM_ROSTER !== "undefined") {
+    TEAM_ROSTER.forEach((member) => {
+      teamMap[member.name] = { name: member.name, count: 0, role: member.primaryRole };
+    });
+  }
+
+  // Layer in real completed-task counts
   tasks.forEach((t) => {
     const bo = t.details?.buildOwner, so = t.details?.seoOwner;
     if (["page_built","live"].includes(t.pageStatus) && bo) {
@@ -71,16 +79,15 @@ function winsComputeData() {
       if (!teamMap[so]) teamMap[so] = { name: so, count: 0, role: "SEO Writer" };
       teamMap[so].count++;
     }
+    if (["done"].includes(t.aeoStatus)) {
+      const ao = t.details?.aeoOwner || null;
+      if (ao) {
+        if (!teamMap[ao]) teamMap[ao] = { name: ao, count: 0, role: "AEO Writer" };
+        teamMap[ao].count++;
+      }
+    }
   });
-  if (sessionName && !teamMap[sessionName]) {
-    const role = (typeof primaryRole === "function") ? primaryRole(state.session) : "Builder";
-    const rel  = tasks.filter((t) =>
-      role.toLowerCase().includes("builder")
-        ? ["page_built","live"].includes(t.pageStatus)
-        : ["seo_done","needs_build","page_built","live"].includes(t.pageStatus)
-    );
-    if (rel.length) teamMap[sessionName] = { name: sessionName, count: rel.length, role };
-  }
+
   const team = Object.values(teamMap)
     .sort((a, b) => b.count - a.count)
     .map((m, i) => ({ ...m, color: winsTeamColor(i), initials: winsInitials(m.name) }));
@@ -140,7 +147,7 @@ function winsTeamCardHTML(m) {
         <div class="wins-team-role">${escapeHtml(m.role)}</div>
       </div>
       <div class="wins-team-stat">
-        <div class="wins-team-count">${m.count}</div>
+        <div class="wins-team-count">${m.count > 0 ? m.count : "–"}</div>
         <div class="wins-team-unit">pages</div>
       </div>
     </div>`;
