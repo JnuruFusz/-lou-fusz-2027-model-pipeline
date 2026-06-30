@@ -154,7 +154,7 @@ function winsTeamCardHTML(m) {
         <div class="wins-team-role">${escapeHtml(m.role)}</div>
       </div>
       <div class="wins-team-stat">
-        <div class="wins-team-count">${m.count > 0 ? m.count : "–"}</div>
+        <div class="wins-team-count">${m.count}</div>
         <div class="wins-team-unit">pages</div>
       </div>
     </div>`;
