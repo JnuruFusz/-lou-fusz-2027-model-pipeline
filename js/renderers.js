@@ -339,37 +339,6 @@ function renderFocusTask(tasks = state.tasks) {
   els.focusActions.innerHTML = actionButtons(task);
 }
 
-function renderMyWork(tasks) {
-  const role = currentRoleKey();
-  let work;
-  let emptyMsg;
-  if (role.includes("aeo")) {
-    work = tasks.filter((task) => !["done", "not_needed"].includes(task.aeoStatus) && !["live", "ignored", "snoozed"].includes(task.pageStatus));
-    emptyMsg = "No AEO tasks match the current filters.";
-  } else if (role.includes("seo")) {
-    work = tasks.filter((task) => ["needs_seo", "seo_in_progress", "needs_review"].includes(task.pageStatus));
-    emptyMsg = "No SEO tasks match the current filters.";
-  } else {
-    work = tasks.filter((task) => ["seo_done", "needs_build", "page_built", "needs_review"].includes(task.pageStatus));
-    emptyMsg = "No builder tasks match the current filters.";
-  }
-  work = work.sort((a, b) => workPriority(a) - workPriority(b));
-  if (els.myWorkCount) els.myWorkCount.textContent = work.length;
-  if (els.myWorkList) els.myWorkList.innerHTML = work.length ? work.map(renderMyWorkCard).join("") : `<div class="empty">${emptyMsg}</div>`;
-  renderBuilderDetail(work[0]);
-}
-
-function renderMyWorkCard(task, index = 0) {
-  return `<article class="work-card${index === 0 ? " is-selected" : ""}" style="${escapeAttr(task.accentStyle || "")}" data-details="${escapeAttr(task.id)}"><div class="work-card-main"><div class="work-card-topline"><span class="brand-badge">${escapeHtml(task.make || "Brand")}</span><span class="work-owner">${escapeHtml(ownerBucket(task))}</span></div><h3>${escapeHtml(taskTitle(task))}</h3><p class="work-card-dealer">${escapeHtml(task.dealer)}</p><div class="work-card-meta">${summaryStatusLine(task)}</div></div><div class="work-card-side"><span class="owner-avatar">${escapeHtml(initials(ownerBucket(task)))}</span>${builderActionButton(task)}</div></article>`;
-}
-
-function renderBuilderDetail(task) {
-  if (!els.builderDetailPanel || !els.builderDetailContent) return;
-  els.builderDetailPanel.classList.toggle("is-empty", !task);
-  els.builderDetailContent.innerHTML = task ? `<p class="eyebrow">Selected task</p><h2>${escapeHtml(taskTitle(task))}</h2><p class="panel-subtitle">${escapeHtml(task.dealer)}</p><div class="selected-task-status">${personalStatusTags(task)}</div><h3 class="detail-section-title">Next step</h3><div class="next-step-card"><span>Recommended action</span><strong>${escapeHtml(builderNextStep(task))}</strong></div><div class="detail-actions">${actionButtons(task)}<button class="button button-secondary-action" type="button" data-details="${escapeAttr(task.id)}">Details</button></div>` : "";
-}
-
-
 
 function renderInventoryFeedStatus() {
   if (els.feedVehicleCount) els.feedVehicleCount.textContent = state.inventoryFeed.connected ? `${state.inventoryFeed.rows.length} feed rows` : "Feed waiting";
