@@ -117,7 +117,14 @@ function winsComputeData() {
     milestone = { eyebrow:"Just getting started", quote:`${n||"The first"} page${n===1?"":"s"} — every great run starts here.`, next:`First milestone: 25 pages — ${25-n} to go.` };
   }
 
-  return { liveCount:liveTasks.length, builtCount:builtTasks.length, seoCount:n, wordsK, brands, team, recentWins, milestone, doneBrands:brands.filter((b)=>b.done).length };
+  // Dynamic pipeline label — derived from real data so it never needs manual updates
+  const years = [...new Set(tasks.map((t) => t.year).filter(Boolean))].sort();
+  const yearLabel = years.length > 1 ? `${years[0]}–${years[years.length-1]}` : (years[0] ? String(years[0]) : 'Current');
+  const dealerCount = typeof state.sources !== 'undefined' && Array.isArray(state.sources) && state.sources.length
+    ? state.sources.length
+    : (typeof embeddedSources !== 'undefined' ? embeddedSources.length : 17);
+
+  return { liveCount:liveTasks.length, builtCount:builtTasks.length, seoCount:n, wordsK, brands, team, recentWins, milestone, doneBrands:brands.filter((b)=>b.done).length, yearLabel, dealerCount };
 }
 
 // ─── HTML builders ────────────────────────────────────────────────────────────
@@ -177,7 +184,7 @@ function renderWins() {
       <div class="wins-hero-inner">
         <div class="wins-eyebrow-chip" data-reveal>
           <span class="wins-dot" style="background:var(--blue);"></span>
-          2027 Model Year · 17 Dealerships
+          ${d.yearLabel} Model Pipeline · ${d.dealerCount} Dealerships
         </div>
         <h1 class="wins-headline" data-reveal>Look at what<br>we built.</h1>
         <p class="wins-subhead" data-reveal>Every number here is real work the team shipped this season. Keep going — the lineup is almost live.</p>
