@@ -168,7 +168,7 @@ function winsRecentRowHTML(w) {
 
 function renderWins() {
   const panel = document.getElementById("winsPanel");
-  if (!panel || state.workspaceView !== "wins") return;
+  if (!panel) return;
   const d = winsComputeData();
 
   panel.innerHTML = `<div class="wins-root">
