@@ -391,3 +391,30 @@ body[data-theme="light"] .wins-banner {
   .wins-recent-year { display: none; }
   .wins-recent-row { gap: 12px; padding: 12px 14px; }
 }
+
+/* ─── Workspace view integration ────────────────────────────────────────────
+   Hide the standard pipeline chrome when wins view is active,
+   and show the wins panel. Follows the same pattern as other views
+   in workbench.css.
+─────────────────────────────────────────────────────────────────────────────── */
+
+/* Show wins panel */
+body[data-workspace-view="wins"] #winsPanel {
+  display: block;
+}
+
+/* Hide pipeline chrome that belongs to other views */
+body[data-workspace-view="wins"] .summary-grid,
+body[data-workspace-view="wins"] #focusPanel,
+body[data-workspace-view="wins"] .toolbar,
+body[data-workspace-view="wins"] .achievement-strip,
+body[data-workspace-view="wins"] .board,
+body[data-workspace-view="wins"] .table-section,
+body[data-workspace-view="wins"] #myWorkPanel,
+body[data-workspace-view="wins"] #adminPanel,
+body[data-workspace-view="wins"] #upcomingPanel,
+body[data-workspace-view="wins"] #docsPanel,
+body[data-workspace-view="wins"] #settingsPanel,
+body[data-workspace-view="wins"] .header-search {
+  display: none !important;
+}
