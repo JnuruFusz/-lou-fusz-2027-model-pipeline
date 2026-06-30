@@ -232,9 +232,9 @@ function render() {
   renderFocusTask(personalTasks);
   renderMyWork(personalTasks);
   capMyWorkSections();
-  if (typeof renderUpcoming === 'function') renderUpcoming();
+  try { if (typeof renderUpcoming === "function") renderUpcoming(); } catch (e) { console.warn("renderUpcoming error:", e); }
   renderInventoryFeedStatus();
-  if (typeof renderWins === "function") renderWins();
+  try { if (typeof renderWins === "function") renderWins(); } catch (e) { console.warn("renderWins error:", e); }
   if (isAeoTableFilter()) {
     renderQueue(els.seoQueue, [], "seo");
     renderQueue(els.aeoQueue, visiblePipelineTasks, "aeo");

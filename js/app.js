@@ -646,9 +646,10 @@ function populateYearFilter() {
 
 boot().catch((error) => {
   console.error(error);
-  showToast("Some source data could not load yet");
-  renderAuth();
-  render();
+  // Remove veil FIRST — nothing should block the user seeing the app
   const _veil2 = document.getElementById("app-veil");
   if (_veil2) { _veil2.classList.add("is-hidden"); setTimeout(() => _veil2.remove(), 220); }
+  try { showToast("Some source data could not load yet"); } catch {}
+  try { renderAuth(); } catch {}
+  try { render(); } catch {}
 });
