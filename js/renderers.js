@@ -40,7 +40,7 @@ function personalWorkTasks(tasks = []) {
   if (state.workspaceView !== "my_work") return tasks;
   const role = currentRoleKey();
   if (role.includes("builder")) {
-    return tasks.filter((task) => ["seo_done", "needs_build", "page_built", "needs_review"].includes(task.pageStatus));
+    return tasks.filter((task) => task.year >= 2027 && ["seo_done", "needs_build", "page_built", "needs_review"].includes(task.pageStatus));
   }
   if (role.includes("seo")) {
     return tasks.filter((task) => ["needs_seo", "seo_in_progress", "needs_review"].includes(task.pageStatus));

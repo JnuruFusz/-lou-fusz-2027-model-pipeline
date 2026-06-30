@@ -1,4 +1,6 @@
 (function () {
+  let _lastSelectedId = null; // persists selected task across re-renders
+
   function installMyWorkStyles() { /* styles moved to css/workbench.css */ }
 
   function isRenderableTask(task) {
@@ -117,6 +119,7 @@
 
   function selectWorkbenchTask(taskId) {
     if (!taskId) return;
+    _lastSelectedId = taskId;
     const task = state.tasks?.find((item) => item?.id === taskId);
     if (!isRenderableTask(task)) return;
     document.querySelectorAll(".workbench-row").forEach((row) => {
@@ -129,7 +132,10 @@
     installMyWorkStyles();
     const safeTasks = Array.isArray(tasks) ? tasks.filter(isRenderableTask) : [];
     const { work, groups } = myWorkGroups(safeTasks);
-    const selected = work.find(isRenderableTask) || null;
+    // Re-select last interacted task; fall back to first in queue
+    const selected = (_lastSelectedId && work.find((t) => t.id === _lastSelectedId))
+      || work.find(isRenderableTask) || null;
+    if (selected) _lastSelectedId = selected.id;
     if (els.myWorkCount) {
       const nBuild = work.filter((t) => ["seo_done", "needs_build"].includes(t.pageStatus)).length;
       const nVerify = work.filter((t) => t.pageStatus === "page_built").length;

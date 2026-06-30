@@ -478,7 +478,7 @@ async function boot() {
       ...task,
       pageStatus,
       aeoStatus: state.aeoOverrides[task.id] || completedOverride?.aeoStatus || normalizeAeoStatus(task.aeoStatus) || demoAeoStatus(task, pageStatus),
-      details: state.details[task.id] || {},
+      details: { ...(task.details || {}), ...(state.details[task.id] || {}) },
       inventorySignal: state.signalOverrides[task.id] || inferSignal(task),
       accent: brandAccentOverrides[task.make]?.accent || dealerAccents[task.dealer] || "#2563a9",
       accentStyle: accentStyleForTask(task),
