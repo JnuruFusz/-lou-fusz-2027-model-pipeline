@@ -1274,3 +1274,236 @@ body[data-theme="light"] .profile-preview {
     margin-bottom: 24px;
   }
 }
+
+/* ---------------------------------------------------------------
+   Upcoming Models — intel cards + OEM shelf
+   --------------------------------------------------------------- */
+.intel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+  margin-bottom: 2rem;
+}
+
+.intel-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem 1.1rem 0.9rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.intel-accent-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent, var(--action-blue));
+}
+
+.intel-tag-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  margin-top: 2px;
+}
+
+.intel-year-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: rgba(47, 114, 214, 0.12);
+  color: var(--action-blue, #2f72d6);
+}
+
+.intel-make {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.intel-title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+
+.intel-note {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.intel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.intel-source-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--action-blue, #2f72d6);
+  text-decoration: none;
+}
+
+.intel-source-link:hover { text-decoration: underline; }
+
+.intel-meta {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.intel-delete-btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: var(--muted);
+  cursor: pointer;
+  line-height: 1;
+  padding: 2px 4px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity .15s;
+}
+
+.intel-card:hover .intel-delete-btn { opacity: 1; }
+.intel-delete-btn:hover { color: var(--ink); background: var(--line); }
+
+.intel-add-card {
+  background: none;
+  border: 1px dashed var(--soft-line);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  min-height: 130px;
+  color: var(--muted);
+  font-size: 13px;
+  font-family: inherit;
+  transition: border-color .15s, color .15s;
+}
+
+.intel-add-card:hover { border-color: var(--action-blue); color: var(--action-blue); }
+
+.intel-add-icon { font-size: 22px; line-height: 1; }
+
+.intel-empty {
+  font-size: 14px;
+  color: var(--muted);
+  grid-column: 1 / -1;
+  padding: 1rem 0;
+}
+
+.upcoming-divider {
+  border-top: 1px solid var(--line);
+  margin: 0 0 1.5rem;
+}
+
+.upcoming-shelf-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.oem-shelf {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 8px;
+}
+
+.oem-tile {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  transition: border-color .15s;
+}
+
+.oem-tile:hover { border-color: var(--soft-line); }
+
+.oem-tile-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.oem-tile svg { color: var(--muted); flex-shrink: 0; }
+
+/* Intel add dialog */
+.intel-dialog {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  padding: 0;
+  width: min(480px, 92vw);
+  color: var(--ink);
+  box-shadow: 0 8px 32px rgba(0,0,0,.18);
+}
+
+.intel-dialog::backdrop { background: rgba(0,0,0,.45); }
+
+.intel-form { padding: 1.5rem; }
+
+.intel-form-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  color: var(--ink);
+}
+
+.intel-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.intel-form-row label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.intel-form-row input,
+.intel-form-row select,
+.intel-form-row textarea {
+  background: var(--bg);
+  border: 1px solid var(--soft-line);
+  border-radius: 6px;
+  padding: 7px 10px;
+  font-size: 13px;
+  color: var(--ink);
+  font-family: inherit;
+  width: 100%;
+}
+
+.intel-form-row textarea { resize: vertical; }
+
+.intel-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 1.25rem;
+}

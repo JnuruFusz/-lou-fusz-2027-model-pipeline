@@ -84,8 +84,6 @@ const els = {
   rooftopsList: document.querySelector("#rooftopsList"),
   addRooftopButton: document.querySelector("#addRooftopButton"),
   upcomingPanel: document.querySelector("#upcomingPanel"),
-  upcomingList: document.querySelector("#upcomingList"),
-  upcomingCount: document.querySelector("#upcomingCount"),
   docsPanel: document.querySelector("#docsPanel"),
   docsDigestButton: document.querySelector("#docsDigestButton"),
   digestDialog: document.querySelector("#digestDialog"),

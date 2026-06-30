@@ -176,13 +176,17 @@
       <section id="upcomingPanel" class="workspace-panel" aria-label="Upcoming models">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">Watchlist</p>
+            <p class="eyebrow">Model intel</p>
             <h2>Upcoming Models</h2>
           </div>
-          <span id="upcomingCount" class="count-pill">0</span>
+          <button id="addIntelButton" class="button button-secondary-action" type="button" data-admin-only style="display:none">
+            + Add intel
+          </button>
         </div>
-        <p class="watch-note">These models are confirmed or rumored for upcoming model years. They'll appear in your build queue once inventory arrives — nothing to do yet.</p>
-        <div id="upcomingList" class="watchlist-grid"></div>
+        <div id="intelGrid" class="intel-grid"></div>
+        <div class="upcoming-divider"></div>
+        <p class="upcoming-shelf-label">OEM source pages</p>
+        <div id="oemShelf" class="oem-shelf"></div>
       </section>
 
       <section id="winsPanel" class="workspace-panel" aria-label="Team wins and achievements"></section>
@@ -625,6 +629,7 @@
     <script defer src="js/navigation.js"></script>
     <script defer src="js/theme.js"></script>
     <script defer src="js/events.js"></script>
+    <script defer src="js/upcoming.js"></script>
     <script defer src="js/wins.js"></script>
     <script defer src="js/app.js"></script>
   </body>

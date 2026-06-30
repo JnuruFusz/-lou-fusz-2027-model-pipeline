@@ -1,0 +1,186 @@
+/* ---------------------------------------------------------------
+   Upcoming Models — intel cards + OEM shelf
+   --------------------------------------------------------------- */
+
+const OEM_LINKS = [
+  { make: "Toyota",    label: "Toyota",    url: "https://pressroom.toyota.com/whats-new-for-2027/",         note: "Toyota USA Newsroom" },
+  { make: "Kia",       label: "Kia",       url: "https://www.kiamedia.com/us/en/media/pressreleases/list",  note: "Kia America Newsroom" },
+  { make: "Chevrolet", label: "Chevrolet", url: "https://news.gm.com/home.html",                            note: "GM Newsroom" },
+  { make: "GMC",       label: "GMC",       url: "https://www.gmc.com/future-vehicles",                      note: "GMC Future Vehicles" },
+  { make: "Buick",     label: "Buick",     url: "https://news.gm.com/home.html",                            note: "GM Newsroom" },
+  { make: "Cadillac",  label: "Cadillac",  url: "https://news.gm.com/home.html",                            note: "GM Newsroom" },
+  { make: "Nissan",    label: "Nissan",    url: "https://global.nissannews.com/en",                         note: "Nissan Global Newsroom" },
+  { make: "Honda",     label: "Honda",     url: "https://hondanews.com/en-US/releases",                     note: "Honda Newsroom" },
+  { make: "Hyundai",   label: "Hyundai",   url: "https://www.hyundainews.com/en-us",                        note: "Hyundai Newsroom" },
+  { make: "Subaru",    label: "Subaru",    url: "https://media.subaru.com/",                                note: "Subaru Media" },
+];
+
+const INTEL_STORAGE_KEY = "fusz-upcoming-intel";
+
+function loadIntel() {
+  try { return JSON.parse(localStorage.getItem(INTEL_STORAGE_KEY) || "[]"); } catch { return []; }
+}
+
+function saveIntel(items) {
+  localStorage.setItem(INTEL_STORAGE_KEY, JSON.stringify(items));
+}
+
+function intelAccentColor(make) {
+  const map = {
+    Toyota: "#EB0A1E", Kia: "#BB162B", Chevrolet: "#D4B483",
+    GMC: "#CF162B", Buick: "#8B6914", Cadillac: "#282828",
+    Nissan: "#C3002F", Honda: "#CC0000", Hyundai: "#002C5F", Subaru: "#003399",
+  };
+  return map[make] || "#2f72d6";
+}
+
+function timeAgo(isoString) {
+  const diff = Date.now() - new Date(isoString).getTime();
+  const days = Math.floor(diff / 86400000);
+  if (days === 0) return "today";
+  if (days === 1) return "1d ago";
+  if (days < 30) return `${days}d ago`;
+  const months = Math.floor(days / 30);
+  return `${months}mo ago`;
+}
+
+function renderIntelCard(item) {
+  const color = intelAccentColor(item.make);
+  const isAdmin = hasAdminAccess && hasAdminAccess(state.session);
+  return `
+    <div class="intel-card" data-intel-id="${escapeAttr(item.id)}" style="--accent:${color}">
+      <div class="intel-accent-bar"></div>
+      <div class="intel-tag-row">
+        <span class="intel-year-badge">${escapeHtml(String(item.year))}</span>
+        <span class="intel-make">${escapeHtml(item.make)}</span>
+      </div>
+      <h3 class="intel-title">${escapeHtml(item.title)}</h3>
+      <p class="intel-note">${escapeHtml(item.note)}</p>
+      <div class="intel-footer">
+        ${item.url ? `<a class="intel-source-link" href="${escapeAttr(item.url)}" target="_blank" rel="noopener">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 2h3v1H3v6h6V7h1v3H2V2z" fill="currentColor"/><path d="M7 2h3v3h-1V3.7L5.4 7.3l-.7-.7L8.3 3H7V2z" fill="currentColor"/></svg>
+          ${escapeHtml(item.sourceLabel || "Source")}
+        </a>` : `<span></span>`}
+        <span class="intel-meta">${escapeHtml(timeAgo(item.createdAt))}</span>
+      </div>
+      ${isAdmin ? `<button class="intel-delete-btn" type="button" data-delete-intel="${escapeAttr(item.id)}" aria-label="Remove">&times;</button>` : ""}
+    </div>`;
+}
+
+function renderAddIntelCard() {
+  return `<button class="intel-add-card" type="button" id="addIntelCardBtn" aria-label="Add model intel">
+    <span class="intel-add-icon">+</span>
+    <span>Add model intel</span>
+  </button>`;
+}
+
+function renderOemShelf() {
+  return OEM_LINKS.map((oem) => `
+    <a class="oem-tile" href="${oem.url}" target="_blank" rel="noopener" aria-label="${oem.label} — ${oem.note}">
+      <span class="oem-tile-name">${escapeHtml(oem.label)}</span>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 2h3v1H3v6h6V7h1v3H2V2z" fill="currentColor"/><path d="M7 2h3v3h-1V3.7L5.4 7.3l-.7-.7L8.3 3H7V2z" fill="currentColor"/></svg>
+    </a>`).join("");
+}
+
+function renderIntelDialog() {
+  if (document.getElementById("intelDialog")) return;
+  const el = document.createElement("dialog");
+  el.id = "intelDialog";
+  el.className = "intel-dialog";
+  el.innerHTML = `
+    <form method="dialog" class="intel-form">
+      <h3 class="intel-form-title">Add model intel</h3>
+      <div class="intel-form-row">
+        <label for="intelMake">Make</label>
+        <select id="intelMake">
+          ${OEM_LINKS.map((o) => `<option>${o.make}</option>`).join("")}
+        </select>
+      </div>
+      <div class="intel-form-row">
+        <label for="intelYear">Year</label>
+        <select id="intelYear">
+          ${[2027,2028,2029].map((y) => `<option>${y}</option>`).join("")}
+        </select>
+      </div>
+      <div class="intel-form-row">
+        <label for="intelTitle">Model / headline</label>
+        <input id="intelTitle" type="text" placeholder="e.g. 4Runner TRD Pro — new platform" maxlength="80" required>
+      </div>
+      <div class="intel-form-row">
+        <label for="intelNote">Your note</label>
+        <textarea id="intelNote" rows="3" placeholder="Why this matters for Fusz+" maxlength="280"></textarea>
+      </div>
+      <div class="intel-form-row">
+        <label for="intelUrl">Source URL</label>
+        <input id="intelUrl" type="url" placeholder="https://pressroom.toyota.com/...">
+      </div>
+      <div class="intel-form-row">
+        <label for="intelSourceLabel">Source label</label>
+        <input id="intelSourceLabel" type="text" placeholder="e.g. Toyota Newsroom" maxlength="40">
+      </div>
+      <div class="intel-form-actions">
+        <button type="button" class="button button-quiet" id="intelCancelBtn">Cancel</button>
+        <button type="button" class="button button-primary" id="intelSaveBtn">Save</button>
+      </div>
+    </form>`;
+  document.body.appendChild(el);
+
+  document.getElementById("intelCancelBtn").onclick = () => el.close();
+  document.getElementById("intelSaveBtn").onclick = () => {
+    const title = document.getElementById("intelTitle").value.trim();
+    if (!title) { document.getElementById("intelTitle").focus(); return; }
+    const item = {
+      id: `intel-${Date.now()}`,
+      make: document.getElementById("intelMake").value,
+      year: parseInt(document.getElementById("intelYear").value),
+      title,
+      note: document.getElementById("intelNote").value.trim(),
+      url: document.getElementById("intelUrl").value.trim(),
+      sourceLabel: document.getElementById("intelSourceLabel").value.trim() || "Source",
+      createdAt: new Date().toISOString(),
+    };
+    const items = loadIntel();
+    items.unshift(item);
+    saveIntel(items);
+    el.close();
+    renderUpcoming();
+    if (typeof showToast === "function") showToast("Intel saved");
+  };
+}
+
+function renderUpcoming() {
+  const intelGrid = document.getElementById("intelGrid");
+  const oemShelf  = document.getElementById("oemShelf");
+  const addBtn    = document.getElementById("addIntelButton");
+  if (!intelGrid || !oemShelf) return;
+
+  const isAdmin = typeof hasAdminAccess === "function" && hasAdminAccess(state.session);
+  if (addBtn) addBtn.hidden = !isAdmin;
+
+  const items = loadIntel();
+  const cards = items.map(renderIntelCard).join("");
+  intelGrid.innerHTML = cards + (isAdmin ? renderAddIntelCard() : (items.length === 0 ? `<p class="intel-empty">No model intel added yet.</p>` : ""));
+  oemShelf.innerHTML = renderOemShelf();
+
+  renderIntelDialog();
+
+  // Wire add buttons
+  const openDialog = () => {
+    ["intelTitle","intelNote","intelUrl","intelSourceLabel"].forEach((id) => {
+      const el = document.getElementById(id); if (el) el.value = "";
+    });
+    document.getElementById("intelDialog")?.showModal();
+  };
+  document.getElementById("addIntelButton")?.addEventListener("click", openDialog, { once: true });
+  document.getElementById("addIntelCardBtn")?.addEventListener("click", openDialog, { once: true });
+
+  // Wire delete buttons
+  intelGrid.querySelectorAll("[data-delete-intel]").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const id = e.currentTarget.dataset.deleteIntel;
+      const updated = loadIntel().filter((i) => i.id !== id);
+      saveIntel(updated);
+      renderUpcoming();
+    });
+  });
+}

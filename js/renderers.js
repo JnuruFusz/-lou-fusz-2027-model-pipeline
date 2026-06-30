@@ -232,7 +232,7 @@ function render() {
   renderFocusTask(personalTasks);
   renderMyWork(personalTasks);
   capMyWorkSections();
-  renderUpcomingModels(syntheticUpcomingModels());
+  if (typeof renderUpcoming === 'function') renderUpcoming();
   renderInventoryFeedStatus();
   if (typeof renderWins === "function") renderWins();
   if (isAeoTableFilter()) {
@@ -357,16 +357,7 @@ function renderBuilderDetail(task) {
   els.builderDetailContent.innerHTML = task ? `<p class="eyebrow">Selected task</p><h2>${escapeHtml(taskTitle(task))}</h2><p class="panel-subtitle">${escapeHtml(task.dealer)}</p><div class="selected-task-status">${personalStatusTags(task)}</div><h3 class="detail-section-title">Next step</h3><div class="next-step-card"><span>Recommended action</span><strong>${escapeHtml(builderNextStep(task))}</strong></div><div class="detail-actions">${actionButtons(task)}<button class="button button-secondary-action" type="button" data-details="${escapeAttr(task.id)}">Details</button></div>` : "";
 }
 
-function renderUpcomingModels(tasks) {
-  if (els.upcomingCount) els.upcomingCount.textContent = tasks.length;
-  if (els.upcomingList) els.upcomingList.innerHTML = tasks.map(renderUpcomingCard).join("");
-}
 
-function renderUpcomingCard(task) {
-  const brandOverride = brandAccentOverrides[task.make];
-  const badgeStyle = brandOverride ? ` style="background:${brandOverride.ink};color:${brandOverride.visible}"` : "";
-  return `<article class="watch-card" style="${escapeAttr(task.accentStyle || "")}"><div class="watch-card-main"><div class="watch-top"><span class="brand-badge"${badgeStyle}>${escapeHtml(task.make || "Brand")}</span><span class="watch-year-label">${escapeHtml(String(task.year))}</span></div><h3>${escapeHtml(taskTitle(task))}</h3><div class="watch-card-meta"><span>${escapeHtml(task.dealer)}</span></div></div><div class="watch-card-actions"><a class="button button-secondary-action" href="${escapeAttr(modelInfoUrl(task))}" target="_blank" rel="noreferrer">View reference</a></div></article>`;
-}
 
 function renderInventoryFeedStatus() {
   if (els.feedVehicleCount) els.feedVehicleCount.textContent = state.inventoryFeed.connected ? `${state.inventoryFeed.rows.length} feed rows` : "Feed waiting";
@@ -469,8 +460,7 @@ function ownerBucket(task) { if (task.details?.buildOwner) return task.details.b
 function initials(name) { const words = String(name || "Team").trim().split(/\s+/).filter(Boolean); return words.length > 1 ? `${words[0][0]}${words[1][0]}`.toUpperCase() : (words[0] || "T").slice(0, 2).toUpperCase(); }
 function workPriority(task) { return ({ needs_build: 0, seo_done: 1, page_built: 2, needs_review: 3, needs_seo: 4, seo_in_progress: 5, live: 9 }[task.pageStatus] ?? 6); }
 function actionLabel(task) { return builderNextStep(task); }
-function syntheticUpcomingModels() { return [{ year: 2028, make: "Toyota", model: "RAV4", dealer: "Lou Fusz Toyota", inventorySignal: "upcoming", pageStatus: "watchlist", aeoStatus: "not_started", summary: "OEM-confirmed for 2028. Page work begins when inventory arrives." }, { year: 2028, make: "Subaru", model: "Outback", dealer: "Lou Fusz Subaru St. Louis", inventorySignal: "upcoming", pageStatus: "watchlist", aeoStatus: "not_started", summary: "Rumored refresh for 2028. Monitoring OEM announcements." }].map((task) => ({ ...task, accentStyle: accentStyleForTask(task) })); }
-function upcomingSummary(task) { return task.summary || "Watched before it becomes active page work."; }
+
 function modelInfoUrl(task) { return `https://www.google.com/search?q=${encodeURIComponent(`${task.year || ""} ${task.make || ""} ${displayModel(task)} official model`.trim())}`; }
 function showToast(message) { els.toast.textContent = message; els.toast.classList.add("is-visible"); window.clearTimeout(toastTimer); toastTimer = window.setTimeout(() => els.toast.classList.remove("is-visible"), 2200); }
 function buildDigest() { const tasks = state.tasks.filter((task) => task.year === 2027); return ["Fusz+ Daily Digest", `For: ${state.session?.name || "Team"} / ${primaryRole(state.session)}`, "", `Needs SEO: ${tasks.filter((task) => task.pageStatus === "needs_seo").length}`, ...tasks.filter((task) => task.pageStatus === "needs_seo").slice(0, 12).map((task) => `- ${task.dealer}: ${taskTitle(task)}`), "", `Ready / In Build: ${tasks.filter((task) => ["seo_done", "needs_build", "page_built"].includes(task.pageStatus)).length}`, "", `Live / Checked: ${tasks.filter((task) => task.pageStatus === "live").length}`].join("\n"); }
