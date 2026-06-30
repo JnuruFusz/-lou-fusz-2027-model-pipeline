@@ -283,21 +283,9 @@ function animateWinsCounter(el, from, to, dur, dec, suf) {
 // ─── Scroll reveal ────────────────────────────────────────────────────────────
 
 function initWinsReveal(panel) {
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      setTimeout(() => el.classList.add("is-revealed"), parseInt(el.dataset.revealDelay||"0",10));
-      obs.unobserve(el);
-    });
-  }, { threshold: 0.08, rootMargin: "0px 0px -32px 0px" });
-
-  panel.querySelectorAll("[data-reveal-group]").forEach((group) => {
-    let delay = 0;
-    group.querySelectorAll("[data-reveal]").forEach((el) => {
-      el.dataset.revealDelay = String(delay);
-      delay += 55;
-      obs.observe(el);
-    });
+  let delay = 80;
+  panel.querySelectorAll("[data-reveal]").forEach((el) => {
+    setTimeout(() => el.classList.add("is-revealed"), delay);
+    delay += 55;
   });
 }
