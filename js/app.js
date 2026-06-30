@@ -649,7 +649,11 @@ boot().catch((error) => {
   // Remove veil FIRST — nothing should block the user seeing the app
   const _veil2 = document.getElementById("app-veil");
   if (_veil2) { _veil2.classList.add("is-hidden"); setTimeout(() => _veil2.remove(), 220); }
-  try { showToast("Some source data could not load yet"); } catch {}
-  try { renderAuth(); } catch {}
-  try { render(); } catch {}
+  try { showToast("Some source data could not load yet"); } catch (e) { console.warn("showToast failed during boot recovery:", e); }
+  try { renderAuth(); } catch (e) { console.error("renderAuth() failed during boot recovery:", e); document.body.dataset.auth = "signed_out"; }
+  try { render(); } catch (e) {
+    console.error("render() failed during boot recovery:", e);
+    const _panels = document.querySelector(".main-panels") || document.getElementById("app");
+    if (_panels) _panels.insertAdjacentHTML("afterbegin", '<p class="render-error" style="padding:1rem">Dashboard failed to load — refresh the page or press F12 for details.</p>');
+  }
 });

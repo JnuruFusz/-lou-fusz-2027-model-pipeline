@@ -24,7 +24,7 @@ data.js → state.js → renderers.js → navigation.js → theme.js → events.
 ```
 Plus two dynamic scripts loaded by `boot()`:
 - `js/my-work-workbench.js` — My Work queue renderer
-- `js/fusz-implementation.js` — brand accents, dealer data, transitions
+- `js/fusz-implementation.js` — rooftop management, feed health monitoring, Drive connection, builder action handling
 
 ---
 
@@ -33,6 +33,7 @@ Plus two dynamic scripts loaded by `boot()`:
 | File | Purpose |
 |------|---------|
 | `css/tokens.css` | All CSS variables. Light = `body[data-theme="light"]`, Dark = `body[data-theme="gray"]` |
+| `js/data.js` | `TEAM_ROSTER`, status/aeo/signal labels, `dealerAccents`, `brandAccentOverrides`, `transitions`, `embeddedTracker`, `embeddedSources` |
 | `js/state.js` | Global `state` object + `els` DOM cache. Theme defaults to `"system"`. |
 | `js/app.js` | `boot()`, inventory CSV feed parsing, `dealerNameAliases`, `completedModelOverrideKeys` |
 | `js/events.js` | All event bindings. Onboarding via `configureInviteOnboarding()`. |
