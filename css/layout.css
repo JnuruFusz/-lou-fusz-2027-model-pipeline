@@ -32,7 +32,7 @@
   font-weight: 800;
   letter-spacing: -.025em;
   line-height: 1;
-  color: var(--ink);
+  color: #f0ece6; /* always light — sidebar is always dark regardless of theme */
 }
 
 .sidebar-logo-plus {
