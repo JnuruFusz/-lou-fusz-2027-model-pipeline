@@ -293,38 +293,4 @@ function renderIntelDialog() {
   };
 }
 
-function renderUpcoming() {
-  const intelGrid = document.getElementById("intelGrid");
-  const oemShelf  = document.getElementById("oemShelf");
-  const addBtn    = document.getElementById("addIntelButton");
-  if (!intelGrid || !oemShelf) return;
 
-  const isAdmin = typeof hasAdminAccess === "function" && hasAdminAccess(state.session);
-  if (addBtn) addBtn.hidden = !isAdmin;
-
-  const items = loadIntel();
-  const cards = items.map(renderIntelCard).join("");
-  intelGrid.innerHTML = cards || `<p class="intel-empty">No model intel added yet — click + Add intel to get started.</p>`;
-  oemShelf.innerHTML = renderOemShelf();
-
-  renderIntelDialog();
-
-  // Wire add buttons
-  const openDialog = () => {
-    ["intelTitle","intelNote","intelUrl","intelSourceLabel"].forEach((id) => {
-      const el = document.getElementById(id); if (el) el.value = "";
-    });
-    document.getElementById("intelDialog")?.showModal();
-  };
-  document.getElementById("addIntelButton")?.addEventListener("click", openDialog, { once: true });
-
-  // Wire delete buttons
-  intelGrid.querySelectorAll("[data-delete-intel]").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      const id = e.currentTarget.dataset.deleteIntel;
-      const updated = loadIntel().filter((i) => i.id !== id);
-      saveIntel(updated);
-      renderUpcoming();
-    });
-  });
-}
