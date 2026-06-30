@@ -34,7 +34,7 @@ function winsInitials(name) {
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 function winsComputeData() {
-  const tasks     = state.tasks.filter((t) => t.year >= 2027);
+  const tasks     = state.tasks.filter((t) => t.year >= 2026);
   const liveTasks = tasks.filter((t) => t.pageStatus === "live");
   const builtTasks= tasks.filter((t) => ["page_built","live"].includes(t.pageStatus));
   const seoTasks  = tasks.filter((t) => ["seo_done","needs_build","page_built","live"].includes(t.pageStatus));
@@ -93,7 +93,7 @@ function winsComputeData() {
     .map((m, i) => ({ ...m, color: winsTeamColor(i), initials: winsInitials(m.name) }));
 
   // Recent wins
-  const recentWins = [...liveTasks].reverse().slice(0, 10).map((t) => ({
+  const recentWins = [...liveTasks].filter((t) => t.year >= 2027).reverse().slice(0, 10).map((t) => ({
     year:    t.year,
     make:    t.make || "",
     model:   (typeof displayModel === "function") ? displayModel(t) : t.model,
