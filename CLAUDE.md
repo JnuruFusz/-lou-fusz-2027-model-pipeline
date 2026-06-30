@@ -20,7 +20,7 @@ tokens.css → base.css → layout.css → components.css → pages.css → work
 
 ### JS load order
 ```
-data.js → state.js → renderers.js → navigation.js → theme.js → events.js → wins.js → app.js
+data.js → state.js → renderers.js → navigation.js → theme.js → events.js → upcoming.js → wins.js → app.js
 ```
 Plus two dynamic scripts loaded by `boot()`:
 - `js/my-work-workbench.js` — My Work queue renderer

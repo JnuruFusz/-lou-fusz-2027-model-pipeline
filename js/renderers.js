@@ -232,9 +232,21 @@ function render() {
   renderFocusTask(personalTasks);
   renderMyWork(personalTasks);
   capMyWorkSections();
-  try { if (typeof renderUpcoming === "function") renderUpcoming(); } catch (e) { console.warn("renderUpcoming error:", e); }
+  try {
+    if (typeof renderUpcoming === "function") renderUpcoming();
+  } catch (e) {
+    console.error("renderUpcoming error:", e);
+    const _up = document.getElementById("upcomingPanel");
+    if (_up) _up.innerHTML = '<p class="render-error">Upcoming panel failed to load — check console (F12).</p>';
+  }
   renderInventoryFeedStatus();
-  try { if (typeof renderWins === "function") renderWins(); } catch (e) { console.warn("renderWins error:", e); }
+  try {
+    if (typeof renderWins === "function") renderWins();
+  } catch (e) {
+    console.error("renderWins error:", e);
+    const _wp = document.getElementById("winsPanel");
+    if (_wp) _wp.innerHTML = '<p class="render-error">Wins panel failed to load — check console (F12).</p>';
+  }
   if (isAeoTableFilter()) {
     renderQueue(els.seoQueue, [], "seo");
     renderQueue(els.aeoQueue, visiblePipelineTasks, "aeo");
