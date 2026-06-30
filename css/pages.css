@@ -1706,3 +1706,156 @@ body[data-theme="light"] .profile-preview {
   font-weight: 600;
   opacity: .8;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   UI/UX polish pass — 2026-06-30
+   1. Missing interactive states (focus-visible / hover)
+   2. Light-theme button-quiet visibility bug (invisible border)
+   3. Display font consistency — metric numbers, section headings, achievement
+      counts now use Bricolage Grotesque to match wins.css
+   4. Border-radius lift — cards 10px → 14-16px (closes gap vs wins.css 18-20px)
+   5. Empty state: generous centred layout, no background wash
+   6. Wire Upcoming — right column hidden on narrow mobile
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. Focus-visible / hover completeness ──────────────────────────────── */
+
+/* Wire: "Add intel" button */
+.wire-add-btn:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--blue) 42%, transparent);
+  outline-offset: 2px;
+}
+
+/* Wire: hover-revealed delete buttons */
+.wire-featured-delete:focus-visible,
+.wire-row-delete:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--blue) 42%, transparent);
+  outline-offset: 2px;
+  opacity: 1;
+}
+
+/* Intel add dialog — inputs show border on focus */
+.intel-form-row input:focus,
+.intel-form-row select:focus,
+.intel-form-row textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+
+/* ── 2. Light-theme button-quiet bug ────────────────────────────────────────
+   Base: border-color: rgba(255,255,255,.08) — completely invisible on cream bg.
+   No visual affordance the element is interactive until hover.                 */
+body[data-theme="light"] .button-quiet {
+  border-color: var(--line);
+  color: var(--muted);
+}
+
+body[data-theme="light"] .button-quiet:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+/* ── 3. Display font consistency ────────────────────────────────────────────
+   wins.css uses Bricolage Grotesque for every number and heading.
+   Older views used inherited Inter — visibly "different app" on side-by-side. */
+
+/* Big numbers on metric cards */
+.metric strong {
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  letter-spacing: -.04em;
+}
+
+/* Section headings across all views */
+.section-heading h2 {
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -.025em;
+}
+
+.settings-page-header h2 {
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -.025em;
+}
+
+/* Achievement strip counts */
+.achievement strong {
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1;
+}
+
+/* ── 4. Border-radius lift ──────────────────────────────────────────────────
+   wins.css cards: 18-20px. Dashboard cards: 10-12px — "different app" feel.
+   Raising to 14-16px bridges the gap without making routine cards look
+   like the wins showcase hero cards.                                           */
+
+.work-card,
+.watch-card,
+.automation-card,
+.resource-card {
+  border-radius: 16px;
+}
+
+.builder-panel {
+  border-radius: 16px;
+}
+
+.settings-section {
+  border-radius: 14px;
+}
+
+.task,
+.table-wrap {
+  border-radius: 14px;
+}
+
+.metric {
+  border-radius: 14px;
+}
+
+.achievement {
+  border-radius: 12px;
+}
+
+.admin-row,
+.pipeline-snapshot article {
+  border-radius: 10px;
+}
+
+/* ── 5. Empty state polish ──────────────────────────────────────────────────
+   Old: 18px padding, rgba bg wash invisible on light, no centring.
+   New: generous padding, centred text, transparent bg, consistent radius.     */
+.empty {
+  padding: 48px 24px;
+  text-align: center;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  background: transparent;
+}
+
+/* ── 6. Wire Upcoming — mobile right column ─────────────────────────────────
+   .wire-row is a fixed 3-col grid (120px 1fr 148px). At 560px the 148px
+   right col (source + timestamp) leaves the title column very narrow.
+   Hide right col on mobile — the info is secondary at that size.             */
+@media (max-width: 560px) {
+  .wire-row {
+    grid-template-columns: 100px 1fr;
+  }
+
+  .wire-row-right {
+    display: none;
+  }
+
+  .wire-oem-grid {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+}

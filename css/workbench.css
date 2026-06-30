@@ -1198,3 +1198,61 @@ body[data-theme="light"][data-workspace-view="my_work"] .workbench-live-action {
   color: var(--blue) !important;
 }
 
+
+/* ─── Interactive state completeness pass ────────────────────────────────────
+   Audit 2026-06-30: all interactive workbench elements now have visible
+   hover / focus-visible feedback. Previously missing states listed below.
+─────────────────────────────────────────────────────────────────────────────── */
+
+/* Brand group toggle button — native <button> but no focus ring */
+.workbench-group-head:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--blue) 42%, transparent);
+  outline-offset: -2px;
+}
+
+/* Focus card CTA (<button>) */
+.workbench-focus-cta:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--blue) 42%, transparent);
+  outline-offset: 2px;
+}
+
+/* Focus card ghost (<a>) */
+.workbench-focus-ghost:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--blue) 42%, transparent);
+  outline-offset: 2px;
+}
+
+/* Resource primary link — looks like a button, needs hover + focus */
+.workbench-resource-primary:hover {
+  background: color-mix(in srgb, var(--blue) 22%, transparent);
+  color: var(--blue);
+}
+
+.workbench-resource-primary:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--blue) 42%, transparent);
+  outline-offset: 2px;
+}
+
+/* Secondary resource links */
+.workbench-resource-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.workbench-resource-link:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--blue) 42%, transparent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* AI pill — has hover, was missing focus */
+.workbench-ai-pill:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--blue) 42%, transparent);
+  outline-offset: 2px;
+}
+
+/* Return note textarea — visible border on focus */
+.workbench-return-note textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+}
