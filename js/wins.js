@@ -98,7 +98,7 @@ function winsComputeData() {
     make:    t.make || "",
     model:   (typeof displayModel === "function") ? displayModel(t) : t.model,
     dealer:  t.dealer,
-    builder: t.details?.buildOwner || sessionName || "Team",
+    builder: t.details?.buildOwner || state.session?.name || "Team",
     color:   winsBrandMeta(t.make).color,
   }));
 
