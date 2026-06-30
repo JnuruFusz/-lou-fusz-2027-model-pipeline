@@ -11,7 +11,7 @@ const OEM_LINKS = [
   { make: "Subaru",    label: "Subaru",           url: "https://media.subaru.com/",                                    note: "Subaru Media" },
   { make: "Mazda",     label: "Mazda",            url: "https://news.mazdausa.com/concept-vehicles",                   note: "Mazda USA Newsroom" },
   { make: "Ford",      label: "Ford",             url: "https://www.ford.com/future-vehicles/",                        note: "Ford Future Vehicles" },
-  { make: "Jeep",      label: "Jeep / Chrysler / Dodge / RAM", url: "https://media.stellantisnorthamerica.com/",       note: "Stellantis North America Media" },
+  { make: "Jeep",      label: "CJDR",                          url: "https://media.stellantisnorthamerica.com/",       note: "Stellantis North America Media" },
   { make: "Nissan",    label: "Nissan",           url: "https://global.nissannews.com/en",                             note: "Nissan Global Newsroom" },
 ];
 
