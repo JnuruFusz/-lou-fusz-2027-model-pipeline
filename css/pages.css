@@ -1120,10 +1120,12 @@ body[data-theme="light"] .auth-screen {
 .auth-logo {
   display: block;
   margin-bottom: 28px;
-  color: var(--ink);
-  font-size: 18px;
-  font-weight: 850;
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -.025em;
   line-height: 1;
+  color: var(--ink);
 }
 
 .auth-card h2 {

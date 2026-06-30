@@ -26,7 +26,7 @@ function configureInviteOnboarding() {
 
   shell.innerHTML = `
     <div class="auth-card is-active" data-auth-step="login">
-      <strong class="auth-logo">Fusz+</strong>
+      <strong class="auth-logo">Fusz<span class="sidebar-logo-plus">+</span></strong>
       <p class="eyebrow">Invite accepted</p>
       <h2>Welcome to Fusz+, Jnuru</h2>
       <p class="auth-copy">
