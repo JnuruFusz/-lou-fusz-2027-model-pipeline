@@ -41,7 +41,7 @@
       <div class="workbench-focus-step">${escapeHtml(step)}</div>
       <div class="workbench-focus-bar">
         <button class="workbench-focus-cta" type="button" data-status="${escapeAttr(ctaStatus)}" data-task-id="${escapeAttr(task.id)}">${escapeHtml(ctaLabel)}</button>
-        ${(typeof seoDocUrl==="function"&&seoDocUrl(selected))?`<a class="workbench-focus-ghost" href="${escapeAttr(seoDocUrl(selected))}" target="_blank" rel="noreferrer">Open SEO doc</a>`:`<span class="workbench-focus-ghost is-disabled">No SEO doc yet</span>`}
+        ${(typeof seoDocUrl==="function"&&seoDocUrl(task))?`<a class="workbench-focus-ghost" href="${escapeAttr(seoDocUrl(task))}" target="_blank" rel="noreferrer">Open SEO doc</a>`:`<span class="workbench-focus-ghost is-disabled">No SEO doc yet</span>`}
       </div>
     </div>`;
   }
