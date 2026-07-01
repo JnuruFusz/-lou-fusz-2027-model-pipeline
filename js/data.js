@@ -112,6 +112,49 @@ const transitions = {
   needs_review: [["needs_seo", "Send Back To SEO"], ["live", "Keep Live"]],
 };
 
+// ─── SEO doc links — keyed by "dealer|year" ──────────────────────────────────
+// Update this when new SEO docs are created. One doc per dealer per model year.
+const SEO_DOC_LINKS = {
+  // 2026
+  "Lou Fusz Buick GMC|2026|Buick":              "https://docs.google.com/document/d/1MBGavCiv5hPRu-tUQbAaljgpSIj3qINTDh38IvHULcg",
+  "Lou Fusz Buick GMC|2026|GMC":                "https://docs.google.com/document/d/1NazVn5GX5biK4-9hRrhu3JA6s8lmMfm_nZv_o1EDhpg",
+  "Lou Fusz Chevrolet|2026":                    "https://docs.google.com/document/d/1r9Cq1zmY5KNOKFFCtHPr3QaxxhtUAd-yNUzeOK3rv_g",
+  "Lou Fusz Chrysler Jeep Dodge RAM|2026":      "https://docs.google.com/document/d/1K9yfKp35prou0dmO2PCyqidQtX7zbm12ESDkaSl31f0",
+  "Lou Fusz Chrysler Jeep Dodge Ram Vincennes|2026": "https://docs.google.com/document/d/1G_BK4uhSpbu3cckxEMMKmWxVsWo3bqbmNkYmOWKKUBc",
+  "Lou Fusz Ford|2026":                         "https://docs.google.com/document/d/1t0L_M5lIHyzL70rTRtL-GxT93EqjluMlVbtbFO6wQwA",
+  "Lou Fusz Kia|2026":                          "https://docs.google.com/document/d/1NlWYTeT7Z8ncs4MLlpf4h0Kh4-rYKFVjt4SZCARKeNQ",
+  "Lou Fusz Kia Evansville|2026":               "https://docs.google.com/document/d/1kLiBmdTgEj37av8WjQ2AyoELfWZpa7rP-nDh9hQenow",
+  "Lou Fusz Kia of Moline|2026":                "https://docs.google.com/document/d/1432gqSwCj522lFQOb6cORiWiDnjm22R5q1DXwWjjQx8",
+  "Lou Fusz Kia Terre Haute|2026":              "https://docs.google.com/document/d/1bKVl7pnVmd3MBl3Q-AiKqUZ0xphg1ZWsaSpb15syhps",
+  "Lou Fusz Kia Columbus|2026":                 "https://docs.google.com/document/d/1Z3RK7-VVsyfQH4rERoxhB73eE2KdZ632Prw0EgfbRmU",
+  "Lou Fusz Mazda|2026":                        "https://docs.google.com/document/d/17JROHls8DDvVEOq2o3hoQ7EmX3yhH8ztuAxLaCKDnXU",
+  "Lou Fusz Mazda Evansville|2026":             "https://docs.google.com/document/d/1OSW_dubcbnbHvO42NdRKGO-JnVWKk1aarryx72EVzhg",
+  "Lou Fusz Nissan Moline|2026":                "https://docs.google.com/document/d/1lmGvBu5w87lH2TxhCyAc5BLKo8h7J7UjPwzFpKmAjbk",
+  "Lou Fusz Subaru O'Fallon|2026":              "https://docs.google.com/document/d/11R3OLIuDFqmHioRA6-Hp-Z6env0wu1pYNB46ccOX-Lo",
+  "Lou Fusz Subaru St. Louis|2026":             "https://docs.google.com/document/d/1COvqcNa-kRR48OwghYip_AQfqPOBws1A9dsNtHHVlZY",
+  "Lou Fusz Toyota|2026":                       "https://docs.google.com/document/d/1Tac7AcuSyyvR2gOWA-RDu2q0-yGXBvqtVSKM9-OVZbQ",
+  // 2027
+  "Lou Fusz Chevrolet|2027":                    "https://docs.google.com/document/d/1H-asB_sMbrXT6Oqz2B-H9qv3zVPPi2L9Sp6nYFBGEK4",
+  "Lou Fusz Chrysler Jeep Dodge RAM|2027":      "https://docs.google.com/document/d/12OdXuRYK3yDaz1B4TutqavuuE4WmrNiIpreguow4GDQ",
+  "Lou Fusz Chrysler Jeep Dodge Ram Vincennes|2027": "https://docs.google.com/document/d/1nRrjzbD4l_lHRdZ1DSPPDvSsODOSxijA3F9_XA3pMIY",
+  "Lou Fusz Kia|2027":                          "https://docs.google.com/document/d/17Llp8wDE_uX18dauWdGjq_zmN5NlgTCUUvBzcRcPk8s",
+  "Lou Fusz Kia Evansville|2027":               "https://docs.google.com/document/d/1Zn6tmMcljwn3ZMm78F1xd4xMWwR7LqMmRJ_k7-wryiU",
+  "Lou Fusz Kia Terre Haute|2027":              "https://docs.google.com/document/d/1dMO9YK7xE7SPC-dpD-tyi9Rby9l_dGAP2USB9VBhtVA",
+  "Lou Fusz Kia of Moline|2027":                "https://docs.google.com/document/d/1yai_qzf600AQAJf8-CGtOoHcMcfdc5fXILQGDrsRHTI",
+  "Lou Fusz Kia Columbus|2027":                 "https://docs.google.com/document/d/1NROowSjtBxbwDpsNSzSk1VF6VNDacnByun6pO_XqXzc",
+};
+
+function seoDocUrl(task) {
+  if (!task) return null;
+  const dealer = task.dealer || "";
+  const year = task.year || "";
+  const make = task.make || "";
+  // Try dealer|year|make first (for Buick GMC which has two docs), then dealer|year
+  return SEO_DOC_LINKS[`${dealer}|${year}|${make}`]
+      || SEO_DOC_LINKS[`${dealer}|${year}`]
+      || null;
+}
+
 const embeddedTracker = [
   // ─── 2026 completed pages (179 pages · imported from tracker) ───
 { id: "lou-fusz-mazda|2026|cx-5", dealer: "Lou Fusz Mazda", year: 2026, make: "Mazda", model: "CX-5", pageStatus: "live", aeoStatus: "not_needed", details: { buildOwner: "Jnuru Goodwin", seoOwner: "Chris Pajda" } },
