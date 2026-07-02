@@ -64,6 +64,13 @@ function configureInviteOnboarding() {
   const pillsHtml = _pills.map((p) => `<span class="auth-role-pill">${p.toUpperCase()}</span>`).join('');
   const accessDesc = member.isAdmin ? 'Full pipeline access' : `${member.primaryRole} workspace`;
 
+  // Directly bind help button after innerHTML swap (event delegation safeguard)
+  const _bindHelpBtn = () => {
+    const btn = document.querySelector("#authHelpButton");
+    if (btn) btn.addEventListener("click", () => showToast(roleAccessHelpToast(member)));
+  };
+  window.setTimeout(_bindHelpBtn, 0);
+
   shell.innerHTML = `
     <div class="auth-split">
       <!-- Left: cream editorial -->
@@ -74,7 +81,7 @@ function configureInviteOnboarding() {
         </header>
         <div class="auth-editorial-body">
           <p class="auth-eyebrow-new"><span class="auth-eyebrow-dot"></span>INVITE ACCEPTED</p>
-          <h2 class="auth-headline">Welcome to<br>Fusz+, ${firstName}.</h2>
+          <h2 class="auth-headline">Welcome to<br>Fusz<span class="sidebar-logo-plus">+</span>, ${firstName}.</h2>
           <p class="auth-copy">${roleAccessDescription(member)}</p>
         </div>
         <footer class="auth-editorial-footer">

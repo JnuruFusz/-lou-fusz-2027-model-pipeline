@@ -1,7 +1,7 @@
 const storedThemeChoice = localStorage.getItem("fusz-theme");
 const isDemoReset = new URLSearchParams(window.location.search).get("demo") === "reset";
 const initialThemeChoice = isDemoReset
-  ? "light"
+  ? "system"
   : ["system", "light", "dark", "gray"].includes(storedThemeChoice)
     ? (storedThemeChoice === "gray" ? "dark" : storedThemeChoice)
     : "system";
