@@ -12,7 +12,7 @@ const TEAM_ROSTER = [
     inviteKey: "jnuru",
   },
   {
-    name: "Scott Touloo",
+    name: "Scott Toulou",
     email: "scott.touloo@fusz.com",
     initials: "ST",
     primaryRole: "AEO Writer",
