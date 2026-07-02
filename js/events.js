@@ -283,13 +283,28 @@ Let me know if you have any questions.`
     // signInWithRedirect() navigates the page to Google — no result comes back here.
     // When the user completes sign-in, Google redirects to fuszplus.firebaseapp.com/__/auth/handler
     // which then redirects back to this app. boot() picks up the signed-in user via
-    // onAuthStateChanged (fbWaitForAuth) and also calls fbGetRedirectResult() to surface errors.
+    // fbWaitForAuth(), which now resolves only after getRedirectResult() has run.
+    //
+    // Race condition guard: Firebase loads three CDN scripts asynchronously.
+    // If the user clicks before _auth is ready (slow connection), fbSignInWithGoogle()
+    // rejects with "Auth not ready". We wait up to 6s for Firebase to become ready
+    // before giving up and showing an error — rather than failing immediately.
     try {
+      if (!_auth) {
+        button.textContent = "Connecting…";
+        await fbWaitForAuth(6000);
+      }
+      if (!_auth) {
+        throw new Error("Firebase Auth did not load. Check your connection and try again.");
+      }
       await fbSignInWithGoogle(); // triggers redirect — page navigates away
     } catch (err) {
       button.disabled = false;
       button.textContent = "Open My Work →";
-      showToast("Sign-in failed — please try again.");
+      const msg = err.message && err.message.includes("Firebase Auth did not load")
+        ? err.message
+        : "Sign-in failed — please try again.";
+      showToast(msg);
       console.warn("[Fusz+] Google sign-in redirect error:", err);
     }
   });

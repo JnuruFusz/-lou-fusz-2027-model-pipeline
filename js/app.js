@@ -463,30 +463,21 @@ async function boot() {
   if (justSignedOut) sessionStorage.removeItem("fusz-signed-out");
 
   try {
-    // Wait for Firebase Auth to initialize (covers both fresh loads and returning from redirect).
-    const firebaseUser = justSignedOut ? null : await fbWaitForAuth(5000);
-
-    // Also check for a pending redirect result. This cleans up Firebase's internal state
-    // and surfaces any error from the Google redirect flow (e.g. account mismatch).
-    // On a fresh page load (no pending redirect) this resolves to null harmlessly.
-    if (!justSignedOut && _fbAuthReady) {
-      try {
-        const redirectResult = await fbGetRedirectResult();
-        if (redirectResult?.user && !firebaseUser) {
-          // Edge case: redirect completed but onAuthStateChanged fired before getRedirectResult
-          // No-op — firebaseUser below handles the session setup.
-        }
-        if (redirectResult?.operationType && !redirectResult.user) {
-          // Redirect completed but no user (shouldn't happen — treat as error)
-          console.warn("[Fusz+] Redirect result missing user:", redirectResult);
-        }
-      } catch (redirectErr) {
-        // Auth error from the redirect (e.g. auth/account-exists-with-different-credential)
-        console.warn("[Fusz+] Google redirect sign-in error:", redirectErr.code, redirectErr.message);
-        // Show toast after bindEvents() so the toast container exists
-        state._pendingAuthError = redirectErr.code || "auth/unknown";
-      }
-    }
+    // Wait for the definitive Firebase Auth state.
+    //
+    // firebase.js now resolves _authPromise only AFTER getRedirectResult() has
+    // completed inside initFirebase(). This means on a redirect-return page load:
+    //   1. onAuthStateChanged fires with null  (redirect still processing)
+    //   2. getRedirectResult() consumes the stored redirect token
+    //   3. onAuthStateChanged fires with the signed-in user
+    //   4. _authPromise resolves with that user  ← we get it here
+    //
+    // Any redirect auth errors (wrong account, etc.) are stored in
+    // state._pendingAuthError by firebase.js and surfaced as a toast below.
+    //
+    // Timeout raised to 8000ms to match firebase.js and give slow connections
+    // enough time to load three CDN scripts before we give up.
+    const firebaseUser = justSignedOut ? null : await fbWaitForAuth(8000);
 
     if (firebaseUser) {
       const member = rosterByGoogleEmail(firebaseUser.email);
@@ -510,11 +501,13 @@ async function boot() {
         console.warn("[Fusz+] Signed-in Google account not in TEAM_ROSTER:", firebaseUser.email);
       }
     } else if (_fbAuthReady) {
-      // Firebase is up and says "no user" — clear any stale localStorage session
+      // Firebase is up and says "no user" (and redirect processing is done) —
+      // clear any stale localStorage session so the auth screen is shown.
       state.session = null;
       localStorage.removeItem("fusz-demo-session");
     }
-    // If Firebase timed out (_fbAuthReady is false), keep localStorage session as fallback
+    // If Firebase timed out (_fbAuthReady is still false), keep localStorage
+    // session as fallback so the user isn't unexpectedly locked out.
   } catch (err) {
     console.warn("[Fusz+] Auth check failed, falling back to localStorage session", err);
   }
