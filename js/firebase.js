@@ -147,7 +147,7 @@ function fbGetCurrentUser() {
         let _redirectResultDone = false;
 
         const tryResolve = () => {
-          /* Only resolve once both signals are in */
+          if (_fbAuthReady) return; // already resolved via redirect fast-path
           if (_latestUser === undefined || !_redirectResultDone) return;
           _fbAuthReady = true;
           _authResolve(_latestUser);
@@ -158,30 +158,28 @@ function fbGetCurrentUser() {
           tryResolve();
         });
 
-        /* Call getRedirectResult immediately after setting up the
-           onAuthStateChanged listener. It may trigger a second
-           onAuthStateChanged(user) call which updates _latestUser
-           before tryResolve() sees it — that's exactly what we want. */
         _auth.getRedirectResult()
           .then((result) => {
-            /* result.user is set if the page just returned from a redirect.
-               onAuthStateChanged will have already fired (or will fire
-               shortly) with that user — we don't need to use result.user
-               directly. Just mark redirect processing done. */
-            if (result && result.operationType && !result.user) {
-              console.warn("[Fusz+] Redirect result missing user:", result);
+            if (result && result.user) {
+              /* Page just returned from a Google redirect — result.user is definitive.
+                 onAuthStateChanged fires after this, but we already have the user.
+                 Resolve immediately so boot() doesn't wait and miss the user. */
+              _fbAuthReady = true;
+              _authResolve(result.user);
             }
           })
           .catch((err) => {
-            /* Auth error from the Google redirect (e.g. wrong account,
-               popup closed, auth/account-exists-with-different-credential).
+            /* Auth error from the redirect (e.g. auth/unauthorized-domain,
+               auth/account-exists-with-different-credential).
                Store it so boot() can surface a toast after UI is ready. */
             console.warn("[Fusz+] Google redirect sign-in error:", err.code, err.message);
             state._pendingAuthError = err.code || "auth/unknown";
           })
           .finally(() => {
+            /* No pending redirect (result.user was null) or redirect errored.
+               Fall through to onAuthStateChanged to determine auth state. */
             _redirectResultDone = true;
-            tryResolve();
+            if (!_fbAuthReady) tryResolve();
           });
 
         console.log("[Fusz+] Firebase connected — real-time sync + auth active");
