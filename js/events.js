@@ -297,6 +297,7 @@ function bindEvents() {
     state.session = null;
     localStorage.removeItem("fusz-demo-session");
     localStorage.removeItem("pipeline-workspace-view");
+    sessionStorage.setItem("fusz-signed-out", "1"); // skip Firebase wait on reload
     state.onboardingStep = "login";
     renderAuth();
     showToast("Signed out");

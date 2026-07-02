@@ -458,10 +458,12 @@ async function boot() {
     if (btn) btn.textContent = `Continue as ${invitee.label}`;
   }
   // Check Firebase Auth state before showing UI.
-  // fbWaitForAuth resolves with the signed-in Google user, or null if not signed in
-  // (or if Firebase CDN is unavailable — falls back to localStorage session).
+  // Skip the wait if the user just signed out (sessionStorage flag set by sign-out handler).
+  const justSignedOut = sessionStorage.getItem("fusz-signed-out") === "1";
+  if (justSignedOut) sessionStorage.removeItem("fusz-signed-out");
+
   try {
-    const firebaseUser = await fbWaitForAuth(5000);
+    const firebaseUser = justSignedOut ? null : await fbWaitForAuth(5000);
     if (firebaseUser) {
       const member = rosterByGoogleEmail(firebaseUser.email);
       if (member) {
