@@ -126,3 +126,26 @@ body[data-theme="light"] .toast {
   transform: translateX(-50%) translateY(0);
   pointer-events: auto;
 }
+
+/* ── Manage member dialog ─────────────────────────────────── */
+.manage-member-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.manage-invite-block {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.manage-invite-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

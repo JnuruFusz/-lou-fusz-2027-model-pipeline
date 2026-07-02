@@ -590,6 +590,34 @@
       </form>
     </dialog>
 
+    <!-- Member manage dialog -->
+    <dialog id="manageMemberDialog" aria-labelledby="manageMemberTitle">
+      <div class="dialog-header">
+        <h2 id="manageMemberTitle">Team member</h2>
+        <button class="dialog-close" type="button" data-close-manage-dialog aria-label="Close">×</button>
+      </div>
+      <div class="dialog-body">
+        <div class="manage-member-profile">
+          <span class="member-avatar" id="manageMemberAvatar">JG</span>
+          <div>
+            <strong id="manageMemberName">Name</strong>
+            <p id="manageMemberRole" style="margin:2px 0 0;color:var(--muted);font-size:13px"></p>
+          </div>
+        </div>
+        <div class="manage-invite-block">
+          <p style="font-size:12px;color:var(--muted);margin:0 0 8px;font-weight:700;text-transform:uppercase;letter-spacing:.04em">Invite link</p>
+          <div class="manage-invite-row">
+            <code id="manageMemberInviteUrl" style="font-size:12px;color:var(--ink);word-break:break-all;flex:1"></code>
+            <button class="button button-quiet" type="button" id="copyInviteLinkButton">Copy</button>
+          </div>
+        </div>
+      </div>
+      <div class="dialog-actions">
+        <button class="button button-primary-action" type="button" id="emailInviteButton">Send invite email</button>
+        <button class="button button-quiet" type="button" data-close-manage-dialog>Close</button>
+      </div>
+    </dialog>
+
     <dialog id="inviteDialog">
       <form id="inviteForm" method="dialog">
         <div class="dialog-header">

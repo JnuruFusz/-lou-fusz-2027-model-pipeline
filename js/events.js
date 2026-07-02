@@ -149,15 +149,64 @@ function bindEvents() {
     toggle.setAttribute("aria-checked", on ? "true" : "false");
   });
 
-  // Team member Manage buttons
+  // Team member Manage buttons — open member dialog with invite link
   document.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-manage-member]");
     if (!btn) return;
     const name = btn.dataset.manageMember;
-    const row = btn.closest("[role='row']");
-    const role = row?.querySelector("[data-label='Role']")?.textContent?.trim() || "Team member";
-    const email = row?.querySelector("[data-label='Email']")?.textContent?.trim() || "";
-    showToast(`${name} · ${role}${email ? " · " + email : ""} — role editing coming soon.`);
+    const member = TEAM_ROSTER.find((m) => m.name === name) || null;
+    if (!member) return;
+
+    const dialog = document.getElementById("manageMemberDialog");
+    if (!dialog) return;
+
+    const appUrl = window.location.origin + window.location.pathname;
+    const inviteUrl = `${appUrl}?invite=${member.inviteKey}`;
+
+    document.getElementById("manageMemberAvatar").textContent = member.initials;
+    document.getElementById("manageMemberName").textContent = member.name;
+    document.getElementById("manageMemberRole").textContent =
+      member.isAdmin ? `${member.primaryRole} · Admin` : member.primaryRole;
+    document.getElementById("manageMemberInviteUrl").textContent = inviteUrl;
+
+    // Wire copy button
+    const copyBtn = document.getElementById("copyInviteLinkButton");
+    copyBtn.onclick = () => {
+      navigator.clipboard.writeText(inviteUrl).then(() => {
+        copyBtn.textContent = "Copied!";
+        setTimeout(() => { copyBtn.textContent = "Copy"; }, 2000);
+      }).catch(() => showToast("Copy failed — select the link manually."));
+    };
+
+    // Wire email button
+    const emailBtn = document.getElementById("emailInviteButton");
+    emailBtn.onclick = () => {
+      const subject = encodeURIComponent("You've been invited to Fusz+");
+      const body = encodeURIComponent(
+        `Hi ${member.name.split(" ")[0]},
+
+You've been added as ${member.primaryRole} on the Lou Fusz 2027 model pipeline dashboard.
+
+Click the link below to open your workspace:
+${inviteUrl}
+
+Sign in with your Google account (${member.googleEmail || member.email}) when prompted.
+
+Let me know if you have any questions.`
+      );
+      window.open(`mailto:${member.email}?subject=${subject}&body=${body}`);
+      dialog.close();
+      showToast(`Invite email opened for ${member.name}`);
+    };
+
+    dialog.showModal();
+  });
+
+  // Close manage member dialog
+  document.addEventListener("click", (e) => {
+    if (e.target.closest("[data-close-manage-dialog]")) {
+      document.getElementById("manageMemberDialog")?.close();
+    }
   });
 
   // Admin panel action buttons — navigate or filter
