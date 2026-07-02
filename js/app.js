@@ -463,26 +463,15 @@ async function boot() {
   if (justSignedOut) sessionStorage.removeItem("fusz-signed-out");
 
   try {
-    // Wait for the definitive Firebase Auth state.
-    //
-    // firebase.js now resolves _authPromise only AFTER getRedirectResult() has
-    // completed inside initFirebase(). This means on a redirect-return page load:
-    //   1. onAuthStateChanged fires with null  (redirect still processing)
-    //   2. getRedirectResult() consumes the stored redirect token
-    //   3. onAuthStateChanged fires with the signed-in user
-    //   4. _authPromise resolves with that user  ← we get it here
-    //
-    // Any redirect auth errors (wrong account, etc.) are stored in
-    // state._pendingAuthError by firebase.js and surfaced as a toast below.
-    //
-    // Timeout raised to 8000ms to match firebase.js and give slow connections
-    // enough time to load three CDN scripts before we give up.
-    const firebaseUser = justSignedOut ? null : await fbWaitForAuth(8000);
+    // Check if a Google session is already active (e.g. returning user, page refresh).
+    // With signInWithPopup, the button handler calls completeOnboarding() directly —
+    // this boot() check only matters for returning users who are already signed in.
+    const firebaseUser = justSignedOut ? null : await fbWaitForAuth(5000);
 
     if (firebaseUser) {
       const member = rosterByGoogleEmail(firebaseUser.email);
       if (member) {
-        // Confirmed — set session from roster (authoritative)
+        // Returning signed-in user — restore session from roster
         state.session = {
           email:       member.email,
           name:        member.name,
@@ -493,21 +482,18 @@ async function boot() {
         };
         localStorage.setItem("fusz-demo-session", JSON.stringify(state.session));
       } else {
-        // Google account not in TEAM_ROSTER — sign out and clear session
+        // Signed-in Google account not in TEAM_ROSTER — sign out and clear session
         fbSignOut().catch(() => {});
         state.session = null;
         localStorage.removeItem("fusz-demo-session");
-        state._pendingAuthError = "not_in_roster";
         console.warn("[Fusz+] Signed-in Google account not in TEAM_ROSTER:", firebaseUser.email);
       }
     } else if (_fbAuthReady) {
-      // Firebase is up and says "no user" (and redirect processing is done) —
-      // clear any stale localStorage session so the auth screen is shown.
+      // Firebase is up and confirmed no user — clear any stale localStorage session
       state.session = null;
       localStorage.removeItem("fusz-demo-session");
     }
-    // If Firebase timed out (_fbAuthReady is still false), keep localStorage
-    // session as fallback so the user isn't unexpectedly locked out.
+    // If Firebase timed out (_fbAuthReady false), keep localStorage session as fallback
   } catch (err) {
     console.warn("[Fusz+] Auth check failed, falling back to localStorage session", err);
   }
@@ -519,14 +505,6 @@ async function boot() {
   normalizeSession();
   bindEvents();
   renderAuth();
-  // Surface any deferred auth error (toast container exists after bindEvents)
-  if (state._pendingAuthError) {
-    const msg = state._pendingAuthError === "not_in_roster"
-      ? "This Google account doesn't have access. Try a different account."
-      : "Sign-in failed — please try again.";
-    if (typeof showToast === "function") showToast(msg, 5000);
-    delete state._pendingAuthError;
-  }
   const [tasks, sources, inventoryFeed] = [embeddedTracker, embeddedSources, await fetchInventoryFeed()];
   prog(82);
   const sourceTasks = mergeInventoryFeedTasks(tasks, inventoryFeed.rows);

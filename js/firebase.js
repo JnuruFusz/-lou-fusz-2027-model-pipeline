@@ -24,55 +24,28 @@ let _firebaseReady = false;
 let _fbAuthReady   = false;
 const _pendingWrites = [];
 
-/* ---------------------------------------------------------------
-   Auth promise — THE KEY FIX
-   -----------------------------------------------------------------
-   With signInWithRedirect, onAuthStateChanged fires TWICE on the
-   return page load:
-     1. Immediately with null  (redirect is still being processed)
-     2. A moment later with the signed-in user  (redirect done)
-
-   A one-shot Promise that resolves on the first fire always captures
-   null and misses the user entirely.
-
-   Fix: we resolve only AFTER getRedirectResult() has been awaited.
-   getRedirectResult() is what consumes the stored redirect token and
-   causes Firebase to emit the second onAuthStateChanged(user). We
-   call it inside initFirebase, then resolve the promise with the
-   definitive auth state.
-
-   Sequence on redirect return:
-     1. onAuthStateChanged(null)  — we do NOT resolve yet
-     2. getRedirectResult()       — consumes redirect token
-     3. onAuthStateChanged(user)  — now we resolve with the real user
-
-   Sequence on fresh load (no pending redirect):
-     1. onAuthStateChanged(null/user)  — we call getRedirectResult()
-     2. getRedirectResult() → null     — no pending redirect
-     3. We resolve with whatever onAuthStateChanged gave us
-   ----------------------------------------------------------------- */
+/* Auth promise — resolves with the Firebase user (or null) once
+   onAuthStateChanged fires for the first time on page load. */
 let _authResolve;
 const _authPromise = new Promise((resolve) => { _authResolve = resolve; });
 
-/* Wait for Firebase Auth to resolve with the definitive user (or null).
-   Includes a timeout so boot() is never blocked forever on CDN failure. */
-function fbWaitForAuth(timeoutMs = 8000) {
+/* Wait for Firebase Auth to resolve (with optional timeout). */
+function fbWaitForAuth(timeoutMs = 5000) {
   const timeout = new Promise((resolve) => setTimeout(() => resolve(null), timeoutMs));
   return Promise.race([_authPromise, timeout]);
 }
 
-/* Sign in with Google — uses redirect so popup blockers can't interfere.
-   The page navigates away to Google, then returns to the app.
-   boot() picks up the signed-in user via fbWaitForAuth(). */
+/* Sign in with Google popup. Returns a Promise that resolves with the
+   UserCredential so the caller can read result.user immediately.
+   If the popup is blocked, throws auth/popup-blocked — caller should
+   show a message asking the user to allow popups for this site. */
 function fbSignInWithGoogle() {
   if (!_auth) return Promise.reject(new Error("Auth not ready"));
   const provider = new firebase.auth.GoogleAuthProvider();
-  return _auth.signInWithRedirect(provider);
+  return _auth.signInWithPopup(provider);
 }
 
-/* Exposed for boot() to call if it needs the raw redirect credential
-   (e.g. to surface auth errors). The real redirect processing happens
-   inside initFirebase before fbWaitForAuth resolves. */
+/* Not used in the popup flow but kept for emergencies. */
 function fbGetRedirectResult() {
   if (!_auth) return Promise.resolve(null);
   return _auth.getRedirectResult();
@@ -124,63 +97,12 @@ function fbGetCurrentUser() {
         });
 
         /* --- Auth ---
-           THE FIX: We must call getRedirectResult() BEFORE settling
-           _authPromise. This ensures:
-             (a) The redirect token is consumed and the real user lands
-                 in onAuthStateChanged before we resolve.
-             (b) Any redirect auth error is captured here, not lost.
-
-           Flow:
-             - onAuthStateChanged registers a one-time listener.
-             - We call getRedirectResult() which triggers Firebase to
-               process any pending redirect credential.
-             - If there was a redirect, onAuthStateChanged fires again
-               with the signed-in user. We resolve with that user.
-             - If there was no redirect, getRedirectResult() resolves
-               null quickly and the existing onAuthStateChanged result
-               (null or a previously-cached user) is used to resolve.
-        */
+        /* --- Auth (popup flow — simple onAuthStateChanged) --- */
         _auth = firebase.auth(app);
-
-        /* Track the most recent user from onAuthStateChanged */
-        let _latestUser = undefined; // undefined = not yet fired
-        let _redirectResultDone = false;
-
-        const tryResolve = () => {
-          if (_fbAuthReady) return; // already resolved via redirect fast-path
-          if (_latestUser === undefined || !_redirectResultDone) return;
-          _fbAuthReady = true;
-          _authResolve(_latestUser);
-        };
-
         _auth.onAuthStateChanged((user) => {
-          _latestUser = user;
-          tryResolve();
+          _fbAuthReady = true;
+          _authResolve(user);
         });
-
-        _auth.getRedirectResult()
-          .then((result) => {
-            if (result && result.user) {
-              /* Page just returned from a Google redirect — result.user is definitive.
-                 onAuthStateChanged fires after this, but we already have the user.
-                 Resolve immediately so boot() doesn't wait and miss the user. */
-              _fbAuthReady = true;
-              _authResolve(result.user);
-            }
-          })
-          .catch((err) => {
-            /* Auth error from the redirect (e.g. auth/unauthorized-domain,
-               auth/account-exists-with-different-credential).
-               Store it so boot() can surface a toast after UI is ready. */
-            console.warn("[Fusz+] Google redirect sign-in error:", err.code, err.message);
-            state._pendingAuthError = err.code || "auth/unknown";
-          })
-          .finally(() => {
-            /* No pending redirect (result.user was null) or redirect errored.
-               Fall through to onAuthStateChanged to determine auth state. */
-            _redirectResultDone = true;
-            if (!_fbAuthReady) tryResolve();
-          });
 
         console.log("[Fusz+] Firebase connected — real-time sync + auth active");
       } catch (err) {

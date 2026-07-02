@@ -279,33 +279,28 @@ Let me know if you have any questions.`
     const button = event.currentTarget;
     if (button.disabled) return;
     button.disabled = true;
-    button.textContent = "Redirecting to Google…";
-    // signInWithRedirect() navigates the page to Google — no result comes back here.
-    // When the user completes sign-in, Google redirects to fuszplus.firebaseapp.com/__/auth/handler
-    // which then redirects back to this app. boot() picks up the signed-in user via
-    // fbWaitForAuth(), which now resolves only after getRedirectResult() has run.
-    //
-    // Race condition guard: Firebase loads three CDN scripts asynchronously.
-    // If the user clicks before _auth is ready (slow connection), fbSignInWithGoogle()
-    // rejects with "Auth not ready". We wait up to 6s for Firebase to become ready
-    // before giving up and showing an error — rather than failing immediately.
+    button.textContent = "Opening Google…";
     try {
-      if (!_auth) {
-        button.textContent = "Connecting…";
-        await fbWaitForAuth(6000);
+      const result = await fbSignInWithGoogle();
+      const googleEmail = result.user?.email || "";
+      const member = rosterByGoogleEmail(googleEmail);
+      if (!member) {
+        await fbSignOut().catch(() => {});
+        button.disabled = false;
+        button.textContent = "Open My Work →";
+        showToast("This Google account doesn't have access. Try a different account.", 4500);
+        return;
       }
-      if (!_auth) {
-        throw new Error("Firebase Auth did not load. Check your connection and try again.");
-      }
-      await fbSignInWithGoogle(); // triggers redirect — page navigates away
+      completeOnboarding(member);
     } catch (err) {
       button.disabled = false;
       button.textContent = "Open My Work →";
-      const msg = err.message && err.message.includes("Firebase Auth did not load")
-        ? err.message
-        : "Sign-in failed — please try again.";
-      showToast(msg);
-      console.warn("[Fusz+] Google sign-in redirect error:", err);
+      if (err.code === "auth/popup-blocked") {
+        showToast("Popups are blocked — please allow popups for this site and try again.", 5000);
+      } else if (err.code !== "auth/popup-closed-by-user" && err.code !== "auth/cancelled-popup-request") {
+        showToast("Sign-in failed — please try again.");
+        console.warn("[Fusz+] Google sign-in error:", err);
+      }
     }
   });
 
