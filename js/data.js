@@ -5,7 +5,7 @@ const TEAM_ROSTER = [
   {
     name: "Jnuru Goodwin",
     email: "jnurugoodwin48@gmail.com",
-    googleEmail: "jnurugoodwin48@gmail.com",
+    googleEmail: ["jnurugoodwin48@gmail.com", "jnuru.goodwin@fusz.com"],
     initials: "JG",
     primaryRole: "Builder",
     isAdmin: true,
@@ -46,10 +46,11 @@ function rosterByInviteKey(key) {
 
 function rosterByGoogleEmail(email) {
   const e = (email || "").toLowerCase();
-  return TEAM_ROSTER.find((m) =>
-    (m.googleEmail || "").toLowerCase() === e ||
-    m.email.toLowerCase() === e
-  ) || null;
+  return TEAM_ROSTER.find((m) => {
+    const ge = m.googleEmail;
+    const googleEmails = Array.isArray(ge) ? ge : [ge || ""];
+    return googleEmails.some((g) => g.toLowerCase() === e) || m.email.toLowerCase() === e;
+  }) || null;
 }
 
 const statusLabels = {
