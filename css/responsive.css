@@ -649,3 +649,97 @@
     transform: translateX(0) !important;
   }
 }
+
+/* =================================================================
+   Mobile QA fixes — July 2026
+   Issues: filter toolbar, tap targets, focus CTA, settings labels,
+           upcoming gutter
+   ================================================================= */
+
+/* ------------------------------------------------------------------
+   #1  Team Pipeline filter toolbar — stack vertically at narrow mobile
+       so Status / Clear filters are never clipped off-screen
+   ------------------------------------------------------------------ */
+@media (max-width: 480px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .toolbar label {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .toolbar label select {
+    min-width: 0;
+    flex: 1;
+  }
+
+  /* Clear filters button — full width so it doesn't orphan */
+  .toolbar > .button {
+    min-height: 38px;
+    width: 100%;
+  }
+
+  /* ------------------------------------------------------------------
+     #5  Upcoming list first-row gutter inconsistency
+         .wire-row uses margin: 0 -8px which bleeds outside the container
+         on narrow viewports — reset it
+     ------------------------------------------------------------------ */
+  .wire-row {
+    margin: 0;
+    padding: 18px 0;
+  }
+}
+
+/* ------------------------------------------------------------------
+   #2  My Work detail — tap targets too small
+       Open CMS / View reference: ~14px tall → min 40px
+       Check handoff (ai-pill): 28px → 40px, full width for easy tap
+   #3  Focus card primary button — 32px → 44px at 360px
+   #4  Settings / Admin row — label + helper text run inline
+       (<strong> + <span> are both inline; stack them at mobile)
+   ------------------------------------------------------------------ */
+@media (max-width: 560px) {
+  /* #2 — resource links: stack vertically, each row = 40px touch target */
+  .workbench-resource-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .workbench-resource-link {
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 0 2px;
+  }
+
+  /* #2 — "Check handoff" ai pill */
+  .workbench-ai-pill {
+    width: 100%;
+    justify-content: center;
+    min-height: 40px;
+    border-radius: 8px;
+  }
+
+  /* #3 — Focus card CTA + ghost button */
+  .workbench-focus-cta,
+  .workbench-focus-ghost {
+    min-height: 44px;
+  }
+
+  /* #4 — Settings rows: strong + span each on own line */
+  .settings-row > div > strong,
+  .admin-row > div > strong {
+    display: block;
+  }
+
+  .settings-row > div > span,
+  .admin-row > div > span {
+    display: block;
+    margin-top: 2px;
+  }
+}
