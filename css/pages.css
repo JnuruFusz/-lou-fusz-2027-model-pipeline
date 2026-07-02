@@ -1129,8 +1129,9 @@ body[data-theme="light"] .details-field-hint {
   }
 }
 
-/* ─── Auth / Onboarding screen ─────────────────────────────────────────────── */
+/* ─── Auth / Onboarding screen — Hybrid Split Design ───────────── */
 
+/* Base screen — full viewport, no padding */
 .auth-screen {
   min-height: 100dvh;
   display: grid;
@@ -1139,23 +1140,291 @@ body[data-theme="light"] .details-field-hint {
   background: var(--bg);
 }
 
-body[data-theme="light"] .auth-screen {
-  background: linear-gradient(180deg, #f5f1eb, #f0ebe3);
+/* When split layout is active, stretch to fill */
+.auth-screen:has(.auth-split) {
+  padding: 0;
+  place-items: stretch;
+}
+.auth-screen:has(.auth-split) .auth-shell {
+  max-width: none;
+  width: 100%;
 }
 
 .auth-shell {
   display: block;
   width: 100%;
   max-width: 480px;
-  min-height: 0;
   margin-inline: auto;
   background: transparent;
 }
 
+/* ── Split layout ──────────────────────────────────────────────── */
+.auth-split {
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  min-height: 100dvh;
+}
+
+/* Left: cream editorial panel */
+.auth-editorial {
+  display: flex;
+  flex-direction: column;
+  padding: 36px 48px;
+  background: #f5f1eb;
+  position: relative;
+}
+
+.auth-editorial-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.auth-logo {
+  display: block;
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  line-height: 1;
+  color: #1a1a1a;
+}
+
+.auth-date {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #999;
+  text-transform: uppercase;
+}
+
+.auth-editorial-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 56px 0 40px;
+}
+
+.auth-eyebrow-new {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #2563a9;
+  text-transform: uppercase;
+}
+
+.auth-eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.auth-headline {
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-size: clamp(38px, 5vw, 58px);
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: #1a1a1a;
+  margin: 0 0 20px;
+}
+
+.auth-copy {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.55;
+  max-width: 400px;
+}
+
+.auth-editorial-footer {
+  margin-top: auto;
+}
+
+.auth-hash-texture {
+  height: 28px;
+  margin-bottom: 14px;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 3px,
+    rgba(0, 0, 0, 0.09) 3px,
+    rgba(0, 0, 0, 0.09) 4px
+  );
+  border-radius: 2px;
+}
+
+.auth-footer-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #aaa;
+}
+
+/* Right: dark action panel */
+.auth-action-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 44px;
+  background: #1c1c1c;
+  overflow: hidden;
+}
+
+.auth-panel-watermark {
+  position: absolute;
+  bottom: -60px;
+  right: -24px;
+  font-size: 320px;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.04);
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.05em;
+}
+
+.auth-panel-content {
+  position: relative;
+  z-index: 1;
+}
+
+.auth-signed-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  margin: 0 0 14px;
+}
+
+.auth-panel-rule {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 18px 0;
+}
+
+/* Profile row (01) */
+.auth-profile-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.auth-row-index {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.2);
+  min-width: 18px;
+  flex-shrink: 0;
+}
+
+.auth-avatar {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #2563a9;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+.auth-profile-info {
+  flex: 1;
+}
+
+.auth-profile-info strong {
+  display: block;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.auth-profile-info small {
+  display: block;
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+.auth-verified-badge {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.28);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+/* Roles row (02) */
+.auth-roles-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.auth-role-pills {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.auth-role-pill {
+  padding: 3px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.auth-access-desc {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.22);
+  font-weight: 500;
+}
+
+/* CTA */
+.auth-cta {
+  width: 100%;
+  min-height: 50px;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+/* Fallback card (non-split, e.g. very old browsers) */
 .auth-card {
   display: none;
   width: 100%;
-  min-height: 0;
   padding: 32px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -1163,88 +1432,7 @@ body[data-theme="light"] .auth-screen {
   box-shadow: var(--shadow);
   animation: panelIn 220ms ease both;
 }
-
-.auth-card.is-active {
-  display: block;
-}
-
-.auth-logo {
-  display: block;
-  margin-bottom: 28px;
-  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: -.025em;
-  line-height: 1;
-  color: var(--ink);
-}
-
-.auth-card h2 {
-  margin-top: 4px;
-  font-size: clamp(24px, 5vw, 28px);
-  line-height: 1.12;
-}
-
-.auth-copy {
-  margin: 12px 0 20px;
-  color: var(--muted);
-  font-size: 14px;
-  font-weight: 650;
-  line-height: 1.5;
-}
-
-.profile-preview {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 0 0 20px;
-  padding: 12px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.025);
-}
-
-body[data-theme="light"] .profile-preview {
-  background: #ede9e4;
-  border-color: var(--line);
-}
-
-.profile-preview > span {
-  display: inline-grid;
-  flex: 0 0 auto;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 999px;
-  background: var(--action-blue);
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: 950;
-}
-
-.profile-preview strong,
-.profile-preview small {
-  display: block;
-}
-
-.profile-preview strong {
-  color: var(--ink);
-  font-size: 14px;
-  font-weight: 850;
-}
-
-.profile-preview small {
-  margin-top: 2px;
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 750;
-}
-
-.auth-card .button {
-  width: 100%;
-  min-height: 46px;
-  justify-content: center;
-}
+.auth-card.is-active { display: block; }
 
 .auth-help-link {
   display: block;
@@ -1253,36 +1441,37 @@ body[data-theme="light"] .profile-preview {
   padding: 4px;
   border: 0;
   background: transparent;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.3);
   cursor: pointer;
   font: inherit;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
+  letter-spacing: 0.04em;
 }
-
 .auth-help-link:hover,
-.auth-help-link:focus-visible {
-  color: var(--blue);
+.auth-help-link:focus-visible { color: rgba(255, 255, 255, 0.6); }
+
+/* Mobile: stack vertically */
+@media (max-width: 720px) {
+  .auth-split {
+    grid-template-columns: 1fr;
+  }
+  .auth-editorial {
+    padding: 28px 24px 32px;
+    min-height: 0;
+  }
+  .auth-editorial-body {
+    padding: 32px 0 24px;
+  }
+  .auth-headline {
+    font-size: clamp(32px, 8vw, 44px);
+  }
+  .auth-action-panel {
+    padding: 36px 24px 48px;
+    min-height: 0;
+  }
 }
 
-@media (max-width: 560px) {
-  .auth-screen {
-    align-items: start;
-    padding: 20px 16px 32px;
-  }
-
-  .auth-shell {
-    max-width: none;
-  }
-
-  .auth-card {
-    padding: 22px;
-  }
-
-  .auth-logo {
-    margin-bottom: 24px;
-  }
-}
 
 /* ---------------------------------------------------------------
    Upcoming Models — The Wire (editorial layout)

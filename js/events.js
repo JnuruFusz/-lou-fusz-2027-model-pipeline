@@ -52,23 +52,69 @@ function configureInviteOnboarding() {
   const firstName = member.name.split(" ")[0];
   const roleLabel = member.isAdmin ? `${member.primaryRole} + Admin` : member.primaryRole;
 
+  // Live date string
+  const _days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const _months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const _now = new Date();
+  const dateStr = `${_days[_now.getDay()].toUpperCase()} · ${_months[_now.getMonth()].toUpperCase()} ${_now.getDate()}, ${_now.getFullYear()}`;
+
+  // Role pills
+  const _pills = [member.primaryRole];
+  if (member.isAdmin) _pills.push('Admin');
+  const pillsHtml = _pills.map((p) => `<span class="auth-role-pill">${p.toUpperCase()}</span>`).join('');
+  const accessDesc = member.isAdmin ? 'Full pipeline access' : `${member.primaryRole} workspace`;
+
   shell.innerHTML = `
-    <div class="auth-card is-active" data-auth-step="login">
-      <strong class="auth-logo">Fusz<span class="sidebar-logo-plus">+</span></strong>
-      <p class="eyebrow">Invite accepted</p>
-      <h2>Welcome to Fusz+, ${firstName}</h2>
-      <p class="auth-copy">${roleAccessDescription(member)}</p>
-      <div class="profile-preview" aria-label="Signed in as ${member.name}, ${roleLabel}">
-        <span aria-hidden="true">${member.initials}</span>
-        <div>
-          <strong>${member.name}</strong>
-          <small>${roleLabel}</small>
+    <div class="auth-split">
+      <!-- Left: cream editorial -->
+      <div class="auth-editorial">
+        <header class="auth-editorial-header">
+          <strong class="auth-logo">Fusz<span class="sidebar-logo-plus">+</span></strong>
+          <span class="auth-date">${dateStr}</span>
+        </header>
+        <div class="auth-editorial-body">
+          <p class="auth-eyebrow-new"><span class="auth-eyebrow-dot"></span>INVITE ACCEPTED</p>
+          <h2 class="auth-headline">Welcome to<br>Fusz+, ${firstName}.</h2>
+          <p class="auth-copy">${roleAccessDescription(member)}</p>
+        </div>
+        <footer class="auth-editorial-footer">
+          <div class="auth-hash-texture"></div>
+          <div class="auth-footer-labels">
+            <span>LOU FUSZ AUTOMOTIVE</span>
+            <span>SEO PIPELINE · 2027 MODELS</span>
+          </div>
+        </footer>
+      </div>
+      <!-- Right: dark action panel -->
+      <div class="auth-action-panel">
+        <div class="auth-panel-watermark">+</div>
+        <div class="auth-panel-content">
+          <p class="auth-signed-label">SIGNED IN AS</p>
+          <div class="auth-panel-rule"></div>
+          <div class="auth-profile-row">
+            <span class="auth-row-index">01</span>
+            <span class="auth-avatar" aria-hidden="true">${member.initials}</span>
+            <div class="auth-profile-info">
+              <strong>${member.name}</strong>
+              <small>${roleLabel}</small>
+            </div>
+            <span class="auth-verified-badge">VERIFIED</span>
+          </div>
+          <div class="auth-panel-rule"></div>
+          <div class="auth-roles-row">
+            <span class="auth-row-index">02</span>
+            <div class="auth-role-pills">
+              ${pillsHtml}
+              <span class="auth-access-desc">${accessDesc}</span>
+            </div>
+          </div>
+          <div class="auth-panel-rule"></div>
+          <button id="continueLoginButton" class="button button-primary auth-cta" type="button">
+            Open My Work <span aria-hidden="true">→</span>
+          </button>
+          <button id="authHelpButton" class="auth-help-link" type="button">${roleAccessHelp(member)}</button>
         </div>
       </div>
-      <button id="continueLoginButton" class="button button-primary" type="button">
-        Open My Work
-      </button>
-      <button id="authHelpButton" class="auth-help-link" type="button">${roleAccessHelp(member)}</button>
     </div>
   `;
 
