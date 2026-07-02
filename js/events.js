@@ -19,12 +19,9 @@ function roleAccessHelpToast(member) {
 function configureInviteOnboarding() {
   const params = new URLSearchParams(window.location.search);
   if (params.get("demo") === "reset") {
+    fbSignOut().catch(() => {}); // sign out of Google too
     localStorage.removeItem("fusz-demo-session");
     localStorage.removeItem("pipeline-workspace-view");
-    
-    
-    
-    
     fbClearAll();
     localStorage.setItem("fusz-theme", "system");
     state.session = null;
@@ -229,13 +226,32 @@ function bindEvents() {
     showToast(`Invite opened for ${email}`);
   });
 
-  on(els.continueLoginButton, "click", (event) => {
+  on(els.continueLoginButton, "click", async (event) => {
     const button = event.currentTarget;
     if (button.disabled) return;
     button.disabled = true;
-    button.textContent = "Opening…";
-    const member = state._pendingMember || TEAM_ROSTER[0];
-    completeOnboarding(member);
+    button.textContent = "Opening Google…";
+    try {
+      const result = await fbSignInWithGoogle();
+      const googleEmail = result.user?.email || "";
+      const member = rosterByGoogleEmail(googleEmail);
+      if (!member) {
+        // Signed in but not in team roster
+        await fbSignOut().catch(() => {});
+        button.disabled = false;
+        button.textContent = "Open My Work →";
+        showToast("This Google account doesn't have access. Try a different account.", 4500);
+        return;
+      }
+      completeOnboarding(member);
+    } catch (err) {
+      button.disabled = false;
+      button.textContent = "Open My Work →";
+      if (err.code !== "auth/popup-closed-by-user" && err.code !== "auth/cancelled-popup-request") {
+        showToast("Sign-in failed — please try again.");
+        console.warn("[Fusz+] Google sign-in error:", err);
+      }
+    }
   });
 
   // authHelpButton uses delegation — element is injected dynamically
@@ -269,6 +285,21 @@ function bindEvents() {
     renderAuth();
     applyTheme("system");
     showToast("Demo restarted");
+  });
+
+  const signOutButton = document.getElementById("signOutButton");
+  on(signOutButton, "click", async () => {
+    try {
+      await fbSignOut();
+    } catch (err) {
+      console.warn("[Fusz+] Sign-out error:", err);
+    }
+    state.session = null;
+    localStorage.removeItem("fusz-demo-session");
+    localStorage.removeItem("pipeline-workspace-view");
+    state.onboardingStep = "login";
+    renderAuth();
+    showToast("Signed out");
   });
 
   [els.yearFilter, els.dealerFilter, els.statusFilter, els.searchInput].forEach((el) => {

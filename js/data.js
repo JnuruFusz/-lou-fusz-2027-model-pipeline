@@ -5,6 +5,7 @@ const TEAM_ROSTER = [
   {
     name: "Jnuru Goodwin",
     email: "jnurugoodwin48@gmail.com",
+    googleEmail: "jnurugoodwin48@gmail.com",
     initials: "JG",
     primaryRole: "Builder",
     isAdmin: true,
@@ -14,6 +15,7 @@ const TEAM_ROSTER = [
   {
     name: "Scott Toulou",
     email: "scott.touloo@fusz.com",
+    googleEmail: "scotttoulou@gmail.com",
     initials: "ST",
     primaryRole: "AEO Writer",
     isAdmin: true,
@@ -23,6 +25,7 @@ const TEAM_ROSTER = [
   {
     name: "Chris Pajda",
     email: "chris.pajda@fusz.com",
+    googleEmail: "cpvjda@gmail.com",
     initials: "CP",
     primaryRole: "SEO Writer",
     isAdmin: false,
@@ -39,6 +42,14 @@ function rosterByInviteKey(key) {
   // matches both inviteKey ("chris") and role slug ("seo-writer")
   const k = (key || "").toLowerCase();
   return TEAM_ROSTER.find((m) => m.inviteKey === k || m.primaryRole.toLowerCase().replace(/\s+/g, "-") === k) || null;
+}
+
+function rosterByGoogleEmail(email) {
+  const e = (email || "").toLowerCase();
+  return TEAM_ROSTER.find((m) =>
+    (m.googleEmail || "").toLowerCase() === e ||
+    m.email.toLowerCase() === e
+  ) || null;
 }
 
 const statusLabels = {

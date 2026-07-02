@@ -457,6 +457,41 @@ async function boot() {
     const btn = document.getElementById("continueLoginButton");
     if (btn) btn.textContent = `Continue as ${invitee.label}`;
   }
+  // Check Firebase Auth state before showing UI.
+  // fbWaitForAuth resolves with the signed-in Google user, or null if not signed in
+  // (or if Firebase CDN is unavailable — falls back to localStorage session).
+  try {
+    const firebaseUser = await fbWaitForAuth(5000);
+    if (firebaseUser) {
+      const member = rosterByGoogleEmail(firebaseUser.email);
+      if (member) {
+        // Confirmed — set session from roster (authoritative)
+        state.session = {
+          email:       member.email,
+          name:        member.name,
+          initials:    member.initials,
+          primaryRole: member.primaryRole,
+          isAdmin:     member.isAdmin,
+          defaultView: member.defaultView,
+        };
+        localStorage.setItem("fusz-demo-session", JSON.stringify(state.session));
+      } else {
+        // Google account not in TEAM_ROSTER — sign out and clear session
+        fbSignOut().catch(() => {});
+        state.session = null;
+        localStorage.removeItem("fusz-demo-session");
+        console.warn("[Fusz+] Signed-in Google account not in TEAM_ROSTER:", firebaseUser.email);
+      }
+    } else if (_fbAuthReady) {
+      // Firebase is up and says "no user" — clear any stale localStorage session
+      state.session = null;
+      localStorage.removeItem("fusz-demo-session");
+    }
+    // If Firebase timed out (_fbAuthReady is false), keep localStorage session as fallback
+  } catch (err) {
+    console.warn("[Fusz+] Auth check failed, falling back to localStorage session", err);
+  }
+
   await loadClassicScript("js/my-work-workbench.js?v=20260616");
   prog(38);
   await loadClassicScript("js/fusz-implementation.js?v=20260616");

@@ -1,5 +1,5 @@
 /* ---------------------------------------------------------------
-   firebase.js — shared real-time state for Fusz+
+   firebase.js — shared real-time state + Google Auth for Fusz+
    Replaces localStorage for the four shared keys:
      pipeline-status-overrides
      pipeline-aeo-overrides
@@ -18,48 +18,106 @@ const FIREBASE_CONFIG = {
   appId: "1:661147314154:web:215144227c2e31e6b0f493",
 };
 
-let _db = null;
+let _db   = null;
+let _auth = null;
 let _firebaseReady = false;
+let _fbAuthReady   = false;
 const _pendingWrites = [];
 
-/* Load Firebase SDK from CDN, then connect */
+/* Auth promise — resolves with user (or null) once Firebase Auth is ready */
+let _authResolve;
+const _authPromise = new Promise((resolve) => { _authResolve = resolve; });
+
+/* Wait for Firebase Auth to resolve (with optional timeout) */
+function fbWaitForAuth(timeoutMs = 5000) {
+  const timeout = new Promise((resolve) => setTimeout(() => resolve(null), timeoutMs));
+  return Promise.race([_authPromise, timeout]);
+}
+
+/* Sign in with a Google popup */
+function fbSignInWithGoogle() {
+  if (!_auth) return Promise.reject(new Error("Auth not ready"));
+  const provider = new firebase.auth.GoogleAuthProvider();
+  return _auth.signInWithPopup(provider);
+}
+
+/* Sign out */
+function fbSignOut() {
+  if (!_auth) return Promise.resolve();
+  return _auth.signOut();
+}
+
+/* Current signed-in user (or null) */
+function fbGetCurrentUser() {
+  return _auth ? _auth.currentUser : null;
+}
+
+/* Load Firebase SDKs from CDN, then connect */
 (function initFirebase() {
-  const script = document.createElement("script");
-  script.src = "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js";
-  script.onload = () => {
-    const dbScript = document.createElement("script");
-    dbScript.src = "https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js";
-    dbScript.onload = () => {
+  const appScript = document.createElement("script");
+  appScript.src = "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js";
+  appScript.onload = () => {
+    /* Load database + auth SDKs in parallel */
+    let loaded = 0;
+    const onBothLoaded = () => {
+      loaded++;
+      if (loaded < 2) return;
+
       try {
         const app = firebase.initializeApp(FIREBASE_CONFIG);
+
+        /* --- Realtime Database --- */
         _db = firebase.database(app);
         _firebaseReady = true;
 
-        /* Flush any writes that happened before Firebase was ready */
+        /* Flush any writes queued before Firebase was ready */
         _pendingWrites.forEach(([path, value]) => _db.ref(path).set(value));
         _pendingWrites.length = 0;
 
         /* Listen for remote changes and merge into state + re-render */
         _db.ref("overrides").on("value", (snap) => {
           const data = snap.val() || {};
-          state.overrides = data.pageStatus || {};
-          state.aeoOverrides = data.aeoStatus || {};
-          state.signalOverrides = data.signal || {};
-          state.details = data.details || {};
+          state.overrides      = data.pageStatus || {};
+          state.aeoOverrides   = data.aeoStatus  || {};
+          state.signalOverrides = data.signal    || {};
+          state.details        = data.details    || {};
           if (typeof render === "function") render();
         });
 
-        console.log("[Fusz+] Firebase connected — real-time sync active");
+        /* --- Auth --- */
+        _auth = firebase.auth(app);
+        _auth.onAuthStateChanged((user) => {
+          _fbAuthReady = true;
+          _authResolve(user); // resolves fbWaitForAuth()
+        });
+
+        console.log("[Fusz+] Firebase connected — real-time sync + auth active");
       } catch (err) {
         console.warn("[Fusz+] Firebase failed to connect, falling back to localStorage", err);
+        _authResolve(null); // unblock boot()
       }
     };
+
+    const dbScript = document.createElement("script");
+    dbScript.src = "https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js";
+    dbScript.onload = onBothLoaded;
+    dbScript.onerror = onBothLoaded; // don't hang on CDN error
+
+    const authScript = document.createElement("script");
+    authScript.src = "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js";
+    authScript.onload = onBothLoaded;
+    authScript.onerror = onBothLoaded;
+
     document.head.appendChild(dbScript);
+    document.head.appendChild(authScript);
   };
-  document.head.appendChild(script);
+  appScript.onerror = () => _authResolve(null); // unblock boot() on CDN failure
+  document.head.appendChild(appScript);
 })();
 
-/* Write helpers — fall back to localStorage if Firebase isn't ready */
+/* ---------------------------------------------------------------
+   Write helpers — fall back to localStorage if Firebase isn't ready
+   --------------------------------------------------------------- */
 function fbSetPageStatus(overrides) {
   localStorage.setItem("pipeline-status-overrides", JSON.stringify(overrides));
   if (_firebaseReady) {
