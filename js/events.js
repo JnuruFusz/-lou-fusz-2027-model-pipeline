@@ -279,27 +279,18 @@ Let me know if you have any questions.`
     const button = event.currentTarget;
     if (button.disabled) return;
     button.disabled = true;
-    button.textContent = "Opening Google…";
+    button.textContent = "Redirecting to Google…";
+    // signInWithRedirect() navigates the page to Google — no result comes back here.
+    // When the user completes sign-in, Google redirects to fuszplus.firebaseapp.com/__/auth/handler
+    // which then redirects back to this app. boot() picks up the signed-in user via
+    // onAuthStateChanged (fbWaitForAuth) and also calls fbGetRedirectResult() to surface errors.
     try {
-      const result = await fbSignInWithGoogle();
-      const googleEmail = result.user?.email || "";
-      const member = rosterByGoogleEmail(googleEmail);
-      if (!member) {
-        // Signed in but not in team roster
-        await fbSignOut().catch(() => {});
-        button.disabled = false;
-        button.textContent = "Open My Work →";
-        showToast("This Google account doesn't have access. Try a different account.", 4500);
-        return;
-      }
-      completeOnboarding(member);
+      await fbSignInWithGoogle(); // triggers redirect — page navigates away
     } catch (err) {
       button.disabled = false;
       button.textContent = "Open My Work →";
-      if (err.code !== "auth/popup-closed-by-user" && err.code !== "auth/cancelled-popup-request") {
-        showToast("Sign-in failed — please try again.");
-        console.warn("[Fusz+] Google sign-in error:", err);
-      }
+      showToast("Sign-in failed — please try again.");
+      console.warn("[Fusz+] Google sign-in redirect error:", err);
     }
   });
 

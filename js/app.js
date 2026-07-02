@@ -463,7 +463,31 @@ async function boot() {
   if (justSignedOut) sessionStorage.removeItem("fusz-signed-out");
 
   try {
+    // Wait for Firebase Auth to initialize (covers both fresh loads and returning from redirect).
     const firebaseUser = justSignedOut ? null : await fbWaitForAuth(5000);
+
+    // Also check for a pending redirect result. This cleans up Firebase's internal state
+    // and surfaces any error from the Google redirect flow (e.g. account mismatch).
+    // On a fresh page load (no pending redirect) this resolves to null harmlessly.
+    if (!justSignedOut && _fbAuthReady) {
+      try {
+        const redirectResult = await fbGetRedirectResult();
+        if (redirectResult?.user && !firebaseUser) {
+          // Edge case: redirect completed but onAuthStateChanged fired before getRedirectResult
+          // No-op — firebaseUser below handles the session setup.
+        }
+        if (redirectResult?.operationType && !redirectResult.user) {
+          // Redirect completed but no user (shouldn't happen — treat as error)
+          console.warn("[Fusz+] Redirect result missing user:", redirectResult);
+        }
+      } catch (redirectErr) {
+        // Auth error from the redirect (e.g. auth/account-exists-with-different-credential)
+        console.warn("[Fusz+] Google redirect sign-in error:", redirectErr.code, redirectErr.message);
+        // Show toast after bindEvents() so the toast container exists
+        state._pendingAuthError = redirectErr.code || "auth/unknown";
+      }
+    }
+
     if (firebaseUser) {
       const member = rosterByGoogleEmail(firebaseUser.email);
       if (member) {
@@ -482,6 +506,7 @@ async function boot() {
         fbSignOut().catch(() => {});
         state.session = null;
         localStorage.removeItem("fusz-demo-session");
+        state._pendingAuthError = "not_in_roster";
         console.warn("[Fusz+] Signed-in Google account not in TEAM_ROSTER:", firebaseUser.email);
       }
     } else if (_fbAuthReady) {
@@ -501,6 +526,14 @@ async function boot() {
   normalizeSession();
   bindEvents();
   renderAuth();
+  // Surface any deferred auth error (toast container exists after bindEvents)
+  if (state._pendingAuthError) {
+    const msg = state._pendingAuthError === "not_in_roster"
+      ? "This Google account doesn't have access. Try a different account."
+      : "Sign-in failed — please try again.";
+    if (typeof showToast === "function") showToast(msg, 5000);
+    delete state._pendingAuthError;
+  }
   const [tasks, sources, inventoryFeed] = [embeddedTracker, embeddedSources, await fetchInventoryFeed()];
   prog(82);
   const sourceTasks = mergeInventoryFeedTasks(tasks, inventoryFeed.rows);

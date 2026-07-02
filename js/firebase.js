@@ -34,11 +34,21 @@ function fbWaitForAuth(timeoutMs = 5000) {
   return Promise.race([_authPromise, timeout]);
 }
 
-/* Sign in with a Google popup */
+/* Sign in with Google — uses redirect so popup blockers can't interfere.
+   The page navigates away to Google, then returns to the app.
+   Boot() picks up the signed-in user via onAuthStateChanged / fbWaitForAuth(). */
 function fbSignInWithGoogle() {
   if (!_auth) return Promise.reject(new Error("Auth not ready"));
   const provider = new firebase.auth.GoogleAuthProvider();
-  return _auth.signInWithPopup(provider);
+  return _auth.signInWithRedirect(provider);
+}
+
+/* Check for a pending redirect result (call once in boot() after auth is ready).
+   Resolves with the UserCredential if the page just returned from a redirect sign-in,
+   or null if there was no pending redirect. Rejects on auth errors. */
+function fbGetRedirectResult() {
+  if (!_auth) return Promise.resolve(null);
+  return _auth.getRedirectResult();
 }
 
 /* Sign out */
@@ -74,14 +84,16 @@ function fbGetCurrentUser() {
         _pendingWrites.forEach(([path, value]) => _db.ref(path).set(value));
         _pendingWrites.length = 0;
 
-        /* Listen for remote changes and merge into state + re-render */
+        /* Listen for remote changes and merge into state + re-render.
+           Guard with state.tasks check — the listener fires on connect, before
+           boot() has populated tasks, which caused "cannot read .id of undefined". */
         _db.ref("overrides").on("value", (snap) => {
           const data = snap.val() || {};
           state.overrides      = data.pageStatus || {};
           state.aeoOverrides   = data.aeoStatus  || {};
           state.signalOverrides = data.signal    || {};
           state.details        = data.details    || {};
-          if (typeof render === "function") render();
+          if (typeof render === "function" && Array.isArray(state.tasks) && state.tasks.length) render();
         });
 
         /* --- Auth --- */
