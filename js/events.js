@@ -21,10 +21,11 @@ function configureInviteOnboarding() {
   if (params.get("demo") === "reset") {
     localStorage.removeItem("fusz-demo-session");
     localStorage.removeItem("pipeline-workspace-view");
-    localStorage.removeItem("pipeline-status-overrides");
-    localStorage.removeItem("pipeline-aeo-overrides");
-    localStorage.removeItem("pipeline-signal-overrides");
-    localStorage.removeItem("pipeline-task-details");
+    
+    
+    
+    
+    fbClearAll();
     localStorage.setItem("fusz-theme", "system");
     state.session = null;
     state.overrides = {};
@@ -297,7 +298,7 @@ function updateStatus(taskId, status) {
 
   task.pageStatus = status;
   state.overrides[taskId] = status;
-  localStorage.setItem("pipeline-status-overrides", JSON.stringify(state.overrides));
+  fbSetPageStatus(state.overrides);
   showToast(`${displayModel(task)} moved to ${statusLabels[status] || status}`);
   render();
 }
@@ -308,7 +309,7 @@ function updateAeoStatus(taskId, status) {
 
   task.aeoStatus = status;
   state.aeoOverrides[taskId] = status;
-  localStorage.setItem("pipeline-aeo-overrides", JSON.stringify(state.aeoOverrides));
+  fbSetAeoStatus(state.aeoOverrides);
   showToast(`${displayModel(task)} ${aeoLabels[status] || status}`);
   render();
 }
@@ -319,7 +320,7 @@ function updateSignal(taskId, signal) {
 
   task.inventorySignal = signal;
   state.signalOverrides[taskId] = signal;
-  localStorage.setItem("pipeline-signal-overrides", JSON.stringify(state.signalOverrides));
+  fbSetSignal(state.signalOverrides);
   showToast(`${displayModel(task)} tagged ${signalLabels[signal] || signal}`);
   render();
 }
@@ -364,8 +365,8 @@ function saveTaskDetails() {
   task.aeoStatus = els.detailAeoSelect.value;
   state.signalOverrides[task.id] = task.inventorySignal;
   state.aeoOverrides[task.id] = task.aeoStatus;
-  localStorage.setItem("pipeline-signal-overrides", JSON.stringify(state.signalOverrides));
-  localStorage.setItem("pipeline-aeo-overrides", JSON.stringify(state.aeoOverrides));
+  fbSetSignal(state.signalOverrides);
+  fbSetAeoStatus(state.aeoOverrides);
 
   task.details = {
     seoOwner: els.seoOwnerInput.value.trim(),
@@ -376,7 +377,7 @@ function saveTaskDetails() {
     updatedAt: new Date().toISOString(),
   };
   state.details[task.id] = task.details;
-  localStorage.setItem("pipeline-task-details", JSON.stringify(state.details));
+  fbSetDetails(state.details);
   els.taskDialog.close();
   showToast(`${displayModel(task)} details saved`);
   render();
