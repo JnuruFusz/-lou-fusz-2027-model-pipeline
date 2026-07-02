@@ -303,7 +303,30 @@ function completeOnboarding(member) {
   localStorage.setItem("pipeline-workspace-view", member.defaultView);
   renderAuth();
   render();
-  showToast(`Welcome, ${member.name.split(" ")[0]} — ${member.primaryRole} workspace open`);
+  const firstName = member.name.split(" ")[0];
+  const now = new Date();
+  const hour = now.getHours();
+  const timeGreeting = hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening";
+  const welcomeMessages = {
+    "Builder": [
+      `${timeGreeting}, ${firstName}. Pages are waiting — let’s ship something.`,
+      `${timeGreeting}, ${firstName}. Time to build.`,
+      `${timeGreeting}, ${firstName}. Your queue is loaded and ready.`,
+    ],
+    "SEO Writer": [
+      `${timeGreeting}, ${firstName}. Words move pages forward — let’s go.`,
+      `${timeGreeting}, ${firstName}. SEO work is waiting.`,
+      `${timeGreeting}, ${firstName}. Ready when you are.`,
+    ],
+    "AEO Writer": [
+      `${timeGreeting}, ${firstName}. AEO content is how we stay ahead.`,
+      `${timeGreeting}, ${firstName}. Your AEO workspace is open.`,
+      `${timeGreeting}, ${firstName}. Let’s make it count.`,
+    ],
+  };
+  const pool = welcomeMessages[member.primaryRole] || [`${timeGreeting}, ${firstName}. Workspace open.`];
+  const msg = pool[Math.floor(Math.random() * pool.length)];
+  showToast(msg, 4000);
 }
 
 function primaryRole(session) { return session?.primaryRole || session?.role || "Builder"; }
@@ -443,7 +466,7 @@ function workPriority(task) { return ({ needs_build: 0, seo_done: 1, page_built:
 function actionLabel(task) { return builderNextStep(task); }
 
 function modelInfoUrl(task) { return `https://www.google.com/search?q=${encodeURIComponent(`${task.year || ""} ${task.make || ""} ${displayModel(task)} official model`.trim())}`; }
-function showToast(message) { els.toast.textContent = message; els.toast.classList.add("is-visible"); window.clearTimeout(toastTimer); toastTimer = window.setTimeout(() => els.toast.classList.remove("is-visible"), 2200); }
+function showToast(message, duration) { els.toast.textContent = message; els.toast.classList.add("is-visible"); window.clearTimeout(toastTimer); toastTimer = window.setTimeout(() => els.toast.classList.remove("is-visible"), duration || 2200); }
 function buildDigest() { const tasks = state.tasks.filter((task) => task.year === 2027); return ["Fusz+ Daily Digest", `For: ${state.session?.name || "Team"} / ${primaryRole(state.session)}`, "", `Needs SEO: ${tasks.filter((task) => task.pageStatus === "needs_seo").length}`, ...tasks.filter((task) => task.pageStatus === "needs_seo").slice(0, 12).map((task) => `- ${task.dealer}: ${taskTitle(task)}`), "", `Ready / In Build: ${tasks.filter((task) => ["seo_done", "needs_build", "page_built"].includes(task.pageStatus)).length}`, "", `Live / Checked: ${tasks.filter((task) => task.pageStatus === "live").length}`].join("\n"); }
 function showDigest(text) { els.digestText.textContent = text; els.digestDialog.showModal(); }
 function formatScanErrors(errors) { return errors.slice(0, 12).map((error) => `- ${error.dealer}: ${error.message}`).join("\n"); }

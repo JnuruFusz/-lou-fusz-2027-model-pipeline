@@ -36,7 +36,9 @@ function rosterByEmail(email) {
 }
 
 function rosterByInviteKey(key) {
-  return TEAM_ROSTER.find((m) => m.inviteKey === (key || "").toLowerCase()) || null;
+  // matches both inviteKey ("chris") and role slug ("seo-writer")
+  const k = (key || "").toLowerCase();
+  return TEAM_ROSTER.find((m) => m.inviteKey === k || m.primaryRole.toLowerCase().replace(/\s+/g, "-") === k) || null;
 }
 
 const statusLabels = {

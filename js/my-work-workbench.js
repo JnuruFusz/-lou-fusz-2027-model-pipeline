@@ -150,7 +150,16 @@
       els.myWorkList.className = "workbench-queue";
       els.myWorkList.innerHTML = work.length
         ? renderFocusCard(selected) + groups.map((group) => renderMyWorkSection(group, selected?.id)).join("")
-        : `<div class="empty">No builder tasks match the current filters.</div>`;
+        : (function() {
+          const role = state.session?.primaryRole || "Builder";
+          const msgs = {
+            "Builder": "Queue clear. Every page you touched today is one step closer to live.",
+            "SEO Writer": "Nothing left to write today. Nice work — the builders are going to love this.",
+            "AEO Writer": "AEO queue is clear. Scott-level efficiency right there.",
+          };
+          const msg = msgs[role] || "All clear — nothing left in the queue.";
+          return `<div class="workbench-empty-state"><p class="workbench-empty-icon">✓</p><p class="workbench-empty-msg">${msg}</p></div>`;
+        }());
     }
     renderBuilderDetail(selected);
   };
