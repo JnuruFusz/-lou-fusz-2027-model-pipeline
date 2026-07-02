@@ -119,7 +119,7 @@ function configureInviteOnboarding() {
           <button id="continueLoginButton" class="button button-primary auth-cta" type="button">
             Open My Work <span aria-hidden="true">→</span>
           </button>
-          <button id="authHelpButton" class="auth-help-link" type="button">${roleAccessHelp(member)}</button>
+          <button class="auth-help-link" type="button" data-auth-help>${roleAccessHelp(member)}</button>
         </div>
       </div>
     </div>
@@ -238,10 +238,8 @@ function bindEvents() {
     completeOnboarding(member);
   });
 
-  on(els.authHelpButton, "click", () => {
-    const member = state._pendingMember || TEAM_ROSTER[0];
-    showToast(roleAccessHelpToast(member));
-  });
+  // authHelpButton uses delegation — element is injected dynamically
+  // so we catch it via data-auth-help on the document click handler
 
   els.themeOptions.forEach((button) => {
     on(button, "click", () => {
@@ -291,6 +289,12 @@ function bindEvents() {
   on(els.navBackdrop, "click", closeNavigation);
 
   document.addEventListener("click", (event) => {
+    if (event.target.closest("[data-auth-help]")) {
+      const member = state._pendingMember || TEAM_ROSTER[0];
+      showToast(roleAccessHelpToast(member));
+      return;
+    }
+
     const button = event.target.closest("[data-status]");
     if (button) {
       updateStatus(button.dataset.taskId, button.dataset.status);
