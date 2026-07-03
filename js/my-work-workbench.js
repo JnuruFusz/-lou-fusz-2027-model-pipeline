@@ -296,20 +296,13 @@
     const isBuilder = (state.session?.primaryRole || "").toLowerCase().includes("builder");
 
     if (isBuilder) {
-      const nBuild   = work.filter((t) => ["seo_done","needs_build"].includes(t.pageStatus)).length;
-      const nVerify  = work.filter((t) => t.pageStatus === "page_built").length;
-      const nBlocked = work.filter((t) => t.pageStatus === "needs_review").length;
-      const chips = [
-        nBuild   ? `<span class="build-queue-chip">${nBuild} to build</span>`   : "",
-        nVerify  ? `<span class="build-queue-chip">${nVerify} to verify</span>` : "",
-        nBlocked ? `<span class="build-queue-chip build-queue-chip--blocked">${nBlocked} blocked</span>` : "",
-      ].join("");
-      const queueHeader = `<div class="build-queue-header"><h2 class="build-queue-title">My build queue</h2><div class="build-queue-chips">${chips}</div></div>`;
+      els.myWorkPanel?.classList.add("is-focus-mode");
       els.myWorkList.className = "focus-hero-wrapper";
-      els.myWorkList.innerHTML = queueHeader + renderFocusHero(selected, work);
+      els.myWorkList.innerHTML = renderFocusHero(selected, work);
       if (els.builderDetailPanel) els.builderDetailPanel.classList.add("is-empty");
     } else {
       // Writers — queue list + detail panel
+      els.myWorkPanel?.classList.remove("is-focus-mode");
       els.myWorkList.className = "workbench-queue";
       const groups = [
         ["Ready to write",  "ready",   work.filter((t) => ["seo_done","needs_build"].includes(t.pageStatus))],
