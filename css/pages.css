@@ -2064,18 +2064,9 @@ body[data-workspace-view="team_board"] .table-wrap {
   margin-top: 8px;
 }
 
-/* ── Column header row ─────────────────────────────────────────── */
+/* ── Column header row — hidden when all groups use swiper ────── */
 .pipeline-header {
-  display: grid;
-  grid-template-columns: 1fr 200px 160px 100px 70px 200px;
-  align-items: center;
-  padding: 8px 16px;
-  border-bottom: 1px solid var(--line);
-  color: var(--muted);
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: .08em;
-  text-transform: uppercase;
+  display: none;
 }
 
 /* ── Group section ─────────────────────────────────────────────── */
@@ -2478,8 +2469,8 @@ body[data-workspace-view="team_board"] .table-wrap {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-width: 250px;
-  max-width: 250px;
+  min-width: 270px;
+  max-width: 270px;
   scroll-snap-align: start;
   border: 1px solid var(--line);
   border-radius: 10px;
