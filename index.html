@@ -454,6 +454,12 @@
             <option value="snoozed">Snoozed</option>
           </select>
         </label>
+        <label>
+          Owner
+          <select id="ownerFilter">
+            <option value="all">All owners</option>
+          </select>
+        </label>
         <button id="clearFiltersButton" class="button button-quiet" type="button">Clear filters</button>
       </section>
 
@@ -510,20 +516,7 @@
           <h2 id="tableTitle">Team Pipeline</h2>
           <span id="visibleCount" class="count-pill">0</span>
         </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Model</th>
-                <th>Dealer</th>
-                <th>Stage</th>
-                <th>Inventory</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody id="taskTable"></tbody>
-          </table>
-        </div>
+        <div id="pipelineGroups" class="pipeline-groups"></div>
       </section>
     </main>
 

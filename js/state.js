@@ -54,6 +54,8 @@ const els = {
   aeoQueue: document.querySelector("#aeoQueue"),
   buildQueue: document.querySelector("#buildQueue"),
   taskTable: document.querySelector("#taskTable"),
+  ownerFilter: document.querySelector("#ownerFilter"),
+  pipelineGroups: document.querySelector("#pipelineGroups"),
   tableTitle: document.querySelector("#tableTitle"),
   seoCount: document.querySelector("#seoCount"),
   aeoCount: document.querySelector("#aeoCount"),

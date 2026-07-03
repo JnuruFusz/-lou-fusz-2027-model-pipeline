@@ -353,14 +353,16 @@ Let me know if you have any questions.`
     showToast("Signed out");
   });
 
-  [els.yearFilter, els.dealerFilter, els.statusFilter, els.searchInput].forEach((el) => {
+  [els.yearFilter, els.dealerFilter, els.statusFilter, els.ownerFilter, els.searchInput].forEach((el) => {
     on(el, "input", render);
+    on(el, "change", render);
   });
 
   on(els.clearFiltersButton, "click", () => {
     els.yearFilter.value = "all";
     els.dealerFilter.value = "all";
     els.statusFilter.value = "all";
+    if (els.ownerFilter) els.ownerFilter.value = "all";
     els.searchInput.value = "";
     showToast("Filters cleared");
     render();
@@ -371,6 +373,15 @@ Let me know if you have any questions.`
   on(els.navBackdrop, "click", closeNavigation);
 
   document.addEventListener("click", (event) => {
+    // Nudge owner button
+    const nudgeBtn = event.target.closest("[data-nudge-owner]");
+    if (nudgeBtn) {
+      event.stopPropagation();
+      const ownerName = nudgeBtn.dataset.nudgeOwner || "the owner";
+      showToast(`Reminder sent to ${ownerName.split(" ")[0]}`);
+      return;
+    }
+
     if (event.target.closest("[data-auth-help]")) {
       const member = state._pendingMember || TEAM_ROSTER[0];
       showToast(roleAccessHelpToast(member));

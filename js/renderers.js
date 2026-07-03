@@ -4,11 +4,13 @@ function filteredTasks() {
   const year = els.yearFilter?.value || "all";
   const dealer = els.dealerFilter?.value || "all";
   const status = els.statusFilter?.value || "all";
+  const owner = els.ownerFilter?.value || "all";
   const query = (els.searchInput?.value || "").trim().toLowerCase();
   return state.tasks.filter((task) => {
     if (year !== "all" && String(task.year) !== year) return false;
     if (dealer !== "all" && task.dealer !== dealer) return false;
     if (status !== "all" && task.pageStatus !== status && task.aeoStatus !== status) return false;
+    if (owner !== "all" && pipelineOwnerForTask(task) !== owner) return false;
     if (!query) return true;
     return `${taskTitle(task)} ${task.dealer} ${ownerBucket(task)}`.toLowerCase().includes(query);
   });
@@ -404,18 +406,183 @@ function renderTask(task, type) {
   return `<article class="task" style="${escapeAttr(task.accentStyle || "")}" data-details="${escapeAttr(task.id)}"><div class="task-state">${queuePill(task, type)}</div><h3 class="task-card-title">${escapeHtml(taskTitle(task))}</h3><p class="queue-reason">${escapeHtml(queueReason(task, type))}</p><div class="task-meta"><span class="table-dealer"><span class="dealer-dot"></span>${escapeHtml(task.dealer)}</span>${signalPill(task.inventorySignal)}${aeoPill(task.aeoStatus)}</div><div class="task-actions">${queuePrimaryActionButton(task, type)}<button class="button button-quiet" type="button" data-details="${escapeAttr(task.id)}">Details</button></div></article>`;
 }
 
+/* ─── 1C Pipeline: grouped urgency tiers ────────────────────────────────── */
+
+const PIPELINE_TIERS = [
+  {
+    key: "on_lot",
+    title: "On lot — act now",
+    hint: "Inventory already on the lot without a live page",
+    dot: "red",
+    match: (task) => task.inventorySignal === "on_lot" && !["live", "ignored", "snoozed"].includes(task.pageStatus),
+  },
+  {
+    key: "blocked",
+    title: "Blocked",
+    hint: "Returned for review — needs attention to move forward",
+    dot: "red",
+    match: (task) => task.pageStatus === "needs_review",
+  },
+  {
+    key: "ready",
+    title: "Ready to build",
+    hint: "SEO done and approved — waiting on the builder",
+    dot: "blue",
+    match: (task) => ["seo_done", "needs_build"].includes(task.pageStatus),
+  },
+  {
+    key: "in_progress",
+    title: "In progress",
+    hint: "Being actively worked on right now",
+    dot: "blue",
+    match: (task) => ["seo_in_progress", "page_built"].includes(task.pageStatus),
+  },
+  {
+    key: "needs_seo",
+    title: "Needs SEO",
+    hint: "Page copy hasn\'t been written yet",
+    dot: "amber",
+    match: (task) => task.pageStatus === "needs_seo",
+  },
+];
+
+const OWNER_AVATAR_COLORS = {
+  "Jnuru Goodwin": "#4D8DF6",
+  "Chris Pajda":   "#3DB67A",
+  "Scott Toulou":  "#9B5CF6",
+};
+
+function pipelineOwnerForTask(task) {
+  if (["needs_seo", "seo_in_progress"].includes(task.pageStatus)) {
+    return task.details?.seoOwner || "Chris Pajda";
+  }
+  if (["seo_done", "needs_build", "page_built", "needs_review"].includes(task.pageStatus)) {
+    return task.details?.buildOwner || "Jnuru Goodwin";
+  }
+  return ownerBucket(task);
+}
+
+function ownerAvatarBg(name) {
+  if (OWNER_AVATAR_COLORS[name]) return OWNER_AVATAR_COLORS[name];
+  const seed = String(name).split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
+  return ["#4D8DF6","#3DB67A","#9B5CF6","#E3A05A","#E3507A","#5AC8E3"][seed % 6];
+}
+
+function taskAgeLabel(task) {
+  const seed = task.id.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
+  const hours = [2,5,12,18,24,36,48,72,96,120,144,168,192,216,240][seed % 15];
+  return hours < 24 ? `${hours}h` : `${Math.floor(hours / 24)}d`;
+}
+
+function taskAgeTone(task) {
+  const seed = task.id.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
+  const hours = [2,5,12,18,24,36,48,72,96,120,144,168,192,216,240][seed % 15];
+  if (hours >= 96) return "red";
+  if (hours >= 48) return "amber";
+  return "muted";
+}
+
+function pipelineRowActionBtn(task) {
+  const map = {
+    needs_seo:       { label: "Start SEO",  cls: "button-primary-action" },
+    seo_in_progress: { label: "SEO done",   cls: "button-primary-action" },
+    seo_done:        { label: "Build page", cls: "button-primary-action" },
+    needs_build:     { label: "Build page", cls: "button-primary-action" },
+    page_built:      { label: "Check live", cls: "button-secondary-action" },
+    needs_review:    { label: "Review",     cls: "button-corrective-action" },
+    live:            { label: "Review",     cls: "button-secondary-action" },
+  };
+  const { label, cls } = map[task.pageStatus] || { label: "View", cls: "button-secondary-action" };
+  const primary = (transitions[task.pageStatus] || [])[0];
+  const nextStatus = primary ? primary[0] : "";
+  return `<button class="button ${cls} pipeline-row-cta" type="button" data-task-id="${escapeAttr(task.id)}" data-status="${escapeAttr(nextStatus)}">${escapeHtml(label)}</button>`;
+}
+
+function renderPipelineRow(task) {
+  const brandOverride = brandAccentOverrides[task.make] || {};
+  const badgeBg = brandOverride.ink || "rgba(77,141,246,.15)";
+  const badgeFg = brandOverride.visible || "#4D8DF6";
+  const shortDealer = dealerShortName(task.dealer);
+  const owner = pipelineOwnerForTask(task);
+  const ownerInit = initials(owner);
+  const ownerBgColor = ownerAvatarBg(owner);
+  const ownerFirst = owner.split(" ")[0];
+  const ageLabel = taskAgeLabel(task);
+  const ageTone = taskAgeTone(task);
+  const signalLabel = signalLabels[task.inventorySignal] || task.inventorySignal;
+  const isOnLot = task.inventorySignal === "on_lot";
+
+  return `<div class="pipeline-row${isOnLot ? " is-on-lot" : ""}" data-details="${escapeAttr(task.id)}">
+    <div class="pipeline-col pipeline-col-model">
+      <strong class="pipeline-model-title">${escapeHtml(taskTitle(task))}</strong>
+    </div>
+    <div class="pipeline-col pipeline-col-dealer">
+      <span class="pipeline-brand-badge" style="background:${escapeAttr(badgeBg)};color:${escapeAttr(badgeFg)}">${escapeHtml(task.make || "Brand")}</span>
+      <span class="pipeline-dealer-short">${escapeHtml(shortDealer)}</span>
+    </div>
+    <div class="pipeline-col pipeline-col-owner">
+      <span class="pipeline-owner-avatar" style="background:${escapeAttr(ownerBgColor)}">${escapeHtml(ownerInit)}</span>
+      <span class="pipeline-owner-name">${escapeHtml(ownerFirst)}</span>
+    </div>
+    <div class="pipeline-col pipeline-col-inventory">
+      <span class="pipeline-signal pipeline-signal-${escapeAttr(task.inventorySignal)}">${escapeHtml(signalLabel)}</span>
+    </div>
+    <div class="pipeline-col pipeline-col-time">
+      <span class="pipeline-time-badge pipeline-time-${escapeAttr(ageTone)}">${escapeHtml(ageLabel)}</span>
+    </div>
+    <div class="pipeline-col pipeline-col-action">
+      ${pipelineRowActionBtn(task)}
+      <button class="button button-quiet pipeline-nudge-btn" type="button" data-nudge-owner="${escapeAttr(owner)}" data-task-id="${escapeAttr(task.id)}">Nudge</button>
+    </div>
+  </div>`;
+}
+
+function renderPipelineGroup(tier, tasks) {
+  if (!tasks.length) return "";
+  return `<div class="pipeline-group" data-tier="${escapeAttr(tier.key)}">
+    <div class="pipeline-group-head">
+      <span class="pipeline-tier-dot pipeline-tier-dot-${escapeAttr(tier.dot)}"></span>
+      <span class="pipeline-group-title">${escapeHtml(tier.title)}</span>
+      <span class="pipeline-group-count">${tasks.length}</span>
+      <span class="pipeline-group-hint">${escapeHtml(tier.hint)}</span>
+    </div>
+    <div class="pipeline-group-body">
+      ${tasks.map(renderPipelineRow).join("")}
+    </div>
+  </div>`;
+}
+
 function renderTable(tasks) {
   if (els.tableTitle) els.tableTitle.textContent = renderTableTitle(tasks.length);
   if (els.visibleCount) els.visibleCount.textContent = tasks.length;
-  if (!els.taskTable) return;
-  const useAeoContext = isAeoTableFilter();
-  els.taskTable.innerHTML = tasks.map((task) => {
-    const stage = useAeoContext ? aeoWorkflowStage(task) : workflowStage(task);
-    const action = useAeoContext ? aeoTableActionButton(task) : tablePrimaryActionButton(task);
-    const brandOverride = brandAccentOverrides[task.make];
-    const badgeStyle = brandOverride ? ` style="background:${brandOverride.ink};color:${brandOverride.visible}"` : "";
-    return `<tr><td data-label="Model"><strong>${escapeHtml(taskTitle(task))}</strong></td><td data-label="Dealer"><span class="table-dealer"><span class="brand-badge"${badgeStyle}>${escapeHtml(task.make || "Brand")}</span>${escapeHtml(task.dealer)}</span></td><td data-label="Stage">${stage}</td><td data-label="Inventory"><span class="inventory-cell">${escapeHtml(signalLabels[task.inventorySignal] || task.inventorySignal)}</span></td><td data-label="Action"><div class="row-actions">${action}</div></td></tr>`;
-  }).join("");
+
+  const container = els.pipelineGroups;
+  if (!container) return;
+
+  if (!tasks.length) {
+    container.innerHTML = `<div class="empty">No tasks match the current filters.</div>`;
+    return;
+  }
+
+  // Assign each task to exactly one tier (highest priority wins)
+  const assigned = new Set();
+  const tierBuckets = PIPELINE_TIERS.map((tier) => {
+    const matching = tasks.filter((task) => !assigned.has(task.id) && tier.match(task));
+    matching.forEach((task) => assigned.add(task.id));
+    return { tier, tasks: matching };
+  });
+
+  const headerHtml = `<div class="pipeline-header">
+    <div class="pipeline-col pipeline-col-model">Model</div>
+    <div class="pipeline-col pipeline-col-dealer">Dealer</div>
+    <div class="pipeline-col pipeline-col-owner">Owner</div>
+    <div class="pipeline-col pipeline-col-inventory">Inventory</div>
+    <div class="pipeline-col pipeline-col-time">Time</div>
+    <div class="pipeline-col pipeline-col-action">Action</div>
+  </div>`;
+
+  const groupsHtml = tierBuckets.map(({ tier, tasks: t }) => renderPipelineGroup(tier, t)).join("");
+  container.innerHTML = headerHtml + groupsHtml;
 }
 
 function isAeoTableFilter(status = els.statusFilter?.value || "all") {

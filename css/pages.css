@@ -2048,3 +2048,335 @@ body[data-theme="light"] .button-quiet:hover {
     column-gap: 0;
   }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   1C TEAM PIPELINE — Grouped urgency tiers
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Remove old table-based pipeline styles when grouped view is active */
+body[data-workspace-view="team_board"] .table-wrap {
+  display: none !important;
+}
+
+/* Container */
+.pipeline-groups {
+  margin-top: 8px;
+}
+
+/* ── Column header row ─────────────────────────────────────────── */
+.pipeline-header {
+  display: grid;
+  grid-template-columns: 1fr 200px 160px 100px 70px 200px;
+  align-items: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+/* ── Group section ─────────────────────────────────────────────── */
+.pipeline-group {
+  margin-bottom: 4px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--panel);
+}
+
+.pipeline-group[data-tier="on_lot"],
+.pipeline-group[data-tier="blocked"] {
+  border-color: rgba(239, 85, 85, .28);
+  background: rgba(239, 85, 85, .03);
+}
+
+.pipeline-group[data-tier="ready"],
+.pipeline-group[data-tier="in_progress"] {
+  border-color: rgba(77, 141, 246, .22);
+}
+
+.pipeline-group[data-tier="needs_seo"] {
+  border-color: rgba(227, 179, 65, .22);
+}
+
+/* Group header */
+.pipeline-group-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(0,0,0,.06);
+}
+
+.pipeline-group[data-tier="on_lot"] .pipeline-group-head,
+.pipeline-group[data-tier="blocked"] .pipeline-group-head {
+  background: rgba(239, 85, 85, .06);
+}
+
+/* Urgency dot */
+.pipeline-tier-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.pipeline-tier-dot-red   { background: var(--red, #ef5555); box-shadow: 0 0 0 3px rgba(239,85,85,.18); }
+.pipeline-tier-dot-amber { background: var(--amber, #e3b341); box-shadow: 0 0 0 3px rgba(227,179,65,.18); }
+.pipeline-tier-dot-blue  { background: var(--blue, #4D8DF6); box-shadow: 0 0 0 3px rgba(77,141,246,.18); }
+
+/* Group title + meta */
+.pipeline-group-title {
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--text);
+  letter-spacing: .01em;
+}
+
+.pipeline-group-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: var(--line);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.pipeline-group[data-tier="on_lot"] .pipeline-group-count,
+.pipeline-group[data-tier="blocked"] .pipeline-group-count {
+  background: rgba(239, 85, 85, .18);
+  color: var(--red, #ef5555);
+}
+
+.pipeline-group-hint {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-left: auto;
+}
+
+/* ── Pipeline row ──────────────────────────────────────────────── */
+.pipeline-row {
+  display: grid;
+  grid-template-columns: 1fr 200px 160px 100px 70px 200px;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  transition: background 100ms ease;
+}
+
+.pipeline-row:last-child { border-bottom: 0; }
+
+.pipeline-row:hover { background: rgba(255,255,255,.04); }
+
+.pipeline-row.is-on-lot {
+  border-left: 3px solid rgba(239, 85, 85, .5);
+  padding-left: 13px;
+}
+
+/* Columns */
+.pipeline-col { display: flex; align-items: center; gap: 8px; }
+
+.pipeline-col-action { gap: 6px; }
+
+.pipeline-model-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+/* Brand badge */
+.pipeline-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+  padding: 0 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .03em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.pipeline-dealer-short {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Owner avatar + name */
+.pipeline-owner-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+.pipeline-owner-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* Inventory signal */
+.pipeline-signal {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.pipeline-signal-on_lot  { background: rgba(239,85,85,.14); color: var(--red, #ef5555); }
+.pipeline-signal-shipped { background: rgba(77,141,246,.14); color: var(--blue, #4D8DF6); }
+.pipeline-signal-upcoming{ background: rgba(255,255,255,.08); color: var(--muted); }
+
+/* Time-in-stage badge */
+.pipeline-time-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .04em;
+  font-variant-numeric: tabular-nums;
+}
+.pipeline-time-red   { background: rgba(239,85,85,.16);  color: var(--red, #ef5555); }
+.pipeline-time-amber { background: rgba(227,179,65,.16); color: var(--amber, #e3b341); }
+.pipeline-time-muted { background: rgba(255,255,255,.07); color: var(--muted); }
+
+/* Action column */
+.pipeline-row-cta {
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 12px;
+  min-width: 90px;
+  white-space: nowrap;
+}
+
+.pipeline-nudge-btn {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 10px;
+  white-space: nowrap;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.pipeline-nudge-btn:hover {
+  color: var(--text);
+  border-color: var(--muted);
+}
+
+/* Empty state */
+.pipeline-groups .empty {
+  margin: 20px 0;
+}
+
+/* ── Mobile pipeline (≤ 700px) ─────────────────────────────────── */
+@media (max-width: 700px) {
+  .pipeline-header { display: none; }
+
+  .pipeline-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 14px 16px;
+  }
+
+  .pipeline-row.is-on-lot { padding-left: 13px; }
+
+  .pipeline-col-dealer {
+    order: -1;
+  }
+
+  .pipeline-col-inventory,
+  .pipeline-col-time {
+    display: inline-flex;
+  }
+
+  /* Merge inventory + time into one flex row */
+  .pipeline-col-inventory,
+  .pipeline-col-time {
+    width: auto;
+  }
+
+  /* Wrap inventory + time signals into a single meta row using a pseudo row */
+  .pipeline-row .pipeline-col-inventory,
+  .pipeline-row .pipeline-col-time {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  /* Group inventory + time side by side */
+  .pipeline-col-inventory + .pipeline-col-time {
+    margin-left: 8px;
+  }
+
+  /* Action row: CTA full width, nudge beside */
+  .pipeline-col-action {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .pipeline-row-cta {
+    flex: 1;
+    min-height: 44px;
+    font-size: 14px;
+    border-radius: 10px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .pipeline-nudge-btn {
+    flex-shrink: 0;
+    min-height: 44px;
+    padding: 0 14px;
+    border-radius: 10px;
+    font-size: 13px;
+  }
+
+  .pipeline-group-hint { display: none; }
+
+  .pipeline-group-head {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+/* ── Tablet pipeline (701 – 900px) ─────────────────────────────── */
+@media (min-width: 701px) and (max-width: 900px) {
+  .pipeline-header,
+  .pipeline-row {
+    grid-template-columns: 1fr 160px 130px 80px 60px 170px;
+  }
+  .pipeline-group-hint { display: none; }
+  .pipeline-model-title { font-size: 12px; }
+  .pipeline-dealer-short { font-size: 11px; }
+}
