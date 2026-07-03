@@ -2380,3 +2380,201 @@ body[data-workspace-view="team_board"] .table-wrap {
   .pipeline-model-title { font-size: 12px; }
   .pipeline-dealer-short { font-size: 11px; }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   PIPELINE — Collapsible groups + swiper cards
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Group head is now a button */
+.pipeline-group-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(0,0,0,.06);
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background 100ms ease;
+  border: none;
+  color: inherit;
+  font: inherit;
+}
+
+.pipeline-group-head:hover { background: rgba(0,0,0,.12); }
+.pipeline-group[data-tier="on_lot"] .pipeline-group-head,
+.pipeline-group[data-tier="blocked"] .pipeline-group-head {
+  background: rgba(239, 85, 85, .06);
+}
+.pipeline-group[data-tier="on_lot"] .pipeline-group-head:hover,
+.pipeline-group[data-tier="blocked"] .pipeline-group-head:hover {
+  background: rgba(239, 85, 85, .11);
+}
+
+/* Collapsed state — hide body */
+.pipeline-group.is-collapsed .pipeline-group-body { display: none; }
+.pipeline-group.is-collapsed .pipeline-group-head { border-bottom: none; }
+
+/* Chevron indicator */
+.pipeline-group-chevron {
+  margin-left: auto;
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--muted);
+  transition: transform 180ms ease;
+}
+.pipeline-group-chevron::after {
+  content: "";
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translate(-2px, -2px);
+}
+.pipeline-group-chevron.is-collapsed::after {
+  transform: rotate(-45deg) translate(-2px, 2px);
+}
+
+/* Hint text sits between count and chevron; hide on smaller screens */
+.pipeline-group-hint {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-left: 4px;
+  flex: 1;
+}
+
+/* ── Swiper body ─────────────────────────────────────────────── */
+.pipeline-group-body.is-swiper {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 10px;
+  padding: 14px 16px 16px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+.pipeline-group-body.is-swiper::-webkit-scrollbar {
+  height: 4px;
+}
+.pipeline-group-body.is-swiper::-webkit-scrollbar-track { background: transparent; }
+.pipeline-group-body.is-swiper::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 99px;
+}
+
+/* ── Swiper card ─────────────────────────────────────────────── */
+.pipeline-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 250px;
+  max-width: 250px;
+  scroll-snap-align: start;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px;
+  cursor: pointer;
+  background: var(--panel);
+  transition: border-color 120ms ease, background 120ms ease;
+  flex-shrink: 0;
+}
+
+.pipeline-card:hover {
+  border-color: rgba(77,141,246,.45);
+  background: rgba(77,141,246,.04);
+}
+
+.pipeline-card.is-on-lot {
+  border-left: 3px solid rgba(239,85,85,.55);
+}
+
+.pipeline-card-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.pipeline-card-dealer {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.pipeline-card-owner {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.pipeline-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pipeline-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.pipeline-card-actions .pipeline-row-cta {
+  flex: 1;
+  font-size: 12px;
+  padding: 7px 10px;
+  white-space: nowrap;
+  text-align: center;
+  min-width: 0;
+}
+
+.pipeline-card-actions .pipeline-nudge-btn {
+  flex-shrink: 0;
+  font-size: 12px;
+  padding: 6px 10px;
+}
+
+/* count badge — show item count hint when swiper */
+.pipeline-group-body.is-swiper + .pipeline-group-head,
+.pipeline-group[data-tier] .pipeline-group-body.is-swiper ~ * {
+  /* nothing needed */
+}
+
+/* ── Mobile: swiper cards stack vertically ────────────────────── */
+@media (max-width: 700px) {
+  .pipeline-group-body.is-swiper {
+    flex-direction: column;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    padding: 0;
+  }
+
+  .pipeline-card {
+    min-width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+  }
+
+  .pipeline-card.is-on-lot {
+    border-left: 3px solid rgba(239,85,85,.55);
+  }
+
+  .pipeline-group-hint { display: none; }
+}

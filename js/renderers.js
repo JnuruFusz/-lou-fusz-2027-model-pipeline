@@ -414,6 +414,7 @@ const PIPELINE_TIERS = [
     title: "On lot — act now",
     hint: "Inventory already on the lot without a live page",
     dot: "red",
+    defaultOpen: true,
     match: (task) => task.inventorySignal === "on_lot" && !["live", "ignored", "snoozed"].includes(task.pageStatus),
   },
   {
@@ -421,6 +422,7 @@ const PIPELINE_TIERS = [
     title: "Blocked",
     hint: "Returned for review — needs attention to move forward",
     dot: "red",
+    defaultOpen: true,
     match: (task) => task.pageStatus === "needs_review",
   },
   {
@@ -428,6 +430,7 @@ const PIPELINE_TIERS = [
     title: "Ready to build",
     hint: "SEO done and approved — waiting on the builder",
     dot: "blue",
+    defaultOpen: false,
     match: (task) => ["seo_done", "needs_build"].includes(task.pageStatus),
   },
   {
@@ -435,16 +438,21 @@ const PIPELINE_TIERS = [
     title: "In progress",
     hint: "Being actively worked on right now",
     dot: "blue",
+    defaultOpen: false,
     match: (task) => ["seo_in_progress", "page_built"].includes(task.pageStatus),
   },
   {
     key: "needs_seo",
     title: "Needs SEO",
-    hint: "Page copy hasn\'t been written yet",
+    hint: "Page copy hasn't been written yet",
     dot: "amber",
+    defaultOpen: false,
     match: (task) => task.pageStatus === "needs_seo",
   },
 ];
+
+const PIPELINE_SWIPER_THRESHOLD = 8;
+const PIPELINE_GROUP_COLLAPSE_KEY = "fusz-pipeline-group-collapsed";
 
 const OWNER_AVATAR_COLORS = {
   "Jnuru Goodwin": "#4D8DF6",
@@ -498,19 +506,26 @@ function pipelineRowActionBtn(task) {
   return `<button class="button ${cls} pipeline-row-cta" type="button" data-task-id="${escapeAttr(task.id)}" data-status="${escapeAttr(nextStatus)}">${escapeHtml(label)}</button>`;
 }
 
-function renderPipelineRow(task) {
+/* Shared data prep for a task row */
+function pipelineRowData(task) {
   const brandOverride = brandAccentOverrides[task.make] || {};
-  const badgeBg = brandOverride.ink || "rgba(77,141,246,.15)";
-  const badgeFg = brandOverride.visible || "#4D8DF6";
-  const shortDealer = dealerShortName(task.dealer);
-  const owner = pipelineOwnerForTask(task);
+  return {
+    badgeBg:     brandOverride.ink     || "rgba(77,141,246,.15)",
+    badgeFg:     brandOverride.visible || "#4D8DF6",
+    shortDealer: dealerShortName(task.dealer),
+    owner:       pipelineOwnerForTask(task),
+    ageLabel:    taskAgeLabel(task),
+    ageTone:     taskAgeTone(task),
+    signalLabel: signalLabels[task.inventorySignal] || task.inventorySignal,
+    isOnLot:     task.inventorySignal === "on_lot",
+  };
+}
+
+/* Table-row layout (used for small groups) */
+function renderPipelineTableRow(task) {
+  const { badgeBg, badgeFg, shortDealer, owner, ageLabel, ageTone, signalLabel, isOnLot } = pipelineRowData(task);
   const ownerInit = initials(owner);
-  const ownerBgColor = ownerAvatarBg(owner);
   const ownerFirst = owner.split(" ")[0];
-  const ageLabel = taskAgeLabel(task);
-  const ageTone = taskAgeTone(task);
-  const signalLabel = signalLabels[task.inventorySignal] || task.inventorySignal;
-  const isOnLot = task.inventorySignal === "on_lot";
 
   return `<div class="pipeline-row${isOnLot ? " is-on-lot" : ""}" data-details="${escapeAttr(task.id)}">
     <div class="pipeline-col pipeline-col-model">
@@ -521,7 +536,7 @@ function renderPipelineRow(task) {
       <span class="pipeline-dealer-short">${escapeHtml(shortDealer)}</span>
     </div>
     <div class="pipeline-col pipeline-col-owner">
-      <span class="pipeline-owner-avatar" style="background:${escapeAttr(ownerBgColor)}">${escapeHtml(ownerInit)}</span>
+      <span class="pipeline-owner-avatar" style="background:${escapeAttr(ownerAvatarBg(owner))}">${escapeHtml(ownerInit)}</span>
       <span class="pipeline-owner-name">${escapeHtml(ownerFirst)}</span>
     </div>
     <div class="pipeline-col pipeline-col-inventory">
@@ -537,18 +552,65 @@ function renderPipelineRow(task) {
   </div>`;
 }
 
+/* Card layout (used for large groups — swiper) */
+function renderPipelineCard(task) {
+  const { badgeBg, badgeFg, shortDealer, owner, ageLabel, ageTone, signalLabel, isOnLot } = pipelineRowData(task);
+  const ownerInit = initials(owner);
+
+  return `<div class="pipeline-card${isOnLot ? " is-on-lot" : ""}" data-details="${escapeAttr(task.id)}">
+    <strong class="pipeline-card-title">${escapeHtml(taskTitle(task))}</strong>
+    <div class="pipeline-card-dealer">
+      <span class="pipeline-brand-badge" style="background:${escapeAttr(badgeBg)};color:${escapeAttr(badgeFg)}">${escapeHtml(task.make || "Brand")}</span>
+      <span class="pipeline-dealer-short">${escapeHtml(shortDealer)}</span>
+    </div>
+    <div class="pipeline-card-owner">
+      <span class="pipeline-owner-avatar" style="background:${escapeAttr(ownerAvatarBg(owner))}">${escapeHtml(ownerInit)}</span>
+      <span class="pipeline-owner-name">${escapeHtml(owner)}</span>
+    </div>
+    <div class="pipeline-card-meta">
+      <span class="pipeline-signal pipeline-signal-${escapeAttr(task.inventorySignal)}">${escapeHtml(signalLabel)}</span>
+      <span class="pipeline-time-badge pipeline-time-${escapeAttr(ageTone)}">${escapeHtml(ageLabel)}</span>
+    </div>
+    <div class="pipeline-card-actions">
+      ${pipelineRowActionBtn(task)}
+      <button class="button button-quiet pipeline-nudge-btn" type="button" data-nudge-owner="${escapeAttr(owner)}" data-task-id="${escapeAttr(task.id)}">Nudge</button>
+    </div>
+  </div>`;
+}
+
+/* Collapse state persistence */
+function getPipelineGroupCollapsed() {
+  try { return JSON.parse(localStorage.getItem(PIPELINE_GROUP_COLLAPSE_KEY) || "{}"); }
+  catch { return {}; }
+}
+
+function isPipelineGroupCollapsed(tierKey, defaultOpen) {
+  const stored = getPipelineGroupCollapsed();
+  return stored[tierKey] !== undefined ? stored[tierKey] : !defaultOpen;
+}
+
 function renderPipelineGroup(tier, tasks) {
   if (!tasks.length) return "";
-  return `<div class="pipeline-group" data-tier="${escapeAttr(tier.key)}">
-    <div class="pipeline-group-head">
+  const collapsed = isPipelineGroupCollapsed(tier.key, tier.defaultOpen);
+  const useSwiper = tasks.length > PIPELINE_SWIPER_THRESHOLD;
+  const collapsedAttr = collapsed ? " is-collapsed" : "";
+  const chevronAttr = collapsed ? " is-collapsed" : "";
+
+  const bodyHtml = useSwiper
+    ? `<div class="pipeline-group-body is-swiper">${tasks.map(renderPipelineCard).join("")}</div>`
+    : `<div class="pipeline-group-body">${tasks.map(renderPipelineTableRow).join("")}</div>`;
+
+  return `<div class="pipeline-group${collapsedAttr}" data-tier="${escapeAttr(tier.key)}">
+    <button class="pipeline-group-head" type="button"
+      data-pipeline-group-toggle="${escapeAttr(tier.key)}"
+      aria-expanded="${String(!collapsed)}">
       <span class="pipeline-tier-dot pipeline-tier-dot-${escapeAttr(tier.dot)}"></span>
       <span class="pipeline-group-title">${escapeHtml(tier.title)}</span>
       <span class="pipeline-group-count">${tasks.length}</span>
       <span class="pipeline-group-hint">${escapeHtml(tier.hint)}</span>
-    </div>
-    <div class="pipeline-group-body">
-      ${tasks.map(renderPipelineRow).join("")}
-    </div>
+      <span class="pipeline-group-chevron${chevronAttr}"></span>
+    </button>
+    ${collapsed ? "" : bodyHtml}
   </div>`;
 }
 
@@ -564,7 +626,6 @@ function renderTable(tasks) {
     return;
   }
 
-  // Assign each task to exactly one tier (highest priority wins)
   const assigned = new Set();
   const tierBuckets = PIPELINE_TIERS.map((tier) => {
     const matching = tasks.filter((task) => !assigned.has(task.id) && tier.match(task));
@@ -584,7 +645,6 @@ function renderTable(tasks) {
   const groupsHtml = tierBuckets.map(({ tier, tasks: t }) => renderPipelineGroup(tier, t)).join("");
   container.innerHTML = headerHtml + groupsHtml;
 }
-
 function isAeoTableFilter(status = els.statusFilter?.value || "all") {
   return ["not_started", "in_progress", "done", "not_needed"].includes(status);
 }

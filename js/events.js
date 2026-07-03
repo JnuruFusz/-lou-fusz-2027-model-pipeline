@@ -373,6 +373,48 @@ Let me know if you have any questions.`
   on(els.navBackdrop, "click", closeNavigation);
 
   document.addEventListener("click", (event) => {
+    // Pipeline group collapse toggle
+    const groupToggle = event.target.closest("[data-pipeline-group-toggle]");
+    if (groupToggle) {
+      const tierKey = groupToggle.dataset.pipelineGroupToggle;
+      const group = groupToggle.closest(".pipeline-group");
+      if (!tierKey || !group) return;
+      const isNowCollapsed = group.classList.toggle("is-collapsed");
+      groupToggle.setAttribute("aria-expanded", String(!isNowCollapsed));
+      const chevron = groupToggle.querySelector(".pipeline-group-chevron");
+      if (chevron) chevron.classList.toggle("is-collapsed", isNowCollapsed);
+      // Re-render body when expanding (lazy — body was omitted when collapsed)
+      if (!isNowCollapsed) {
+        const tier = (typeof PIPELINE_TIERS !== "undefined" ? PIPELINE_TIERS : [])
+          .find((t) => t.key === tierKey);
+        if (tier) {
+          const assigned = new Set();
+          (typeof PIPELINE_TIERS !== "undefined" ? PIPELINE_TIERS : []).forEach((t) => {
+            if (t.key === tierKey) return;
+            filteredTasks().forEach((task) => { if (t.match(task)) assigned.add(task.id); });
+          });
+          const tierTasks = filteredTasks().filter((task) => !assigned.has(task.id) && tier.match(task));
+          const useSwiper = tierTasks.length > (typeof PIPELINE_SWIPER_THRESHOLD !== "undefined" ? PIPELINE_SWIPER_THRESHOLD : 8);
+          const bodyEl = document.createElement("div");
+          bodyEl.className = useSwiper ? "pipeline-group-body is-swiper" : "pipeline-group-body";
+          bodyEl.innerHTML = useSwiper
+            ? tierTasks.map(renderPipelineCard).join("")
+            : tierTasks.map(renderPipelineTableRow).join("");
+          group.appendChild(bodyEl);
+        }
+      } else {
+        const body = group.querySelector(".pipeline-group-body");
+        if (body) body.remove();
+      }
+      // Persist
+      try {
+        const stored = JSON.parse(localStorage.getItem("fusz-pipeline-group-collapsed") || "{}");
+        stored[tierKey] = isNowCollapsed;
+        localStorage.setItem("fusz-pipeline-group-collapsed", JSON.stringify(stored));
+      } catch {}
+      return;
+    }
+
     // Nudge owner button
     const nudgeBtn = event.target.closest("[data-nudge-owner]");
     if (nudgeBtn) {
