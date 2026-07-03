@@ -743,3 +743,66 @@
     margin-top: 2px;
   }
 }
+
+/* ---------------------------------------------------------------
+   Focus hero — mobile layout
+   --------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .focus-hero-header {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px 16px;
+  }
+
+  .focus-hero-wordmark {
+    flex: 1;
+  }
+
+  .focus-hero-progress {
+    order: 3;
+    width: 100%;
+    flex: none;
+  }
+
+  .focus-progress-track {
+    max-width: none;
+    flex: 1;
+  }
+
+  .focus-exit-btn {
+    order: 2;
+  }
+
+  .focus-hero-body {
+    padding: 20px 16px 16px;
+  }
+
+  .focus-task-title {
+    font-size: 28px;
+  }
+
+  .focus-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .focus-btn {
+    width: 100%;
+    min-height: 48px;
+    font-size: 15px;
+  }
+
+  /* Primary first on mobile (most important action at top) */
+  .focus-btn-primary {
+    order: -1;
+    margin-left: 0;
+  }
+
+  .focus-shortcuts {
+    display: none; /* keyboard hints irrelevant on mobile */
+  }
+
+  .focus-up-next {
+    padding: 14px 16px 18px;
+  }
+}

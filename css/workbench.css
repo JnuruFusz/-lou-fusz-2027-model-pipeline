@@ -1280,3 +1280,400 @@ body[data-theme="light"][data-workspace-view="my_work"] .workbench-live-action {
   margin: 0;
   line-height: 1.5;
 }
+
+/* ===============================================================
+   FOCUS HERO — new My Work layout for builders
+   =============================================================== */
+
+.focus-hero-wrapper {
+  grid-column: 1 / -1; /* span full panel width */
+}
+
+.focus-hero {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  overflow: hidden;
+}
+
+/* ---- Header bar ---- */
+.focus-hero-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.focus-hero-wordmark {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -.01em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.focus-mode-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 7px;
+  margin-left: 6px;
+  border-radius: 4px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.focus-hero-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.focus-progress-text {
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.focus-progress-track {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--line);
+  overflow: hidden;
+  max-width: 160px;
+}
+
+.focus-progress-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--green, #22c55e);
+  transition: width 400ms ease;
+}
+
+.focus-exit-btn {
+  flex-shrink: 0;
+  padding: 5px 13px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.focus-exit-btn:hover {
+  background: var(--soft-line, rgba(255,255,255,.06));
+  color: var(--ink);
+}
+
+/* ---- Hero body ---- */
+.focus-hero-body {
+  padding: 28px 24px 20px;
+}
+
+.focus-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 10px;
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.focus-eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.focus-eyebrow-sep {
+  opacity: .5;
+}
+
+.focus-task-title {
+  margin: 0 0 6px;
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 900;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  color: var(--ink);
+}
+
+.focus-task-meta {
+  margin: 0 0 22px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* ---- Checklist card ---- */
+.focus-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 22px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--canvas, var(--bg));
+}
+
+.focus-check-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--line);
+  opacity: .45;
+  transition: opacity 120ms ease;
+}
+
+.focus-check-row:last-child {
+  border-bottom: 0;
+}
+
+.focus-check-row.is-done {
+  opacity: 1;
+}
+
+.focus-check-row.is-active {
+  opacity: 1;
+  background: var(--blue-soft, rgba(59,130,246,.07));
+}
+
+.focus-check-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 900;
+  color: #fff;
+  flex-shrink: 0;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.focus-check-row.is-done .focus-check-icon {
+  background: var(--green, #22c55e);
+  border-color: var(--green, #22c55e);
+}
+
+.focus-check-row.is-active .focus-check-icon {
+  border-color: var(--blue);
+  border-width: 2px;
+}
+
+.focus-check-label {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.focus-check-link {
+  font-size: 12px;
+  font-weight: 750;
+  color: var(--blue);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.focus-check-link:hover {
+  text-decoration: underline;
+}
+
+.focus-check-link.is-placeholder {
+  opacity: .4;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ---- Action buttons ---- */
+.focus-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.focus-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 18px;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 750;
+  cursor: pointer;
+  transition: opacity 120ms ease, background 120ms ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.focus-btn-ghost {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+}
+
+.focus-btn-ghost:hover {
+  background: var(--soft-line, rgba(255,255,255,.06));
+  color: var(--ink);
+}
+
+.focus-btn-primary {
+  border: 0;
+  background: var(--blue);
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: -.01em;
+  margin-left: auto;
+}
+
+.focus-btn-primary:hover {
+  opacity: .88;
+}
+
+/* ---- Keyboard hint ---- */
+.focus-shortcuts {
+  margin: 10px 0 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  opacity: .55;
+  letter-spacing: .01em;
+}
+
+/* ---- UP NEXT ---- */
+.focus-up-next {
+  border-top: 1px solid var(--line);
+  padding: 16px 24px 20px;
+}
+
+.focus-up-next-label {
+  margin: 0 0 10px;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.focus-up-next-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.focus-up-next-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: background 120ms ease;
+  width: 100%;
+}
+
+.focus-up-next-item:hover {
+  background: var(--soft-line, rgba(255,255,255,.05));
+}
+
+.focus-up-next-accent {
+  width: 3px;
+  height: 28px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.focus-up-next-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.focus-up-next-title {
+  font-size: 13px;
+  font-weight: 750;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.focus-up-next-meta {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.focus-up-next-time {
+  font-size: 11px;
+  font-weight: 650;
+  color: var(--muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ---- Light theme overrides ---- */
+body[data-theme="light"] .focus-hero {
+  background: #fffcf8;
+}
+
+body[data-theme="light"] .focus-checklist {
+  background: #fff;
+}
+
+body[data-theme="light"] .focus-check-row.is-active {
+  background: rgba(59,130,246,.05);
+}
+
+body[data-theme="light"] .focus-btn-ghost {
+  color: var(--muted);
+  background: transparent;
+}
+
+body[data-theme="light"] .focus-btn-ghost:hover {
+  background: rgba(0,0,0,.04);
+  color: var(--ink);
+}
+
+body[data-theme="light"] .focus-up-next-item:hover {
+  background: rgba(0,0,0,.04);
+}
+
+body[data-theme="light"] .focus-exit-btn:hover {
+  background: rgba(0,0,0,.05);
+}
