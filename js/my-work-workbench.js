@@ -61,7 +61,7 @@
         label: "SEO copy available",
         done: seoDone, active: false,
         link: docUrl
-          ? `<a class="focus-check-link" href="${escapeAttr(docUrl)}" target="_blank" rel="noreferrer">Open SEO doc</a>`
+          ? `<a class="focus-check-link" href="${escapeAttr(docUrl)}" target="_blank" rel="noreferrer">Open doc</a>`
           : "",
       },
       {
@@ -146,32 +146,34 @@
     <button class="focus-exit-btn" type="button" data-focus-exit>Exit focus</button>
   </header>
 
-  <div class="focus-hero-body" data-workbench-task="${escapeAttr(task.id)}">
-    <p class="focus-eyebrow">
-      <span class="focus-eyebrow-dot"></span>YOUR NEXT ACTION
-      <span class="focus-eyebrow-sep">·</span>
-      ${position} OF ${remaining} REMAINING
-    </p>
-    <h2 class="focus-task-title">${escapeHtml(taskTitle(task))}</h2>
-    <p class="focus-task-meta">${escapeHtml(dealerShortName(task.dealer))} · SEO finalized ${escapeHtml(relativeTime(task))} · Owner: ${escapeHtml(ownerBucket(task))}</p>
+  <div class="focus-hero-content">
+    <div class="focus-hero-body" data-workbench-task="${escapeAttr(task.id)}">
+      <p class="focus-eyebrow">
+        <span class="focus-eyebrow-dot"></span>YOUR NEXT ACTION
+        <span class="focus-eyebrow-sep">·</span>
+        ${position} OF ${remaining} REMAINING
+      </p>
+      <h2 class="focus-task-title">${escapeHtml(taskTitle(task))}</h2>
+      <p class="focus-task-meta">${escapeHtml(dealerShortName(task.dealer))} · SEO finalized ${escapeHtml(relativeTime(task))} · Owner: ${escapeHtml(ownerBucket(task))}</p>
 
-    <div class="focus-checklist">
-      ${focusChecklist(task)}
+      <div class="focus-checklist">
+        ${focusChecklist(task)}
+      </div>
+
+      <div class="focus-actions">
+        <button class="focus-btn focus-btn-ghost" type="button" data-workbench-return>Send back</button>
+        <button class="focus-btn focus-btn-ghost" type="button" data-focus-skip>Skip for now</button>
+        <button class="focus-btn focus-btn-primary" type="button"
+          data-status="${escapeAttr(ctaStatus)}"
+          data-task-id="${escapeAttr(task.id)}"
+          ${isMarkBuilt ? "data-focus-mark-built" : ""}
+        >${escapeHtml(ctaLabel)}</button>
+      </div>
+      <p class="focus-shortcuts">⏎ mark built &nbsp;·&nbsp; S skip &nbsp;·&nbsp; B send back</p>
     </div>
 
-    <div class="focus-actions">
-      <button class="focus-btn focus-btn-ghost" type="button" data-workbench-return>Send back</button>
-      <button class="focus-btn focus-btn-ghost" type="button" data-focus-skip>Skip for now</button>
-      <button class="focus-btn focus-btn-primary" type="button"
-        data-status="${escapeAttr(ctaStatus)}"
-        data-task-id="${escapeAttr(task.id)}"
-        ${isMarkBuilt ? "data-focus-mark-built" : ""}
-      >${escapeHtml(ctaLabel)}</button>
-    </div>
-    <p class="focus-shortcuts">↑ mark built &nbsp;·&nbsp; S skip &nbsp;·&nbsp; B send back</p>
+    ${renderUpNext(work, task.id)}
   </div>
-
-  ${renderUpNext(work, task.id)}
 </div>`;
   }
 
