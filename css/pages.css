@@ -2578,3 +2578,35 @@ body[data-workspace-view="team_board"] .table-wrap {
 
   .pipeline-group-hint { display: none; }
 }
+
+/* ── Show all / expand button ─────────────────────────────────── */
+.pipeline-show-all-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 11px 16px;
+  border: none;
+  border-top: 1px solid var(--line);
+  background: transparent;
+  color: var(--blue, #4D8DF6);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  cursor: pointer;
+  text-align: left;
+  transition: background 100ms ease, color 100ms ease;
+}
+
+.pipeline-show-all-btn:hover {
+  background: rgba(77,141,246,.07);
+}
+
+.pipeline-show-all-arrow {
+  font-size: 13px;
+  transition: transform 120ms ease;
+}
+
+.pipeline-show-all-btn:hover .pipeline-show-all-arrow {
+  transform: translateX(3px);
+}

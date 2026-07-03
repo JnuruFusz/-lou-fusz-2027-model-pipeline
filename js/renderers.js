@@ -451,7 +451,7 @@ const PIPELINE_TIERS = [
   },
 ];
 
-const PIPELINE_SWIPER_THRESHOLD = 8;
+const PIPELINE_ROW_CAP = 6;
 const PIPELINE_GROUP_COLLAPSE_KEY = "fusz-pipeline-group-collapsed";
 
 const OWNER_AVATAR_COLORS = {
@@ -592,13 +592,25 @@ function isPipelineGroupCollapsed(tierKey, defaultOpen) {
 function renderPipelineGroup(tier, tasks) {
   if (!tasks.length) return "";
   const collapsed = isPipelineGroupCollapsed(tier.key, tier.defaultOpen);
-  const useSwiper = tasks.length > PIPELINE_SWIPER_THRESHOLD;
   const collapsedAttr = collapsed ? " is-collapsed" : "";
   const chevronAttr = collapsed ? " is-collapsed" : "";
+  const capped = tasks.length > PIPELINE_ROW_CAP;
+  const visibleTasks = capped ? tasks.slice(0, PIPELINE_ROW_CAP) : tasks;
+  const hiddenCount = tasks.length - PIPELINE_ROW_CAP;
 
-  const bodyHtml = useSwiper
-    ? `<div class="pipeline-group-body is-swiper">${tasks.map(renderPipelineCard).join("")}</div>`
-    : `<div class="pipeline-group-body">${tasks.map(renderPipelineTableRow).join("")}</div>`;
+  const showAllBtn = capped
+    ? `<button class="pipeline-show-all-btn" type="button" data-pipeline-show-all="${escapeAttr(tier.key)}">Show all ${tasks.length} <span class="pipeline-show-all-arrow">→</span></button>`
+    : "";
+
+  const hiddenRows = capped
+    ? `<div class="pipeline-hidden-rows" hidden>${tasks.slice(PIPELINE_ROW_CAP).map(renderPipelineTableRow).join("")}</div>`
+    : "";
+
+  const bodyHtml = `<div class="pipeline-group-body">
+    ${visibleTasks.map(renderPipelineTableRow).join("")}
+    ${hiddenRows}
+    ${showAllBtn}
+  </div>`;
 
   return `<div class="pipeline-group${collapsedAttr}" data-tier="${escapeAttr(tier.key)}">
     <button class="pipeline-group-head" type="button"

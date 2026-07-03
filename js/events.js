@@ -383,7 +383,7 @@ Let me know if you have any questions.`
       groupToggle.setAttribute("aria-expanded", String(!isNowCollapsed));
       const chevron = groupToggle.querySelector(".pipeline-group-chevron");
       if (chevron) chevron.classList.toggle("is-collapsed", isNowCollapsed);
-      // Re-render body when expanding (lazy — body was omitted when collapsed)
+      // Expand: re-render body; Collapse: remove body
       if (!isNowCollapsed) {
         const tier = (typeof PIPELINE_TIERS !== "undefined" ? PIPELINE_TIERS : [])
           .find((t) => t.key === tierKey);
@@ -394,12 +394,18 @@ Let me know if you have any questions.`
             filteredTasks().forEach((task) => { if (t.match(task)) assigned.add(task.id); });
           });
           const tierTasks = filteredTasks().filter((task) => !assigned.has(task.id) && tier.match(task));
-          const useSwiper = tierTasks.length > (typeof PIPELINE_SWIPER_THRESHOLD !== "undefined" ? PIPELINE_SWIPER_THRESHOLD : 8);
+          const cap = (typeof PIPELINE_ROW_CAP !== "undefined" ? PIPELINE_ROW_CAP : 6);
+          const capped = tierTasks.length > cap;
+          const visibleTasks = capped ? tierTasks.slice(0, cap) : tierTasks;
+          const hiddenRows = capped
+            ? `<div class="pipeline-hidden-rows" hidden>${tierTasks.slice(cap).map(renderPipelineTableRow).join("")}</div>`
+            : "";
+          const showAllBtn = capped
+            ? `<button class="pipeline-show-all-btn" type="button" data-pipeline-show-all="${escapeAttr(tierKey)}">Show all ${tierTasks.length} <span class="pipeline-show-all-arrow">→</span></button>`
+            : "";
           const bodyEl = document.createElement("div");
-          bodyEl.className = useSwiper ? "pipeline-group-body is-swiper" : "pipeline-group-body";
-          bodyEl.innerHTML = useSwiper
-            ? tierTasks.map(renderPipelineCard).join("")
-            : tierTasks.map(renderPipelineTableRow).join("");
+          bodyEl.className = "pipeline-group-body";
+          bodyEl.innerHTML = visibleTasks.map(renderPipelineTableRow).join("") + hiddenRows + showAllBtn;
           group.appendChild(bodyEl);
         }
       } else {
@@ -412,6 +418,18 @@ Let me know if you have any questions.`
         stored[tierKey] = isNowCollapsed;
         localStorage.setItem("fusz-pipeline-group-collapsed", JSON.stringify(stored));
       } catch {}
+      return;
+    }
+
+    // "Show all X" expand button
+    const showAllBtn = event.target.closest("[data-pipeline-show-all]");
+    if (showAllBtn) {
+      event.stopPropagation();
+      const group = showAllBtn.closest(".pipeline-group");
+      if (!group) return;
+      const hiddenRows = group.querySelector(".pipeline-hidden-rows");
+      if (hiddenRows) hiddenRows.hidden = false;
+      showAllBtn.remove();
       return;
     }
 
