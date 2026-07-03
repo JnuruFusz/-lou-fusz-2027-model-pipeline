@@ -2064,9 +2064,18 @@ body[data-workspace-view="team_board"] .table-wrap {
   margin-top: 8px;
 }
 
-/* ── Column header row — hidden when all groups use swiper ────── */
+/* ── Column header row ─────────────────────────────────────────── */
 .pipeline-header {
-  display: none;
+  display: grid;
+  grid-template-columns: 1fr 200px 160px 100px 70px 200px;
+  align-items: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
 }
 
 /* ── Group section ─────────────────────────────────────────────── */

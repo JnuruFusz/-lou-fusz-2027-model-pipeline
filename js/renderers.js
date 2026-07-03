@@ -451,7 +451,7 @@ const PIPELINE_TIERS = [
   },
 ];
 
-const PIPELINE_SWIPER_THRESHOLD = 0; // all groups use card swiper
+const PIPELINE_SWIPER_THRESHOLD = 8;
 const PIPELINE_GROUP_COLLAPSE_KEY = "fusz-pipeline-group-collapsed";
 
 const OWNER_AVATAR_COLORS = {
