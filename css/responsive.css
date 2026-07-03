@@ -781,21 +781,26 @@
     font-size: 28px;
   }
 
+  /* Mobile actions: primary full-width on top, ghost pair in 2-col grid below */
   .focus-actions {
-    flex-direction: column;
-    gap: 8px;
+    flex-wrap: wrap;
+    gap: 10px;
   }
 
-  .focus-btn {
-    width: 100%;
-    min-height: 48px;
-    font-size: 15px;
-  }
-
-  /* Primary first on mobile (most important action at top) */
   .focus-btn-primary {
+    width: 100%;
     order: -1;
     margin-left: 0;
+    min-height: 50px;
+    font-size: 16px;
+    border-radius: 12px;
+  }
+
+  .focus-btn-ghost {
+    flex: 1;
+    min-height: 46px;
+    font-size: 14px;
+    border-radius: 12px;
   }
 
   .focus-shortcuts {
