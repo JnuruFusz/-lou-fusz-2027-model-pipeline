@@ -805,4 +805,22 @@
   .focus-up-next {
     padding: 14px 16px 18px;
   }
+
+  /* UP NEXT: stack title + dealer on mobile */
+  .focus-up-next-body {
+    flex-direction: column;
+    gap: 2px;
+    align-items: flex-start;
+  }
+
+  .focus-up-next-title {
+    flex-shrink: 1;
+  }
+
+  /* Build queue header: stack vertically on mobile */
+  .build-queue-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
 }

@@ -67,7 +67,7 @@
       {
         label: "Build the model page",
         done: buildDone, active: buildActive,
-        link: `<span class="focus-check-link is-placeholder">Open CMS</span>`,
+        link: `<span class="focus-check-link">Open CMS</span>`,
       },
       {
         label: "Verify live URL",
@@ -87,9 +87,10 @@
      UP NEXT list (up to 4 tasks after the current one)
      --------------------------------------------------------------- */
   function upNextStatus(task) {
-    if (task.pageStatus === "page_built")   return "Live check";
-    if (task.pageStatus === "needs_review") return "Returned";
-    return "SEO ready";
+    const t = relativeTime(task);
+    if (task.pageStatus === "page_built")   return `Live check ${t}`;
+    if (task.pageStatus === "needs_review") return `Returned ${t}`;
+    return `SEO ready ${t}`;
   }
 
   function renderUpNext(work, currentId) {
@@ -129,6 +130,7 @@
     const [ctaLabel, ctaStatus] = focusCta(task);
     const builtToday = getBuiltToday();
     const remaining  = work.length;
+    const position   = work.findIndex((t) => t.id === task.id) + 1;
     const totalToday = builtToday + remaining;
     const pct        = totalToday > 0 ? Math.round((builtToday / totalToday) * 100) : 0;
     const isMarkBuilt = ctaStatus === "page_built";
@@ -148,7 +150,7 @@
     <p class="focus-eyebrow">
       <span class="focus-eyebrow-dot"></span>YOUR NEXT ACTION
       <span class="focus-eyebrow-sep">·</span>
-      ${remaining} REMAINING
+      ${position} OF ${remaining} REMAINING
     </p>
     <h2 class="focus-task-title">${escapeHtml(taskTitle(task))}</h2>
     <p class="focus-task-meta">${escapeHtml(dealerShortName(task.dealer))} · SEO finalized ${escapeHtml(relativeTime(task))} · Owner: ${escapeHtml(ownerBucket(task))}</p>
@@ -292,8 +294,17 @@
     const isBuilder = (state.session?.primaryRole || "").toLowerCase().includes("builder");
 
     if (isBuilder) {
+      const nBuild   = work.filter((t) => ["seo_done","needs_build"].includes(t.pageStatus)).length;
+      const nVerify  = work.filter((t) => t.pageStatus === "page_built").length;
+      const nBlocked = work.filter((t) => t.pageStatus === "needs_review").length;
+      const chips = [
+        nBuild   ? `<span class="build-queue-chip">${nBuild} to build</span>`   : "",
+        nVerify  ? `<span class="build-queue-chip">${nVerify} to verify</span>` : "",
+        nBlocked ? `<span class="build-queue-chip build-queue-chip--blocked">${nBlocked} blocked</span>` : "",
+      ].join("");
+      const queueHeader = `<div class="build-queue-header"><h2 class="build-queue-title">My build queue</h2><div class="build-queue-chips">${chips}</div></div>`;
       els.myWorkList.className = "focus-hero-wrapper";
-      els.myWorkList.innerHTML = renderFocusHero(selected, work);
+      els.myWorkList.innerHTML = queueHeader + renderFocusHero(selected, work);
       if (els.builderDetailPanel) els.builderDetailPanel.classList.add("is-empty");
     } else {
       // Writers — queue list + detail panel
