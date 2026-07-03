@@ -240,6 +240,13 @@
       return;
     }
 
+    // Enter focus (button in section heading)
+    if (e.target.closest("[data-focus-enter]")) {
+      _focusMode = true;
+      if (typeof renderMyWork === "function") renderMyWork(state.tasks);
+      return;
+    }
+
     // Exit focus → stay on My Work, drop to queue list
     if (e.target.closest("[data-focus-exit]")) {
       _focusMode = false;
@@ -270,7 +277,7 @@
       || null;
     if (selected) _lastSelectedId = selected.id;
 
-    // Sidebar count chip
+    // Section heading: count chip + focus button for builders
     if (els.myWorkCount) {
       const nBuild   = work.filter((t) => ["seo_done","needs_build"].includes(t.pageStatus)).length;
       const nVerify  = work.filter((t) => t.pageStatus === "page_built").length;
@@ -280,6 +287,23 @@
       if (nVerify)  parts.push(`${nVerify} to verify`);
       if (nBlocked) parts.push(`${nBlocked} blocked`);
       els.myWorkCount.textContent = parts.length ? parts.join(" · ") : "All clear";
+    }
+
+    // Show/hide the Focus entry button in the section heading
+    const isBuilder = (state.session?.primaryRole || "").toLowerCase().includes("builder");
+    let focusEntryBtn = document.getElementById("focusEntryBtn");
+    if (isBuilder && work.length) {
+      if (!focusEntryBtn) {
+        focusEntryBtn = document.createElement("button");
+        focusEntryBtn.id = "focusEntryBtn";
+        focusEntryBtn.className = "focus-entry-btn";
+        focusEntryBtn.setAttribute("data-focus-enter", "");
+        focusEntryBtn.textContent = "Focus →";
+        els.myWorkCount?.parentElement?.appendChild(focusEntryBtn);
+      }
+      focusEntryBtn.style.display = _focusMode ? "none" : "";
+    } else if (focusEntryBtn) {
+      focusEntryBtn.style.display = "none";
     }
 
     if (!els.myWorkList) return;
@@ -296,8 +320,6 @@
       if (els.builderDetailPanel) els.builderDetailPanel.classList.add("is-empty");
       return;
     }
-
-    const isBuilder = (state.session?.primaryRole || "").toLowerCase().includes("builder");
 
     if (isBuilder && _focusMode) {
       els.myWorkPanel?.classList.add("is-focus-mode");

@@ -21,6 +21,27 @@ body[data-workspace-view="my_work"] #myWorkPanel {
   max-width: min(1200px, 100%);
 }
 
+/* Focus entry button — appears in section heading when builder is in queue mode */
+.focus-entry-btn {
+  margin-left: auto;
+  padding: 5px 13px;
+  border: 1px solid var(--blue);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--blue);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: .01em;
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.focus-entry-btn:hover {
+  background: var(--blue);
+  color: #fff;
+}
+
 /* Focus mode — full-width single column, hide detail panel */
 body[data-workspace-view="my_work"] #myWorkPanel.is-focus-mode {
   grid-template-columns: 1fr;
