@@ -1,5 +1,6 @@
 (function () {
   let _lastSelectedId = null; // persists selected task across re-renders
+  let _focusMode = true;      // builders start in focus mode; exit drops to queue list
 
   /* ---------------------------------------------------------------
      Built-today counter — sessionStorage, resets each calendar day
@@ -219,6 +220,8 @@
     if (wbRow && !e.target.closest("[data-status]") && !e.target.closest("a")) {
       e.preventDefault();
       _lastSelectedId = wbRow.dataset.workbenchTask;
+      const isBuilder = (state.session?.primaryRole || "").toLowerCase().includes("builder");
+      if (isBuilder) _focusMode = true; // clicking a task re-enters focus
       if (typeof renderMyWork === "function") renderMyWork(state.tasks);
       return;
     }
@@ -237,9 +240,10 @@
       return;
     }
 
-    // Exit focus → team board
+    // Exit focus → stay on My Work, drop to queue list
     if (e.target.closest("[data-focus-exit]")) {
-      if (typeof setWorkspaceView === "function") setWorkspaceView("team_board");
+      _focusMode = false;
+      if (typeof renderMyWork === "function") renderMyWork(state.tasks);
       return;
     }
 
@@ -295,13 +299,13 @@
 
     const isBuilder = (state.session?.primaryRole || "").toLowerCase().includes("builder");
 
-    if (isBuilder) {
+    if (isBuilder && _focusMode) {
       els.myWorkPanel?.classList.add("is-focus-mode");
       els.myWorkList.className = "focus-hero-wrapper";
       els.myWorkList.innerHTML = renderFocusHero(selected, work);
       if (els.builderDetailPanel) els.builderDetailPanel.classList.add("is-empty");
     } else {
-      // Writers — queue list + detail panel
+      // Writers, or builder who exited focus — show queue list + detail panel
       els.myWorkPanel?.classList.remove("is-focus-mode");
       els.myWorkList.className = "workbench-queue";
       const groups = [
