@@ -377,47 +377,16 @@ Let me know if you have any questions.`
     const groupToggle = event.target.closest("[data-pipeline-group-toggle]");
     if (groupToggle) {
       const tierKey = groupToggle.dataset.pipelineGroupToggle;
+      if (!tierKey) return;
+      // Read current state from DOM, toggle it, persist, re-render
       const group = groupToggle.closest(".pipeline-group");
-      if (!tierKey || !group) return;
-      const isNowCollapsed = group.classList.toggle("is-collapsed");
-      groupToggle.setAttribute("aria-expanded", String(!isNowCollapsed));
-      const chevron = groupToggle.querySelector(".pipeline-group-chevron");
-      if (chevron) chevron.classList.toggle("is-collapsed", isNowCollapsed);
-      // Expand: re-render body; Collapse: remove body
-      if (!isNowCollapsed) {
-        const tier = (typeof PIPELINE_TIERS !== "undefined" ? PIPELINE_TIERS : [])
-          .find((t) => t.key === tierKey);
-        if (tier) {
-          const assigned = new Set();
-          (typeof PIPELINE_TIERS !== "undefined" ? PIPELINE_TIERS : []).forEach((t) => {
-            if (t.key === tierKey) return;
-            filteredTasks().forEach((task) => { if (t.match(task)) assigned.add(task.id); });
-          });
-          const tierTasks = filteredTasks().filter((task) => !assigned.has(task.id) && tier.match(task));
-          const cap = (typeof PIPELINE_ROW_CAP !== "undefined" ? PIPELINE_ROW_CAP : 6);
-          const capped = tierTasks.length > cap;
-          const visibleTasks = capped ? tierTasks.slice(0, cap) : tierTasks;
-          const hiddenRows = capped
-            ? `<div class="pipeline-hidden-rows" hidden>${tierTasks.slice(cap).map(renderPipelineTableRow).join("")}</div>`
-            : "";
-          const showAllBtn = capped
-            ? `<button class="pipeline-show-all-btn" type="button" data-pipeline-show-all="${escapeAttr(tierKey)}">Show all ${tierTasks.length} <span class="pipeline-show-all-arrow">→</span></button>`
-            : "";
-          const bodyEl = document.createElement("div");
-          bodyEl.className = "pipeline-group-body";
-          bodyEl.innerHTML = visibleTasks.map(renderPipelineTableRow).join("") + hiddenRows + showAllBtn;
-          group.appendChild(bodyEl);
-        }
-      } else {
-        const body = group.querySelector(".pipeline-group-body");
-        if (body) body.remove();
-      }
-      // Persist
+      const wasCollapsed = group ? group.classList.contains("is-collapsed") : false;
       try {
         const stored = JSON.parse(localStorage.getItem("fusz-pipeline-group-collapsed") || "{}");
-        stored[tierKey] = isNowCollapsed;
+        stored[tierKey] = !wasCollapsed;
         localStorage.setItem("fusz-pipeline-group-collapsed", JSON.stringify(stored));
       } catch {}
+      render();
       return;
     }
 
