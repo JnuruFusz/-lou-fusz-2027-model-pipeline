@@ -2092,8 +2092,8 @@ body[data-workspace-view="team_board"] .table-wrap {
   background: rgba(239, 85, 85, .03);
 }
 .pipeline-group[data-tier="blocked"] {
-  border-color: rgba(227, 179, 65, .28);
-  background: rgba(227, 179, 65, .03);
+  border-color: rgba(155, 92, 246, .22);
+  background: rgba(155, 92, 246, .04);
 }
 
 .pipeline-group[data-tier="ready"],
@@ -2119,7 +2119,7 @@ body[data-workspace-view="team_board"] .table-wrap {
   background: rgba(239, 85, 85, .06);
 }
 .pipeline-group[data-tier="blocked"] .pipeline-group-head {
-  background: rgba(227, 179, 65, .06);
+  background: rgba(155, 92, 246, .07);
 }
 
 /* Urgency dot */
@@ -2131,7 +2131,8 @@ body[data-workspace-view="team_board"] .table-wrap {
 }
 .pipeline-tier-dot-red   { background: var(--red, #ef5555); box-shadow: 0 0 0 3px rgba(239,85,85,.18); }
 .pipeline-tier-dot-amber { background: var(--amber, #e3b341); box-shadow: 0 0 0 3px rgba(227,179,65,.18); }
-.pipeline-tier-dot-blue  { background: var(--blue, #4D8DF6); box-shadow: 0 0 0 3px rgba(77,141,246,.18); }
+.pipeline-tier-dot-blue   { background: var(--blue, #4D8DF6); box-shadow: 0 0 0 3px rgba(77,141,246,.18); }
+.pipeline-tier-dot-violet { background: var(--violet, #9B5CF6); box-shadow: 0 0 0 3px rgba(155,92,246,.18); }
 
 /* Group title + meta */
 .pipeline-group-title {
@@ -2160,8 +2161,8 @@ body[data-workspace-view="team_board"] .table-wrap {
   color: var(--red, #ef5555);
 }
 .pipeline-group[data-tier="blocked"] .pipeline-group-count {
-  background: rgba(227, 179, 65, .18);
-  color: var(--amber, #e3b341);
+  background: rgba(155, 92, 246, .18);
+  color: var(--violet, #9B5CF6);
 }
 
 .pipeline-group-hint {
@@ -2416,11 +2417,13 @@ body[data-workspace-view="team_board"] .table-wrap {
   background: rgba(239, 85, 85, .06);
 }
 .pipeline-group[data-tier="blocked"] .pipeline-group-head {
-  background: rgba(227, 179, 65, .06);
+  background: rgba(155, 92, 246, .07);
 }
-.pipeline-group[data-tier="on_lot"] .pipeline-group-head:hover,
-.pipeline-group[data-tier="blocked"] .pipeline-group-head:hover {
+.pipeline-group[data-tier="on_lot"] .pipeline-group-head:hover {
   background: rgba(239, 85, 85, .11);
+}
+.pipeline-group[data-tier="blocked"] .pipeline-group-head:hover {
+  background: rgba(155, 92, 246, .12);
 }
 
 /* Collapsed state — hide body */
