@@ -2104,6 +2104,10 @@ body[data-workspace-view="team_board"] .table-wrap {
 .pipeline-group[data-tier="needs_seo"] {
   border-color: rgba(227, 179, 65, .22);
 }
+.pipeline-group[data-tier="needs_aeo"] {
+  border-color: rgba(14, 165, 233, .22);
+  background: rgba(14, 165, 233, .03);
+}
 
 /* Group header */
 .pipeline-group-head {
@@ -2133,6 +2137,7 @@ body[data-workspace-view="team_board"] .table-wrap {
 .pipeline-tier-dot-amber { background: var(--amber, #e3b341); box-shadow: 0 0 0 3px rgba(227,179,65,.18); }
 .pipeline-tier-dot-blue   { background: var(--blue, #4D8DF6); box-shadow: 0 0 0 3px rgba(77,141,246,.18); }
 .pipeline-tier-dot-violet { background: var(--violet, #9B5CF6); box-shadow: 0 0 0 3px rgba(155,92,246,.18); }
+.pipeline-tier-dot-teal   { background: #0EA5E9; box-shadow: 0 0 0 3px rgba(14,165,233,.18); }
 
 /* Group title + meta */
 .pipeline-group-title {
@@ -2163,6 +2168,16 @@ body[data-workspace-view="team_board"] .table-wrap {
 .pipeline-group[data-tier="blocked"] .pipeline-group-count {
   background: rgba(155, 92, 246, .18);
   color: var(--violet, #9B5CF6);
+}
+.pipeline-group[data-tier="needs_aeo"] .pipeline-group-head {
+  background: rgba(14, 165, 233, .06);
+}
+.pipeline-group[data-tier="needs_aeo"] .pipeline-group-head:hover {
+  background: rgba(14, 165, 233, .11);
+}
+.pipeline-group[data-tier="needs_aeo"] .pipeline-group-count {
+  background: rgba(14, 165, 233, .18);
+  color: #0EA5E9;
 }
 
 .pipeline-group-hint {

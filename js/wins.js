@@ -80,11 +80,9 @@ function winsComputeData() {
       teamMap[so].count++;
     }
     if (["done"].includes(t.aeoStatus)) {
-      const ao = t.details?.aeoOwner || null;
-      if (ao) {
-        if (!teamMap[ao]) teamMap[ao] = { name: ao, count: 0, role: "AEO Writer" };
-        teamMap[ao].count++;
-      }
+      const ao = t.details?.aeoOwner || "Scott Toulou";
+      if (!teamMap[ao]) teamMap[ao] = { name: ao, count: 0, role: "AEO" };
+      teamMap[ao].count++;
     }
   });
 

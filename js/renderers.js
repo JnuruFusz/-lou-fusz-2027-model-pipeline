@@ -10,7 +10,13 @@ function filteredTasks() {
     if (year !== "all" && String(task.year) !== year) return false;
     if (dealer !== "all" && task.dealer !== dealer) return false;
     if (status !== "all" && task.pageStatus !== status && task.aeoStatus !== status) return false;
-    if (owner !== "all" && pipelineOwnerForTask(task) !== owner) return false;
+    if (owner !== "all") {
+      const taskOwner = pipelineOwnerForTask(task);
+      const isScottAeoTask = owner === "Scott Toulou" &&
+        !["done", "not_needed"].includes(task.aeoStatus) &&
+        !["live", "ignored", "snoozed"].includes(task.pageStatus);
+      if (taskOwner !== owner && !isScottAeoTask) return false;
+    }
     if (!query) return true;
     return `${taskTitle(task)} ${task.dealer} ${ownerBucket(task)}`.toLowerCase().includes(query);
   });
@@ -522,8 +528,9 @@ function pipelineRowData(task) {
 }
 
 /* Table-row layout (used for small groups) */
-function renderPipelineTableRow(task) {
-  const { badgeBg, badgeFg, shortDealer, owner, ageLabel, ageTone, signalLabel, isOnLot } = pipelineRowData(task);
+function renderPipelineTableRow(task, ownerOverride) {
+  const { badgeBg, badgeFg, shortDealer, ageLabel, ageTone, signalLabel, isOnLot } = pipelineRowData(task);
+  const owner = ownerOverride || pipelineOwnerForTask(task);
   const ownerInit = initials(owner);
   const ownerFirst = owner.split(" ")[0];
 
@@ -589,7 +596,7 @@ function isPipelineGroupCollapsed(tierKey, defaultOpen) {
   return stored[tierKey] !== undefined ? stored[tierKey] : !defaultOpen;
 }
 
-function renderPipelineGroup(tier, tasks) {
+function renderPipelineGroup(tier, tasks, ownerOverride) {
   if (!tasks.length) return "";
   const collapsed = isPipelineGroupCollapsed(tier.key, tier.defaultOpen);
   const collapsedAttr = collapsed ? " is-collapsed" : "";
@@ -603,11 +610,11 @@ function renderPipelineGroup(tier, tasks) {
     : "";
 
   const hiddenRows = capped
-    ? `<div class="pipeline-hidden-rows" hidden>${tasks.slice(PIPELINE_ROW_CAP).map(renderPipelineTableRow).join("")}</div>`
+    ? `<div class="pipeline-hidden-rows" hidden>${tasks.slice(PIPELINE_ROW_CAP).map((t) => renderPipelineTableRow(t, ownerOverride)).join("")}</div>`
     : "";
 
   const bodyHtml = `<div class="pipeline-group-body">
-    ${visibleTasks.map(renderPipelineTableRow).join("")}
+    ${visibleTasks.map((t) => renderPipelineTableRow(t, ownerOverride)).join("")}
     ${hiddenRows}
     ${showAllBtn}
   </div>`;
@@ -655,7 +662,23 @@ function renderTable(tasks) {
   </div>`;
 
   const groupsHtml = tierBuckets.map(({ tier, tasks: t }) => renderPipelineGroup(tier, t)).join("");
-  container.innerHTML = headerHtml + groupsHtml;
+
+  // AEO section — rendered independently (not mutually exclusive with page-status tiers)
+  // Shows tasks Scott still needs to complete AEO for
+  const aeoTier = {
+    key: "needs_aeo",
+    title: "Needs AEO",
+    hint: "AEO layer not yet complete — Scott\'s lane",
+    dot: "teal",
+    defaultOpen: false,
+  };
+  const aeoTasks = tasks.filter(
+    (t) => !["done", "not_needed"].includes(t.aeoStatus) &&
+           !["live", "ignored", "snoozed"].includes(t.pageStatus)
+  );
+  const aeoGroupHtml = renderPipelineGroup(aeoTier, aeoTasks, "Scott Toulou");
+
+  container.innerHTML = headerHtml + groupsHtml + aeoGroupHtml;
 }
 function isAeoTableFilter(status = els.statusFilter?.value || "all") {
   return ["not_started", "in_progress", "done", "not_needed"].includes(status);

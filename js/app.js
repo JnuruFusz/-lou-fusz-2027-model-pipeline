@@ -688,14 +688,16 @@ function populateYearFilter() {
 
 function populateOwnerFilter() {
   if (!els.ownerFilter) return;
-  const owners = [...new Set(
-    state.tasks
-      .filter((task) => !["live", "ignored", "snoozed"].includes(task.pageStatus))
-      .map((task) => (typeof pipelineOwnerForTask === "function" ? pipelineOwnerForTask(task) : (task.details?.buildOwner || task.details?.seoOwner || "Team")))
-  )].sort();
+  const activeTasks = state.tasks.filter((task) => !["live", "ignored", "snoozed"].includes(task.pageStatus));
+  const owners = new Set(
+    activeTasks.map((task) => (typeof pipelineOwnerForTask === "function" ? pipelineOwnerForTask(task) : (task.details?.buildOwner || task.details?.seoOwner || "Team")))
+  );
+  // Include Scott if any tasks have pending AEO
+  const hasAeo = activeTasks.some((t) => !["done", "not_needed"].includes(t.aeoStatus));
+  if (hasAeo) owners.add("Scott Toulou");
   els.ownerFilter.innerHTML = [
     `<option value="all">All owners</option>`,
-    ...owners.map((owner) => `<option value="${escapeAttr(owner)}">${escapeHtml(owner)}</option>`),
+    ...[...owners].sort().map((owner) => `<option value="${escapeAttr(owner)}">${escapeHtml(owner)}</option>`),
   ].join("");
 }
 
