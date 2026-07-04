@@ -79,8 +79,8 @@ function winsComputeData() {
       if (!teamMap[so]) teamMap[so] = { name: so, count: 0, role: "SEO Writer" };
       teamMap[so].count++;
     }
-    if (["done"].includes(t.aeoStatus)) {
-      const ao = t.details?.aeoOwner || "Scott Toulou";
+    if (["done"].includes(t.aeoStatus) && t.details?.aeoOwner) {
+      const ao = t.details.aeoOwner;
       if (!teamMap[ao]) teamMap[ao] = { name: ao, count: 0, role: "AEO" };
       teamMap[ao].count++;
     }
