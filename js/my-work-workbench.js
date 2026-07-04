@@ -73,7 +73,9 @@
       {
         label: "Verify live URL",
         done: verifyDone, active: verifyActive,
-        link: "",
+        link: task.inventoryUrl
+          ? `<a class="focus-check-link" href="${escapeAttr(task.inventoryUrl)}" target="_blank" rel="noreferrer">Open page</a>`
+          : "",
       },
     ].map(({ label, done, active, link }) =>
       `<div class="focus-check-row${done ? " is-done" : active ? " is-active" : ""}">
