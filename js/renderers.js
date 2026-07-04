@@ -599,7 +599,7 @@ function renderPipelineGroup(tier, tasks) {
   const hiddenCount = tasks.length - PIPELINE_ROW_CAP;
 
   const showAllBtn = capped
-    ? `<button class="pipeline-show-all-btn" type="button" data-pipeline-show-all="${escapeAttr(tier.key)}">Show all ${tasks.length} <span class="pipeline-show-all-arrow">→</span></button>`
+    ? `<button class="pipeline-show-all-btn" type="button" data-pipeline-show-all="${escapeAttr(tier.key)}" data-pipeline-total="${tasks.length}">Show all ${tasks.length} <span class="pipeline-show-all-arrow">→</span></button>`
     : "";
 
   const hiddenRows = capped

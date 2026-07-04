@@ -390,15 +390,26 @@ Let me know if you have any questions.`
       return;
     }
 
-    // "Show all X" expand button
+    // "Show all X / Show less" toggle button
     const showAllBtn = event.target.closest("[data-pipeline-show-all]");
     if (showAllBtn) {
       event.stopPropagation();
       const group = showAllBtn.closest(".pipeline-group");
       if (!group) return;
       const hiddenRows = group.querySelector(".pipeline-hidden-rows");
-      if (hiddenRows) hiddenRows.hidden = false;
-      showAllBtn.remove();
+      if (!hiddenRows) return;
+      const isExpanded = !hiddenRows.hidden;
+      const arrow = showAllBtn.querySelector(".pipeline-show-all-arrow");
+      if (isExpanded) {
+        hiddenRows.hidden = true;
+        const total = showAllBtn.dataset.pipelineTotal || "";
+        showAllBtn.firstChild.textContent = "Show all " + total + " ";
+        if (arrow) arrow.textContent = "→";
+      } else {
+        hiddenRows.hidden = false;
+        showAllBtn.firstChild.textContent = "Show less ";
+        if (arrow) arrow.textContent = "←";
+      }
       return;
     }
 

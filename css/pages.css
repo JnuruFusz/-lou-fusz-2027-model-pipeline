@@ -2087,10 +2087,13 @@ body[data-workspace-view="team_board"] .table-wrap {
   background: var(--panel);
 }
 
-.pipeline-group[data-tier="on_lot"],
-.pipeline-group[data-tier="blocked"] {
+.pipeline-group[data-tier="on_lot"] {
   border-color: rgba(239, 85, 85, .28);
   background: rgba(239, 85, 85, .03);
+}
+.pipeline-group[data-tier="blocked"] {
+  border-color: rgba(227, 179, 65, .28);
+  background: rgba(227, 179, 65, .03);
 }
 
 .pipeline-group[data-tier="ready"],
@@ -2112,9 +2115,11 @@ body[data-workspace-view="team_board"] .table-wrap {
   background: rgba(0,0,0,.06);
 }
 
-.pipeline-group[data-tier="on_lot"] .pipeline-group-head,
-.pipeline-group[data-tier="blocked"] .pipeline-group-head {
+.pipeline-group[data-tier="on_lot"] .pipeline-group-head {
   background: rgba(239, 85, 85, .06);
+}
+.pipeline-group[data-tier="blocked"] .pipeline-group-head {
+  background: rgba(227, 179, 65, .06);
 }
 
 /* Urgency dot */
@@ -2150,10 +2155,13 @@ body[data-workspace-view="team_board"] .table-wrap {
   font-weight: 900;
 }
 
-.pipeline-group[data-tier="on_lot"] .pipeline-group-count,
-.pipeline-group[data-tier="blocked"] .pipeline-group-count {
+.pipeline-group[data-tier="on_lot"] .pipeline-group-count {
   background: rgba(239, 85, 85, .18);
   color: var(--red, #ef5555);
+}
+.pipeline-group[data-tier="blocked"] .pipeline-group-count {
+  background: rgba(227, 179, 65, .18);
+  color: var(--amber, #e3b341);
 }
 
 .pipeline-group-hint {
@@ -2404,9 +2412,11 @@ body[data-workspace-view="team_board"] .table-wrap {
 }
 
 .pipeline-group-head:hover { background: rgba(0,0,0,.12); }
-.pipeline-group[data-tier="on_lot"] .pipeline-group-head,
-.pipeline-group[data-tier="blocked"] .pipeline-group-head {
+.pipeline-group[data-tier="on_lot"] .pipeline-group-head {
   background: rgba(239, 85, 85, .06);
+}
+.pipeline-group[data-tier="blocked"] .pipeline-group-head {
+  background: rgba(227, 179, 65, .06);
 }
 .pipeline-group[data-tier="on_lot"] .pipeline-group-head:hover,
 .pipeline-group[data-tier="blocked"] .pipeline-group-head:hover {
