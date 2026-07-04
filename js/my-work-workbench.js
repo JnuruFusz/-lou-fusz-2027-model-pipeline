@@ -68,7 +68,13 @@
       {
         label: "Build the model page",
         done: buildDone, active: buildActive,
-        link: `<span class="focus-check-link">Open CMS</span>`,
+        link: (() => {
+          const base = (task.inventoryUrl || "").match(/^(https?:\/\/[^\/]+)/);
+          const cmsUrl = base ? `${base[1]}/wp/wp-admin/` : null;
+          return cmsUrl
+            ? `<a class="focus-check-link" href="${escapeAttr(cmsUrl)}" target="_blank" rel="noreferrer">Open CMS</a>`
+            : "";
+        })(),
       },
       {
         label: "Verify live URL",
