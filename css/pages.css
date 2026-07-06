@@ -2638,3 +2638,11 @@ body[data-workspace-view="team_board"] .table-wrap {
 .pipeline-show-all-btn:hover .pipeline-show-all-arrow {
   transform: translateX(3px);
 }
+
+/* ── 3b. Display font — pipeline snapshot numbers ──────────────────────────
+   .metric strong and .achievement strong got Bricolage in the polish pass,
+   but .pipeline-snapshot strong (admin KPI numbers) was missed.               */
+.pipeline-snapshot strong {
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  letter-spacing: -.03em;
+}
