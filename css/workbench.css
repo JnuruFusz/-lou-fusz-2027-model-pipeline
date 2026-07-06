@@ -1851,3 +1851,74 @@ html body[data-theme="light"] .wb-brand-group,
 html body[data-theme="gray"]  .wb-brand-group {
   border-bottom-color: var(--border, rgba(0,0,0,.08));
 }
+
+/* ── Build queue hierarchy polish ──────────────────────────────────────────
+   Audit findings: brand rows competed visually with section headers,
+   chevron too small/faint, no breathing room after group expansion,
+   section counts hard to read at .6 opacity.
+   ─────────────────────────────────────────────────────────────────────── */
+
+/* 1. Brand name — reduce size/weight so it reads as a label, not a heading.
+      Positive letter-spacing reinforces the "group label" role vs section heads. */
+.workbench-group-name {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+/* 2. Group head background — subtle warm tint differentiates parent rows
+      from both the section background (--panel) and item rows (transparent). */
+.workbench-group-head {
+  background: color-mix(in srgb, var(--ink) 6%, var(--bg));
+}
+
+.workbench-group-head:hover {
+  background: color-mix(in srgb, var(--group-accent, var(--blue)) 8%, var(--bg));
+}
+
+/* 3. Chevron — bigger hit target, more contrast */
+.workbench-group-chevron {
+  width: 24px;
+  height: 24px;
+  color: var(--ink);
+  opacity: .55;
+}
+
+.workbench-group-chevron::before {
+  width: 8px;
+  height: 8px;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+}
+
+.workbench-group-head[aria-expanded="true"] .workbench-group-chevron,
+.workbench-group-head:hover .workbench-group-chevron {
+  opacity: .85;
+}
+
+/* 4. First item in an expanded group — extra top breathing room
+      so the item doesn't butt directly against the group header row. */
+.workbench-group-items > .workbench-row:first-child {
+  padding-top: 14px;
+}
+
+/* 5. Section head counts — full opacity, amber for heavy-count sections */
+.workbench-section-head span:last-child {
+  opacity: 1;
+  font-weight: 800;
+}
+
+.workbench-section-head span.heavy {
+  border-color: transparent;
+  background: var(--amber-soft);
+  color: var(--amber);
+}
+
+/* Light-theme overrides for the group head tint */
+body[data-theme="light"] .workbench-group-head {
+  background: color-mix(in srgb, var(--ink) 6%, #ede9e4) !important;
+}
+
+body[data-theme="light"] .workbench-group-head:hover {
+  background: color-mix(in srgb, var(--group-accent, var(--blue)) 8%, #ede9e4) !important;
+}
