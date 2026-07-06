@@ -388,15 +388,38 @@ function renderInventoryFeedStatus() {
 }
 
 function renderMetrics(tasks) {
-  const ready = tasks.filter((task) => ["seo_done", "needs_build"].includes(task.pageStatus)).length;
-  const checks = tasks.filter((task) => task.pageStatus === "page_built").length;
-  const blocked = tasks.filter((task) => task.pageStatus === "needs_review").length;
-  const live = tasks.filter((task) => task.pageStatus === "live").length;
+  const role = currentRoleKey();
   const setMetric = (el, value) => { if (!el) return; el.textContent = value; el.closest(".metric")?.classList.toggle("is-zero", value === 0); };
-  setMetric(els.metricDetected, ready);
-  setMetric(els.metricSeo, checks);
-  setMetric(els.metricAeo, blocked);
-  setMetric(els.metricLive, live);
+  const setLabel = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+
+  if (role.includes("seo")) {
+    setMetric(els.metricDetected, tasks.filter((t) => t.pageStatus === "needs_seo").length);
+    setMetric(els.metricSeo,      tasks.filter((t) => t.pageStatus === "seo_in_progress").length);
+    setMetric(els.metricAeo,      tasks.filter((t) => t.pageStatus === "needs_review").length);
+    setMetric(els.metricLive,     tasks.filter((t) => ["seo_done","needs_build","page_built","live"].includes(t.pageStatus)).length);
+    setLabel("metricLabelDetected", "Needs copy");
+    setLabel("metricLabelSeo",      "In progress");
+    setLabel("metricLabelAeo",      "Returned");
+    setLabel("metricLabelLive",     "Written this month");
+  } else if (role.includes("aeo")) {
+    setMetric(els.metricDetected, tasks.filter((t) => !["done","not_needed"].includes(t.aeoStatus) && !["live","ignored","snoozed"].includes(t.pageStatus)).length);
+    setMetric(els.metricSeo,      tasks.filter((t) => t.aeoStatus === "in_progress").length);
+    setMetric(els.metricAeo,      tasks.filter((t) => t.pageStatus === "needs_review").length);
+    setMetric(els.metricLive,     tasks.filter((t) => t.aeoStatus === "done").length);
+    setLabel("metricLabelDetected", "Needs AEO");
+    setLabel("metricLabelSeo",      "In progress");
+    setLabel("metricLabelAeo",      "Returned");
+    setLabel("metricLabelLive",     "Completed");
+  } else {
+    setMetric(els.metricDetected, tasks.filter((t) => ["seo_done","needs_build"].includes(t.pageStatus)).length);
+    setMetric(els.metricSeo,      tasks.filter((t) => t.pageStatus === "page_built").length);
+    setMetric(els.metricAeo,      tasks.filter((t) => t.pageStatus === "needs_review").length);
+    setMetric(els.metricLive,     tasks.filter((t) => t.pageStatus === "live").length);
+    setLabel("metricLabelDetected", "Ready to build");
+    setLabel("metricLabelSeo",      "Live checks");
+    setLabel("metricLabelAeo",      "Blocked");
+    setLabel("metricLabelLive",     "Built month");
+  }
 }
 
 function renderAchievements(tasks) {

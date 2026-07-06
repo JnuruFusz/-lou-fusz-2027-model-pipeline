@@ -324,6 +324,28 @@
 
   /* Click delegation */
   document.addEventListener("click", (e) => {
+    /* Brand accordion toggle */
+    const brandToggle = e.target.closest("[data-wb-brand-toggle]");
+    if (brandToggle) {
+      const key = brandToggle.dataset.wbBrandToggle;
+      const group = brandToggle.closest(".wb-brand-group");
+      if (!group) return;
+      const isOpen = !group.classList.contains("is-collapsed");
+      const rows = group.querySelector(".wb-brand-rows");
+      const chevron = brandToggle.querySelector(".wb-brand-chevron");
+      if (isOpen) {
+        group.classList.add("is-collapsed");
+        if (rows) rows.hidden = true;
+        if (chevron) chevron.textContent = "▸";
+        sessionStorage.setItem(key, "closed");
+      } else {
+        group.classList.remove("is-collapsed");
+        if (rows) rows.hidden = false;
+        if (chevron) chevron.textContent = "▾";
+        sessionStorage.removeItem(key);
+      }
+      return;
+    }
     const wbRow = e.target.closest("[data-workbench-task]");
     if (wbRow && !e.target.closest("[data-status]") && !e.target.closest("[data-aeo-status]") && !e.target.closest("a")) {
       e.preventDefault();
@@ -353,6 +375,14 @@
     installMyWorkStyles();
     const role = currentMyWorkRole();
     const safeTasks = Array.isArray(tasks) ? tasks.filter(isRenderableTask) : [];
+
+    /* Update queue title */
+    const queueTitle = document.getElementById("myWorkQueueTitle");
+    if (queueTitle) {
+      if (role === "seo")      queueTitle.textContent = "My write queue";
+      else if (role === "aeo") queueTitle.textContent = "My AEO queue";
+      else                     queueTitle.textContent = "My build queue";
+    }
     const { work } = myWorkGroupsForRole(safeTasks, role);
 
     const selected = (_lastSelectedId && work.find((t) => t.id === _lastSelectedId))
@@ -448,7 +478,7 @@
           ["Returned",         "blocked",work.filter((t) => t.pageStatus === "needs_review")],
         ];
       }
-      els.myWorkList.innerHTML = groups.map((g) => renderMyWorkSection(g, selected?.id)).join("");
+      els.myWorkList.innerHTML = groups.map((g) => renderMyWorkBrandSection(g, selected?.id)).join("");
       if (els.builderDetailPanel) els.builderDetailPanel.classList.remove("is-empty");
       if (role === "seo")       renderSeoDetail(selected);
       else if (role === "aeo")  renderAeoDetail(selected);
@@ -460,6 +490,41 @@
   function renderMyWorkSection([label, tone, tasks = []], selectedId) {
     const sectionTasks = tasks.filter(isRenderableTask);
     return `<section class="workbench-section"><div class="workbench-section-head"><span>${escapeHtml(label)}</span><span>${sectionTasks.length}</span></div>${sectionTasks.length ? sectionTasks.map((t) => renderMyWorkRow(t, tone, t.id === selectedId)).join("") : `<div class="empty">No tasks here.</div>`}</section>`;
+  }
+
+  /* Brand accordion section — used for SEO / AEO (and builder) queues */
+  function taskBrand(task) { return task.make || "Other"; }
+
+  function renderMyWorkBrandSection([label, tone, tasks = []], selectedId) {
+    const sectionTasks = tasks.filter(isRenderableTask);
+    if (!sectionTasks.length) return "";
+    const brandMap = {};
+    sectionTasks.forEach((t) => {
+      const b = taskBrand(t);
+      if (!brandMap[b]) brandMap[b] = [];
+      brandMap[b].push(t);
+    });
+    const brands = Object.keys(brandMap).sort();
+    const brandHtml = brands.map((brand) => {
+      const bTasks = brandMap[brand];
+      const key = `wb-brand-${tone}-${encodeURIComponent(brand)}`;
+      const hasSelected = bTasks.some((t) => t.id === selectedId);
+      const isOpen = hasSelected || sessionStorage.getItem(key) !== "closed";
+      return `<div class="wb-brand-group${isOpen ? "" : " is-collapsed"}" data-wb-brand-key="${escapeAttr(key)}">
+        <button class="wb-brand-toggle" type="button" data-wb-brand-toggle="${escapeAttr(key)}">
+          <span class="wb-brand-chevron">${isOpen ? "▾" : "▸"}</span>
+          <span class="wb-brand-name">${escapeHtml(brand)}</span>
+          <span class="wb-brand-count">${bTasks.length}</span>
+        </button>
+        <div class="wb-brand-rows"${isOpen ? "" : " hidden"}>
+          ${bTasks.map((t) => renderMyWorkRow(t, tone, t.id === selectedId)).join("")}
+        </div>
+      </div>`;
+    }).join("");
+    return `<section class="workbench-section">
+      <div class="workbench-section-head"><span>${escapeHtml(label)}</span><span>${sectionTasks.length}</span></div>
+      ${brandHtml}
+    </section>`;
   }
 
   function renderMyWorkRow(task, tone, selected) {

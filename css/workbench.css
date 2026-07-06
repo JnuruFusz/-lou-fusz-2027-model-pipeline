@@ -1777,3 +1777,64 @@ body[data-theme="light"] .focus-up-next-item:hover {
 body[data-theme="light"] .focus-exit-btn:hover {
   background: rgba(0,0,0,.05);
 }
+
+/* ── Brand accordion (My Work queue) ─────────────────────── */
+.wb-brand-group {
+  border-bottom: 1px solid var(--border, rgba(255,255,255,.07));
+}
+.wb-brand-group:last-child { border-bottom: none; }
+.wb-brand-toggle {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  width: 100%;
+  padding: .55rem 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary, #e8e3dc);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  text-align: left;
+  transition: background .15s;
+}
+.wb-brand-toggle:hover { background: rgba(255,255,255,.05); }
+.wb-brand-chevron {
+  font-size: .65rem;
+  color: var(--text-muted, rgba(255,255,255,.35));
+  flex-shrink: 0;
+  width: .8rem;
+}
+.wb-brand-name { flex: 1; }
+.wb-brand-count {
+  background: rgba(255,255,255,.1);
+  color: var(--text-muted, rgba(255,255,255,.45));
+  font-size: .68rem;
+  font-weight: 700;
+  padding: .1rem .45rem;
+  border-radius: 999px;
+  min-width: 1.4rem;
+  text-align: center;
+}
+.wb-brand-rows .workbench-row { padding-left: 2rem; }
+
+/* Light / cream theme overrides */
+html body[data-theme="light"] .wb-brand-toggle,
+html body[data-theme="gray"]  .wb-brand-toggle {
+  color: var(--text-primary);
+}
+html body[data-theme="light"] .wb-brand-toggle:hover,
+html body[data-theme="gray"]  .wb-brand-toggle:hover {
+  background: rgba(0,0,0,.04);
+}
+html body[data-theme="light"] .wb-brand-count,
+html body[data-theme="gray"]  .wb-brand-count {
+  background: rgba(0,0,0,.08);
+  color: var(--text-muted);
+}
+html body[data-theme="light"] .wb-brand-group,
+html body[data-theme="gray"]  .wb-brand-group {
+  border-bottom-color: var(--border, rgba(0,0,0,.08));
+}

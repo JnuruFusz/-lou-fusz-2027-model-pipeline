@@ -70,19 +70,19 @@
     <main>
       <section class="summary-grid" aria-label="Pipeline summary">
         <div class="metric">
-          <span class="metric-label">Ready to build</span>
+          <span class="metric-label" id="metricLabelDetected">Ready to build</span>
           <strong id="metricDetected">0</strong>
         </div>
         <div class="metric">
-          <span class="metric-label">Live checks</span>
+          <span class="metric-label" id="metricLabelSeo">Live checks</span>
           <strong id="metricSeo">0</strong>
         </div>
         <div class="metric">
-          <span class="metric-label">Blocked</span>
+          <span class="metric-label" id="metricLabelAeo">Blocked</span>
           <strong id="metricAeo">0</strong>
         </div>
         <div class="metric">
-          <span class="metric-label">Built month</span>
+          <span class="metric-label" id="metricLabelLive">Built month</span>
           <strong id="metricLive">0</strong>
         </div>
       </section>
@@ -100,7 +100,7 @@
       <section id="myWorkPanel" class="workspace-panel" aria-label="My work">
         <div class="builder-panel builder-queue-panel">
           <div class="section-heading">
-            <h2>My build queue</h2>
+            <h2 id="myWorkQueueTitle">My build queue</h2>
             <span id="myWorkCount" class="count-pill">0</span>
           </div>
           <div id="myWorkList" class="my-work-grid"></div>
