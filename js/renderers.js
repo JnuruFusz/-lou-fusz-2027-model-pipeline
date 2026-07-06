@@ -47,14 +47,25 @@ function teamPipelineTasks(tasks = []) {
 function personalWorkTasks(tasks = []) {
   if (state.workspaceView !== "my_work") return tasks;
   const role = currentRoleKey();
+  const me = (state.session?.name || "").toLowerCase();
   if (role.includes("builder")) {
-    return tasks.filter((task) => task.year >= 2027 && ["seo_done", "needs_build", "page_built", "needs_review"].includes(task.pageStatus));
+    const pool = tasks.filter((task) =>
+      task.year >= 2027 && ["seo_done", "needs_build", "page_built", "needs_review"].includes(task.pageStatus)
+    );
+    const mine = pool.filter((t) => (t.details?.buildOwner || "").toLowerCase() === me);
+    return mine.length ? mine : pool.filter((t) => !t.details?.buildOwner);
   }
   if (role.includes("seo")) {
-    return tasks.filter((task) => ["needs_seo", "seo_in_progress", "needs_review"].includes(task.pageStatus));
+    const pool = tasks.filter((task) => ["needs_seo", "seo_in_progress", "needs_review"].includes(task.pageStatus));
+    const mine = pool.filter((t) => (t.details?.seoOwner || "").toLowerCase() === me);
+    return mine.length ? mine : pool.filter((t) => !t.details?.seoOwner);
   }
   if (role.includes("aeo")) {
-    return tasks.filter((task) => !["live", "ignored", "snoozed"].includes(task.pageStatus) && !["done", "not_needed"].includes(task.aeoStatus));
+    const pool = tasks.filter((task) =>
+      !["live", "ignored", "snoozed"].includes(task.pageStatus) && !["done", "not_needed"].includes(task.aeoStatus)
+    );
+    const mine = pool.filter((t) => (t.details?.aeoOwner || "").toLowerCase() === me);
+    return mine.length ? mine : pool.filter((t) => !t.details?.aeoOwner);
   }
   return tasks.filter((task) => !["live", "ignored", "snoozed"].includes(task.pageStatus));
 }
