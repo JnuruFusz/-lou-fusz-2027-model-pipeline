@@ -1922,3 +1922,298 @@ body[data-theme="light"] .workbench-group-head {
 body[data-theme="light"] .workbench-group-head:hover {
   background: color-mix(in srgb, var(--group-accent, var(--blue)) 8%, #ede9e4) !important;
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Build Queue — Editorial Rail
+   Hierarchy via typography scale + whitespace + continuous brand rail.
+   No boxes, row borders, or full-width dividers.
+   All rules scoped to .builder-queue-panel.
+   Fonts: Bricolage Grotesque (display) · IBM Plex Mono (meta/labels).
+   Colors: uses existing CSS variables; brand rails via data-attr selectors.
+══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Queue header ─────────────────────────────────────────────────────── */
+.builder-queue-panel .section-heading {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  padding: 0 0 14px;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.builder-queue-panel .section-heading h2 {
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1;
+  flex: 0 0 100%;         /* own row above stats + Focus */
+}
+
+/* Count summary — mono editorial text, no pill chrome */
+.builder-queue-panel .count-pill {
+  flex: 1 1 auto;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: .01em;
+  line-height: 1.4;
+}
+
+/* Focus → — text link, no pill border */
+.builder-queue-panel .focus-entry-btn {
+  margin-left: auto;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+  color: var(--blue);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: .01em;
+  cursor: pointer;
+  transition: color 120ms ease;
+}
+
+.builder-queue-panel .focus-entry-btn:hover {
+  background: none;
+  color: var(--ink);
+}
+
+/* ── Section headers ─────────────────────────────────────────────────── */
+.builder-queue-panel .workbench-section {
+  background: transparent;
+  border-bottom: none;
+}
+
+.builder-queue-panel .workbench-section-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 0 10px;
+  background: transparent;
+  border-bottom: none;
+  color: var(--ink);
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+/* Hairline fill between label and count */
+.builder-queue-panel .workbench-section-head::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+  order: 1;
+}
+.builder-queue-panel .workbench-section-head span:first-child { order: 0; }
+
+/* Count — bare display number, no pill */
+.builder-queue-panel .workbench-section-head span:last-child {
+  order: 2;
+  display: inline;
+  min-width: auto;
+  padding: 0;
+  border: none;
+  background: none;
+  border-radius: 0;
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--muted);
+  opacity: 1;
+  letter-spacing: 0;
+}
+
+/* ── Brand groups — continuous vertical rail ─────────────────────────── */
+.builder-queue-panel .wb-brand-group {
+  position: relative;
+  padding-left: 16px;
+  border-bottom: none;
+  margin-bottom: 12px;
+}
+
+/* 3px rounded rail spanning full group height */
+.builder-queue-panel .wb-brand-group::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  border-radius: 99px;
+  background: var(--brand-rail, var(--muted));
+  opacity: .55;
+  transition: opacity 160ms ease;
+}
+.builder-queue-panel .wb-brand-group:hover::before { opacity: 1; }
+
+/* Per-brand rail colors via data attribute */
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="CHEVROLET"] { --brand-rail: #d4af37; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="FORD"]      { --brand-rail: #4a7fd4; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="GMC"]       { --brand-rail: #8a8f98; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="JEEP"]      { --brand-rail: #5a8a4a; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="KIA"]       { --brand-rail: #c0392b; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="MAZDA"]     { --brand-rail: #6d9eeb; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="RAM"]       { --brand-rail: #a04040; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="TOYOTA"]    { --brand-rail: #e05050; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="BUICK"]     { --brand-rail: #6b8fb5; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="CADILLAC"]  { --brand-rail: #9b8a6a; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="HONDA"]     { --brand-rail: #cc2222; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="HYUNDAI"]   { --brand-rail: #3d6aad; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="NISSAN"]    { --brand-rail: #c0392b; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="SUBARU"]    { --brand-rail: #3355aa; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="DODGE"]     { --brand-rail: #c0392b; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="LINCOLN"]   { --brand-rail: #8a9bb5; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="VOLKSWAGEN"]{ --brand-rail: #2244aa; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="CHRYSLER"]  { --brand-rail: #2255aa; }
+
+/* Brand group toggle — mono label, no background */
+.builder-queue-panel .wb-brand-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0 4px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  min-height: unset;
+  box-shadow: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: opacity 120ms ease;
+}
+.builder-queue-panel .wb-brand-toggle:hover {
+  background: transparent;
+  opacity: .7;
+}
+
+/* Brand name tinted with rail color */
+.builder-queue-panel .wb-brand-name {
+  flex: 1;
+  color: color-mix(in srgb, var(--brand-rail, var(--blue)) 75%, var(--ink));
+}
+
+/* Caret — smaller, subtler */
+.builder-queue-panel .wb-brand-chevron {
+  font-size: 9px;
+  color: var(--muted);
+  opacity: .6;
+  width: auto;
+}
+
+/* Count — bare Bricolage number, no pill */
+.builder-queue-panel .wb-brand-count {
+  margin-left: auto;
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  min-width: auto;
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0;
+}
+
+/* ── Item rows — no dot, no border ───────────────────────────────────── */
+.builder-queue-panel .workbench-dot { display: none; }
+
+.builder-queue-panel .wb-brand-rows .workbench-row {
+  display: block;
+  padding: 10px 0;
+  padding-left: 0;
+  border-top: none;
+  min-height: auto;
+  background: transparent;
+  transition: opacity 120ms ease;
+}
+.builder-queue-panel .wb-brand-rows .workbench-row:hover:not(.is-selected) {
+  background: transparent;
+  opacity: .68;
+}
+
+.builder-queue-panel .workbench-title {
+  display: block;
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-size: 15.5px;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 3px;
+  white-space: normal;      /* allow wrapping on long model names */
+}
+
+.builder-queue-panel .workbench-meta {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  line-height: 1.3;
+  white-space: normal;
+}
+
+/* Selected — floating card, not a full-width stripe */
+.builder-queue-panel .workbench-row.is-selected {
+  background: color-mix(in srgb, var(--blue) 14%, transparent);
+  border-radius: 8px;
+  box-shadow: none;
+  margin: 2px -12px;
+  padding: 10px 12px;
+}
+.builder-queue-panel .workbench-row.is-selected .workbench-meta {
+  color: color-mix(in srgb, var(--blue) 55%, var(--muted));
+}
+
+/* Light theme — rail colors stay; tint brand names to work on cream bg */
+body[data-theme="light"] .builder-queue-panel .wb-brand-name {
+  color: color-mix(in srgb, var(--brand-rail, var(--blue)) 85%, #000);
+}
+body[data-theme="light"] .builder-queue-panel .workbench-section-head {
+  color: var(--ink);
+}
+body[data-theme="light"] .builder-queue-panel .wb-brand-toggle {
+  color: var(--muted);
+}
+body[data-theme="light"] .builder-queue-panel .wb-brand-toggle:hover {
+  background: transparent;
+}
+
+/* ── Mobile ≤ 480px ─────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .builder-queue-panel .section-heading h2 { font-size: 20px; }
+  .builder-queue-panel .wb-brand-group { margin-bottom: 10px; }
+  .builder-queue-panel .wb-brand-toggle { min-height: 44px; padding: 0; }
+  .builder-queue-panel .wb-brand-rows .workbench-row {
+    min-height: 44px;
+    padding: 11px 0;
+  }
+  .builder-queue-panel .workbench-title { font-size: 15px; }
+  .builder-queue-panel .workbench-meta  { font-size: 11.5px; }
+  .builder-queue-panel .workbench-row.is-selected {
+    margin: 2px -16px;
+    padding: 10px 16px;
+    border-radius: 0;
+  }
+}
