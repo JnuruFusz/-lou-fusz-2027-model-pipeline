@@ -1789,10 +1789,18 @@ body[data-theme="light"] .focus-exit-btn:hover {
   gap: .5rem;
   width: 100%;
   padding: .55rem 1rem;
-  background: none;
+  /* reset browser + components.css button base */
+  background: transparent;
   border: none;
+  border-radius: 0;
+  box-shadow: none;
+  min-height: unset;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
   cursor: pointer;
   color: var(--text-primary, #e8e3dc);
+  font: inherit;
   font-size: .75rem;
   font-weight: 600;
   letter-spacing: .04em;
@@ -1800,7 +1808,12 @@ body[data-theme="light"] .focus-exit-btn:hover {
   text-align: left;
   transition: background .15s;
 }
-.wb-brand-toggle:hover { background: rgba(255,255,255,.05); }
+.wb-brand-toggle:hover {
+  background: rgba(255,255,255,.05);
+  border-color: transparent;
+  transform: none;
+  box-shadow: none;
+}
 .wb-brand-chevron {
   font-size: .65rem;
   color: var(--text-muted, rgba(255,255,255,.35));
