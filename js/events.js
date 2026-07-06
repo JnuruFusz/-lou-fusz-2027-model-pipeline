@@ -489,6 +489,19 @@ function updateStatus(taskId, status) {
   task.pageStatus = status;
   state.overrides[taskId] = status;
   fbSetPageStatus(state.overrides);
+
+  // Auto-assign current user as owner when they claim a task
+  if (state.session?.name) {
+    const isBuilderStatus = ["needs_build", "page_built", "live"].includes(status);
+    const isSeoStatus     = ["seo_in_progress", "seo_done"].includes(status);
+    const details = { ...(task.details || {}) };
+    if (isBuilderStatus && !details.buildOwner) details.buildOwner = state.session.name;
+    if (isSeoStatus     && !details.seoOwner)   details.seoOwner   = state.session.name;
+    task.details = details;
+    state.details[taskId] = details;
+    fbSetDetails(state.details);
+  }
+
   showToast(`${displayModel(task)} moved to ${statusLabels[status] || status}`);
   render();
 }
@@ -500,6 +513,16 @@ function updateAeoStatus(taskId, status) {
   task.aeoStatus = status;
   state.aeoOverrides[taskId] = status;
   fbSetAeoStatus(state.aeoOverrides);
+
+  // Auto-assign AEO owner when they claim a task
+  if (state.session?.name && ["in_progress", "done"].includes(status)) {
+    const details = { ...(task.details || {}) };
+    if (!details.aeoOwner) details.aeoOwner = state.session.name;
+    task.details = details;
+    state.details[taskId] = details;
+    fbSetDetails(state.details);
+  }
+
   showToast(`${displayModel(task)} ${aeoLabels[status] || status}`);
   render();
 }
