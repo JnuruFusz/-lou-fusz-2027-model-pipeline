@@ -2646,3 +2646,14 @@ body[data-workspace-view="team_board"] .table-wrap {
   font-family: 'Bricolage Grotesque', system-ui, sans-serif;
   letter-spacing: -.03em;
 }
+
+/* ── 6. Light-theme elevation — settings & admin cards ─────────────────────
+   tokens.css lifts .work-card/.metric/etc with box-shadow in light theme but
+   omits .settings-section, .admin-row, and .pipeline-snapshot article.
+   Without shadow these cards are barely distinguishable from --bg (#f7f4f0)
+   vs --panel (#fffcf8). Adding a matching soft shadow brings them in line.    */
+body[data-theme="light"] .settings-section,
+body[data-theme="light"] .admin-row,
+body[data-theme="light"] .pipeline-snapshot article {
+  box-shadow: 0 8px 20px rgba(39, 55, 70, 0.06);
+}
