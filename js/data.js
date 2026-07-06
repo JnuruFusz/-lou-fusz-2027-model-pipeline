@@ -14,7 +14,7 @@ const TEAM_ROSTER = [
   },
   {
     name: "Scott Toulou",
-    email: "scott.touloo@fusz.com",
+    email: "scott.toulou@fusz.com",
     googleEmail: "scotttoulou@gmail.com",
     initials: "ST",
     primaryRole: "AEO Writer",

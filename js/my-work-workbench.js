@@ -1,10 +1,14 @@
 (function () {
-  let _lastSelectedId = null; // persists selected task across re-renders
-  let _focusMode = true;      // builders start in focus mode; exit drops to queue list
+  let _lastSelectedId = null;
+  let _focusMode = true;
 
-  /* ---------------------------------------------------------------
-     Built-today counter — sessionStorage, resets each calendar day
-     --------------------------------------------------------------- */
+  function currentMyWorkRole() {
+    const role = (state.session?.primaryRole || "").toLowerCase();
+    if (role.includes("seo")) return "seo";
+    if (role.includes("aeo")) return "aeo";
+    return "builder";
+  }
+
   function getBuiltToday() {
     try {
       const stored = JSON.parse(sessionStorage.getItem("fusz-built-today") || "{}");
@@ -27,6 +31,7 @@
     return Boolean(task && task.id && task.pageStatus);
   }
 
+  /* Builder task grouping (original, unchanged) */
   function myWorkGroups(tasks = []) {
     const safeTasks = Array.isArray(tasks) ? tasks.filter(isRenderableTask) : [];
     const work = safeTasks
@@ -35,9 +40,32 @@
     return { work };
   }
 
-  /* ---------------------------------------------------------------
-     Focus CTA label + next status
-     --------------------------------------------------------------- */
+  /* Role-aware task grouping */
+  function myWorkGroupsForRole(tasks, role) {
+    const safe = Array.isArray(tasks) ? tasks.filter(isRenderableTask) : [];
+    if (role === "seo") {
+      const priority = { needs_review: 0, seo_in_progress: 1, needs_seo: 2 };
+      const work = safe
+        .filter((t) => ["needs_seo","seo_in_progress","needs_review"].includes(t.pageStatus))
+        .sort((a, b) => (priority[a.pageStatus] ?? 9) - (priority[b.pageStatus] ?? 9));
+      return { work };
+    }
+    if (role === "aeo") {
+      const work = safe
+        .filter((t) =>
+          !["done","not_needed"].includes(t.aeoStatus) &&
+          !["live","ignored","snoozed"].includes(t.pageStatus)
+        )
+        .sort((a, b) => {
+          const p = { needs_review: 0, in_progress: 1, not_started: 2 };
+          return (p[a.aeoStatus] ?? 3) - (p[b.aeoStatus] ?? 3);
+        });
+      return { work };
+    }
+    return myWorkGroups(tasks);
+  }
+
+  /* Focus CTA — builder */
   function focusCta(task) {
     if (task.pageStatus === "page_built")   return ["Mark live ↑",   "live"];
     if (task.pageStatus === "seo_done")     return ["Start build →", "needs_build"];
@@ -46,9 +74,20 @@
     return ["Review", "live"];
   }
 
-  /* ---------------------------------------------------------------
-     Three-step checklist inside the focus card
-     --------------------------------------------------------------- */
+  /* Focus CTA — SEO Writer */
+  function focusCtaSeo(task) {
+    if (task.pageStatus === "seo_in_progress") return ["Mark SEO done ↑",    "seo_done"];
+    if (task.pageStatus === "needs_review")    return ["Resolve & resubmit", "seo_in_progress"];
+    return ["Start writing →", "seo_in_progress"];
+  }
+
+  /* Focus CTA — AEO Writer */
+  function focusCtaAeo(task) {
+    if (task.aeoStatus === "in_progress") return ["Mark AEO done ↑", "done"];
+    return ["Start AEO →", "in_progress"];
+  }
+
+  /* Checklist — builder */
   function focusChecklist(task) {
     const seoDone     = ["seo_done","needs_build","page_built","live","needs_review"].includes(task.pageStatus);
     const buildDone   = ["page_built","live"].includes(task.pageStatus);
@@ -56,32 +95,22 @@
     const verifyDone   = task.pageStatus === "live";
     const verifyActive = task.pageStatus === "page_built";
     const docUrl = (typeof seoDocUrl === "function") ? seoDocUrl(task) : null;
-
     return [
       {
-        label: "SEO copy available",
-        done: seoDone, active: false,
-        link: docUrl
-          ? `<a class="focus-check-link" href="${escapeAttr(docUrl)}" target="_blank" rel="noreferrer">Open doc</a>`
-          : "",
+        label: "SEO copy available", done: seoDone, active: false,
+        link: docUrl ? `<a class="focus-check-link" href="${escapeAttr(docUrl)}" target="_blank" rel="noreferrer">Open doc</a>` : "",
       },
       {
-        label: "Build the model page",
-        done: buildDone, active: buildActive,
+        label: "Build the model page", done: buildDone, active: buildActive,
         link: (() => {
           const base = (task.inventoryUrl || "").match(/^(https?:\/\/[^\/]+)/);
           const cmsUrl = base ? `${base[1]}/wp/wp-admin/` : null;
-          return cmsUrl
-            ? `<a class="focus-check-link" href="${escapeAttr(cmsUrl)}" target="_blank" rel="noreferrer">Open CMS</a>`
-            : "";
+          return cmsUrl ? `<a class="focus-check-link" href="${escapeAttr(cmsUrl)}" target="_blank" rel="noreferrer">Open CMS</a>` : "";
         })(),
       },
       {
-        label: "Verify live URL",
-        done: verifyDone, active: verifyActive,
-        link: task.inventoryUrl
-          ? `<a class="focus-check-link" href="${escapeAttr(task.inventoryUrl)}" target="_blank" rel="noreferrer">Open page</a>`
-          : "",
+        label: "Verify live URL", done: verifyDone, active: verifyActive,
+        link: task.inventoryUrl ? `<a class="focus-check-link" href="${escapeAttr(task.inventoryUrl)}" target="_blank" rel="noreferrer">Open page</a>` : "",
       },
     ].map(({ label, done, active, link }) =>
       `<div class="focus-check-row${done ? " is-done" : active ? " is-active" : ""}">
@@ -92,14 +121,45 @@
     ).join("");
   }
 
-  /* ---------------------------------------------------------------
-     UP NEXT list (up to 4 tasks after the current one)
-     --------------------------------------------------------------- */
+  /* Checklist — SEO Writer */
+  function focusChecklistSeo(task) {
+    const started = ["seo_in_progress","seo_done","needs_build","page_built","live"].includes(task.pageStatus);
+    const done    = ["seo_done","needs_build","page_built","live"].includes(task.pageStatus);
+    return [
+      { label: "Open model brief",        done: started, active: !started },
+      { label: "Write SEO copy",          done: done,    active: started && !done },
+      { label: "Mark done → builder",     done: done,    active: false },
+    ].map(({ label, done: d, active }) =>
+      `<div class="focus-check-row${d ? " is-done" : active ? " is-active" : ""}">
+        <span class="focus-check-icon">${d ? "✓" : ""}</span>
+        <span class="focus-check-label">${escapeHtml(label)}</span>
+      </div>`
+    ).join("");
+  }
+
+  /* Checklist — AEO Writer */
+  function focusChecklistAeo(task) {
+    const started = ["in_progress","done"].includes(task.aeoStatus);
+    const done    = task.aeoStatus === "done";
+    return [
+      { label: "Review model page",   done: started, active: !started },
+      { label: "Complete AEO layer",  done: done,    active: started && !done },
+      { label: "Mark AEO done",       done: done,    active: false },
+    ].map(({ label, done: d, active }) =>
+      `<div class="focus-check-row${d ? " is-done" : active ? " is-active" : ""}">
+        <span class="focus-check-icon">${d ? "✓" : ""}</span>
+        <span class="focus-check-label">${escapeHtml(label)}</span>
+      </div>`
+    ).join("");
+  }
+
+  /* UP NEXT list */
   function upNextStatus(task) {
-    const t = relativeTime(task);
-    if (task.pageStatus === "page_built")   return `Live check ${t}`;
-    if (task.pageStatus === "needs_review") return `Returned ${t}`;
-    return `SEO ready ${t}`;
+    if (task.pageStatus === "page_built")      return `Live check`;
+    if (task.pageStatus === "needs_review")    return `Returned`;
+    if (task.pageStatus === "seo_in_progress") return `In progress`;
+    if (task.pageStatus === "needs_seo")       return `Needs copy`;
+    return `SEO ready`;
   }
 
   function renderUpNext(work, currentId) {
@@ -131,9 +191,7 @@
     return "2h ago";
   }
 
-  /* ---------------------------------------------------------------
-     Focus hero — the full new task card (builders)
-     --------------------------------------------------------------- */
+  /* Focus hero — builder (unchanged) */
   function renderFocusHero(task, work) {
     if (!task) return "";
     const [ctaLabel, ctaStatus] = focusCta(task);
@@ -143,7 +201,6 @@
     const totalToday = builtToday + remaining;
     const pct        = totalToday > 0 ? Math.round((builtToday / totalToday) * 100) : 0;
     const isMarkBuilt = ctaStatus === "page_built";
-
     return `
 <div class="focus-hero">
   <header class="focus-hero-header">
@@ -154,41 +211,91 @@
     </div>
     <button class="focus-exit-btn" type="button" data-focus-exit>Exit focus</button>
   </header>
-
   <div class="focus-hero-content">
     <div class="focus-hero-body" data-workbench-task="${escapeAttr(task.id)}">
-      <p class="focus-eyebrow">
-        <span class="focus-eyebrow-dot"></span>YOUR NEXT ACTION
-        <span class="focus-eyebrow-sep">·</span>
-        ${position} OF ${remaining} REMAINING
-      </p>
+      <p class="focus-eyebrow"><span class="focus-eyebrow-dot"></span>YOUR NEXT ACTION<span class="focus-eyebrow-sep">·</span>${position} OF ${remaining} REMAINING</p>
       <h2 class="focus-task-title">${escapeHtml(taskTitle(task))}</h2>
       <p class="focus-task-meta">${escapeHtml(dealerShortName(task.dealer))} · SEO finalized ${escapeHtml(relativeTime(task))} · Owner: ${escapeHtml(ownerBucket(task))}</p>
-
-      <div class="focus-checklist">
-        ${focusChecklist(task)}
-      </div>
-
+      <div class="focus-checklist">${focusChecklist(task)}</div>
       <div class="focus-actions">
         <button class="focus-btn focus-btn-ghost" type="button" data-workbench-return>Send back</button>
         <button class="focus-btn focus-btn-ghost" type="button" data-focus-skip>Skip for now</button>
-        <button class="focus-btn focus-btn-primary" type="button"
-          data-status="${escapeAttr(ctaStatus)}"
-          data-task-id="${escapeAttr(task.id)}"
-          ${isMarkBuilt ? "data-focus-mark-built" : ""}
-        >${escapeHtml(ctaLabel)}</button>
+        <button class="focus-btn focus-btn-primary" type="button" data-status="${escapeAttr(ctaStatus)}" data-task-id="${escapeAttr(task.id)}" ${isMarkBuilt ? "data-focus-mark-built" : ""}>${escapeHtml(ctaLabel)}</button>
       </div>
       <p class="focus-shortcuts">⏎ mark built &nbsp;·&nbsp; S skip &nbsp;·&nbsp; B send back</p>
     </div>
-
     ${renderUpNext(work, task.id)}
   </div>
 </div>`;
   }
 
-  /* ---------------------------------------------------------------
-     Skip to next task in queue
-     --------------------------------------------------------------- */
+  /* Focus hero — SEO Writer */
+  function renderSeoFocusHero(task, work) {
+    if (!task) return "";
+    const [ctaLabel, ctaStatus] = focusCtaSeo(task);
+    const remaining = work.length;
+    const position  = work.findIndex((t) => t.id === task.id) + 1;
+    return `
+<div class="focus-hero">
+  <header class="focus-hero-header">
+    <span class="focus-hero-wordmark">My Work <span class="focus-mode-tag">Focus</span></span>
+    <div class="focus-hero-progress">
+      <span class="focus-progress-text">${remaining} to write</span>
+      <div class="focus-progress-track"><div class="focus-progress-fill" style="width:${Math.max(5, 100 - remaining * 8)}%"></div></div>
+    </div>
+    <button class="focus-exit-btn" type="button" data-focus-exit>Exit focus</button>
+  </header>
+  <div class="focus-hero-content">
+    <div class="focus-hero-body" data-workbench-task="${escapeAttr(task.id)}">
+      <p class="focus-eyebrow"><span class="focus-eyebrow-dot"></span>YOUR NEXT ACTION<span class="focus-eyebrow-sep">·</span>${position} OF ${remaining} REMAINING</p>
+      <h2 class="focus-task-title">${escapeHtml(taskTitle(task))}</h2>
+      <p class="focus-task-meta">${escapeHtml(dealerShortName(task.dealer))} · ${escapeHtml(statusLabels[task.pageStatus] || task.pageStatus)}</p>
+      <div class="focus-checklist">${focusChecklistSeo(task)}</div>
+      <div class="focus-actions">
+        <button class="focus-btn focus-btn-ghost" type="button" data-focus-skip>Skip for now</button>
+        <button class="focus-btn focus-btn-primary" type="button" data-status="${escapeAttr(ctaStatus)}" data-task-id="${escapeAttr(task.id)}">${escapeHtml(ctaLabel)}</button>
+      </div>
+      <p class="focus-shortcuts">⏎ advance &nbsp;·&nbsp; S skip</p>
+    </div>
+    ${renderUpNext(work, task.id)}
+  </div>
+</div>`;
+  }
+
+  /* Focus hero — AEO Writer */
+  function renderAeoFocusHero(task, work) {
+    if (!task) return "";
+    const [ctaLabel, ctaStatus] = focusCtaAeo(task);
+    const remaining = work.length;
+    const position  = work.findIndex((t) => t.id === task.id) + 1;
+    return `
+<div class="focus-hero">
+  <header class="focus-hero-header">
+    <span class="focus-hero-wordmark">My Work <span class="focus-mode-tag">Focus</span></span>
+    <div class="focus-hero-progress">
+      <span class="focus-progress-text">${remaining} AEO tasks remaining</span>
+      <div class="focus-progress-track"><div class="focus-progress-fill" style="width:${Math.max(5, 100 - remaining * 8)}%"></div></div>
+    </div>
+    <button class="focus-exit-btn" type="button" data-focus-exit>Exit focus</button>
+  </header>
+  <div class="focus-hero-content">
+    <div class="focus-hero-body" data-workbench-task="${escapeAttr(task.id)}">
+      <p class="focus-eyebrow"><span class="focus-eyebrow-dot"></span>YOUR NEXT ACTION<span class="focus-eyebrow-sep">·</span>${position} OF ${remaining} REMAINING</p>
+      <h2 class="focus-task-title">${escapeHtml(taskTitle(task))}</h2>
+      <p class="focus-task-meta">${escapeHtml(dealerShortName(task.dealer))} · AEO ${escapeHtml(task.aeoStatus || "pending")}</p>
+      <div class="focus-checklist">${focusChecklistAeo(task)}</div>
+      <div class="focus-actions">
+        <button class="focus-btn focus-btn-ghost" type="button" data-focus-skip>Skip for now</button>
+        <button class="focus-btn focus-btn-primary" type="button" data-aeo-status="${escapeAttr(ctaStatus)}" data-task-id="${escapeAttr(task.id)}">${escapeHtml(ctaLabel)}</button>
+      </div>
+      <p class="focus-shortcuts">⏎ advance &nbsp;·&nbsp; S skip</p>
+    </div>
+    ${renderUpNext(work, task.id)}
+  </div>
+</div>`;
+  }
+
+  /* Skip */
   function skipToNext(work) {
     const idx  = work.findIndex((t) => t.id === _lastSelectedId);
     const next = work[idx + 1] || work[0];
@@ -198,18 +305,14 @@
     }
   }
 
-  /* ---------------------------------------------------------------
-     Keyboard shortcuts (active only on My Work view)
-     --------------------------------------------------------------- */
+  /* Keyboard shortcuts */
   document.addEventListener("keydown", (e) => {
     if (state.workspaceView !== "my_work") return;
     if (e.target.matches("input, textarea, select, [contenteditable]")) return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
-
     const primaryBtn = document.querySelector(".focus-btn-primary[data-task-id]");
     const skipBtn    = document.querySelector("[data-focus-skip]");
     const returnBtn  = document.querySelector("[data-workbench-return]");
-
     if ((e.key === "ArrowUp" || e.key === "Enter") && primaryBtn) {
       e.preventDefault();
       if (primaryBtn.hasAttribute("data-focus-mark-built")) recordBuiltToday();
@@ -219,57 +322,28 @@
     if ((e.key === "b" || e.key === "B") && returnBtn) { e.preventDefault(); returnBtn.click(); }
   });
 
-  /* ---------------------------------------------------------------
-     Click delegation
-     --------------------------------------------------------------- */
+  /* Click delegation */
   document.addEventListener("click", (e) => {
-    // Select a task from UP NEXT (or any [data-workbench-task] that isn't a link/button inside)
     const wbRow = e.target.closest("[data-workbench-task]");
-    if (wbRow && !e.target.closest("[data-status]") && !e.target.closest("a")) {
+    if (wbRow && !e.target.closest("[data-status]") && !e.target.closest("[data-aeo-status]") && !e.target.closest("a")) {
       e.preventDefault();
       _lastSelectedId = wbRow.dataset.workbenchTask;
-      const isBuilder = (state.session?.primaryRole || "").toLowerCase().includes("builder");
-      if (isBuilder) _focusMode = true; // clicking a task re-enters focus
-      if (typeof renderMyWork === "function") renderMyWork(state.tasks);
-      return;
-    }
-
-    // "Mark built" — record before the status handler fires
-    if (e.target.closest("[data-focus-mark-built]")) {
-      recordBuiltToday();
-      return; // status fires via events.js [data-task-id][data-status] handler
-    }
-
-    // Skip for now
-    const skipBtn = e.target.closest("[data-focus-skip]");
-    if (skipBtn) {
-      const { work } = myWorkGroups(state.tasks || []);
-      skipToNext(work);
-      return;
-    }
-
-    // Enter focus (button in section heading)
-    if (e.target.closest("[data-focus-enter]")) {
       _focusMode = true;
       if (typeof renderMyWork === "function") renderMyWork(state.tasks);
       return;
     }
-
-    // Exit focus → stay on My Work, drop to queue list
-    if (e.target.closest("[data-focus-exit]")) {
-      _focusMode = false;
-      if (typeof renderMyWork === "function") renderMyWork(state.tasks);
+    if (e.target.closest("[data-focus-mark-built]")) { recordBuiltToday(); return; }
+    const skipBtn = e.target.closest("[data-focus-skip]");
+    if (skipBtn) {
+      const { work } = myWorkGroupsForRole(state.tasks || [], currentMyWorkRole());
+      skipToNext(work);
       return;
     }
-
-    // AI check toggle (legacy detail panel)
+    if (e.target.closest("[data-focus-enter]")) { _focusMode = true; if (typeof renderMyWork === "function") renderMyWork(state.tasks); return; }
+    if (e.target.closest("[data-focus-exit]"))  { _focusMode = false; if (typeof renderMyWork === "function") renderMyWork(state.tasks); return; }
     const aiButton = e.target.closest("[data-workbench-ai]");
     if (aiButton) { aiButton.nextElementSibling?.classList.toggle("is-visible"); return; }
-
-    // Send back — show return note
-    if (e.target.closest("[data-workbench-return]")) {
-      document.querySelector(".workbench-return-note")?.classList.toggle("is-visible");
-    }
+    if (e.target.closest("[data-workbench-return]")) { document.querySelector(".workbench-return-note")?.classList.toggle("is-visible"); }
   });
 
   /* ---------------------------------------------------------------
@@ -277,30 +351,47 @@
      --------------------------------------------------------------- */
   window.renderMyWork = function renderMyWorkWorkbench(tasks = []) {
     installMyWorkStyles();
+    const role = currentMyWorkRole();
     const safeTasks = Array.isArray(tasks) ? tasks.filter(isRenderableTask) : [];
-    const { work } = myWorkGroups(safeTasks);
+    const { work } = myWorkGroupsForRole(safeTasks, role);
 
     const selected = (_lastSelectedId && work.find((t) => t.id === _lastSelectedId))
-      || work.find(isRenderableTask)
-      || null;
+      || work.find(isRenderableTask) || null;
     if (selected) _lastSelectedId = selected.id;
 
-    // Section heading: count chip + focus button for builders
+    /* Count summary — role-aware */
     if (els.myWorkCount) {
-      const nBuild   = work.filter((t) => ["seo_done","needs_build"].includes(t.pageStatus)).length;
-      const nVerify  = work.filter((t) => t.pageStatus === "page_built").length;
-      const nBlocked = work.filter((t) => t.pageStatus === "needs_review").length;
-      const parts = [];
-      if (nBuild)   parts.push(`${nBuild} to build`);
-      if (nVerify)  parts.push(`${nVerify} to verify`);
-      if (nBlocked) parts.push(`${nBlocked} blocked`);
-      els.myWorkCount.textContent = parts.length ? parts.join(" · ") : "All clear";
+      if (role === "seo") {
+        const nNeeds = work.filter((t) => t.pageStatus === "needs_seo").length;
+        const nProg  = work.filter((t) => t.pageStatus === "seo_in_progress").length;
+        const nRet   = work.filter((t) => t.pageStatus === "needs_review").length;
+        const parts  = [];
+        if (nNeeds) parts.push(`${nNeeds} to write`);
+        if (nProg)  parts.push(`${nProg} in progress`);
+        if (nRet)   parts.push(`${nRet} returned`);
+        els.myWorkCount.textContent = parts.length ? parts.join(" · ") : "All clear";
+      } else if (role === "aeo") {
+        const nPend = work.filter((t) => t.aeoStatus !== "in_progress").length;
+        const nProg = work.filter((t) => t.aeoStatus === "in_progress").length;
+        const parts = [];
+        if (nPend) parts.push(`${nPend} to do`);
+        if (nProg) parts.push(`${nProg} in progress`);
+        els.myWorkCount.textContent = parts.length ? parts.join(" · ") : "All clear";
+      } else {
+        const nBuild   = work.filter((t) => ["seo_done","needs_build"].includes(t.pageStatus)).length;
+        const nVerify  = work.filter((t) => t.pageStatus === "page_built").length;
+        const nBlocked = work.filter((t) => t.pageStatus === "needs_review").length;
+        const parts = [];
+        if (nBuild)   parts.push(`${nBuild} to build`);
+        if (nVerify)  parts.push(`${nVerify} to verify`);
+        if (nBlocked) parts.push(`${nBlocked} blocked`);
+        els.myWorkCount.textContent = parts.length ? parts.join(" · ") : "All clear";
+      }
     }
 
-    // Show/hide the Focus entry button in the section heading
-    const isBuilder = (state.session?.primaryRole || "").toLowerCase().includes("builder");
+    /* Focus entry button — all roles */
     let focusEntryBtn = document.getElementById("focusEntryBtn");
-    if (isBuilder && work.length) {
+    if (work.length) {
       if (!focusEntryBtn) {
         focusEntryBtn = document.createElement("button");
         focusEntryBtn.id = "focusEntryBtn";
@@ -316,42 +407,56 @@
 
     if (!els.myWorkList) return;
 
+    /* Empty state */
     if (!work.length) {
       els.myWorkList.className = "workbench-queue";
-      const role = state.session?.primaryRole || "Builder";
-      const msgs = {
-        "Builder":    "Queue clear. Every page you touched today is one step closer to live.",
-        "SEO Writer": "Nothing left to write today. Nice work — the builders are going to love this.",
-        "AEO Writer": "AEO queue is clear. Dialed in.",
-      };
+      const msgs = { builder: "Queue clear. Every page you touched today is one step closer to live.", seo: "Nothing left to write today. Nice work — the builders are going to love this.", aeo: "AEO queue is clear. Dialed in." };
       els.myWorkList.innerHTML = `<div class="workbench-empty-state"><p class="workbench-empty-icon">✓</p><p class="workbench-empty-msg">${msgs[role] || "All clear."}</p></div>`;
       if (els.builderDetailPanel) els.builderDetailPanel.classList.add("is-empty");
       return;
     }
 
-    if (isBuilder && _focusMode) {
+    /* Focus mode — all roles */
+    if (_focusMode) {
       els.myWorkPanel?.classList.add("is-focus-mode");
       els.myWorkList.className = "focus-hero-wrapper";
-      els.myWorkList.innerHTML = renderFocusHero(selected, work);
+      if (role === "seo")        els.myWorkList.innerHTML = renderSeoFocusHero(selected, work);
+      else if (role === "aeo")   els.myWorkList.innerHTML = renderAeoFocusHero(selected, work);
+      else                       els.myWorkList.innerHTML = renderFocusHero(selected, work);
       if (els.builderDetailPanel) els.builderDetailPanel.classList.add("is-empty");
     } else {
-      // Writers, or builder who exited focus — show queue list + detail panel
+      /* Queue list + detail panel */
       els.myWorkPanel?.classList.remove("is-focus-mode");
       els.myWorkList.className = "workbench-queue";
-      const groups = [
-        ["Ready to write",  "ready",   work.filter((t) => ["seo_done","needs_build"].includes(t.pageStatus))],
-        ["Needs live check","verify",  work.filter((t) => t.pageStatus === "page_built")],
-        ["Returned",        "blocked", work.filter((t) => t.pageStatus === "needs_review")],
-      ];
+      let groups;
+      if (role === "seo") {
+        groups = [
+          ["Needs copy",  "seo-needs",    work.filter((t) => t.pageStatus === "needs_seo")],
+          ["In progress", "seo-progress", work.filter((t) => t.pageStatus === "seo_in_progress")],
+          ["Returned",    "blocked",      work.filter((t) => t.pageStatus === "needs_review")],
+        ];
+      } else if (role === "aeo") {
+        groups = [
+          ["Needs AEO",   "aeo-needs",    work.filter((t) => t.aeoStatus !== "in_progress" && t.pageStatus !== "needs_review")],
+          ["In progress", "aeo-progress", work.filter((t) => t.aeoStatus === "in_progress")],
+          ["Returned",    "blocked",      work.filter((t) => t.pageStatus === "needs_review")],
+        ];
+      } else {
+        groups = [
+          ["Ready to write",   "ready",  work.filter((t) => ["seo_done","needs_build"].includes(t.pageStatus))],
+          ["Needs live check", "verify", work.filter((t) => t.pageStatus === "page_built")],
+          ["Returned",         "blocked",work.filter((t) => t.pageStatus === "needs_review")],
+        ];
+      }
       els.myWorkList.innerHTML = groups.map((g) => renderMyWorkSection(g, selected?.id)).join("");
       if (els.builderDetailPanel) els.builderDetailPanel.classList.remove("is-empty");
-      renderBuilderDetail(selected);
+      if (role === "seo")       renderSeoDetail(selected);
+      else if (role === "aeo")  renderAeoDetail(selected);
+      else                      renderBuilderDetail(selected);
     }
   };
 
-  /* ---------------------------------------------------------------
-     Writer queue helpers
-     --------------------------------------------------------------- */
+  /* Queue section + row helpers */
   function renderMyWorkSection([label, tone, tasks = []], selectedId) {
     const sectionTasks = tasks.filter(isRenderableTask);
     return `<section class="workbench-section"><div class="workbench-section-head"><span>${escapeHtml(label)}</span><span>${sectionTasks.length}</span></div>${sectionTasks.length ? sectionTasks.map((t) => renderMyWorkRow(t, tone, t.id === selectedId)).join("") : `<div class="empty">No tasks here.</div>`}</section>`;
@@ -359,16 +464,22 @@
 
   function renderMyWorkRow(task, tone, selected) {
     if (!isRenderableTask(task)) return "";
-    const dotClass = ["workbench-dot", tone === "verify" ? "is-verify" : "", tone === "blocked" ? "is-blocked" : "", tone === "ready" && task.aeoStatus !== "done" ? "is-dim" : ""].filter(Boolean).join(" ");
-    const accentColor = task.accent || (tone === "verify" ? "var(--blue)" : tone === "blocked" ? "var(--red)" : "var(--amber)");
+    const isBlocked = tone === "blocked";
+    const isVerify  = tone === "verify";
+    const dotClass = ["workbench-dot", isVerify ? "is-verify" : "", isBlocked ? "is-blocked" : ""].filter(Boolean).join(" ");
+    const accentColor = task.accent || (isVerify ? "var(--blue)" : isBlocked ? "var(--red)" : "var(--amber)");
     return `<article class="workbench-row${selected ? " is-selected" : ""}" data-workbench-task="${escapeAttr(task.id)}" style="--row-accent:${accentColor}"><span class="${dotClass}"></span><div><span class="workbench-title">${escapeHtml(taskTitle(task))}</span><span class="workbench-meta">${escapeHtml(workbenchMeta(task, tone))}</span></div></article>`;
   }
 
   function workbenchMeta(task, tone) {
     const d = dealerShortName(task.dealer);
-    if (tone === "verify")  return `${d} · Built ${relativeTime(task)} · ${aeoShort(task.aeoStatus)}`;
-    if (tone === "blocked") return `${d} · Returned`;
-    return `${d} · SEO ready ${relativeTime(task)} · ${aeoShort(task.aeoStatus)}`;
+    if (tone === "verify")       return `${d} · Built ${relativeTime(task)}`;
+    if (tone === "blocked")      return `${d} · Returned`;
+    if (tone === "seo-progress") return `${d} · In progress`;
+    if (tone === "seo-needs")    return `${d} · Needs copy`;
+    if (tone === "aeo-progress") return `${d} · AEO in progress`;
+    if (tone === "aeo-needs")    return `${d} · Needs AEO`;
+    return `${d} · SEO ready ${relativeTime(task)}`;
   }
 
   function aeoShort(status) {
@@ -378,9 +489,7 @@
     return "AEO pending";
   }
 
-  /* ---------------------------------------------------------------
-     Builder detail panel (used by writer view + admin)
-     --------------------------------------------------------------- */
+  /* Builder detail panel (unchanged) */
   function checklist(task) {
     const seoDone = ["seo_done","needs_build","page_built","live","needs_review"].includes(task.pageStatus);
     const aeoDone = task.aeoStatus === "done" || task.aeoStatus === "not_needed";
@@ -416,6 +525,76 @@
     const docUrl = (typeof seoDocUrl === "function") ? seoDocUrl(selectedTask) : null;
     els.builderDetailContent.innerHTML = `<p class="eyebrow">Task detail</p><h2>${escapeHtml(taskTitle(selectedTask))}</h2><p class="workbench-detail-subtitle">${escapeHtml(selectedTask.dealer)} · ${escapeHtml(statusLabels[selectedTask.pageStatus] || selectedTask.pageStatus)}</p><div class="selected-task-status">${statusPill(selectedTask.pageStatus)} ${signalPill(selectedTask.inventorySignal)} ${aeoPill(selectedTask.aeoStatus)}</div><section class="workbench-next-step"><span>Next step</span><strong>${escapeHtml(builderNextStep(selectedTask))}</strong><small>SEO finalized ${escapeHtml(relativeTime(selectedTask))} · Owner: ${escapeHtml(ownerBucket(selectedTask))}</small></section><nav class="workbench-resources" aria-label="Task resources">${docUrl ? `<a class="workbench-resource-primary" href="${escapeAttr(docUrl)}" target="_blank" rel="noreferrer">Open SEO doc</a>` : `<span class="workbench-resource-primary is-disabled">No SEO doc yet</span>`}<div class="workbench-resource-row"><a class="workbench-resource-link" href="#">Open CMS</a><a class="workbench-resource-link" href="${escapeAttr(modelInfoUrl(selectedTask))}" target="_blank" rel="noreferrer">View reference</a></div></nav><section class="workbench-checklist" aria-label="Task progress">${checklist(selectedTask)}</section><section class="workbench-ai"><button class="workbench-ai-pill" type="button" data-workbench-ai>Check handoff</button><div class="workbench-ai-result"><span>Handoff check</span><div>7 of 8 expected sections found</div><div>Missing: meta description</div><div>Present: H1, hero copy, CTA, local dealership mention</div></div></section><section class="workbench-return-note"><label for="workbenchReturnNote">What needs to be fixed?</label><textarea id="workbenchReturnNote" placeholder="Example: missing trim-level section and local phone number"></textarea></section><footer class="workbench-detail-actions">${workbenchActions(selectedTask)}</footer>`;
   };
+
+  /* SEO Writer detail panel */
+  function seoDetailActions(task) {
+    const id = escapeAttr(task.id);
+    if (task.pageStatus === "seo_in_progress")
+      return `<button class="button button-secondary-action" type="button" data-status="needs_seo" data-task-id="${id}">Revert to draft</button><button class="button button-primary-action" type="button" data-status="seo_done" data-task-id="${id}">Mark SEO done ↑</button>`;
+    if (task.pageStatus === "needs_review")
+      return `<button class="button button-primary-action" type="button" data-status="seo_in_progress" data-task-id="${id}">Resolve &amp; resubmit</button>`;
+    return `<button class="button button-primary-action" type="button" data-status="seo_in_progress" data-task-id="${id}">Start writing →</button>`;
+  }
+
+  function renderSeoDetail(task) {
+    if (!els.builderDetailPanel || !els.builderDetailContent) return;
+    const t = isRenderableTask(task) ? task : null;
+    els.builderDetailPanel.classList.toggle("is-empty", !t);
+    if (!t) { els.builderDetailContent.innerHTML = ""; return; }
+    els.builderDetailContent.className = "workbench-detail-content";
+    const started = ["seo_in_progress","seo_done","needs_build","page_built","live"].includes(t.pageStatus);
+    const done    = ["seo_done","needs_build","page_built","live"].includes(t.pageStatus);
+    els.builderDetailContent.innerHTML = `
+      <p class="eyebrow">SEO task</p>
+      <h2>${escapeHtml(taskTitle(t))}</h2>
+      <p class="workbench-detail-subtitle">${escapeHtml(t.dealer)} · ${escapeHtml(statusLabels[t.pageStatus] || t.pageStatus)}</p>
+      <div class="selected-task-status">${statusPill(t.pageStatus)} ${signalPill(t.inventorySignal)}</div>
+      <section class="workbench-checklist" aria-label="SEO progress">
+        <div class="workbench-step${!started ? " is-current" : ""}">
+          <span class="workbench-check${started ? " is-done" : ""}">${started ? "OK" : ""}</span>
+          <span>Start SEO copy</span>
+        </div>
+        <div class="workbench-step${started && !done ? " is-current" : ""}">
+          <span class="workbench-check${done ? " is-done" : ""}">${done ? "OK" : ""}</span>
+          <span>Mark SEO done → builder</span>
+        </div>
+      </section>
+      <footer class="workbench-detail-actions">${seoDetailActions(t)}</footer>`;
+  }
+
+  /* AEO Writer detail panel */
+  function aeoDetailActions(task) {
+    const id = escapeAttr(task.id);
+    if (task.aeoStatus === "in_progress")
+      return `<button class="button button-secondary-action" type="button" data-aeo-status="not_started" data-task-id="${id}">Revert</button><button class="button button-primary-action" type="button" data-aeo-status="done" data-task-id="${id}">Mark AEO done ↑</button>`;
+    return `<button class="button button-primary-action" type="button" data-aeo-status="in_progress" data-task-id="${id}">Start AEO →</button>`;
+  }
+
+  function renderAeoDetail(task) {
+    if (!els.builderDetailPanel || !els.builderDetailContent) return;
+    const t = isRenderableTask(task) ? task : null;
+    els.builderDetailPanel.classList.toggle("is-empty", !t);
+    if (!t) { els.builderDetailContent.innerHTML = ""; return; }
+    els.builderDetailContent.className = "workbench-detail-content";
+    const started = ["in_progress","done"].includes(t.aeoStatus);
+    const done    = t.aeoStatus === "done";
+    els.builderDetailContent.innerHTML = `
+      <p class="eyebrow">AEO task</p>
+      <h2>${escapeHtml(taskTitle(t))}</h2>
+      <p class="workbench-detail-subtitle">${escapeHtml(t.dealer)} · AEO ${escapeHtml(t.aeoStatus || "pending")}</p>
+      <div class="selected-task-status">${signalPill(t.inventorySignal)} ${aeoPill(t.aeoStatus)}</div>
+      <section class="workbench-checklist" aria-label="AEO progress">
+        <div class="workbench-step${!started ? " is-current" : ""}">
+          <span class="workbench-check${started ? " is-done" : ""}">${started ? "OK" : ""}</span>
+          <span>Start AEO layer</span>
+        </div>
+        <div class="workbench-step${started && !done ? " is-current" : ""}">
+          <span class="workbench-check${done ? " is-done" : ""}">${done ? "OK" : ""}</span>
+          <span>Mark AEO complete</span>
+        </div>
+      </section>
+      <footer class="workbench-detail-actions">${aeoDetailActions(t)}</footer>`;
+  }
 
   installMyWorkStyles();
   window.__fuszMyWorkWorkbenchLoaded = true;

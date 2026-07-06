@@ -361,6 +361,13 @@ function workspaceSubtitle(view, role) {
 }
 
 function renderFocusTask(tasks = state.tasks) {
+  // Focus panel is builder-only; SEO/AEO roles use the workbench hero card instead
+  const role = currentRoleKey();
+  if (role.includes("seo") || role.includes("aeo")) {
+    if (els.focusPanel) els.focusPanel.style.display = "none";
+    return;
+  }
+  if (els.focusPanel) els.focusPanel.style.display = "";
   const task = nextBestTask(tasks);
   if (!task) return;
   applyAccentStyle(els.focusPanel, task.accentStyle || accentStyle(task.accent || "#2563a9"));
