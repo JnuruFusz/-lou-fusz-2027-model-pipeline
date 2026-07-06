@@ -1994,6 +1994,11 @@ body[data-workspace-view="my_work"] .builder-queue-panel .count-pill {
   color: var(--ink);
 }
 
+/* List container — match section-heading's 22px horizontal indent */
+.builder-queue-panel .workbench-queue {
+  padding: 0 22px 22px;
+}
+
 /* ── Section headers ─────────────────────────────────────────────────── */
 .builder-queue-panel .workbench-section {
   background: transparent;
