@@ -1954,13 +1954,17 @@ body[data-theme="light"] .workbench-group-head:hover {
   flex: 0 0 100%;         /* own row above stats + Focus */
 }
 
-/* Count summary — mono editorial text, no pill chrome */
-.builder-queue-panel .count-pill {
+/* Count summary — mono editorial text, no pill chrome
+   NOTE: must beat body[data-workspace-view="my_work"] .builder-queue-panel .count-pill
+   rule (specificity 0,3,1) so we use the same prefix — cascade order wins */
+body[data-workspace-view="my_work"] .builder-queue-panel .count-pill {
+  display: block;
   flex: 1 1 auto;
   padding: 0;
   background: none;
   border: none;
   border-radius: 0;
+  min-height: auto;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 12px;
   font-weight: 500;
@@ -2062,24 +2066,24 @@ body[data-theme="light"] .workbench-group-head:hover {
 .builder-queue-panel .wb-brand-group:hover::before { opacity: 1; }
 
 /* Per-brand rail colors via data attribute */
-.builder-queue-panel .wb-brand-group[data-wb-brand-key*="CHEVROLET"] { --brand-rail: #d4af37; }
-.builder-queue-panel .wb-brand-group[data-wb-brand-key*="FORD"]      { --brand-rail: #4a7fd4; }
-.builder-queue-panel .wb-brand-group[data-wb-brand-key*="GMC"]       { --brand-rail: #8a8f98; }
-.builder-queue-panel .wb-brand-group[data-wb-brand-key*="JEEP"]      { --brand-rail: #5a8a4a; }
-.builder-queue-panel .wb-brand-group[data-wb-brand-key*="KIA"]       { --brand-rail: #c0392b; }
-.builder-queue-panel .wb-brand-group[data-wb-brand-key*="MAZDA"]     { --brand-rail: #6d9eeb; }
-.builder-queue-panel .wb-brand-group[data-wb-brand-key*="RAM"]       { --brand-rail: #a04040; }
-.builder-queue-panel .wb-brand-group[data-wb-brand-key*="TOYOTA"]    { --brand-rail: #e05050; }
-.builder-queue-panel .wb-brand-group[data-wb-brand-key*="BUICK"]     { --brand-rail: #6b8fb5; }
-.builder-queue-panel .wb-brand-group[data-wb-brand-key*="CADILLAC"]  { --brand-rail: #9b8a6a; }
-.builder-queue-panel .wb-brand-group[data-wb-brand-key*="HONDA"]     { --brand-rail: #cc2222; }
-.builder-queue-panel .wb-brand-group[data-wb-brand-key*="HYUNDAI"]   { --brand-rail: #3d6aad; }
-.builder-queue-panel .wb-brand-group[data-wb-brand-key*="NISSAN"]    { --brand-rail: #c0392b; }
-.builder-queue-panel .wb-brand-group[data-wb-brand-key*="SUBARU"]    { --brand-rail: #3355aa; }
-.builder-queue-panel .wb-brand-group[data-wb-brand-key*="DODGE"]     { --brand-rail: #c0392b; }
-.builder-queue-panel .wb-brand-group[data-wb-brand-key*="LINCOLN"]   { --brand-rail: #8a9bb5; }
-.builder-queue-panel .wb-brand-group[data-wb-brand-key*="VOLKSWAGEN"]{ --brand-rail: #2244aa; }
-.builder-queue-panel .wb-brand-group[data-wb-brand-key*="CHRYSLER"]  { --brand-rail: #2255aa; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="chevrolet" i] { --brand-rail: #d4af37; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="ford" i]      { --brand-rail: #4a7fd4; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="gmc" i]       { --brand-rail: #8a8f98; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="jeep" i]      { --brand-rail: #5a8a4a; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="kia" i]       { --brand-rail: #c0392b; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="mazda" i]     { --brand-rail: #6d9eeb; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="ram" i]       { --brand-rail: #a04040; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="toyota" i]    { --brand-rail: #e05050; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="buick" i]     { --brand-rail: #6b8fb5; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="cadillac" i]  { --brand-rail: #9b8a6a; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="honda" i]     { --brand-rail: #cc2222; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="hyundai" i]   { --brand-rail: #3d6aad; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="nissan" i]    { --brand-rail: #c0392b; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="subaru" i]    { --brand-rail: #3355aa; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="dodge" i]     { --brand-rail: #c0392b; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="lincoln" i]   { --brand-rail: #8a9bb5; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="volkswagen" i]{ --brand-rail: #2244aa; }
+.builder-queue-panel .wb-brand-group[data-wb-brand-key*="chrysler" i]  { --brand-rail: #2255aa; }
 
 /* Brand group toggle — mono label, no background */
 .builder-queue-panel .wb-brand-toggle {
