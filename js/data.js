@@ -349,7 +349,7 @@ const embeddedTracker = [
   { id: "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2026|1500", dealer: "Lou Fusz Chrysler Jeep Dodge Ram Vincennes", year: 2026, make: "Ram", model: "1500", pageStatus: "live", aeoStatus: "not_needed", details: { buildOwner: "Jnuru Goodwin", seoOwner: "Chris Pajda" } },
   { id: "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2026|1500-rho", dealer: "Lou Fusz Chrysler Jeep Dodge Ram Vincennes", year: 2026, make: "Ram", model: "1500 RHO", pageStatus: "live", aeoStatus: "not_needed", details: { buildOwner: "Jnuru Goodwin", seoOwner: "Chris Pajda" } },
   { id: "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2026|2500", dealer: "Lou Fusz Chrysler Jeep Dodge Ram Vincennes", year: 2026, make: "Ram", model: "2500", pageStatus: "live", aeoStatus: "not_needed", details: { buildOwner: "Jnuru Goodwin", seoOwner: "Chris Pajda" } },
-  { id: "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2026|3500", dealer: "Lou Fusz Chrysler Jeep Dodge Ram Vincennes", year: 2026, make: "Chrysler", model: "3500", pageStatus: "live", aeoStatus: "not_needed", details: { buildOwner: "Jnuru Goodwin", seoOwner: "Chris Pajda" } },
+  { id: "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2026|3500", dealer: "Lou Fusz Chrysler Jeep Dodge Ram Vincennes", year: 2026, make: "Ram", model: "3500", pageStatus: "live", aeoStatus: "not_needed", details: { buildOwner: "Jnuru Goodwin", seoOwner: "Chris Pajda" } },
 
   // ─── 2027 active pipeline ───
   { id: "lou-fusz-chrysler-jeep-dodge-ram|2027|pacifica", dealer: "Lou Fusz Chrysler Jeep Dodge RAM", year: 2027, make: "Chrysler", model: "Pacifica", pageStatus: "live", trackerStatusRaw: true, trackerRow: 3, source: "sharepoint-2027-tracker" , details: { buildOwner: "Jnuru Goodwin", seoOwner: "Chris Pajda" } },
