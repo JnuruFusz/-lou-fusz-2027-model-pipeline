@@ -344,6 +344,63 @@
     }, 650);
   }
 
+  function currentQuickActionRole() {
+    const role = (state.session?.primaryRole || "").toLowerCase();
+    if (role.includes("seo")) return "seo";
+    if (role.includes("aeo")) return "aeo";
+    return "builder";
+  }
+
+  function quickActionForTask(task) {
+    if (!task?.id) return null;
+    const role = currentQuickActionRole();
+    if (role === "seo") {
+      if (task.pageStatus === "seo_in_progress") return { label: "SEO done", status: "seo_done" };
+      if (task.pageStatus === "needs_review") return { label: "Resume", status: "seo_in_progress" };
+      if (task.pageStatus === "needs_seo") return { label: "Start", status: "seo_in_progress" };
+      return null;
+    }
+    if (role === "aeo") {
+      if (task.aeoStatus === "in_progress") return { label: "AEO done", aeoStatus: "done" };
+      if (!["done", "not_needed"].includes(task.aeoStatus)) return { label: "Start AEO", aeoStatus: "in_progress" };
+      return null;
+    }
+    if (task.pageStatus === "page_built") return { label: "Mark live", status: "live" };
+    if (["seo_done", "needs_build"].includes(task.pageStatus)) return { label: "Mark built", status: "page_built" };
+    return null;
+  }
+
+  function enhanceMyWorkRowActions() {
+    if (state.workspaceView !== "my_work") return;
+    document.querySelectorAll(".workbench-row[data-workbench-task]").forEach((row) => {
+      if (row.querySelector(".workbench-row-quick-action")) return;
+      const task = state.tasks?.find((candidate) => candidate.id === row.dataset.workbenchTask);
+      const action = quickActionForTask(task);
+      if (!action) return;
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "workbench-ai-pill workbench-row-quick-action";
+      button.dataset.taskId = task.id;
+      if (action.status) button.dataset.status = action.status;
+      if (action.aeoStatus) button.dataset.aeoStatus = action.aeoStatus;
+      button.textContent = action.label;
+      button.style.cssText = "float:right;margin:0 0 4px 12px;min-height:24px;padding:0 9px;font-size:11px;line-height:1;";
+      const rowBody = row.querySelector("div:last-child") || row;
+      rowBody.appendChild(button);
+    });
+  }
+
+  function wrapMyWorkQuickActions() {
+    if (window.__fuszQuickMyWorkActionsWrapped || typeof window.renderMyWork !== "function") return;
+    const originalRenderMyWork = window.renderMyWork;
+    window.renderMyWork = function renderMyWorkWithQuickActions(...args) {
+      const result = originalRenderMyWork.apply(this, args);
+      enhanceMyWorkRowActions();
+      return result;
+    };
+    window.__fuszQuickMyWorkActionsWrapped = true;
+  }
+
   document.addEventListener("click", (event) => {
     if (handleBuilderAction(event)) return;
 
@@ -403,6 +460,8 @@
     };
   }
 
+  wrapMyWorkQuickActions();
+
   const originalRenderWorkspaceView = window.renderWorkspaceView;
   if (typeof originalRenderWorkspaceView === "function") {
     window.renderWorkspaceView = function renderWorkspaceViewWithImplementation() {
@@ -411,6 +470,7 @@
       renderRooftops();
       renderDriveConnection();
       renderFeedHealth();
+      enhanceMyWorkRowActions();
     };
   }
 
@@ -418,4 +478,5 @@
   ensureRooftopControls();
   renderDriveConnection();
   renderFeedHealth();
+  enhanceMyWorkRowActions();
 })();
