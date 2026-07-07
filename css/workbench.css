@@ -2226,3 +2226,60 @@ body[data-theme="light"] .builder-queue-panel .wb-brand-toggle:hover {
     border-radius: 0;
   }
 }
+
+/* ── Inline quick action button on queue rows ─────────────────────── */
+.workbench-row-quick-action {
+  /* reset components.css button base */
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 6px;
+  background: rgba(255,255,255,.07);
+  box-shadow: none;
+  min-height: unset;
+  /* layout */
+  flex-shrink: 0;
+  padding: .25rem .6rem;
+  font: inherit;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: var(--text-primary, #e8e3dc);
+  cursor: pointer;
+  transition: background .13s, border-color .13s;
+  white-space: nowrap;
+}
+.workbench-row-quick-action:hover {
+  background: rgba(255,255,255,.13);
+  border-color: rgba(255,255,255,.28);
+  transform: none;
+  box-shadow: none;
+}
+/* builder panel — matches editorial rail style */
+.builder-queue-panel .workbench-row-quick-action {
+  border-color: rgba(255,255,255,.1);
+  background: rgba(255,255,255,.06);
+  font-size: .68rem;
+  color: var(--muted);
+}
+.builder-queue-panel .workbench-row-quick-action:hover {
+  background: rgba(255,255,255,.12);
+  border-color: rgba(255,255,255,.2);
+  color: var(--ink);
+}
+/* light / cream theme */
+html body[data-theme="light"] .workbench-row-quick-action,
+html body[data-theme="gray"]  .workbench-row-quick-action {
+  border-color: rgba(0,0,0,.12);
+  background: rgba(0,0,0,.05);
+  color: var(--text-primary);
+}
+html body[data-theme="light"] .workbench-row-quick-action:hover,
+html body[data-theme="gray"]  .workbench-row-quick-action:hover {
+  background: rgba(0,0,0,.1);
+  border-color: rgba(0,0,0,.2);
+}
+/* position inside the row — sits after .workbench-row-body */
+.workbench-row-body {
+  min-width: 0;
+}

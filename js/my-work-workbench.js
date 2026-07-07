@@ -346,6 +346,20 @@
       }
       return;
     }
+    /* Quick action button — run status update, stay in queue view */
+    const quickAction = e.target.closest("[data-quick-action]");
+    if (quickAction) {
+      e.stopPropagation();
+      _focusMode = false;
+      const taskId = quickAction.dataset.taskId;
+      if (quickAction.dataset.aeoStatus && typeof updateAeoStatus === "function") {
+        updateAeoStatus(taskId, quickAction.dataset.aeoStatus);
+      } else if (quickAction.dataset.status && typeof updateStatus === "function") {
+        updateStatus(taskId, quickAction.dataset.status);
+      }
+      return;
+    }
+
     const wbRow = e.target.closest("[data-workbench-task]");
     if (wbRow && !e.target.closest("[data-status]") && !e.target.closest("[data-aeo-status]") && !e.target.closest("a")) {
       e.preventDefault();
@@ -527,13 +541,38 @@
     </section>`;
   }
 
+  /* Context-aware quick action per role */
+  function quickActionForRole(task, role) {
+    if (!task?.id) return null;
+    if (role === "seo") {
+      if (task.pageStatus === "seo_in_progress") return { label: "SEO done ↑",  status: "seo_done",       aeo: false };
+      if (task.pageStatus === "needs_review")    return { label: "Resume →",     status: "seo_in_progress", aeo: false };
+      if (task.pageStatus === "needs_seo")       return { label: "Start →",      status: "seo_in_progress", aeo: false };
+      return null;
+    }
+    if (role === "aeo") {
+      if (task.aeoStatus === "in_progress")                           return { label: "AEO done ↑", status: "done",        aeo: true };
+      if (!["done","not_needed"].includes(task.aeoStatus))            return { label: "Start AEO →", status: "in_progress", aeo: true };
+      return null;
+    }
+    // builder
+    if (task.pageStatus === "page_built")                            return { label: "Mark live ↑",  status: "live",       aeo: false };
+    if (["seo_done","needs_build"].includes(task.pageStatus))        return { label: "Mark built ↑", status: "page_built", aeo: false };
+    return null;
+  }
+
   function renderMyWorkRow(task, tone, selected) {
     if (!isRenderableTask(task)) return "";
+    const role = currentMyWorkRole();
+    const action = quickActionForRole(task, role);
     const isBlocked = tone === "blocked";
     const isVerify  = tone === "verify";
     const dotClass = ["workbench-dot", isVerify ? "is-verify" : "", isBlocked ? "is-blocked" : ""].filter(Boolean).join(" ");
     const accentColor = task.accent || (isVerify ? "var(--blue)" : isBlocked ? "var(--red)" : "var(--amber)");
-    return `<article class="workbench-row${selected ? " is-selected" : ""}" data-workbench-task="${escapeAttr(task.id)}" style="--row-accent:${accentColor}"><span class="${dotClass}"></span><div><span class="workbench-title">${escapeHtml(taskTitle(task))}</span><span class="workbench-meta">${escapeHtml(workbenchMeta(task, tone))}</span></div></article>`;
+    const actionBtn = action
+      ? `<button class="workbench-row-quick-action" type="button" data-quick-action data-task-id="${escapeAttr(task.id)}" ${action.aeo ? `data-aeo-status="${escapeAttr(action.status)}"` : `data-status="${escapeAttr(action.status)}"`}>${escapeHtml(action.label)}</button>`
+      : "";
+    return `<article class="workbench-row${selected ? " is-selected" : ""}" data-workbench-task="${escapeAttr(task.id)}" style="--row-accent:${accentColor}"><span class="${dotClass}"></span><div class="workbench-row-body"><span class="workbench-title">${escapeHtml(taskTitle(task))}</span><span class="workbench-meta">${escapeHtml(workbenchMeta(task, tone))}</span></div>${actionBtn}</article>`;
   }
 
   function workbenchMeta(task, tone) {
