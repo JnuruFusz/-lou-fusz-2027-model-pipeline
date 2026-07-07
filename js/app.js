@@ -584,11 +584,16 @@ function mergeInventoryFeedTasks(tasks, rows = []) {
   return [...tasks, ...feedTasks];
 }
 
+function normalizeMakeName(make) {
+  const map = { "RAM": "Ram", "JEEP": "Jeep", "DODGE": "Dodge", "CHRYSLER": "Chrysler", "GMC": "GMC" };
+  return map[make.toUpperCase()] || make.replace(/^(.)(.*)$/, (_, a, b) => a.toUpperCase() + b.toLowerCase()).replace(/(EV|SUV|GX|CX)/gi, s => s.toUpperCase());
+}
+
 function inventoryRowToTask(row) {
   const task = {
     dealer: row.dealer,
     year: Number(row.year),
-    make: row.make,
+    make: normalizeMakeName(String(row.make || "").trim()),
     model: row.model,
   };
   return {
