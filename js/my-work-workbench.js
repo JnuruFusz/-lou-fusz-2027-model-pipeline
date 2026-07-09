@@ -371,7 +371,10 @@
     if (e.target.closest("[data-focus-mark-built]")) { recordBuiltToday(); return; }
     const skipBtn = e.target.closest("[data-focus-skip]");
     if (skipBtn) {
-      const { work } = myWorkGroupsForRole(state.tasks || [], currentMyWorkRole());
+      const owned = (typeof personalWorkTasks === "function")
+        ? personalWorkTasks(state.tasks || [])
+        : (state.tasks || []);
+      const { work } = myWorkGroupsForRole(owned, currentMyWorkRole());
       skipToNext(work);
       return;
     }
@@ -388,7 +391,11 @@
   window.renderMyWork = function renderMyWorkWorkbench(tasks = []) {
     installMyWorkStyles();
     const role = currentMyWorkRole();
-    const safeTasks = Array.isArray(tasks) ? tasks.filter(isRenderableTask) : [];
+    // Always apply person filter — guards against internal calls that pass state.tasks directly
+    const owned = (typeof personalWorkTasks === "function")
+      ? personalWorkTasks(Array.isArray(tasks) ? tasks : [])
+      : (Array.isArray(tasks) ? tasks : []);
+    const safeTasks = owned.filter(isRenderableTask);
 
     /* Update queue title */
     const queueTitle = document.getElementById("myWorkQueueTitle");
