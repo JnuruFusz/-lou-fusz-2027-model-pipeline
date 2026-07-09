@@ -1,6 +1,6 @@
 (function () {
   let _lastSelectedId = null;
-  let _focusMode = true;
+  let _focusMode = sessionStorage.getItem("fusz-focus-mode") !== "false";
 
   function currentMyWorkRole() {
     const role = (state.session?.primaryRole || "").toLowerCase();
@@ -351,6 +351,7 @@
     if (quickAction) {
       e.stopPropagation();
       _focusMode = false;
+      sessionStorage.setItem("fusz-focus-mode", "false");
       const taskId = quickAction.dataset.taskId;
       if (quickAction.dataset.aeoStatus && typeof updateAeoStatus === "function") {
         updateAeoStatus(taskId, quickAction.dataset.aeoStatus);
@@ -365,6 +366,7 @@
       e.preventDefault();
       _lastSelectedId = wbRow.dataset.workbenchTask;
       _focusMode = true;
+      sessionStorage.setItem("fusz-focus-mode", "true");
       if (typeof renderMyWork === "function") renderMyWork(state.tasks);
       return;
     }
@@ -378,8 +380,8 @@
       skipToNext(work);
       return;
     }
-    if (e.target.closest("[data-focus-enter]")) { _focusMode = true; if (typeof renderMyWork === "function") renderMyWork(state.tasks); return; }
-    if (e.target.closest("[data-focus-exit]"))  { _focusMode = false; if (typeof renderMyWork === "function") renderMyWork(state.tasks); return; }
+    if (e.target.closest("[data-focus-enter]")) { _focusMode = true; sessionStorage.setItem("fusz-focus-mode", "true"); if (typeof renderMyWork === "function") renderMyWork(state.tasks); return; }
+    if (e.target.closest("[data-focus-exit]"))  { _focusMode = false; sessionStorage.setItem("fusz-focus-mode", "false"); if (typeof renderMyWork === "function") renderMyWork(state.tasks); return; }
     const aiButton = e.target.closest("[data-workbench-ai]");
     if (aiButton) { aiButton.nextElementSibling?.classList.toggle("is-visible"); return; }
     if (e.target.closest("[data-workbench-return]")) { document.querySelector(".workbench-return-note")?.classList.toggle("is-visible"); }

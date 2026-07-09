@@ -34,7 +34,7 @@ function winsInitials(name) {
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 function winsComputeData() {
-  const tasks     = state.tasks.filter((t) => t.year >= 2026);
+  const tasks     = state.tasks.filter((t) => t.year >= 2027);
   const liveTasks = tasks.filter((t) => t.pageStatus === "live");
   const builtTasks= tasks.filter((t) => ["page_built","live"].includes(t.pageStatus));
   const seoTasks  = tasks.filter((t) => ["seo_done","needs_build","page_built","live"].includes(t.pageStatus));
@@ -191,7 +191,7 @@ function renderWins() {
         <div class="wins-stat-card" data-reveal>
           <div class="wins-stat-num">${winsCounterEl(d.liveCount,0,"")}</div>
           <div class="wins-stat-label">Pages live</div>
-          <div class="wins-stat-sub wins-sub-green">+${Math.min(12,Math.max(1,d.liveCount))} this season</div>
+          <div class="wins-stat-sub wins-sub-green">+${d.liveCount} this season</div>
         </div>
         <div class="wins-stat-card" data-reveal>
           <div class="wins-stat-num">${winsCounterEl(d.builtCount,0,"")}</div>

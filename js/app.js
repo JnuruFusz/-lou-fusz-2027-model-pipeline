@@ -498,7 +498,7 @@ async function boot() {
     console.warn("[Fusz+] Auth check failed, falling back to localStorage session", err);
   }
 
-  await loadClassicScript("js/my-work-workbench.js?v=20260616");
+  await loadClassicScript("js/my-work-workbench.js?v=20260709");
   prog(38);
   await loadClassicScript("js/fusz-implementation.js?v=20260616");
   prog(60);
@@ -697,9 +697,6 @@ function populateOwnerFilter() {
   const owners = new Set(
     activeTasks.map((task) => (typeof pipelineOwnerForTask === "function" ? pipelineOwnerForTask(task) : (task.details?.buildOwner || task.details?.seoOwner || "Team")))
   );
-  // Include Scott if any tasks have pending AEO
-  const hasAeo = activeTasks.some((t) => !["done", "not_needed"].includes(t.aeoStatus));
-  if (hasAeo) owners.add("Scott Toulou");
   els.ownerFilter.innerHTML = [
     `<option value="all">All owners</option>`,
     ...[...owners].sort().map((owner) => `<option value="${escapeAttr(owner)}">${escapeHtml(owner)}</option>`),
