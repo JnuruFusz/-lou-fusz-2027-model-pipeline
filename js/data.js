@@ -18,7 +18,7 @@ const TEAM_ROSTER = [
     googleEmail: "scotttoulou@gmail.com",
     initials: "ST",
     primaryRole: "AEO Writer",
-    isAdmin: false,
+    isAdmin: true,
     defaultView: "my_work",
     inviteKey: "scott",
   },
