@@ -1,9 +1,7 @@
 "Dealership Name",VIN,Year,Make,Model,Trim,"Vehicle Status","Stock Number","Date In stock","VDP URLs"
 KIAEvansville,KNDNE5KA5T6106861,2026,Kia,"Carnival MPV Hybrid",SX,"At Dealership",E678041,2025-09-02,https://www.evansvillekia.com/inventory/new-2026-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5ka5t6106861/
 KIAEvansville,KNDNE5KA8T6108376,2026,Kia,"Carnival MPV Hybrid",SX,"At Dealership",E678049,2025-09-08,https://www.evansvillekia.com/inventory/new-2026-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5ka8t6108376/
-KIAEvansville,KNDNE5K39T6587196,2026,Kia,"Carnival MPV","SX Prestige","At Dealership",E675045,2025-10-03,https://www.evansvillekia.com/inventory/new-2026-kia-carnival-mpv-sx-prestige-fwd-minivan-kndne5k39t6587196/
 KIAEvansville,5XYRL4JC8TG434390,2026,Kia,Sorento,S,"At Dealership",E677053,2025-11-11,https://www.evansvillekia.com/inventory/new-2026-kia-sorento-s-fwd-4dr-sport-utility-5xyrl4jc8tg434390/
-KIAEvansville,5XYRL4JC9TG434026,2026,Kia,Sorento,S,"At Dealership",E677060,2025-11-12,https://www.evansvillekia.com/inventory/new-2026-kia-sorento-s-fwd-4dr-sport-utility-5xyrl4jc9tg434026/
 KIAEvansville,5XYRLDJC1TG439589,2026,Kia,Sorento,S,"At Dealership",E677080,2025-12-03,https://www.evansvillekia.com/inventory/new-2026-kia-sorento-s-awd-4dr-sport-utility-5xyrldjc1tg439589/
 KIAEvansville,5XYRLDJC9TG439694,2026,Kia,Sorento,S,"At Dealership",E677078,2025-12-03,https://www.evansvillekia.com/inventory/new-2026-kia-sorento-s-awd-4dr-sport-utility-5xyrldjc9tg439694/
 KIAEvansville,KNDNE5KA1T6140313,2026,Kia,"Carnival MPV Hybrid","SX Prestige","At Dealership",E678068,2025-12-26,https://www.evansvillekia.com/inventory/new-2026-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka1t6140313/
@@ -19,7 +17,6 @@ KIAEvansville,5XYK6CDF9TG421317,2026,Kia,Sportage,X-Line,"At Dealership",E670127
 KIAEvansville,KNDPVDDG9T7363407,2026,Kia,"Sportage Hybrid",EX,"At Dealership",E676041,2026-03-18,https://www.evansvillekia.com/inventory/new-2026-kia-sportage-hybrid-ex-awd-4dr-sport-utility-kndpvddg9t7363407/
 KIAEvansville,KNDNE5K32T6625741,2026,Kia,"Carnival MPV",SX,"At Dealership",E675069,2026-03-16,https://www.evansvillekia.com/inventory/new-2026-kia-carnival-mpv-sx-fwd-minivan-kndne5k32t6625741/
 KIAEvansville,KNDNE5K38T6625551,2026,Kia,"Carnival MPV",SX,"At Dealership",E675071,2026-03-23,https://www.evansvillekia.com/inventory/new-2026-kia-carnival-mpv-sx-fwd-minivan-kndne5k38t6625551/
-KIAEvansville,KNDEUCAA0T7939163,2026,Kia,Seltos,S,"At Dealership",E683053,2026-03-19,https://www.evansvillekia.com/inventory/new-2026-kia-seltos-s-awd-4dr-utility-vehicle-kndeucaa0t7939163/
 KIAEvansville,5XYK6CDF4TG423847,2026,Kia,Sportage,X-Line,"At Dealership",E670129,2026-03-12,https://www.evansvillekia.com/inventory/new-2026-kia-sportage-x-line-awd-4dr-sport-utility-5xyk6cdf4tg423847/
 KIAEvansville,5XYK53DF5TG424654,2026,Kia,Sportage,"SX Prestige","At Dealership",E670128,2026-03-11,https://www.evansvillekia.com/inventory/new-2026-kia-sportage-sx-prestige-fwd-4dr-sport-utility-5xyk53df5tg424654/
 KIAEvansville,KNDNC5K37T6633050,2026,Kia,"Carnival MPV",EX,"At Dealership",E675074,2026-03-26,https://www.evansvillekia.com/inventory/new-2026-kia-carnival-mpv-ex-fwd-minivan-kndnc5k37t6633050/
@@ -71,7 +68,6 @@ KIAEvansville,KNDPVDDG9T7382135,2026,Kia,"Sportage Hybrid",EX,"At Dealership",E2
 KIAEvansville,KNDNC5K35T6632222,2026,Kia,"Carnival MPV",EX,"At Dealership",E2675080,2026-04-23,https://www.evansvillekia.com/inventory/new-2026-kia-carnival-mpv-ex-fwd-minivan-kndnc5k35t6632222/
 KIAEvansville,KNAG64J79T5491544,2026,Kia,K5,"GT-Line AWD","At Dealership",E2672096,2026-04-23,https://www.evansvillekia.com/inventory/new-2026-kia-k5-gt-line-awd-awd-4-door-sedan-knag64j79t5491544/
 KIAEvansville,KNDCP3LE0T5365741,2026,Kia,Niro,LX,"At Dealership",E2673002,2026-04-20,https://www.evansvillekia.com/inventory/new-2026-kia-niro-lx-fwd-mpv-kndcp3le0t5365741/
-KIAEvansville,KNDCP3LE3T5366060,2026,Kia,Niro,LX,"At Dealership",E2673001,2026-04-20,https://www.evansvillekia.com/inventory/new-2026-kia-niro-lx-fwd-mpv-kndcp3le3t5366060/
 KIAEvansville,KNDEUCAA8T7953408,2026,Kia,Seltos,S,"At Dealership",E2683070,2026-04-20,https://www.evansvillekia.com/inventory/new-2026-kia-seltos-s-awd-4dr-utility-vehicle-kndeucaa8t7953408/
 KIAEvansville,KNDNC5KA0T6168318,2026,Kia,"Carnival MPV Hybrid",EX,"At Dealership",E2678084,2026-04-20,https://www.evansvillekia.com/inventory/new-2026-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5ka0t6168318/
 KIAEvansville,KNDNC5KA6T6167058,2026,Kia,"Carnival MPV Hybrid",EX,"At Dealership",E2678086,2026-04-23,https://www.evansvillekia.com/inventory/new-2026-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5ka6t6167058/
@@ -99,7 +95,6 @@ KIAEvansville,5XYK33DF2TG439389,2026,Kia,Sportage,EX,"At Dealership",E2670177,20
 KIAEvansville,5XYK33DF4TG440544,2026,Kia,Sportage,EX,"At Dealership",E2670179,2026-05-02,https://www.evansvillekia.com/inventory/new-2026-kia-sportage-ex-fwd-4dr-sport-utility-5xyk33df4tg440544/
 KIAEvansville,5XYK6CDF2TG440906,2026,Kia,Sportage,X-Line,"At Dealership",E2670178,2026-05-02,https://www.evansvillekia.com/inventory/new-2026-kia-sportage-x-line-awd-4dr-sport-utility-5xyk6cdf2tg440906/
 KIAEvansville,KNAG24J72T5486732,2026,Kia,K5,"LXS FWD","At Dealership",E2672109,2026-05-13,https://www.evansvillekia.com/inventory/new-2026-kia-k5-lxs-fwd-fwd-4-door-sedan-knag24j72t5486732/
-KIAEvansville,5XYPE5S17VG029337,2027,Kia,Telluride,S,"At Dealership",E2782040,2026-05-04,https://www.evansvillekia.com/inventory/new-2027-kia-telluride-s-fwd-5dr-sport-utility-5xype5s17vg029337/
 KIAEvansville,5XYRHDJF4TG469276,2026,Kia,Sorento,"X-Line EX AWD","At Dealership",E2677110,2026-05-04,https://www.evansvillekia.com/inventory/new-2026-kia-sorento-x-line-ex-awd-awd-4dr-sport-utility-5xyrhdjf4tg469276/
 KIAEvansville,KNDNC5KA1T6178615,2026,Kia,"Carnival MPV Hybrid",EX,"At Dealership",E2678091,2026-05-19,https://www.evansvillekia.com/inventory/new-2026-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5ka1t6178615/
 KIAEvansville,KNAG64J79T5502252,2026,Kia,K5,"GT-Line AWD","At Dealership",E2672113,2026-05-19,https://www.evansvillekia.com/inventory/new-2026-kia-k5-gt-line-awd-awd-4-door-sedan-knag64j79t5502252/
@@ -136,7 +131,6 @@ KIAEvansville,5XYRHDJF7TG473113,2026,Kia,Sorento,"X-Line EX AWD","At Dealership"
 KIAEvansville,5XYRKDJF4TG470154,2026,Kia,Sorento,"X-Line SX Prestige AWD","At Dealership",E2677115,2026-05-20,https://www.evansvillekia.com/inventory/new-2026-kia-sorento-x-line-sx-prestige-awd-awd-4dr-sport-utility-5xyrkdjf4tg470154/
 KIAEvansville,5XYK3CDFXTG443304,2026,Kia,Sportage,EX,"At Dealership",E2670188,2026-05-20,https://www.evansvillekia.com/inventory/new-2026-kia-sportage-ex-awd-4dr-sport-utility-5xyk3cdfxtg443304/
 KIAEvansville,KNDPXDDG0T7396810,2026,Kia,"Sportage Hybrid","SX Prestige","At Dealership",E2676067,2026-06-03,https://www.evansvillekia.com/inventory/new-2026-kia-sportage-hybrid-sx-prestige-awd-4dr-sport-utility-kndpxddg0t7396810/
-KIAEvansville,KNDPVDDG9T7407017,2026,Kia,"Sportage Hybrid",X-Line,"At Dealership",E2676069,2026-06-04,https://www.evansvillekia.com/inventory/new-2026-kia-sportage-hybrid-x-line-awd-4dr-sport-utility-kndpvddg9t7407017/
 KIAEvansville,5XYRLDJC5TG474927,2026,Kia,Sorento,S,"At Dealership",E2677121,2026-05-26,https://www.evansvillekia.com/inventory/new-2026-kia-sorento-s-awd-4dr-sport-utility-5xyrldjc5tg474927/
 KIAEvansville,5XYK33DFXTG446512,2026,Kia,Sportage,EX,"At Dealership",E2670190,2026-05-26,https://www.evansvillekia.com/inventory/new-2026-kia-sportage-ex-fwd-4dr-sport-utility-5xyk33dfxtg446512/
 KIAEvansville,5XYK3CDF7TG446970,2026,Kia,Sportage,EX,"At Dealership",E2670192,2026-05-26,https://www.evansvillekia.com/inventory/new-2026-kia-sportage-ex-awd-4dr-sport-utility-5xyk3cdf7tg446970/
@@ -238,8 +232,11 @@ KIAEvansville,KNDRHDJG7T5535692,2026,Kia,"Sorento Hybrid",EX,"At Dealership",E26
 KIAEvansville,KNAG64J76T5514522,2026,Kia,K5,"GT-Line FWD","At Dealership",E2672154,2026-07-10,https://www.evansvillekia.com/inventory/new-2026-kia-k5-gt-line-fwd-fwd-4-door-sedan-knag64j76t5514522/
 KIAEvansville,KNDEDCD33V7032455,2027,Kia,Seltos,"X-Line S","At Dealership",E2783015,2026-07-10,https://www.evansvillekia.com/inventory/new-2027-kia-seltos-x-line-s-awd-5dr-sport-utility-kndedcd33v7032455/
 KIAEvansville,KNDRHDJG1T5486599,2026,Kia,"Sorento Hybrid",EX,"At Dealership",E2684026,2026-07-10,https://www.evansvillekia.com/inventory/new-2026-kia-sorento-hybrid-ex-awd-4dr-sport-utility-kndrhdjg1t5486599/
+KIAEvansville,KNAG64J73T5516745,2026,Kia,K5,GT-Line,"At Dealership",E2672157,2026-07-13,https://www.evansvillekia.com/inventory/new-2026-kia-k5-gt-line-fwd-4d-sedan-knag64j73t5516745/
 KIAEvansville,KNAG64J74T5514521,2026,Kia,K5,"GT-Line FWD","At Dealership",E2672153,2026-07-10,https://www.evansvillekia.com/inventory/new-2026-kia-k5-gt-line-fwd-fwd-4-door-sedan-knag64j74t5514521/
 KIAEvansville,KNAG64J74T5515734,2026,Kia,K5,"GT-Line AWD","At Dealership",E2672155,2026-07-10,https://www.evansvillekia.com/inventory/new-2026-kia-k5-gt-line-awd-awd-4-door-sedan-knag64j74t5515734/
+KIAEvansville,KNAG64J7XT5516774,2026,Kia,K5,GT-Line,"At Dealership",E2672159,2026-07-13,https://www.evansvillekia.com/inventory/new-2026-kia-k5-gt-line-fwd-4d-sedan-knag64j7xt5516774/
+KIAEvansville,KNAG64J74T5509559,2026,Kia,K5,GT-Line,"At Dealership",E2672158,2026-07-13,https://www.evansvillekia.com/inventory/new-2026-kia-k5-gt-line-fwd-4d-sedan-knag64j74t5509559/
 KIAEvansville,5XYK6CDF8TG447469,2026,Kia,Sportage,X-Line,"At Dealership",E2670208,2026-06-29,https://www.evansvillekia.com/inventory/new-2026-kia-sportage-x-line-awd-4dr-sport-utility-5xyk6cdf8tg447469/
 KIAEvansville,5XYPCESA4VG033027,2027,Kia,"Telluride Hybrid",EX,"At Dealership",E2779043,2026-06-29,https://www.evansvillekia.com/inventory/new-2027-kia-telluride-hybrid-ex-awd-5dr-sport-utility-5xypcesa4vg033027/
 KIAEvansville,5XYK33DF0TG457258,2026,Kia,Sportage,EX,"At Dealership",E2670206,2026-06-29,https://www.evansvillekia.com/inventory/new-2026-kia-sportage-ex-fwd-4dr-sport-utility-5xyk33df0tg457258/
@@ -250,10 +247,10 @@ KIAEvansville,5XYK33DF8TG454026,2026,Kia,Sportage,EX,"At Dealership",E2670209,20
 KIAEvansville,5XYK43DFXTG458740,2026,Kia,Sportage,SX,"At Dealership",E2670210,2026-06-29,https://www.evansvillekia.com/inventory/new-2026-kia-sportage-sx-fwd-4dr-sport-utility-5xyk43dfxtg458740/
 KIAEvansville,3KPFW4DE5TE378672,2026,Kia,K4,GT-Line,"At Dealership",E2674043,2026-07-07,https://www.evansvillekia.com/inventory/new-2026-kia-k4-gt-line-fwd-4-door-sedan-3kpfw4de5te378672/
 KIAEvansville,3KPFW4DE7TE363638,2026,Kia,K4,GT-Line,"At Dealership",E2674037,2026-06-30,https://www.evansvillekia.com/inventory/new-2026-kia-k4-gt-line-fwd-4-door-sedan-3kpfw4de7te363638/
+KIAEvansville,KNAG64J79T5514563,2026,Kia,K5,GT-Line,"At Dealership",E2672156,2026-07-13,https://www.evansvillekia.com/inventory/new-2026-kia-k5-gt-line-fwd-4d-sedan-knag64j79t5514563/
 KIAEvansville,5XYK33DF1TG455521,2026,Kia,Sportage,EX,"At Dealership",E2670212,2026-07-02,https://www.evansvillekia.com/inventory/new-2026-kia-sportage-ex-fwd-4dr-sport-utility-5xyk33df1tg455521/
 KIAEvansville,5XYPDESA5VG033308,2027,Kia,"Telluride Hybrid","X-LINE SX","At Dealership",E2779044,2026-07-02,https://www.evansvillekia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-5dr-sport-utility-5xypdesa5vg033308/
 KIAEvansville,5XYPLESA6VG034518,2027,Kia,"Telluride Hybrid","X-LINE SX PRESTIGE","At Dealership",E2779045,2026-07-02,https://www.evansvillekia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-5dr-sport-utility-5xyplesa6vg034518/
-KIAEvansville,5XYPLESA7VG034947,2027,Kia,"Telluride Hybrid","X-LINE SX PRESTIGE","At Dealership",E2779047,2026-07-02,https://www.evansvillekia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-5dr-sport-utility-5xyplesa7vg034947/
 KIAEvansville,5XYRL4JC4TG455608,2026,Kia,Sorento,S,"At Dealership",E2677136,2026-07-02,https://www.evansvillekia.com/inventory/new-2026-kia-sorento-s-fwd-4dr-sport-utility-5xyrl4jc4tg455608/
 KIAEvansville,5XYRLDJC1TG482068,2026,Kia,Sorento,S,"At Dealership",E2677137,2026-07-02,https://www.evansvillekia.com/inventory/new-2026-kia-sorento-s-awd-4dr-sport-utility-5xyrldjc1tg482068/
 KIAEvansville,KNDPVDDG7T7382506,2026,Kia,"Sportage Hybrid",X-Line,"At Dealership",E2676071,2026-07-03,https://www.evansvillekia.com/inventory/new-2026-kia-sportage-hybrid-x-line-awd-4dr-sport-utility-kndpvddg7t7382506/
@@ -271,7 +268,13 @@ KIAEvansville,5XYRL4JC9TG479225,2026,Kia,Sorento,S,"At Dealership",E2677139,2026
 KIAEvansville,KNDECCD38V7025648,2027,Kia,Seltos,EX,"At Dealership",E2783016,2026-07-10,https://www.evansvillekia.com/inventory/new-2027-kia-seltos-ex-awd-4d-sport-utility-kndeccd38v7025648/
 KIAEvansville,5XYPLESA4VG035070,2027,Kia,"Telluride Hybrid","X-LINE SX PRESTIGE","At Dealership",E2779050,2026-07-10,https://www.evansvillekia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-5dr-sport-utility-5xyplesa4vg035070/
 KIAEvansville,5XYK3CDF0TG459379,2026,Kia,Sportage,EX,"At Dealership",E2670217,2026-07-10,https://www.evansvillekia.com/inventory/new-2026-kia-sportage-ex-awd-4dr-sport-utility-5xyk3cdf0tg459379/
-KIAEvansville,5XYRL4JC0TG478464,2026,Kia,Sorento,S,"At Dealership",E2677140,2026-07-10,https://www.evansvillekia.com/inventory/new-2026-kia-sorento-s-fwd-4d-sport-utility-5xyrl4jc0tg478464/
-KIAEvansville,5XYRL4JC4TG478967,2026,Kia,Sorento,S,"At Dealership",E2677141,2026-07-10,https://www.evansvillekia.com/inventory/new-2026-kia-sorento-s-fwd-4d-sport-utility-5xyrl4jc4tg478967/
-KIAEvansville,5XYRL4JC5TG479755,2026,Kia,Sorento,S,"At Dealership",E2677142,2026-07-10,https://www.evansvillekia.com/inventory/new-2026-kia-sorento-s-fwd-4d-sport-utility-5xyrl4jc5tg479755/
-KIAEvansville,5XYRLDJCXTG483980,2026,Kia,Sorento,S,"At Dealership",E2677143,2026-07-10,https://www.evansvillekia.com/inventory/new-2026-kia-sorento-s-awd-4d-sport-utility-5xyrldjcxtg483980/
+KIAEvansville,5XYRL4JC0TG478464,2026,Kia,Sorento,S,"At Dealership",E2677140,2026-07-10,https://www.evansvillekia.com/inventory/new-2026-kia-sorento-s-fwd-4dr-sport-utility-5xyrl4jc0tg478464/
+KIAEvansville,5XYRL4JC4TG478967,2026,Kia,Sorento,S,"At Dealership",E2677141,2026-07-10,https://www.evansvillekia.com/inventory/new-2026-kia-sorento-s-fwd-4dr-sport-utility-5xyrl4jc4tg478967/
+KIAEvansville,5XYRL4JC5TG479755,2026,Kia,Sorento,S,"At Dealership",E2677142,2026-07-10,https://www.evansvillekia.com/inventory/new-2026-kia-sorento-s-fwd-4dr-sport-utility-5xyrl4jc5tg479755/
+KIAEvansville,5XYRLDJCXTG483980,2026,Kia,Sorento,S,"At Dealership",E2677143,2026-07-10,https://www.evansvillekia.com/inventory/new-2026-kia-sorento-s-awd-4dr-sport-utility-5xyrldjcxtg483980/
+KIAEvansville,5XYK6CDF6TG462715,2026,Kia,Sportage,X-Line,"At Dealership",E2670218,2026-07-13,https://www.evansvillekia.com/inventory/new-2026-kia-sportage-x-line-awd-4d-sport-utility-5xyk6cdf6tg462715/
+KIAEvansville,5XYPLES18VG042068,2027,Kia,Telluride,"X-Pro SX-Prestige","At Dealership",E2782069,2026-07-13,https://www.evansvillekia.com/inventory/new-2027-kia-telluride-x-pro-sx-prestige-awd-4d-sport-utility-5xyples18vg042068/
+KIAEvansville,5XYPLESA6VG036236,2027,Kia,"Telluride Hybrid","X-Line SX Prestige","At Dealership",E27790541,2026-07-13,https://www.evansvillekia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-4d-sport-utility-5xyplesa6vg036236/
+KIAEvansville,5XYRL4JC4TG484221,2026,Kia,Sorento,S,"At Dealership",E2677144,2026-07-13,https://www.evansvillekia.com/inventory/new-2026-kia-sorento-s-fwd-4d-sport-utility-5xyrl4jc4tg484221/
+KIAEvansville,KNDPXDDG8T7347449,2026,Kia,"Sportage Hybrid",SX-Prestige,"At Dealership",E2676073,2026-07-13,https://www.evansvillekia.com/inventory/new-2026-kia-sportage-hybrid-sx-prestige-awd-4d-sport-utility-kndpxddg8t7347449/
+KIAEvansville,5XYK5CDF0TG437277,2026,Kia,Sportage,SX-Prestige,"At Dealership",E2670219,2026-07-13,https://www.evansvillekia.com/inventory/new-2026-kia-sportage-sx-prestige-awd-4d-sport-utility-5xyk5cdf0tg437277/
