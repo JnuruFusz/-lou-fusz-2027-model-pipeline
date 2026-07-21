@@ -1,7 +1,6 @@
 "Dealership Name",VIN,Year,Make,Model,Trim,"Vehicle Status","Stock Number","Date In stock","VDP URLs"
 "Lou Fusz Ford",3FMCR9GN7SRE41387,2025,Ford,"Bronco Sport",Heritage,"At Dealership",F25334,2025-04-11,https://www.loufuszford.com/inventory/new-2025-ford-bronco-sport-heritage-4wd-4d-sport-utility-3fmcr9gn7sre41387/
 "Lou Fusz Ford",1FMCU9GN5SUB04787,2025,Ford,Escape,Active,"At Dealership",F25375,2025-04-18,https://www.loufuszford.com/inventory/new-2025-ford-escape-active-awd-4d-sport-utility-1fmcu9gn5sub04787/
-"Lou Fusz Ford",1FM5K8AB1SGC32806,2025,Ford,"Utility Police Interceptor",Base,"At Dealership",FF25561,2025-06-25,https://www.loufuszford.com/inventory/new-2025-ford-utility-police-interceptor-base-awd-4d-sport-utility-1fm5k8ab1sgc32806/
 "Lou Fusz Ford",1FDWE3FN7TDD10736,2026,Ford,E-350SD,Base,"At Dealership",FF26003,2025-06-23,https://www.loufuszford.com/inventory/new-2026-ford-e-350sd-base-rwd-specialty-vehicle-1fdwe3fn7tdd10736/
 "Lou Fusz Ford",1FDWE3FN2TDD11051,2026,Ford,E-350SD,Base,"At Dealership",FF26004,2025-06-23,https://www.loufuszford.com/inventory/new-2026-ford-e-350sd-base-rwd-specialty-vehicle-1fdwe3fn2tdd11051/
 "Lou Fusz Ford",1FM5K8AB7SGC33121,2025,Ford,"Utility Police Interceptor",Base,"At Dealership",FF25562,2025-06-30,https://www.loufuszford.com/inventory/new-2025-ford-utility-police-interceptor-base-awd-4d-sport-utility-1fm5k8ab7sgc33121/
@@ -50,7 +49,6 @@
 "Lou Fusz Ford",3FMCR9CN4TRE26188,2026,Ford,"Bronco Sport","Outer Banks","At Dealership",F26309,2026-03-13,https://www.loufuszford.com/inventory/new-2026-ford-bronco-sport-outer-banks-4wd-4d-sport-utility-3fmcr9cn4tre26188/
 "Lou Fusz Ford",3FMCR9CN5TRE21386,2026,Ford,"Bronco Sport","Outer Banks","At Dealership",F26310,2026-03-13,https://www.loufuszford.com/inventory/new-2026-ford-bronco-sport-outer-banks-4wd-4d-sport-utility-3fmcr9cn5tre21386/
 "Lou Fusz Ford",3FMTK3SU6TMA06360,2026,Ford,"Mustang Mach-E",Premium,"At Dealership",F26324,2026-04-03,https://www.loufuszford.com/inventory/new-2026-ford-mustang-mach-e-premium-awd-4d-sport-utility-3fmtk3su6tma06360/
-"Lou Fusz Ford",1FDWE3FN6TDD36115,2026,Ford,E-350SD,Base,"At Dealership",FF26325,2026-02-26,https://www.loufuszford.com/inventory/new-2026-ford-e-350sd-base-rwd-specialty-vehicle-1fdwe3fn6tdd36115/
 "Lou Fusz Ford",3FMCR9CN9TRE25411,2026,Ford,"Bronco Sport","Outer Banks","At Dealership",F26328,2026-04-11,https://www.loufuszford.com/inventory/new-2026-ford-bronco-sport-outer-banks-4wd-4d-sport-utility-3fmcr9cn9tre25411/
 "Lou Fusz Ford",3FTTW8JA7TRA54207,2026,Ford,Maverick,XLT,"At Dealership",F26329,2026-03-13,https://www.loufuszford.com/inventory/new-2026-ford-maverick-xlt-awd-4d-crew-cab-3fttw8ja7tra54207/
 "Lou Fusz Ford",1FMUK8HH1TGB12088,2026,Ford,Explorer,Platinum,"At Dealership",F26333,2026-03-02,https://www.loufuszford.com/inventory/new-2026-ford-explorer-platinum-4wd-4d-sport-utility-1fmuk8hh1tgb12088/
@@ -172,7 +170,6 @@
 "Lou Fusz Ford",1FD0X4HN9TEF19957,2026,Ford,F-450SD,XL,"At Dealership",FF26648,2026-07-15,https://www.loufuszford.com/inventory/new-2026-ford-f-450sd-xl-4wd-extended-cab-chassis-cab-1fd0x4hn9tef19957/
 "Lou Fusz Ford",1FDWE3FN5TDD39412,2026,Ford,E-350SD,Base,"At Dealership",FF26647,2026-06-29,https://www.loufuszford.com/inventory/new-2026-ford-e-350sd-base-rwd-specialty-vehicle-1fdwe3fn5tdd39412/
 "Lou Fusz Ford",1FMEE7BH6TLA61113,2026,Ford,Bronco,"Big Bend","At Dealership",F26649,2026-06-24,https://www.loufuszford.com/inventory/new-2026-ford-bronco-big-bend-4wd-4d-sport-utility-1fmee7bh6tla61113/
-"Lou Fusz Ford",1FT8W2BM7TEF25724,2026,Ford,F-250SD,,"At Dealership",F26650,2026-07-17,https://www.loufuszford.com/inventory/new-2026-ford-f-250sd-4wd-4d-crew-cab-1ft8w2bm7tef25724/
 "Lou Fusz Ford",1FDUF4HN6TDA30023,2026,Ford,F-450SD,XL,"At Dealership",FF26651,2026-06-29,https://www.loufuszford.com/inventory/new-2026-ford-f-450sd-xl-4wd-2d-standard-cab-1fduf4hn6tda30023/
 "Lou Fusz Ford",1FTFW1P88TKE41569,2026,Ford,"F-150 Police Responder",XL,"At Dealership",FF26654,2026-06-30,https://www.loufuszford.com/inventory/new-2026-ford-f-150-police-responder-xl-4wd-4d-crew-cab-1ftfw1p88tke41569/
 "Lou Fusz Ford",1FMJK1J84TEA18349,2026,Ford,"Expedition Max",Active,"At Dealership",F26652,2026-06-30,https://www.loufuszford.com/inventory/new-2026-ford-expedition-max-active-4wd-4d-sport-utility-1fmjk1j84tea18349/
