@@ -1,6 +1,5 @@
 "Dealership Name",VIN,Year,Make,Model,Trim,"Vehicle Status","Stock Number","Date In stock","VDP URLs"
 "Fusz Toyota",5TFLA5DB6TX358394,2026,Toyota,Tundra," SR5","In Stock",T260152,2025-10-18,https://www.fusztoyota.com/inventory/new-2026-toyota-tundra-sr5-4-wheel-drive-sr5-crewmax-5-5-5tfla5db6tx358394/
-"Fusz Toyota",5TFLA5DB4TX363982,2026,Toyota,Tundra," SR5","In Stock",T260195,2025-11-06,https://www.fusztoyota.com/inventory/new-2026-toyota-tundra-sr5-4-wheel-drive-sr5-crewmax-5-5-5tfla5db4tx363982/
 "Fusz Toyota",JTDACAAJ0T3038260,2026,Toyota,"Toyota Crown Signia"," XLE","In Stock",T260633,2025-12-20,https://www.fusztoyota.com/inventory/new-2026-toyota-toyota-crown-signia-xle-all-wheel-drive-xle-jtdacaaj0t3038260/
 "Fusz Toyota",5TFLA5DB2TX389867,2026,Toyota,Tundra," SR5","In Stock",T260727,2026-02-07,https://www.fusztoyota.com/inventory/new-2026-toyota-tundra-sr5-4-wheel-drive-sr5-crewmax-5-5-5tfla5db2tx389867/
 "Fusz Toyota",JTND4MBE2T3263742,2026,Toyota,"Corolla Hatchback"," FX","In Stock",T260839,2026-02-19,https://www.fusztoyota.com/inventory/new-2026-toyota-corolla-hatchback-fx-front-wheel-drive-fx-5drhatchback-jtnd4mbe2t3263742/
@@ -30,8 +29,6 @@
 "Fusz Toyota",2T36CRAVXTW29I495,2026,Toyota,RAV4," SE","Build Phase",,2026-06-03,https://www.fusztoyota.com/inventory/new-2026-toyota-rav4-se-all-wheel-drive-hybrid-awd-2t36cravxtw29i495/
 "Fusz Toyota",2T36CRAV1TW29I370,2026,Toyota,RAV4," Limited","Build Phase",,2026-06-03,https://www.fusztoyota.com/inventory/new-2026-toyota-rav4-limited-all-wheel-drive-hybrid-awd-2t36crav1tw29i370/
 "Fusz Toyota",7MUDAABG3TV29C026,2026,Toyota,"Corolla Cross"," XLE","Build Phase",,2026-06-03,https://www.fusztoyota.com/inventory/new-2026-toyota-corolla-cross-xle-all-wheel-drive-xle-awd-7mudaabg3tv29c026/
-"Fusz Toyota",5TDEBRCH3TS29I880,2026,Toyota,"Highlander Hybrid"," Platinum","Build Phase",,2026-06-03,https://www.fusztoyota.com/inventory/new-2026-toyota-highlander-hybrid-platinum-all-wheel-drive-platinum-awd-5tdebrch3ts29i880/
-"Fusz Toyota",3TYLC5LN5TT29C103,2026,Toyota,"Tacoma i-FORCE MAX","Tacoma Limited","Build Phase",,2026-06-03,https://www.fusztoyota.com/inventory/new-2026-toyota-tacoma-i-force-max-tacoma-limited-4-wheel-drive-4x4-double-cab-3tylc5ln5tt29c103/
 "Fusz Toyota",3TYLB5JNXTT29C121,2026,Toyota,Tacoma," TRD Sport","Build Phase",,2026-06-03,https://www.fusztoyota.com/inventory/new-2026-toyota-tacoma-trd-sport-4-wheel-drive-4x4-double-cab-3tylb5jnxtt29c121/
 "Fusz Toyota",3TMLB5JN8TM29C839,2026,Toyota,Tacoma," TRD Sport","Build Phase",,2026-06-03,https://www.fusztoyota.com/inventory/new-2026-toyota-tacoma-trd-sport-4-wheel-drive-4x4-double-cab-3tmlb5jn8tm29c839/
 "Fusz Toyota",3TMLB5JN0TM284925,2026,Toyota,Tacoma," TRD Off-Road","In Stock",T261228,2026-06-03,https://www.fusztoyota.com/inventory/new-2026-toyota-tacoma-trd-off-road-4-wheel-drive-4x4-double-cab-3tmlb5jn0tm284925/
@@ -71,7 +68,6 @@
 "Fusz Toyota",2T36DRBV2TC30J379,2026,Toyota,RAV4," LE","Build Phase",,2026-06-18,https://www.fusztoyota.com/inventory/new-2026-toyota-rav4-le-front-wheel-drive-hybrid-fwd-2t36drbv2tc30j379/
 "Fusz Toyota",JTEVB5BR8T5050530,2026,Toyota,"4Runner i-FORCE MAX","4Runner TRD Off-Road Premium","In Transit",T261408,2026-06-18,https://www.fusztoyota.com/inventory/new-2026-toyota-4runner-i-force-max-4runner-trd-off-road-premium-part-time-4-wheel-drive-4wd-trd-off-rd-prem-jtevb5br8t5050530/
 "Fusz Toyota",JTEVA5BR0T5143738,2026,Toyota,4Runner," Limited","In Transit",T261372,2026-06-18,https://www.fusztoyota.com/inventory/new-2026-toyota-4runner-limited-full-time-4-wheel-drive-4wd-limited-jteva5br0t5143738/
-"Fusz Toyota",2T36CRAV2TW065738,2026,Toyota,RAV4," Woodland","In Stock",T261302,2026-06-18,https://www.fusztoyota.com/inventory/new-2026-toyota-rav4-woodland-all-wheel-drive-hybrid-awd-2t36crav2tw065738/
 "Fusz Toyota",JTDBCMFE3T3159852,2026,Toyota,"Corolla Hybrid"," SE","In Transit",T261371,2026-06-19,https://www.fusztoyota.com/inventory/new-2026-toyota-corolla-hybrid-se-front-wheel-drive-se-sedan-jtdbcmfe3t3159852/
 "Fusz Toyota",5TDAAAB53TS145907,2026,Toyota,"Grand Highlander"," Limited","In Transit",T261313,2026-06-19,https://www.fusztoyota.com/inventory/new-2026-toyota-grand-highlander-limited-all-wheel-drive-limited-awd-5tdaaab53ts145907/
 "Fusz Toyota",5TDAAAB52TS30N467,2026,Toyota,"Grand Highlander"," XLE","Build Phase",,2026-06-20,https://www.fusztoyota.com/inventory/new-2026-toyota-grand-highlander-xle-all-wheel-drive-xle-awd-5tdaaab52ts30n467/
@@ -80,7 +76,6 @@
 "Fusz Toyota",7SVAAABA1TX099233,2026,Toyota,Sequoia," Platinum","In Stock",T261329,2026-06-23,https://www.fusztoyota.com/inventory/new-2026-toyota-sequoia-platinum-4-wheel-drive-plt-hybrid-7svaaaba1tx099233/
 "Fusz Toyota",4T1DAACK5TU29B383,2026,Toyota,Camry," SE","Build Phase",,2026-06-23,https://www.fusztoyota.com/inventory/new-2026-toyota-camry-se-front-wheel-drive-se-4t1daack5tu29b383/
 "Fusz Toyota",2T36CRAV4TW30I891,2026,Toyota,RAV4," XSE","Build Phase",,2026-06-24,https://www.fusztoyota.com/inventory/new-2026-toyota-rav4-xse-all-wheel-drive-hybrid-awd-2t36crav4tw30i891/
-"Fusz Toyota",4T1DBADKXTU29C962,2026,Toyota,Camry," XSE AWD","Build Phase",,2026-06-25,https://www.fusztoyota.com/inventory/new-2026-toyota-camry-xse-awd-all-wheel-drive-xse-awd-4t1dbadkxtu29c962/
 "Fusz Toyota",5TFPC5DBXTX136033,2026,Toyota,"Tundra i-FORCE MAX","Tundra TRD Pro","In Stock",T261331,2026-06-25,https://www.fusztoyota.com/inventory/new-2026-toyota-tundra-i-force-max-tundra-trd-pro-4-wheel-drive-trd-pro-5-5-5tfpc5dbxtx136033/
 "Fusz Toyota",5TFMA5DB9TX431536,2026,Toyota,Tundra," 1794 Edition","In Stock",T261342,2026-06-26,https://www.fusztoyota.com/inventory/new-2026-toyota-tundra-1794-edition-4-wheel-drive-1794-ed-crewmax-5-5-5tfma5db9tx431536/
 "Fusz Toyota",5TFJA5DB1TX431873,2026,Toyota,Tundra," Limited","In Stock",T261351,2026-06-26,https://www.fusztoyota.com/inventory/new-2026-toyota-tundra-limited-4-wheel-drive-limited-crewmax-5-5-5tfja5db1tx431873/
@@ -222,7 +217,6 @@
 "Fusz Toyota",JTDBCMFE4T3165059,2026,Toyota,"Corolla Hybrid"," XLE","Build Phase",,2026-07-15,https://www.fusztoyota.com/inventory/new-2026-toyota-corolla-hybrid-xle-front-wheel-drive-xle-sedan-jtdbcmfe4t3165059/
 "Fusz Toyota",JTM7ERAV7TJ025538,2026,Toyota,"RAV4 Plug-in Hybrid"," XSE","Build Phase",,2026-07-15,https://www.fusztoyota.com/inventory/new-2026-toyota-rav4-plug-in-hybrid-xse-all-wheel-drive-plug-in-hybrid-awd-jtm7erav7tj025538/
 "Fusz Toyota",5YFB4MDE3TP34B790,2026,Toyota,Corolla," LE","Build Phase",,2026-07-15,https://www.fusztoyota.com/inventory/new-2026-toyota-corolla-le-front-wheel-drive-le-5yfb4mde3tp34b790/
-"Fusz Toyota",JTDBCMFE9T129CZ41,2026,Toyota,"Corolla Hybrid"," SE","Build Phase",,2026-07-15,https://www.fusztoyota.com/inventory/new-2026-toyota-corolla-hybrid-se-front-wheel-drive-se-sedan-jtdbcmfe9t129cz41/
 "Fusz Toyota",4T1DBADK6TU35A081,2026,Toyota,Camry," Nightshade AWD","Build Phase",,2026-07-15,https://www.fusztoyota.com/inventory/new-2026-toyota-camry-nightshade-awd-all-wheel-drive-nightshade-awd-4t1dbadk6tu35a081/
 "Fusz Toyota",4T1DBADK3TU35D813,2026,Toyota,Camry," XLE AWD","Build Phase",,2026-07-15,https://www.fusztoyota.com/inventory/new-2026-toyota-camry-xle-awd-all-wheel-drive-xle-awd-4t1dbadk3tu35d813/
 "Fusz Toyota",4T1DAACK9TU35A774,2026,Toyota,Camry," XSE","Build Phase",,2026-07-15,https://www.fusztoyota.com/inventory/new-2026-toyota-camry-xse-front-wheel-drive-xse-4t1daack9tu35a774/
@@ -292,4 +286,7 @@
 "Fusz Toyota",7MUAAABG2TV198816,2026,Toyota,"Corolla Cross"," L","In Transit",T261415,2026-07-21,https://www.fusztoyota.com/inventory/new-2026-toyota-corolla-cross-l-all-wheel-drive-l-awd-7muaaabg2tv198816/
 "Fusz Toyota",JTEVB5BR6T5054513,2026,Toyota,"4Runner i-FORCE MAX","4Runner TRD Off-Road","Build Phase",,2026-07-21,https://www.fusztoyota.com/inventory/new-2026-toyota-4runner-i-force-max-4runner-trd-off-road-part-time-4-wheel-drive-4wd-trd-off-rd-jtevb5br6t5054513/
 "Fusz Toyota",5YFB4MDE3TP478515,2026,Toyota,Corolla," LE","In Stock",T261418,2026-07-21,https://www.fusztoyota.com/inventory/new-2026-toyota-corolla-le-front-wheel-drive-le-5yfb4mde3tp478515/
-"Fusz Toyota",4T1DBADK3TU066614,2026,Toyota,Camry," LE AWD","In Transit",,2026-07-21,https://www.fusztoyota.com/inventory/new-2026-toyota-camry-le-awd-all-wheel-drive-le-awd-4t1dbadk3tu066614/
+"Fusz Toyota",4T1DBADK3TU066614,2026,Toyota,Camry," LE AWD","In Transit",T261419,2026-07-21,https://www.fusztoyota.com/inventory/new-2026-toyota-camry-le-awd-all-wheel-drive-le-awd-4t1dbadk3tu066614/
+"Fusz Toyota",JTDBCMFE9T3166272,2026,Toyota,"Corolla Hybrid"," SE","Build Phase",,2026-07-22,https://www.fusztoyota.com/inventory/new-2026-toyota-corolla-hybrid-se-front-wheel-drive-se-sedan-jtdbcmfe9t3166272/
+"Fusz Toyota",3TYLC5LN0TT077241,2026,Toyota,"Tacoma i-FORCE MAX","Tacoma Limited","Build Phase",,2026-07-22,https://www.fusztoyota.com/inventory/new-2026-toyota-tacoma-i-force-max-tacoma-limited-4-wheel-drive-4x4-double-cab-3tylc5ln0tt077241/
+"Fusz Toyota",JTEVA5BR9T5136450,2026,Toyota,4Runner," SR5","In Stock",,2026-07-22,https://www.fusztoyota.com/inventory/new-2026-toyota-4runner-sr5-part-time-4-wheel-drive-4wd-sr5-jteva5br9t5136450/
