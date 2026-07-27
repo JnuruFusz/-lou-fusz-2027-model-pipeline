@@ -575,7 +575,7 @@ function renderPipelineTableRow(task, ownerOverride) {
   const ownerInit = initials(owner);
   const ownerFirst = owner.split(" ")[0];
 
-  return `<div class="pipeline-row${isOnLot ? " is-on-lot" : ""}" data-details="${escapeAttr(task.id)}">
+  return `<div class="pipeline-row${isOnLot ? " is-on-lot" : ""}">
     <div class="pipeline-col pipeline-col-model">
       <strong class="pipeline-model-title">${escapeHtml(taskTitle(task))}</strong>
     </div>
@@ -605,7 +605,7 @@ function renderPipelineCard(task) {
   const { badgeBg, badgeFg, shortDealer, owner, ageLabel, ageTone, signalLabel, isOnLot } = pipelineRowData(task);
   const ownerInit = initials(owner);
 
-  return `<div class="pipeline-card${isOnLot ? " is-on-lot" : ""}" data-details="${escapeAttr(task.id)}">
+  return `<div class="pipeline-card${isOnLot ? " is-on-lot" : ""}">
     <strong class="pipeline-card-title">${escapeHtml(taskTitle(task))}</strong>
     <div class="pipeline-card-dealer">
       <span class="pipeline-brand-badge" style="background:${escapeAttr(badgeBg)};color:${escapeAttr(badgeFg)}">${escapeHtml(task.make || "Brand")}</span>
