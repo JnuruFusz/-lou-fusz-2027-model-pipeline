@@ -1,7 +1,4 @@
 "Dealership Name",VIN,Year,Make,Model,Trim,"Vehicle Status","Stock Number","Date In stock","VDP URLs"
-"Lou Fusz CDJRF",3C7WRTCJ3SG532365,2025,RAM,"3500 Chassis",Tradesman,"At Dealership",DR25114,2025-04-01,https://www.loufuszchryslerjeepdodge.net/inventory/new-2025-ram-3500-chassis-tradesman-4x4-crew-cab-3c7wrtcj3sg532365/
-"Lou Fusz CDJRF",3C7WRTCJ2SG518845,2025,RAM,"3500 Chassis Cab",Tradesman,"At Dealership",DR25126,2025-05-14,https://www.loufuszchryslerjeepdodge.net/inventory/new-2025-ram-3500-chassis-cab-tradesman-4x4-crew-cab-3c7wrtcj2sg518845/
-"Lou Fusz CDJRF",3C7WRTCJ0SG551357,2025,RAM,"3500 Chassis",Tradesman,"At Dealership",DR25150,2025-06-01,https://www.loufuszchryslerjeepdodge.net/inventory/new-2025-ram-3500-chassis-tradesman-4x4-crew-cab-3c7wrtcj0sg551357/
 "Lou Fusz CDJRF",3C7WRNBL6TG154252,2026,RAM,"5500 Chassis Cab",Tradesman,"At Dealership",DR26031,2025-10-01,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-5500-chassis-cab-tradesman-4x4-regular-cab-3c7wrnbl6tg154252/
 "Lou Fusz CDJRF",2C4RC1BGXTR158662,2026,Chrysler,Pacifica,Select,"At Dealership",DC26001,2025-09-02,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-chrysler-pacifica-select-fwd-passenger-van-2c4rc1bgxtr158662/
 "Lou Fusz CDJRF",2C4RC1BG8TR158658,2026,Chrysler,Pacifica,Select,"At Dealership",DC26013,2025-08-13,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-chrysler-pacifica-select-fwd-passenger-van-2c4rc1bg8tr158658/
@@ -14,7 +11,7 @@
 "Lou Fusz CDJRF",1C4PJXEN9TW187734,2026,Jeep,Wrangler,Sahara,"At Dealership",DJ26041,2025-11-07,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-wrangler-sahara-4x4-4-door-1c4pjxen9tw187734/
 "Lou Fusz CDJRF",1C4PJXDN7TW190259,2026,Jeep,Wrangler,"Sport S","At Dealership",DJ26027,2025-10-01,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-wrangler-sport-s-4x4-4-door-1c4pjxdn7tw190259/
 "Lou Fusz CDJRF",1C4PJXDN8TW190254,2026,Jeep,Wrangler,"Sport S","At Dealership",DJ26026,2025-10-09,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-wrangler-sport-s-4x4-4-door-1c4pjxdn8tw190254/
-"Lou Fusz CDJRF",1C6SRFUP2TN172795,2026,RAM,1500,RHO,"At Dealership",DR26121,2026-02-06,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-1500-rho-4x4-crew-cab-1c6srfup2tn172795/
+"Lou Fusz CDJRF",1C6SRFUP2TN172795,2026,RAM,1500,RHO,"At Dealership",DR26121,2026-07-27,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-1500-rho-4x4-crew-cab-1c6srfup2tn172795/
 "Lou Fusz CDJRF",1C4PJXAN9TW158546,2026,Jeep,Wrangler,Sport,"At Dealership",DJ26044,2025-10-13,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-wrangler-sport-4x4-2-door-1c4pjxan9tw158546/
 "Lou Fusz CDJRF",1C6SRFJT2TN238179,2026,RAM,1500,Laramie,"At Dealership",DR26078,2025-10-17,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-1500-laramie-4x4-crew-cab-1c6srfjt2tn238179/
 "Lou Fusz CDJRF",2C4RC1GG5TR198169,2026,Chrysler,Pacifica,Limited,"At Dealership",DC26037,2025-11-14,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-chrysler-pacifica-limited-fwd-passenger-van-2c4rc1gg5tr198169/
@@ -77,7 +74,6 @@
 "Lou Fusz CDJRF",1C6SRFFT1TN296003,2026,RAM,1500,"Big Horn/Lone Star","At Dealership",DR26112,2026-02-04,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-1500-big-hornlone-star-4x4-crew-cab-1c6srfft1tn296003/
 "Lou Fusz CDJRF",1C6SRFFT9TN296007,2026,RAM,1500,"Big Horn/Lone Star","At Dealership",DR26113,2026-02-03,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-1500-big-hornlone-star-4x4-crew-cab-1c6srfft9tn296007/
 "Lou Fusz CDJRF",1C4SJVBP1TS161365,2026,Jeep,"Grand Wagoneer","Limited Altitude","At Dealership",DJ26170,2026-02-16,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-grand-wagoneer-limited-altitude-4x4-sport-utility-1c4sjvbp1ts161365/
-"Lou Fusz CDJRF",1C6SRFFT3TN296004,2026,RAM,1500,"BIG HORN","In Transit",DR26118,2026-07-27,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-1500-big-horn-4x4-crew-cab-1c6srfft3tn296004/
 "Lou Fusz CDJRF",3C63R5DL3TG255690,2026,RAM,2500,"Big Horn","At Dealership",DR26117,2026-02-26,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-2500-big-horn-4x4-crew-cab-3c63r5dl3tg255690/
 "Lou Fusz CDJRF",1C4RJKBR1T8556934,2026,Jeep,"Grand Cherokee L",Limited,"At Dealership",DJ26183,2026-02-25,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-grand-cherokee-l-limited-4x4-sport-utility-1c4rjkbr1t8556934/
 "Lou Fusz CDJRF",3C4PJMB21TT205495,2026,Jeep,Cherokee,Laredo,"At Dealership",DJ26204,2026-04-06,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-cherokee-laredo-4x4-sport-utility-3c4pjmb21tt205495/
@@ -101,7 +97,6 @@
 "Lou Fusz CDJRF",1C4SDJFT1TC234297,2026,Dodge,Durango,Pursuit,"At Dealership",DF26112,2026-03-18,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-dodge-durango-pursuit-awd-sport-utility-1c4sdjft1tc234297/
 "Lou Fusz CDJRF",1C6RJTAG5TL179907,2026,Jeep,Gladiator,Sport,"At Dealership",DJ26217,2026-03-11,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-gladiator-sport-4x4-crew-cab-1c6rjtag5tl179907/
 "Lou Fusz CDJRF",1C6RJTAG7TL179908,2026,Jeep,Gladiator,Sport,"At Dealership",DJ26223,2026-03-16,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-gladiator-sport-4x4-crew-cab-1c6rjtag7tl179908/
-"Lou Fusz CDJRF",3C4PJMC28TT246124,2026,Jeep,Cherokee,Overland,"In Transit",DJ26209,2026-07-27,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-cherokee-overland-4x4-sport-utility-3c4pjmc28tt246124/
 "Lou Fusz CDJRF",1C4SDJFT7TC230920,2026,Dodge,Durango,Pursuit,"At Dealership",DF26116,2026-04-06,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-dodge-durango-pursuit-awd-sport-utility-1c4sdjft7tc230920/
 "Lou Fusz CDJRF",2C4RC3BG3TR266570,2026,Chrysler,Pacifica,Select,"At Dealership",DC26056,2026-03-25,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-chrysler-pacifica-select-awd-passenger-van-2c4rc3bg3tr266570/
 "Lou Fusz CDJRF",1C6RJTAG3TL179906,2026,Jeep,Gladiator,Sport,"At Dealership",DJ26237,2026-04-13,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-gladiator-sport-4x4-crew-cab-1c6rjtag3tl179906/
@@ -148,7 +143,6 @@
 "Lou Fusz CDJRF",1C6SRFFP5TN162551,2026,RAM,1500,"Big Horn/Lone Star","At Dealership",DR26167,2026-05-01,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-1500-big-hornlone-star-4x4-crew-cab-1c6srffp5tn162551/
 "Lou Fusz CDJRF",1C6SRFFP7TN162549,2026,RAM,1500,"Big Horn/Lone Star","At Dealership",DR26163,2026-04-27,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-1500-big-hornlone-star-4x4-crew-cab-1c6srffp7tn162549/
 "Lou Fusz CDJRF",1C6SRFFP7TN162552,2026,RAM,1500,"Big Horn/Lone Star","At Dealership",DR26172,2026-04-29,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-1500-big-hornlone-star-4x4-crew-cab-1c6srffp7tn162552/
-"Lou Fusz CDJRF",1C4RJKBR8T8577957,2026,Jeep,"Grand Cherokee L",Limited,"In Transit",DJ26276,2026-07-27,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-grand-cherokee-l-limited-4x4-sport-utility-1c4rjkbr8t8577957/
 "Lou Fusz CDJRF",1C6SRFHT9TN372175,2026,RAM,1500,Limited,"At Dealership",DR26180,2026-05-19,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-1500-limited-4x4-crew-cab-1c6srfht9tn372175/
 "Lou Fusz CDJRF",1C4SDJCT3TC254488,2026,Dodge,Durango,"GT Plus HEMI V8","At Dealership",DD26061,2026-05-06,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-dodge-durango-gt-plus-hemi-v8-awd-sport-utility-1c4sdjct3tc254488/
 "Lou Fusz CDJRF",1C4RDJDG6TC234476,2026,Dodge,Durango,GT,"At Dealership",DD26056,2026-05-04,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-dodge-durango-gt-awd-sport-utility-1c4rdjdg6tc234476/
@@ -168,7 +162,6 @@
 "Lou Fusz CDJRF",1C4SJVBP8TS185291,2026,Jeep,"Grand Wagoneer","Limited Reserve","At Dealership",DJ26293,2026-05-21,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-grand-wagoneer-limited-reserve-4x4-sport-utility-1c4sjvbp8ts185291/
 "Lou Fusz CDJRF",1C6PJTAG7TL184971,2026,Jeep,Gladiator,"85th Anniversary Edition","At Dealership",DJ26291,2026-05-04,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-gladiator-85th-anniversary-edition-4x4-crew-cab-1c6pjtag7tl184971/
 "Lou Fusz CDJRF",3C4PJMB23TT219057,2026,Jeep,Cherokee,Limited,"At Dealership",DJ26281,2026-05-29,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-cherokee-limited-4x4-sport-utility-3c4pjmb23tt219057/
-"Lou Fusz CDJRF",2C4RC1BG0VR550925,2027,Chrysler,Pacifica,Select,"At Dealership",DC27002,2026-05-14,https://www.loufuszchryslerjeepdodge.net/inventory/new-2027-chrysler-pacifica-select-fwd-passenger-van-2c4rc1bg0vr550925/
 "Lou Fusz CDJRF",2C4RC1BG2VR551428,2027,Chrysler,Pacifica,Select,"At Dealership",DC27001,2026-05-19,https://www.loufuszchryslerjeepdodge.net/inventory/new-2027-chrysler-pacifica-select-fwd-passenger-van-2c4rc1bg2vr551428/
 "Lou Fusz CDJRF",1C4SJVAP2TS183859,2026,Jeep,"Grand Wagoneer",,"At Dealership",DJ26299,2026-05-15,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-grand-wagoneer-4x4-sport-utility-1c4sjvap2ts183859/
 "Lou Fusz CDJRF",1C4SJVAP4TS183863,2026,Jeep,"Grand Wagoneer",,"At Dealership",DJ26297,2026-05-14,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-grand-wagoneer-4x4-sport-utility-1c4sjvap4ts183863/
@@ -198,7 +191,6 @@
 "Lou Fusz CDJRF",1C4SJVEP7TS189036,2026,Jeep,"Grand Wagoneer","Summit Obsidian","At Dealership",DJ26314,2026-06-18,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-grand-wagoneer-summit-obsidian-4x4-sport-utility-1c4sjvep7ts189036/
 "Lou Fusz CDJRF",1C4PJXEN3TW218816,2026,Jeep,Wrangler,Sahara,"At Dealership",DJ26312,2026-06-08,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-wrangler-sahara-4x4-4-door-1c4pjxen3tw218816/
 "Lou Fusz CDJRF",1C4SJVEP5TS189035,2026,Jeep,"Grand Wagoneer","Summit Obsidian","At Dealership",DJ26315,2026-06-02,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-grand-wagoneer-summit-obsidian-4x4-sport-utility-1c4sjvep5ts189035/
-"Lou Fusz CDJRF",1C4RJKBR6T8551602,2026,Jeep,"Grand Cherokee L",Limited,"In Transit",DJ26319,2026-07-27,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-grand-cherokee-l-limited-4x4-sport-utility-1c4rjkbr6t8551602/
 "Lou Fusz CDJRF",3C6UR5DJ2TG309810,2026,RAM,2500,"Big Horn","At Dealership",DR26186,2026-05-28,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-2500-big-horn-4x4-crew-cab-3c6ur5dj2tg309810/
 "Lou Fusz CDJRF",3C4NJDBN5TT272165,2026,Jeep,Compass,Latitude,"At Dealership",DJ26317,2026-06-11,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-compass-latitude-4x4-utility-3c4njdbn5tt272165/
 "Lou Fusz CDJRF",2C4RC1GG3VR557408,2027,Chrysler,Pacifica,Limited,"At Dealership",DC27008,2026-05-26,https://www.loufuszchryslerjeepdodge.net/inventory/new-2027-chrysler-pacifica-limited-fwd-passenger-van-2c4rc1gg3vr557408/
@@ -231,7 +223,6 @@
 "Lou Fusz CDJRF",1C6SRFUP3TN409486,2026,RAM,1500,RHO,"At Dealership",DR26234,2026-06-29,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-1500-rho-4x4-crew-cab-1c6srfup3tn409486/
 "Lou Fusz CDJRF",1C6SRFUP8TN412500,2026,RAM,1500,RHO,"At Dealership",DR26237,2026-07-01,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-1500-rho-4x4-crew-cab-1c6srfup8tn412500/
 "Lou Fusz CDJRF",1C4RJHBR7TC297723,2026,Jeep,"Grand Cherokee",,"At Dealership",DJ26332,2026-06-18,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-grand-cherokee-4x4-sport-utility-1c4rjhbr7tc297723/
-"Lou Fusz CDJRF",1C6SRFJT0TN409916,2026,RAM,1500,LARAMIE,"In Transit",DR26209,2026-07-27,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-1500-laramie-4x4-crew-cab-1c6srfjt0tn409916/
 "Lou Fusz CDJRF",1C4RJHBR2TC297726,2026,Jeep,"Grand Cherokee",,"At Dealership",DJ26336,2026-06-22,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-grand-cherokee-4x4-sport-utility-1c4rjhbr2tc297726/
 "Lou Fusz CDJRF",1C4RJHBR9TC297724,2026,Jeep,"Grand Cherokee",,"At Dealership",DJ26340,2026-06-22,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-grand-cherokee-4x4-sport-utility-1c4rjhbr9tc297724/
 "Lou Fusz CDJRF",1C6SRFFT0TN408810,2026,RAM,1500,"Big Horn/Lone Star","At Dealership",DR26211,2026-06-17,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-1500-big-hornlone-star-4x4-crew-cab-1c6srfft0tn408810/
@@ -287,16 +278,15 @@
 "Lou Fusz CDJRF",3C63R5HL9TG362074,2026,RAM,2500,Tradesman,"At Dealership",DR26236,2026-06-30,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-2500-tradesman-4x4-crew-cab-3c63r5hl9tg362074/
 "Lou Fusz CDJRF",3C6UR5DJXTG352856,2026,RAM,2500,"Big Horn","At Dealership",DR26238,2026-07-15,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-2500-big-horn-4x4-crew-cab-3c6ur5djxtg352856/
 "Lou Fusz CDJRF",1C4RJHBR4T8599571,2026,Jeep,"Grand Cherokee","Limited Reserve","At Dealership",DJ26352,2026-06-22,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-grand-cherokee-limited-reserve-4x4-sport-utility-1c4rjhbr4t8599571/
-"Lou Fusz CDJRF",1C4RJXFGXTW274664,2026,Jeep,Wrangler,Rubicon,"At Dealership",DJ26364,2026-06-29,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-wrangler-rubicon-4x4-4-door-1c4rjxfgxtw274664/
 "Lou Fusz CDJRF",3C6UR5DJ3TG352858,2026,RAM,2500,"Big Horn","At Dealership",DR26239,2026-07-17,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-2500-big-horn-4x4-crew-cab-3c6ur5dj3tg352858/
 "Lou Fusz CDJRF",1C6SRFFT4TN408809,2026,RAM,1500,"Big Horn/Lone Star","At Dealership",DR26245,2026-07-21,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-1500-big-hornlone-star-4x4-crew-cab-1c6srfft4tn408809/
 "Lou Fusz CDJRF",3C6LRVAG3TE207545,2026,RAM,ProMaster,"Low Roof","At Dealership",DR26242,2026-07-07,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-promaster-low-roof-4x2-cargo-van-3c6lrvag3te207545/
-"Lou Fusz CDJRF",1C4RJXFG2TW337756,2026,Jeep,Wrangler,"Rubicon X","At Dealership",DJ26369,2026-07-06,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-wrangler-rubicon-x-4x4-4-door-1c4rjxfg2tw337756/
-"Lou Fusz CDJRF",1C4PJXEG2TW336731,2026,Jeep,Wrangler,Sahara,"At Dealership",DJ26373,2026-07-10,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-wrangler-sahara-4x4-4-door-1c4pjxeg2tw336731/
-"Lou Fusz CDJRF",1C4PJXEG8TW338144,2026,Jeep,Wrangler,Sahara,"At Dealership",DJ26367,2026-07-01,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-wrangler-sahara-4x4-4-door-1c4pjxeg8tw338144/
+"Lou Fusz CDJRF",1C4RJXFG2TW337756,2026,Jeep,Wrangler,"Rubicon X","At Dealership",DJ26369,2026-07-27,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-wrangler-rubicon-x-4x4-4-door-1c4rjxfg2tw337756/
+"Lou Fusz CDJRF",1C4PJXEG2TW336731,2026,Jeep,Wrangler,Sahara,"At Dealership",DJ26373,2026-07-27,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-wrangler-sahara-4x4-4-door-1c4pjxeg2tw336731/
+"Lou Fusz CDJRF",1C4PJXEG8TW338144,2026,Jeep,Wrangler,Sahara,"At Dealership",DJ26367,2026-07-27,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-wrangler-sahara-4x4-4-door-1c4pjxeg8tw338144/
 "Lou Fusz CDJRF",3C6UR5DL0TG365231,2026,RAM,2500,"Big Horn","At Dealership",DR26244,2026-07-17,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-2500-big-horn-4x4-crew-cab-3c6ur5dl0tg365231/
 "Lou Fusz CDJRF",3C63R3GJXTG355493,2026,RAM,3500,Tradesman,"At Dealership",DR26248,2026-07-17,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-3500-tradesman-4x4-crew-cab-3c63r3gjxtg355493/
-"Lou Fusz CDJRF",1C4PJXEG4TW336732,2026,Jeep,Wrangler,Sahara,"At Dealership",DJ26374,2026-07-10,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-wrangler-sahara-4x4-4-door-1c4pjxeg4tw336732/
+"Lou Fusz CDJRF",1C4PJXEG4TW336732,2026,Jeep,Wrangler,Sahara,"At Dealership",DJ26374,2026-07-27,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-wrangler-sahara-4x4-4-door-1c4pjxeg4tw336732/
 "Lou Fusz CDJRF",1C4RJKBR3T8605180,2026,Jeep,"Grand Cherokee L",,"At Dealership",DJ26378,2026-07-20,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-grand-cherokee-l-4x4-sport-utility-1c4rjkbr3t8605180/
 "Lou Fusz CDJRF",3C4NJDCN3TT292171,2026,Jeep,Compass,Limited,"At Dealership",DJ26368,2026-07-15,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-compass-limited-4x4-sport-utility-3c4njdcn3tt292171/
 "Lou Fusz CDJRF",1C4RJXFG2TW340348,2026,Jeep,Wrangler,"Rubicon X","At Dealership",DJ26380,2026-07-22,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-wrangler-rubicon-x-4x4-4-door-1c4rjxfg2tw340348/
@@ -304,7 +294,7 @@
 "Lou Fusz CDJRF",2C4RC1PG5VR588434,2027,Chrysler,Pacifica,Pinnacle,"At Dealership",DC27011,2026-07-21,https://www.loufuszchryslerjeepdodge.net/inventory/new-2027-chrysler-pacifica-pinnacle-fwd-passenger-van-2c4rc1pg5vr588434/
 "Lou Fusz CDJRF",1C4PJXDG5TW307239,2026,Jeep,Wrangler,"Sport S","At Dealership",DJ26370,2026-07-06,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-wrangler-sport-s-4x4-4-door-1c4pjxdg5tw307239/
 "Lou Fusz CDJRF",3C4NJDCN6TT292164,2026,Jeep,Compass,Limited,"At Dealership",DJ26372,2026-07-10,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-compass-limited-4x4-sport-utility-3c4njdcn6tt292164/
-"Lou Fusz CDJRF",2C4RC1PG3VR588433,2027,Chrysler,Pacifica,Pinnacle,"At Dealership",DC27012,2026-07-10,https://www.loufuszchryslerjeepdodge.net/inventory/new-2027-chrysler-pacifica-pinnacle-fwd-passenger-van-2c4rc1pg3vr588433/
+"Lou Fusz CDJRF",2C4RC1PG3VR588433,2027,Chrysler,Pacifica,Pinnacle,"At Dealership",DC27012,2026-07-27,https://www.loufuszchryslerjeepdodge.net/inventory/new-2027-chrysler-pacifica-pinnacle-fwd-passenger-van-2c4rc1pg3vr588433/
 "Lou Fusz CDJRF",3C4NJDCN5TT292169,2026,Jeep,Compass,Limited,"At Dealership",DJ26376,2026-07-17,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-compass-limited-4x4-sport-utility-3c4njdcn5tt292169/
 "Lou Fusz CDJRF",3C4NJDCNXTT292166,2026,Jeep,Compass,Limited,"At Dealership",DJ26375,2026-07-15,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-compass-limited-4x4-sport-utility-3c4njdcnxtt292166/
 "Lou Fusz CDJRF",3C6LRVDG0TE209040,2026,RAM,ProMaster,"High Roof","At Dealership",DR26250,2026-07-10,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-promaster-high-roof-4x2-cargo-van-3c6lrvdg0te209040/
@@ -317,4 +307,6 @@
 "Lou Fusz CDJRF",3C6UR5DL8TG368068,2026,RAM,2500,"Big Horn","At Dealership",DR26253,2026-07-17,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-2500-big-horn-4x4-crew-cab-3c6ur5dl8tg368068/
 "Lou Fusz CDJRF",1C6SRFJT4TN409918,2026,RAM,1500,Laramie,"At Dealership",DR26254,2026-07-22,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-1500-laramie-4x4-crew-cab-1c6srfjt4tn409918/
 "Lou Fusz CDJRF",1C6SRFFT1TN408816,2026,RAM,1500,"Big Horn/Lone Star","At Dealership",DR26255,2026-07-22,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-ram-1500-big-hornlone-star-4x4-crew-cab-1c6srfft1tn408816/
+"Lou Fusz CDJRF",1C4RJHBRXTC302543,2026,Jeep,"Grand Cherokee",,"At Dealership",DJ26383,2026-07-27,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-grand-cherokee-4x4-sport-utility-1c4rjhbrxtc302543/
 "Lou Fusz CDJRF",3C63R3CL1VG375979,2027,RAM,3500,Tradesman,"At Dealership",DR27001,2026-07-22,https://www.loufuszchryslerjeepdodge.net/inventory/new-2027-ram-3500-tradesman-4x4-crew-cab-3c63r3cl1vg375979/
+"Lou Fusz CDJRF",3C4PJMB2XTT276629,2026,Jeep,Cherokee,,"At Dealership",DJ26382,2026-07-27,https://www.loufuszchryslerjeepdodge.net/inventory/new-2026-jeep-cherokee-4x4-sport-utility-3c4pjmb2xtt276629/
