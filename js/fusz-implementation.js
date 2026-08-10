@@ -77,6 +77,12 @@
     ["applyInventoryFeedSignals", "populateYearFilter", "populateDealerFilter", "populateOwnerFilter", "render"].forEach(wrapTaskInitializer);
   }
 
+  function disableDemoPageStatusOverrides() {
+    window.demoPageStatus = function demoPageStatusDisabled() {
+      return null;
+    };
+  }
+
   function selectedTaskIdFromDetail(button) {
     const explicit = button?.dataset.taskId;
     if (explicit) return explicit;
@@ -93,7 +99,7 @@
   function saveTaskNoteAndReturn(button) {
     const task = selectedTaskFromDetail(button);
     if (!task) return;
-    const reason = window.prompt("Why are you returning this to SEO? (required)");
+    const reason = window.prompt("What needs to be fixed before this page can move forward? (required)");
     if (!reason || !reason.trim()) return;
     task.details = {
       ...(task.details || {}),
@@ -101,9 +107,12 @@
       updatedAt: new Date().toISOString(),
     };
     state.details[task.id] = task.details;
-    localStorage.setItem("pipeline-task-details", JSON.stringify(state.details));
-    updateStatus(task.id, "needs_seo");
-    showToast("Returned to SEO — note saved");
+    try {
+      localStorage.setItem("pipeline-task-details", JSON.stringify(state.details));
+    } catch {}
+    fbSetDetails(state.details);
+    updateStatus(task.id, "needs_review");
+    showToast("Sent back with note");
   }
 
   function focusTaskFromButton(button) {
@@ -189,7 +198,7 @@
       return true;
     }
 
-    if (label === "Mark Page Live") {
+    if (label === "Mark Page Live" || label === "Mark live ↑") {
       event.preventDefault();
       event.stopPropagation();
       updateStatus(task.id, "live");
@@ -197,7 +206,15 @@
       return true;
     }
 
-    if (label === "Return to SEO") {
+    if (label === "Mark built ↑") {
+      event.preventDefault();
+      event.stopPropagation();
+      updateStatus(task.id, "page_built");
+      showToast("Page built — moved to live check");
+      return true;
+    }
+
+    if (label === "Return to SEO" || label === "Send back") {
       event.preventDefault();
       event.stopPropagation();
       saveTaskNoteAndReturn(button);
@@ -482,6 +499,13 @@
     if (handleFocusAction(event)) return;
     if (handleBuilderAction(event)) return;
 
+    const legacyDetailsButton = event.target.closest("[data-details]");
+    if (legacyDetailsButton?.closest("#pipelineGroups")) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      return;
+    }
+
     const manageButton = event.target.closest("[data-rooftops-manage]");
     if (manageButton) {
       const manager = document.querySelector("#rooftopsManager");
@@ -549,6 +573,7 @@
     };
   }
 
+  disableDemoPageStatusOverrides();
   installPlaceholderTaskFilter();
   installImplementationStyles();
   ensureRooftopControls();
