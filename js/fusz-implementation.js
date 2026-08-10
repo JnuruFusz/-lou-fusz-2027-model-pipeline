@@ -19,15 +19,48 @@
     "lou-fusz-buick-gmc|2027|yukon",
     "lou-fusz-ford|2027|mustang-mach-e",
   ]);
+  const HIDDEN_PLACEHOLDER_MODELS = new Set([
+    "loufusztoyota|2027|toyota|camry",
+    "loufusztoyota|2027|toyota|rav4",
+    "loufusztoyota|2027|toyota|4runner",
+    "loufuszchevrolet|2027|chevrolet|trax",
+    "loufuszchevrolet|2027|chevrolet|tahoe",
+    "loufuszford|2027|ford|bronco",
+    "loufuszford|2027|ford|f150lightning",
+    "loufuszford|2027|ford|mustangmache",
+    "loufuszmazda|2027|mazda|cx5",
+    "loufuszkia|2027|kia|sportage",
+    "loufuszbuickgmc|2027|gmc|acadia",
+    "loufuszbuickgmc|2027|gmc|yukon",
+    "loufuszchryslerjeepdodgeram|2027|jeep|wrangler",
+  ]);
   let rooftopFormOpen = false;
 
   function installImplementationStyles() {
     /* styles moved to css/workbench.css */
   }
 
+  function compactValue(value) {
+    return String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+  }
+
+  function modelWithoutMake(task) {
+    const model = String(task?.model || "").trim();
+    const make = String(task?.make || "").trim();
+    return make && model.toLowerCase().startsWith(`${make.toLowerCase()} `) ? model.slice(make.length).trim() : model;
+  }
+
+  function hiddenPlaceholderModelKey(task) {
+    return `${compactValue(task?.dealer)}|${task?.year}|${compactValue(task?.make)}|${compactValue(modelWithoutMake(task))}`;
+  }
+
+  function isHiddenPlaceholderTask(task) {
+    return Boolean(task && (HIDDEN_PLACEHOLDER_TASK_IDS.has(task.id) || HIDDEN_PLACEHOLDER_MODELS.has(hiddenPlaceholderModelKey(task))));
+  }
+
   function removePlaceholderTasks() {
     if (!Array.isArray(state.tasks)) return;
-    state.tasks = state.tasks.filter((task) => !HIDDEN_PLACEHOLDER_TASK_IDS.has(task.id));
+    state.tasks = state.tasks.filter((task) => !isHiddenPlaceholderTask(task));
   }
 
   function wrapTaskInitializer(name) {
