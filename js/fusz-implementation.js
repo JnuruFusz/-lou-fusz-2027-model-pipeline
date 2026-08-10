@@ -4,10 +4,44 @@
   const FEED_SOURCE_PATH = "Dealer CSV files";
   const FEED_SAMPLE_PATH = "Legacy sample backup";
   const REQUIRED_FEED_COLUMNS = ["dealer", "vin", "year", "make", "model", "status", "inventory_url", "last_updated"];
+  const HIDDEN_PLACEHOLDER_TASK_IDS = new Set([
+    "lou-fusz-toyota|2027|camry",
+    "lou-fusz-toyota|2027|rav4",
+    "lou-fusz-chevrolet|2027|trax",
+    "lou-fusz-ford|2027|bronco",
+    "lou-fusz-mazda|2027|cx-5",
+    "lou-fusz-kia|2027|sportage",
+    "lou-fusz-buick-gmc|2027|acadia",
+    "lou-fusz-chrysler-jeep-dodge-ram|2027|wrangler",
+    "lou-fusz-ford|2027|f-150-lightning",
+    "lou-fusz-toyota|2027|4runner",
+    "lou-fusz-chevrolet|2027|tahoe",
+    "lou-fusz-buick-gmc|2027|yukon",
+    "lou-fusz-ford|2027|mustang-mach-e",
+  ]);
   let rooftopFormOpen = false;
 
   function installImplementationStyles() {
     /* styles moved to css/workbench.css */
+  }
+
+  function removePlaceholderTasks() {
+    if (!Array.isArray(state.tasks)) return;
+    state.tasks = state.tasks.filter((task) => !HIDDEN_PLACEHOLDER_TASK_IDS.has(task.id));
+  }
+
+  function wrapTaskInitializer(name) {
+    const original = window[name];
+    if (typeof original !== "function" || original.__fuszPlaceholderSafe) return;
+    window[name] = function placeholderSafeWrapper(...args) {
+      removePlaceholderTasks();
+      return original.apply(this, args);
+    };
+    window[name].__fuszPlaceholderSafe = true;
+  }
+
+  function installPlaceholderTaskFilter() {
+    ["applyInventoryFeedSignals", "populateYearFilter", "populateDealerFilter", "populateOwnerFilter", "render"].forEach(wrapTaskInitializer);
   }
 
   function selectedTaskIdFromDetail(button) {
@@ -37,6 +71,71 @@
     localStorage.setItem("pipeline-task-details", JSON.stringify(state.details));
     updateStatus(task.id, "needs_seo");
     showToast("Returned to SEO — note saved");
+  }
+
+  function focusTaskFromButton(button) {
+    const taskId = button?.dataset.taskId || button?.closest("[data-workbench-task]")?.dataset.workbenchTask;
+    return state.tasks?.find((task) => task.id === taskId) || null;
+  }
+
+  function recordFocusBuiltToday() {
+    try {
+      const today = new Date().toDateString();
+      const stored = JSON.parse(sessionStorage.getItem("fusz-built-today") || "{}");
+      const count = stored.date === today ? (stored.count || 0) + 1 : 1;
+      sessionStorage.setItem("fusz-built-today", JSON.stringify({ date: today, count }));
+    } catch {}
+  }
+
+  function sendFocusTaskBack(button) {
+    const task = focusTaskFromButton(button);
+    if (!task) return;
+    const reason = window.prompt("What needs to be fixed before this page can be built?");
+    if (!reason || !reason.trim()) return;
+    task.details = {
+      ...(task.details || {}),
+      notes: reason.trim(),
+      updatedAt: new Date().toISOString(),
+    };
+    state.details[task.id] = task.details;
+    fbSetDetails(state.details);
+    updateStatus(task.id, "needs_review");
+    showToast("Sent back with note");
+  }
+
+  function handleFocusAction(event) {
+    const primary = event.target.closest(".focus-btn-primary[data-task-id]");
+    if (primary) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      if (primary.hasAttribute("data-focus-mark-built")) recordFocusBuiltToday();
+      if (primary.dataset.aeoStatus) updateAeoStatus(primary.dataset.taskId, primary.dataset.aeoStatus);
+      else if (primary.dataset.status) updateStatus(primary.dataset.taskId, primary.dataset.status);
+      return true;
+    }
+
+    const skip = event.target.closest("[data-focus-skip]");
+    if (skip) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      const next = document.querySelector(".focus-up-next-item[data-workbench-task]");
+      if (next) {
+        next.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, view: window }));
+      } else {
+        showToast("No next task available");
+      }
+      return true;
+    }
+
+    const sendBack = event.target.closest(".focus-hero [data-workbench-return]");
+    if (sendBack) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      sendFocusTaskBack(sendBack);
+      return true;
+    }
+
+    return false;
   }
 
   function handleBuilderAction(event) {
@@ -347,6 +446,7 @@
   /* Quick action buttons now rendered inside renderMyWorkRow() in my-work-workbench.js */
 
   document.addEventListener("click", (event) => {
+    if (handleFocusAction(event)) return;
     if (handleBuilderAction(event)) return;
 
     const manageButton = event.target.closest("[data-rooftops-manage]");
@@ -416,6 +516,7 @@
     };
   }
 
+  installPlaceholderTaskFilter();
   installImplementationStyles();
   ensureRooftopControls();
   renderDriveConnection();
