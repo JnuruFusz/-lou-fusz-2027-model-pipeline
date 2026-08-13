@@ -1,8 +1,6 @@
 "Dealership Name",VIN,Year,Make,Model,Trim,"Vehicle Status","Stock Number","Date In stock","VDP URLs"
 "Lou Fusz Evansville",JM3KJDHA1S1103006,2025,Mazda,"CX-70 PHEV","Premium Package",,WM250002L,2024-06-05,https://www.fuszevansville.com/inventory/new-2025-mazda-cx-70-phev-premium-package-awd-sport-utility-jm3kjdha1s1103006/
-"Lou Fusz Evansville",JM3KJEHA0S1104749,2025,Mazda,"CX-70 PHEV","Premium Plus Package",,WM250007L,2024-06-05,https://www.fuszevansville.com/inventory/new-2025-mazda-cx-70-phev-premium-plus-package-awd-sport-utility-jm3kjeha0s1104749/
 "Lou Fusz Evansville",KNDNE5KA5T6106861,2026,Kia,"Carnival MPV Hybrid",SX,,E678041,2025-09-03,https://www.fuszevansville.com/inventory/new-2026-kia-carnival-mpv-hybrid-sx-fwd-4d-passenger-van-kndne5ka5t6106861/
-"Lou Fusz Evansville",7MMVAADW2SN139432,2025,Mazda,"CX-50 Hybrid","Premium Package",,WM250520L,2025-08-18,https://www.fuszevansville.com/inventory/new-2025-mazda-cx-50-hybrid-premium-package-awd-sport-utility-7mmvaadw2sn139432/
 "Lou Fusz Evansville",7MMVAADW3TN144799,2026,Mazda,"CX-50 Hybrid",Premium,,WM260004L,2025-09-26,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-50-hybrid-premium-awd-sport-utility-7mmvaadw3tn144799/
 "Lou Fusz Evansville",JM3KKCHA1T1356951,2026,Mazda,"CX-90 PHEV","Premium Sport",,WM260029L,2025-12-09,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-90-phev-premium-sport-awd-sport-utility-jm3kkcha1t1356951/
 "Lou Fusz Evansville",5XYRLDJC1TG439589,2026,Kia,Sorento,S,,E677080,2025-12-04,https://www.fuszevansville.com/inventory/new-2026-kia-sorento-s-awd-4d-sport-utility-5xyrldjc1tg439589/
@@ -41,7 +39,7 @@
 "Lou Fusz Evansville",JM3KMEHA6T0104088,2026,Mazda,CX-5,"2.5 S Premium Plus",,WM260190,2026-03-30,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-5-2-5-s-premium-plus-awd-sport-utility-jm3kmeha6t0104088/
 "Lou Fusz Evansville",KNAG64J75T5482713,2026,Kia,K5,"GT-Line AWD",,E672088,2026-03-27,https://www.fuszevansville.com/inventory/new-2026-kia-k5-gt-line-awd-awd-4d-sedan-knag64j75t5482713/
 "Lou Fusz Evansville",JM3KMCHA0T0108559,2026,Mazda,CX-5,"2.5 S Preferred",,WM260202L,2026-04-03,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-5-2-5-s-preferred-awd-sport-utility-jm3kmcha0t0108559/
-"Lou Fusz Evansville",JM3KJAHF3T1350944,2026,Mazda,"CX-70 PHEV",SC,,WM260196,2026-04-08,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-70-phev-sc-awd-sport-utility-jm3kjahf3t1350944/
+"Lou Fusz Evansville",JM3KJAHF3T1350944,2026,Mazda,"CX-70 PHEV",SC,,WM260196L,2026-04-08,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-70-phev-sc-awd-sport-utility-jm3kjahf3t1350944/
 "Lou Fusz Evansville",JM3KJEHC5T1206325,2026,Mazda,CX-70,"3.3 Turbo S Premium Plus",,WM260204,2026-04-03,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-70-3-3-turbo-s-premium-plus-awd-sport-utility-jm3kjehc5t1206325/
 "Lou Fusz Evansville",7MMVAADW0TN167974,2026,Mazda,"CX-50 Hybrid",Premium,,WM260210,2026-03-23,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-50-hybrid-premium-awd-sport-utility-7mmvaadw0tn167974/
 "Lou Fusz Evansville",JM3KMCHA8T0109913,2026,Mazda,CX-5,"2.5 S Preferred",,WM260215L,2026-04-08,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-5-2-5-s-preferred-awd-sport-utility-jm3kmcha8t0109913/
@@ -64,7 +62,6 @@
 "Lou Fusz Evansville",5XYK33DF7TG419588,2026,Kia,Sportage,EX,,E670164,2026-04-02,https://www.fuszevansville.com/inventory/new-2026-kia-sportage-ex-fwd-4d-sport-utility-5xyk33df7tg419588/
 "Lou Fusz Evansville",5XYK6CDF1TG431498,2026,Kia,Sportage,X-Line,,E670158,2026-04-02,https://www.fuszevansville.com/inventory/new-2026-kia-sportage-x-line-awd-4d-sport-utility-5xyk6cdf1tg431498/
 "Lou Fusz Evansville",5XYK6CDF3TG432653,2026,Kia,Sportage,X-Line,,E670160,2026-04-02,https://www.fuszevansville.com/inventory/new-2026-kia-sportage-x-line-awd-4d-sport-utility-5xyk6cdf3tg432653/
-"Lou Fusz Evansville",KNAG64J72T5476982,2026,Kia,K5,"GT-Line AWD",,E672094,2026-04-12,https://www.fuszevansville.com/inventory/new-2026-kia-k5-gt-line-awd-awd-4d-sedan-knag64j72t5476982/
 "Lou Fusz Evansville",5XYK6CDF7TG432252,2026,Kia,Sportage,X-Line,,E670163,2026-04-02,https://www.fuszevansville.com/inventory/new-2026-kia-sportage-x-line-awd-4d-sport-utility-5xyk6cdf7tg432252/
 "Lou Fusz Evansville",JM3KKDHC6T1387376,2026,Mazda,CX-90,"S Premium Sport",,WM260259,2026-04-20,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-90-s-premium-sport-awd-sport-utility-jm3kkdhc6t1387376/
 "Lou Fusz Evansville",JM3KKDHC9T1387310,2026,Mazda,CX-90,"S Premium Sport",,WM260257,2026-04-22,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-90-s-premium-sport-awd-sport-utility-jm3kkdhc9t1387310/
@@ -91,7 +88,6 @@
 "Lou Fusz Evansville",JM3KMCHA1T0130635,2026,Mazda,CX-5,"2.5 S Preferred",,WM260269,2026-04-30,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-5-2-5-s-preferred-awd-sport-utility-jm3kmcha1t0130635/
 "Lou Fusz Evansville",KNAG64J72T5483673,2026,Kia,K5,"GT-Line AWD",,E2672099,2026-04-28,https://www.fuszevansville.com/inventory/new-2026-kia-k5-gt-line-awd-awd-4d-sedan-knag64j72t5483673/
 "Lou Fusz Evansville",7MMVABXL7TN494301,2026,Mazda,CX-50,"2.5 S Meridian Edition",,WM260272,2026-04-16,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-50-2-5-s-meridian-edition-awd-sport-utility-7mmvabxl7tn494301/
-"Lou Fusz Evansville",KNAG64J72T5496245,2026,Kia,K5,"GT-Line AWD",,E2672116,2026-05-21,https://www.fuszevansville.com/inventory/new-2026-kia-k5-gt-line-awd-awd-4d-sedan-knag64j72t5496245/
 "Lou Fusz Evansville",JM3KMDHA4T0131106,2026,Mazda,CX-5,"2.5 S Premium",,WM260278L,2026-04-30,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-5-2-5-s-premium-awd-sport-utility-jm3kmdha4t0131106/
 "Lou Fusz Evansville",7MMVABDLXTN495723,2026,Mazda,CX-50,"2.5 S Premium",,WM260281,2026-04-21,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-50-2-5-s-premium-awd-sport-utility-7mmvabdlxtn495723/
 "Lou Fusz Evansville",KNAG64J75T5495302,2026,Kia,K5,"GT-Line AWD",,E2672105,2026-05-07,https://www.fuszevansville.com/inventory/new-2026-kia-k5-gt-line-awd-awd-4d-sedan-knag64j75t5495302/
@@ -140,7 +136,7 @@
 "Lou Fusz Evansville",JM3KMEHAXT0154993,2026,Mazda,CX-5,"2.5 S Premium Plus",,WM260326,2026-06-02,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-5-2-5-s-premium-plus-awd-sport-utility-jm3kmehaxt0154993/
 "Lou Fusz Evansville",5XYRHDJF7TG473113,2026,Kia,Sorento,"X-Line EX",,E2677119,2026-05-20,https://www.fuszevansville.com/inventory/new-2026-kia-sorento-x-line-ex-awd-4d-sport-utility-5xyrhdjf7tg473113/
 "Lou Fusz Evansville",5XYRKDJF4TG470154,2026,Kia,Sorento,"X-Line SX Prestige",,E2677115,2026-05-20,https://www.fuszevansville.com/inventory/new-2026-kia-sorento-x-line-sx-prestige-awd-4d-sport-utility-5xyrkdjf4tg470154/
-"Lou Fusz Evansville",7MMVABBL7TN602648,2026,Mazda,CX-50,"2.5 S Preferred",,WM260340,2026-05-26,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-50-2-5-s-preferred-awd-sport-utility-7mmvabbl7tn602648/
+"Lou Fusz Evansville",7MMVABBL7TN602648,2026,Mazda,CX-50,"2.5 S Preferred",,WM260340L,2026-05-26,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-50-2-5-s-preferred-awd-sport-utility-7mmvabbl7tn602648/
 "Lou Fusz Evansville",7MMVABCY8TN604127,2026,Mazda,CX-50,"2.5 Turbo",,WM260342,2026-05-26,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-50-2-5-turbo-awd-sport-utility-7mmvabcy8tn604127/
 "Lou Fusz Evansville",5XYRLDJC5TG474927,2026,Kia,Sorento,S,,E2677121,2026-05-26,https://www.fuszevansville.com/inventory/new-2026-kia-sorento-s-awd-4d-sport-utility-5xyrldjc5tg474927/
 "Lou Fusz Evansville",5XYK33DFXTG446512,2026,Kia,Sportage,EX,,E2670190,2026-05-26,https://www.fuszevansville.com/inventory/new-2026-kia-sportage-ex-fwd-4d-sport-utility-5xyk33dfxtg446512/
@@ -168,7 +164,7 @@
 "Lou Fusz Evansville",KNDNC5K37T6648955,2026,Kia,"Carnival MPV",EX,,E2675094,2026-06-08,https://www.fuszevansville.com/inventory/new-2026-kia-carnival-mpv-ex-fwd-4d-passenger-van-kndnc5k37t6648955/
 "Lou Fusz Evansville",KNDNC5K3XT6642857,2026,Kia,"Carnival MPV",EX,,E2675099,2026-06-12,https://www.fuszevansville.com/inventory/new-2026-kia-carnival-mpv-ex-fwd-4d-passenger-van-kndnc5k3xt6642857/
 "Lou Fusz Evansville",5XYK33DF7TG447620,2026,Kia,Sportage,EX,,E2670197,2026-05-30,https://www.fuszevansville.com/inventory/new-2026-kia-sportage-ex-fwd-4d-sport-utility-5xyk33df7tg447620/
-"Lou Fusz Evansville",5XYRLDJC6TG472829,2026,Kia,Sorento,S,,E2677130,2026-05-30,https://www.fuszevansville.com/inventory/new-2026-kia-sorento-s-awd-4d-sport-utility-5xyrldjc6tg472829/
+"Lou Fusz Evansville",5XYRLDJC6TG472829,2026,Kia,Sorento,S,,P3856,2026-05-30,https://www.fuszevansville.com/inventory/new-2026-kia-sorento-s-awd-4d-sport-utility-5xyrldjc6tg472829/
 "Lou Fusz Evansville",5XYPLES12VG035181,2027,Kia,Telluride,"X-Pro SX-Prestige",,E2782055,2026-05-30,https://www.fuszevansville.com/inventory/new-2027-kia-telluride-x-pro-sx-prestige-awd-4d-sport-utility-5xyples12vg035181/
 "Lou Fusz Evansville",KNDEL3D35V7011092,2027,Kia,Seltos,S,,E2783002,2026-06-12,https://www.fuszevansville.com/inventory/new-2027-kia-seltos-s-fwd-4d-sport-utility-kndel3d35v7011092/
 "Lou Fusz Evansville",3KPFW4DE6TE352310,2026,Kia,K4,GT-Line,,E2674036,2026-06-18,https://www.fuszevansville.com/inventory/new-2026-kia-k4-gt-line-fwd-4d-sedan-3kpfw4de6te352310/
@@ -225,7 +221,6 @@
 "Lou Fusz Evansville",3KPFU5DE0TE371771,2026,Kia,K4,GT-Line,,E2686011,2026-07-07,https://www.fuszevansville.com/inventory/new-2026-kia-k4-gt-line-fwd-4d-hatchback-3kpfu5de0te371771/
 "Lou Fusz Evansville",KNAG64J76T5508431,2026,Kia,K5,"GT-Line FWD",,E2672148,2026-07-01,https://www.fuszevansville.com/inventory/new-2026-kia-k5-gt-line-fwd-fwd-4d-sedan-knag64j76t5508431/
 "Lou Fusz Evansville",KNAG64J76T5510079,2026,Kia,K5,"GT-Line FWD",,E2672141,2026-06-29,https://www.fuszevansville.com/inventory/new-2026-kia-k5-gt-line-fwd-fwd-4d-sedan-knag64j76t5510079/
-"Lou Fusz Evansville",KNAG64J77T5508082,2026,Kia,K5,"GT-Line FWD",,E2672143,2026-07-01,https://www.fuszevansville.com/inventory/new-2026-kia-k5-gt-line-fwd-fwd-4d-sedan-knag64j77t5508082/
 "Lou Fusz Evansville",KNAG64J78T5509841,2026,Kia,K5,"GT-Line FWD",,E2672149,2026-07-01,https://www.fuszevansville.com/inventory/new-2026-kia-k5-gt-line-fwd-fwd-4d-sedan-knag64j78t5509841/
 "Lou Fusz Evansville",KNAG64J70T5511051,2026,Kia,K5,"GT-Line AWD",,E2672146,2026-07-01,https://www.fuszevansville.com/inventory/new-2026-kia-k5-gt-line-awd-awd-4d-sedan-knag64j70t5511051/
 "Lou Fusz Evansville",KNAG64J74T5510081,2026,Kia,K5,"GT-Line FWD",,E2672138,2026-06-29,https://www.fuszevansville.com/inventory/new-2026-kia-k5-gt-line-fwd-fwd-4d-sedan-knag64j74t5510081/
@@ -275,14 +270,13 @@
 "Lou Fusz Evansville",KNDPVDDG7T7382506,2026,Kia,"Sportage Hybrid",X-Line,,E2676071,2026-07-03,https://www.fuszevansville.com/inventory/new-2026-kia-sportage-hybrid-x-line-awd-4d-sport-utility-kndpvddg7t7382506/
 "Lou Fusz Evansville",3KPFT4DEXTE381723,2026,Kia,K4,LXS,,E2674050,2026-07-30,https://www.fuszevansville.com/inventory/new-2026-kia-k4-lxs-fwd-4d-sedan-3kpft4dexte381723/
 "Lou Fusz Evansville",KNDPV3DG4V7424241,2027,Kia,"Sportage Hybrid",EX,,E2776002,2026-07-22,https://www.fuszevansville.com/inventory/new-2027-kia-sportage-hybrid-ex-fwd-4d-sport-utility-kndpv3dg4v7424241/
-"Lou Fusz Evansville",KNDPV3DG5V7424443,2027,Kia,"Sportage Hybrid",EX,,E2776003,2026-07-22,https://www.fuszevansville.com/inventory/new-2027-kia-sportage-hybrid-ex-fwd-4d-sport-utility-kndpv3dg5v7424443/
+"Lou Fusz Evansville",KNDPV3DG5V7424443,2027,Kia,"Sportage Hybrid",EX,,P3850,2026-07-22,https://www.fuszevansville.com/inventory/new-2027-kia-sportage-hybrid-ex-fwd-4d-sport-utility-kndpv3dg5v7424443/
 "Lou Fusz Evansville",5XYK33DF6TG461556,2026,Kia,Sportage,EX,,E2670215,2026-07-08,https://www.fuszevansville.com/inventory/new-2026-kia-sportage-ex-fwd-4d-sport-utility-5xyk33df6tg461556/
 "Lou Fusz Evansville",7MMVAABW6TN169831,2026,Mazda,"CX-50 Hybrid",Preferred,,WM260393,2026-07-08,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-50-hybrid-preferred-awd-sport-utility-7mmvaabw6tn169831/
 "Lou Fusz Evansville",5XYK6CDF6TG461371,2026,Kia,Sportage,X-Line,,E2670214,2026-07-08,https://www.fuszevansville.com/inventory/new-2026-kia-sportage-x-line-awd-4d-sport-utility-5xyk6cdf6tg461371/
 "Lou Fusz Evansville",5XYRL4JC9TG479225,2026,Kia,Sorento,S,,E2677139,2026-07-09,https://www.fuszevansville.com/inventory/new-2026-kia-sorento-s-fwd-4d-sport-utility-5xyrl4jc9tg479225/
 "Lou Fusz Evansville",7MMVABCY5TN452758,2026,Mazda,CX-50,"2.5 Turbo",,WM260397,2026-07-09,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-50-2-5-turbo-awd-sport-utility-7mmvabcy5tn452758/
 "Lou Fusz Evansville",KNDPV3DG6V7418523,2027,Kia,"Sportage Hybrid",EX,,E2776004,2026-07-24,https://www.fuszevansville.com/inventory/new-2027-kia-sportage-hybrid-ex-fwd-4d-sport-utility-kndpv3dg6v7418523/
-"Lou Fusz Evansville",KNDPXDDG3V7411822,2027,Kia,"Sportage Hybrid",SX-Prestige,,E2776008,2026-07-29,https://www.fuszevansville.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-4d-sport-utility-kndpxddg3v7411822/
 "Lou Fusz Evansville",KNDEDCD37V5011183,2027,Kia,Seltos,"X-Line S",,E2783019,2026-07-29,https://www.fuszevansville.com/inventory/new-2027-kia-seltos-x-line-s-awd-4d-sport-utility-kndedcd37v5011183/
 "Lou Fusz Evansville",KNDECCD38V7025648,2027,Kia,Seltos,EX,,E2783016,2026-07-10,https://www.fuszevansville.com/inventory/new-2027-kia-seltos-ex-awd-4d-sport-utility-kndeccd38v7025648/
 "Lou Fusz Evansville",5XYRL4JC5TG479755,2026,Kia,Sorento,S,,E2677142,2026-07-11,https://www.fuszevansville.com/inventory/new-2026-kia-sorento-s-fwd-4d-sport-utility-5xyrl4jc5tg479755/
@@ -311,7 +305,6 @@
 "Lou Fusz Evansville",JM1BPACL5T1890820,2026,Mazda,"Mazda3 Sedan","2.5 S Preferred",,WM260408,2026-08-03,https://www.fuszevansville.com/inventory/new-2026-mazda-mazda3-sedan-2-5-s-preferred-fwd-4dr-car-jm1bpacl5t1890820/
 "Lou Fusz Evansville",JM3KKCHD5T1403909,2026,Mazda,CX-90,"Premium Sport",,WM260411,2026-07-22,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-90-premium-sport-awd-sport-utility-jm3kkchd5t1403909/
 "Lou Fusz Evansville",7MMVAABW2TN184004,2026,Mazda,"CX-50 Hybrid",Preferred,,WM260415,2026-07-16,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-50-hybrid-preferred-awd-sport-utility-7mmvaabw2tn184004/
-"Lou Fusz Evansville",7MMVABDLXTN616069,2026,Mazda,CX-50,"2.5 S Premium",,WM260413,2026-07-16,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-50-2-5-s-premium-awd-sport-utility-7mmvabdlxtn616069/
 "Lou Fusz Evansville",5XYK53DF8TG464436,2026,Kia,Sportage,SX-Prestige,,E2670220,2026-07-17,https://www.fuszevansville.com/inventory/new-2026-kia-sportage-sx-prestige-fwd-4d-sport-utility-5xyk53df8tg464436/
 "Lou Fusz Evansville",5XYPLESA2VG037173,2027,Kia,"Telluride Hybrid","X-Line SX-Prestige",,E2779052,2026-07-17,https://www.fuszevansville.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-4d-sport-utility-5xyplesa2vg037173/
 "Lou Fusz Evansville",5XYPLESA4VG037613,2027,Kia,"Telluride Hybrid","X-Line SX-Prestige",,E2779053,2026-07-17,https://www.fuszevansville.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-4d-sport-utility-5xyplesa4vg037613/
@@ -365,9 +358,9 @@
 "Lou Fusz Evansville",KNDPVDDG4V7425296,2027,Kia,"Sportage Hybrid",EX,,E2776011,2026-08-03,https://www.fuszevansville.com/inventory/new-2027-kia-sportage-hybrid-ex-awd-4d-sport-utility-kndpvddg4v7425296/
 "Lou Fusz Evansville",7MMVABDLXTN617321,2026,Mazda,CX-50,"2.5 S Premium",,WM260443,2026-08-03,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-50-2-5-s-premium-awd-sport-utility-7mmvabdlxtn617321/
 "Lou Fusz Evansville",JM1BPABL5T1895260,2026,Mazda,"Mazda3 Sedan","2.5 S Select Sport",,WM260441,2026-08-03,https://www.fuszevansville.com/inventory/new-2026-mazda-mazda3-sedan-2-5-s-select-sport-fwd-4dr-car-jm1bpabl5t1895260/
-"Lou Fusz Evansville",JM3KMCHA6T0190748,2026,Mazda,CX-5,"2.5 S Preferred",,WM260444,2026-08-03,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-5-2-5-s-preferred-awd-sport-utility-jm3kmcha6t0190748/
+"Lou Fusz Evansville",JM3KMCHA6T0190748,2026,Mazda,CX-5,"2.5 S Preferred",,WM260444,2026-08-12,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-5-2-5-s-preferred-awd-sport-utility-jm3kmcha6t0190748/
 "Lou Fusz Evansville",3MVDMBCL0TM222948,2026,Mazda,CX-30,"2.5 S Preferred",,WM260442,2026-08-03,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-30-2-5-s-preferred-awd-sport-utility-3mvdmbcl0tm222948/
-"Lou Fusz Evansville",JM3KMEHA7T0190169,2026,Mazda,CX-5,"2.5 S Premium Plus",,WM260445,2026-08-03,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-5-2-5-s-premium-plus-awd-sport-utility-jm3kmeha7t0190169/
+"Lou Fusz Evansville",JM3KMEHA7T0190169,2026,Mazda,CX-5,"2.5 S Premium Plus",,WM260445,2026-08-12,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-5-2-5-s-premium-plus-awd-sport-utility-jm3kmeha7t0190169/
 "Lou Fusz Evansville",JM3KKCHD8T1410515,2026,Mazda,CX-90,"Premium Sport",,WM260455,2026-08-04,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-90-premium-sport-awd-sport-utility-jm3kkchd8t1410515/
 "Lou Fusz Evansville",JM3KKDHC5T1408816,2026,Mazda,CX-90,"S Premium Sport",,WM260456,2026-08-04,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-90-s-premium-sport-awd-sport-utility-jm3kkdhc5t1408816/
 "Lou Fusz Evansville",JM3KKEHD1T1410464,2026,Mazda,CX-90,"Premium Plus",,WM260457,2026-08-04,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-90-premium-plus-awd-sport-utility-jm3kkehd1t1410464/
@@ -395,3 +388,6 @@
 "Lou Fusz Evansville",5XYK3CDF9TG469957,2026,Kia,Sportage,EX,,E2670229,2026-08-07,https://www.fuszevansville.com/inventory/new-2026-kia-sportage-ex-awd-4d-sport-utility-5xyk3cdf9tg469957/
 "Lou Fusz Evansville",5XYPDESA2VG043004,2027,Kia,"Telluride Hybrid","X-Line SX",,E2779057,2026-08-07,https://www.fuszevansville.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-4d-sport-utility-5xypdesa2vg043004/
 "Lou Fusz Evansville",7MMVABDL3TN615927,2026,Mazda,CX-50,"2.5 S Premium",,WM260466,2026-08-10,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-50-2-5-s-premium-awd-sport-utility-7mmvabdl3tn615927/
+"Lou Fusz Evansville",JM3KKBHD9T1411554,2026,Mazda,CX-90,Preferred,,WM260469,2026-08-12,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-90-preferred-awd-sport-utility-jm3kkbhd9t1411554/
+"Lou Fusz Evansville",JM3KKCHD7T1410344,2026,Mazda,CX-90,"Premium Sport",,WM260468,2026-08-12,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-90-premium-sport-awd-sport-utility-jm3kkchd7t1410344/
+"Lou Fusz Evansville",JM3KMBHA9T0183562,2026,Mazda,CX-5,"2.5 S Select",,WM260467,2026-08-12,https://www.fuszevansville.com/inventory/new-2026-mazda-cx-5-2-5-s-select-awd-sport-utility-jm3kmbha9t0183562/
