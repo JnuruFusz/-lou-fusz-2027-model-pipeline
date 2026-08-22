@@ -269,7 +269,7 @@ async function fetchInventoryFeed() {
   const loadedFiles = [];
   const failedFiles = [];
 
-  for (const file of inventoryFeedFiles) {
+  const results = await Promise.all(inventoryFeedFiles.map(async (file) => {
     try {
       const response = await fetch(`data/${file}`, { cache: "no-store" });
       if (!response.ok) throw new Error(`feed missing: ${file}`);
@@ -277,10 +277,18 @@ async function fetchInventoryFeed() {
       const feedRows = parseCsv(csv)
         .map((row) => normalizeInventoryRow(row, file))
         .filter((row) => isInInventoryYearWindow(row.year));
-      rows.push(...feedRows);
-      loadedFiles.push(file);
+      return { file, feedRows, ok: true };
     } catch {
-      failedFiles.push(file);
+      return { file, feedRows: [], ok: false };
+    }
+  }));
+
+  for (const result of results) {
+    if (result.ok) {
+      rows.push(...result.feedRows);
+      loadedFiles.push(result.file);
+    } else {
+      failedFiles.push(result.file);
     }
   }
 
@@ -684,23 +692,42 @@ function populateDealerFilter() {
 
 function populateYearFilter() {
   const years = [...new Set(state.tasks.map((task) => task.year))].sort((a, b) => b - a);
+  const previous = els.yearFilter.value;
   els.yearFilter.innerHTML = [
     `<option value="all">All years</option>`,
     ...years.map((year) => `<option value="${year}">${year}</option>`),
   ].join("");
-  els.yearFilter.value = "all";
+  const hasPrevious = previous === "all" || years.some((year) => String(year) === previous);
+  els.yearFilter.value = hasPrevious ? previous : (years.includes(2027) ? "2027" : "all");
 }
 
 function populateOwnerFilter() {
   if (!els.ownerFilter) return;
+  const previous = els.ownerFilter.value;
+  const userSet = els.ownerFilter.dataset.userSet === "1";
   const activeTasks = state.tasks.filter((task) => !["live", "ignored", "snoozed"].includes(task.pageStatus));
   const owners = new Set(
     activeTasks.map((task) => (typeof pipelineOwnerForTask === "function" ? pipelineOwnerForTask(task) : (task.details?.buildOwner || task.details?.seoOwner || "Team")))
   );
+  const hasAeoPending = state.tasks.some((task) =>
+    !["done", "not_needed"].includes(task.aeoStatus) &&
+    !["live", "ignored", "snoozed"].includes(task.pageStatus)
+  );
+  if (hasAeoPending) owners.add("Scott Toulou");
+  if (state.session?.name) owners.add(state.session.name);
   els.ownerFilter.innerHTML = [
     `<option value="all">All owners</option>`,
     ...[...owners].sort().map((owner) => `<option value="${escapeAttr(owner)}">${escapeHtml(owner)}</option>`),
   ].join("");
+  const sessionName = state.session?.name || "";
+  const options = [...els.ownerFilter.options].map((option) => option.value);
+  if (userSet && options.includes(previous)) {
+    els.ownerFilter.value = previous;
+  } else if (sessionName && options.includes(sessionName)) {
+    els.ownerFilter.value = sessionName;
+  } else {
+    els.ownerFilter.value = "all";
+  }
 }
 
 boot().catch((error) => {
