@@ -22,6 +22,7 @@ function configureInviteOnboarding() {
     fbSignOut().catch(() => {}); // sign out of Google too
     localStorage.removeItem("fusz-demo-session");
     localStorage.removeItem("pipeline-workspace-view");
+    localStorage.removeItem("fusz-pipeline-group-collapsed");
     fbClearAll();
     localStorage.setItem("fusz-theme", "system");
     state.session = null;
@@ -357,12 +358,18 @@ Let me know if you have any questions.`
     on(el, "input", render);
     on(el, "change", render);
   });
+  on(els.ownerFilter, "change", () => {
+    if (els.ownerFilter) els.ownerFilter.dataset.userSet = "1";
+  });
 
   on(els.clearFiltersButton, "click", () => {
     els.yearFilter.value = "all";
     els.dealerFilter.value = "all";
     els.statusFilter.value = "all";
-    if (els.ownerFilter) els.ownerFilter.value = "all";
+    if (els.ownerFilter) {
+      els.ownerFilter.value = "all";
+      els.ownerFilter.dataset.userSet = "1";
+    }
     els.searchInput.value = "";
     showToast("Filters cleared");
     render();
@@ -482,25 +489,33 @@ Let me know if you have any questions.`
   on(els.saveTaskDetailsButton, "click", saveTaskDetails);
 }
 
+function stampTaskDetails(task, patch) {
+  const now = new Date().toISOString();
+  const details = { ...(task.details || {}), ...patch, updatedAt: now };
+  task.details = details;
+  state.details[task.id] = details;
+  fbSetDetails(state.details);
+  return details;
+}
+
 function updateStatus(taskId, status) {
   const task = state.tasks.find((candidate) => candidate.id === taskId);
   if (!task) return;
 
+  const previousStatus = task.pageStatus;
   task.pageStatus = status;
   state.overrides[taskId] = status;
   fbSetPageStatus(state.overrides);
 
-  // Auto-assign current user as owner when they claim a task
+  const patch = {};
+  if (previousStatus !== status) patch.stagedAt = new Date().toISOString();
   if (state.session?.name) {
     const isBuilderStatus = ["needs_build", "page_built", "live"].includes(status);
     const isSeoStatus     = ["seo_in_progress", "seo_done"].includes(status);
-    const details = { ...(task.details || {}) };
-    if (isBuilderStatus && !details.buildOwner) details.buildOwner = state.session.name;
-    if (isSeoStatus     && !details.seoOwner)   details.seoOwner   = state.session.name;
-    task.details = details;
-    state.details[taskId] = details;
-    fbSetDetails(state.details);
+    if (isBuilderStatus && !task.details?.buildOwner) patch.buildOwner = state.session.name;
+    if (isSeoStatus     && !task.details?.seoOwner)   patch.seoOwner   = state.session.name;
   }
+  stampTaskDetails(task, patch);
 
   showToast(`${displayModel(task)} moved to ${statusLabels[status] || status}`);
   render();
@@ -510,18 +525,17 @@ function updateAeoStatus(taskId, status) {
   const task = state.tasks.find((candidate) => candidate.id === taskId);
   if (!task) return;
 
+  const previousStatus = task.aeoStatus;
   task.aeoStatus = status;
   state.aeoOverrides[taskId] = status;
   fbSetAeoStatus(state.aeoOverrides);
 
-  // Auto-assign AEO owner when they claim a task
-  if (state.session?.name && ["in_progress", "done"].includes(status)) {
-    const details = { ...(task.details || {}) };
-    if (!details.aeoOwner) details.aeoOwner = state.session.name;
-    task.details = details;
-    state.details[taskId] = details;
-    fbSetDetails(state.details);
+  const patch = {};
+  if (previousStatus !== status) patch.aeoStagedAt = new Date().toISOString();
+  if (state.session?.name && ["in_progress", "done"].includes(status) && !task.details?.aeoOwner) {
+    patch.aeoOwner = state.session.name;
   }
+  stampTaskDetails(task, patch);
 
   showToast(`${displayModel(task)} ${aeoLabels[status] || status}`);
   render();
@@ -574,6 +588,7 @@ function saveTaskDetails() {
   const task = state.tasks.find((candidate) => candidate.id === state.activeTaskId);
   if (!task) return;
 
+  const previousAeo = task.aeoStatus;
   task.inventorySignal = els.detailSignalSelect.value;
   task.aeoStatus = els.detailAeoSelect.value;
   state.signalOverrides[task.id] = task.inventorySignal;
@@ -581,16 +596,16 @@ function saveTaskDetails() {
   fbSetSignal(state.signalOverrides);
   fbSetAeoStatus(state.aeoOverrides);
 
-  task.details = {
+  const now = new Date().toISOString();
+  const patch = {
     seoOwner: els.seoOwnerInput.value.trim(),
     aeoOwner: els.aeoOwnerInput.value.trim(),
     buildOwner: els.buildOwnerInput.value.trim(),
     notes: els.taskNotesInput.value.trim(),
     aeoNotes: document.getElementById("aeoNotesInput").value.trim(),
-    updatedAt: new Date().toISOString(),
   };
-  state.details[task.id] = task.details;
-  fbSetDetails(state.details);
+  if (previousAeo !== task.aeoStatus) patch.aeoStagedAt = now;
+  stampTaskDetails(task, patch);
   els.taskDialog.close();
   showToast(`${displayModel(task)} details saved`);
   render();

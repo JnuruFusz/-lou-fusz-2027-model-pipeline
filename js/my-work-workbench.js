@@ -184,11 +184,16 @@
   }
 
   function relativeTime(task) {
-    const title = taskTitle(task).toLowerCase();
-    if (title.includes("cx-50") || title.includes("cx50")) return task.pageStatus === "page_built" ? "35m ago" : "4h ago";
-    if (title.includes("telluride")) return "6h ago";
-    if (title.includes("1500")) return "18h ago";
-    return "2h ago";
+    const iso = task.details?.stagedAt || task.details?.updatedAt;
+    if (!iso) return "not started";
+    const ms = Date.parse(iso);
+    if (!Number.isFinite(ms)) return "not started";
+    const minutes = Math.max(0, Math.round((Date.now() - ms) / 60000));
+    if (minutes < 1) return "just now";
+    if (minutes < 60) return `${minutes}m ago`;
+    const hours = Math.round(minutes / 60);
+    if (hours < 24) return `${hours}h ago`;
+    return `${Math.floor(hours / 24)}d ago`;
   }
 
   /* Focus hero — builder (unchanged) */
