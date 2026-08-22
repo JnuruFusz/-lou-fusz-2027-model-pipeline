@@ -701,7 +701,11 @@ function renderTable(tasks) {
   if (!container) return;
 
   if (!tasks.length) {
-    container.innerHTML = `<div class="empty">No tasks match the current filters.</div>`;
+    const owner = els.ownerFilter?.value;
+    const hint = owner && owner !== "all"
+      ? `No tasks for ${owner}. Switch the owner filter to All owners to see the full board.`
+      : "No tasks match the current filters.";
+    container.innerHTML = `<div class="empty">${escapeHtml(hint)}</div>`;
     return;
   }
 
