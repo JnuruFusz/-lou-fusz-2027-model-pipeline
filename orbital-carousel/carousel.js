@@ -76,35 +76,35 @@
       name: "Ash Oversized Hoodie",
       price: "$128",
       url: "#hoodie-ash",
-      image: "assets/product-hoodie.svg",
+      image: "assets/product-hoodie.png",
     },
     {
       id: "tee-signal",
       name: "Signal Heavy Tee",
       price: "$58",
       url: "#tee-signal",
-      image: "assets/product-tee.svg",
+      image: "assets/product-tee.png",
     },
     {
       id: "pants-line",
       name: "Line Cropped Pants",
       price: "$148",
       url: "#pants-line",
-      image: "assets/product-pants.svg",
+      image: "assets/product-pants.png",
     },
     {
       id: "jacket-shell",
       name: "Shell Utility Jacket",
       price: "$248",
       url: "#jacket-shell",
-      image: "assets/product-jacket.svg",
+      image: "assets/product-jacket.png",
     },
     {
       id: "cap-field",
       name: "Field Soft Cap",
       price: "$42",
       url: "#cap-field",
-      image: "assets/product-cap.svg",
+      image: "assets/product-cap.png",
     },
   ];
 
@@ -262,9 +262,9 @@
 
     state.radiusPx = shortSide * radiusFactor;
 
-    if (rect.width <= 640) state.itemSize = 120;
-    else if (rect.width <= 900) state.itemSize = 150;
-    else state.itemSize = 180;
+    if (rect.width <= 640) state.itemSize = 140;
+    else if (rect.width <= 900) state.itemSize = 170;
+    else state.itemSize = 210;
 
     items.forEach((el) => {
       el.style.setProperty("--item-size", `${state.itemSize}px`);

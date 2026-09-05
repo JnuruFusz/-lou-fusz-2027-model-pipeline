@@ -103,8 +103,8 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: var(--item-size, 180px);
-  height: var(--item-size, 180px);
+  width: var(--item-size, 210px);
+  height: var(--item-size, 210px);
   margin: 0;
   padding: 0;
   border: 0;
@@ -226,7 +226,7 @@ body {
   }
 
   .orbit__item {
-    --item-size: 150px;
+    --item-size: 170px;
   }
 }
 
@@ -240,7 +240,7 @@ body {
   }
 
   .orbit__item {
-    --item-size: 120px;
+    --item-size: 140px;
   }
 
   .orbit__active {
