@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orbital Product Showcase</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="showcase">
+    <header class="showcase__header">
+      <p class="showcase__eyebrow">Collection 01</p>
+      <h1 class="showcase__title">Orbit</h1>
+    </header>
+
+    <section
+      class="orbit"
+      id="orbit"
+      aria-roledescription="carousel"
+      aria-label="Product orbit"
+    >
+      <div class="orbit__stage" id="orbitStage">
+        <div class="orbit__atmosphere" aria-hidden="true"></div>
+        <div class="orbit__ring" id="orbitRing"></div>
+      </div>
+
+      <div class="orbit__active" id="orbitActive" aria-live="polite">
+        <h2 class="orbit__active-name" id="activeName">—</h2>
+        <p class="orbit__active-price" id="activePrice">—</p>
+        <a class="orbit__active-cta" id="activeCta" href="#">View Product</a>
+      </div>
+
+      <div class="orbit__controls">
+        <button
+          type="button"
+          class="orbit__nav"
+          id="prevBtn"
+          aria-label="Previous product"
+        >
+          <span aria-hidden="true">←</span>
+        </button>
+        <button
+          type="button"
+          class="orbit__nav"
+          id="nextBtn"
+          aria-label="Next product"
+        >
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script src="carousel.js"></script>
+</body>
+</html>
