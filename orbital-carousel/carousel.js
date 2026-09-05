@@ -410,17 +410,21 @@
     const dx = event.clientX - state.lastX;
     state.dragDistance += Math.abs(dx);
 
+    // Wait until movement clears the click threshold so tiny jitter
+    // does not steal click-to-focus or start a micro-drag.
+    if (state.dragDistance <= CONFIG.clickDragThreshold) {
+      state.lastX = event.clientX;
+      return;
+    }
+
+    state.suppressClick = true;
+
     // Dragging right rotates products clockwise around the orbit.
     const delta = dx * CONFIG.dragSensitivity;
     state.rotation += delta;
 
     // Store per-frame angular velocity for inertia on release.
     state.velocity = delta;
-
-    if (state.dragDistance > CONFIG.clickDragThreshold) {
-      state.suppressClick = true;
-    }
-
     state.lastX = event.clientX;
   }
 
@@ -428,9 +432,31 @@
     if (!state.dragging) return;
     if (event && state.pointerId != null && event.pointerId !== state.pointerId) return;
 
+    const wasClick = state.dragDistance <= CONFIG.clickDragThreshold;
+    const clientX = event && event.clientX != null ? event.clientX : state.lastX;
+    const clientY = event && event.clientY != null ? event.clientY : null;
+
     state.dragging = false;
     state.pointerId = null;
     orbit.classList.remove("is-dragging");
+
+    // Click / tap on a product: focus that item (pointer capture can
+    // swallow the subsequent click event in some browsers).
+    if (wasClick && clientY != null) {
+      const hit = document
+        .elementFromPoint(clientX, clientY)
+        ?.closest(".orbit__item");
+
+      if (hit) {
+        const index = Number(hit.dataset.index);
+        setActive(index, { updateTarget: true });
+        state.suppressClick = true;
+        return;
+      }
+
+      beginSnap();
+      return;
+    }
 
     state.velocity *= CONFIG.inertia;
     state.velocity = Math.max(
@@ -468,8 +494,11 @@
   // Click product / arrows
   // ---------------------------------------------------------------------------
   function onItemClick(event) {
+    // Selection is handled in pointerup when we owned the gesture.
+    // Keep this as a keyboard / fallback path.
     if (state.suppressClick) {
       state.suppressClick = false;
+      event.preventDefault();
       return;
     }
 
