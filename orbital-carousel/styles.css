@@ -1,0 +1,294 @@
+:root {
+  --bg: #050505;
+  --text: #f4f4f4;
+  --text-muted: rgba(244, 244, 244, 0.55);
+  --line: rgba(255, 255, 255, 0.14);
+  --accent: #ffffff;
+  --glow: rgba(255, 255, 255, 0.06);
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --font-body: "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 40%, #141414 0%, transparent 58%),
+    radial-gradient(ellipse 55% 35% at 50% 100%, rgba(255, 255, 255, 0.03), transparent 50%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.showcase {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.showcase__header {
+  text-align: center;
+  padding-top: clamp(0.5rem, 2vw, 1.25rem);
+}
+
+.showcase__eyebrow {
+  margin: 0 0 0.4rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.showcase__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.orbit {
+  position: relative;
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  user-select: none;
+  touch-action: none;
+  cursor: grab;
+}
+
+.orbit.is-dragging {
+  cursor: grabbing;
+}
+
+.orbit__stage {
+  position: relative;
+  width: 100%;
+  height: clamp(380px, 62vh, 640px);
+  margin-inline: auto;
+  /* Keep tall silhouettes from painting outside the orbit canvas */
+  overflow: visible;
+}
+
+.orbit__atmosphere {
+  position: absolute;
+  inset: 22% 24% 26%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/*
+  Center readout: name / price / CTA sit in the open middle of the ring
+  so jeans/pants never collide with UI under the stage.
+*/
+.orbit__active {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  width: min(240px, 70%);
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  padding: 1.1rem 1rem;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at center,
+    rgba(5, 5, 5, 0.72) 0%,
+    rgba(5, 5, 5, 0.35) 55%,
+    transparent 78%
+  );
+}
+
+.orbit__active-name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.8vw, 1.7rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.orbit__active-price {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+}
+
+.orbit__active-cta {
+  pointer-events: auto;
+  margin-top: 0.45rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.6rem 1.25rem;
+  border: 1px solid var(--line);
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.66rem;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.orbit__active-cta:hover,
+.orbit__active-cta:focus-visible {
+  background: #fff;
+  color: #050505;
+  border-color: #fff;
+  outline: none;
+}
+
+.orbit__ring {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.orbit__item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--item-size, 190px);
+  height: var(--item-size, 190px);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+  cursor: pointer;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  will-change: transform, opacity;
+}
+
+.orbit__item:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 8px;
+}
+
+.orbit__item-media {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.45));
+}
+
+/*
+  Force every SKU into the same square frame so tall pants cannot
+  outgrow hoodies/tees and invade the center copy.
+*/
+.orbit__item-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.orbit__item.is-active .orbit__item-media {
+  filter: drop-shadow(0 22px 36px rgba(0, 0, 0, 0.55));
+}
+
+.orbit__controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0 0.5rem;
+  position: relative;
+  z-index: 6;
+}
+
+.orbit__nav {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.orbit__nav:hover,
+.orbit__nav:focus-visible {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.35);
+  outline: none;
+}
+
+@media (max-width: 900px) {
+  .orbit__stage {
+    height: clamp(360px, 56vh, 540px);
+  }
+
+  .orbit__item {
+    --item-size: 160px;
+  }
+
+  .orbit__active {
+    width: min(210px, 72%);
+  }
+}
+
+@media (max-width: 640px) {
+  .showcase {
+    padding: 1rem 0.75rem 1.25rem;
+  }
+
+  .orbit__stage {
+    height: clamp(340px, 52vh, 460px);
+  }
+
+  .orbit__item {
+    --item-size: 130px;
+  }
+
+  .orbit__active {
+    top: 45%;
+    width: min(190px, 78%);
+    padding: 0.85rem 0.75rem;
+  }
+
+  .orbit__active-name {
+    font-size: 1.15rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit__item,
+  .orbit__active-cta,
+  .orbit__nav {
+    transition: none !important;
+  }
+}
