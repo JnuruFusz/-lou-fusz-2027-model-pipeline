@@ -21,13 +21,18 @@
     >
       <div class="orbit__stage" id="orbitStage">
         <div class="orbit__atmosphere" aria-hidden="true"></div>
-        <div class="orbit__ring" id="orbitRing"></div>
-      </div>
 
-      <div class="orbit__active" id="orbitActive" aria-live="polite">
-        <h2 class="orbit__active-name" id="activeName">—</h2>
-        <p class="orbit__active-price" id="activePrice">—</p>
-        <a class="orbit__active-cta" id="activeCta" href="#">View Product</a>
+        <!--
+          Product copy lives IN the ring center so tall items
+          (jeans/pants) never collide with price + CTA below the stage.
+        -->
+        <div class="orbit__active" id="orbitActive" aria-live="polite">
+          <h2 class="orbit__active-name" id="activeName">—</h2>
+          <p class="orbit__active-price" id="activePrice">—</p>
+          <a class="orbit__active-cta" id="activeCta" href="#">View Product</a>
+        </div>
+
+        <div class="orbit__ring" id="orbitRing"></div>
       </div>
 
       <div class="orbit__controls">

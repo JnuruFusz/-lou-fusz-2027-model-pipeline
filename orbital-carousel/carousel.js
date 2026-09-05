@@ -16,7 +16,7 @@
   // ---------------------------------------------------------------------------
   const CONFIG = {
     /** Orbit radius as a fraction of the stage's shorter side */
-    radius: 0.38,
+    radius: 0.4,
 
     /** How much horizontal drag (px) maps into radians */
     dragSensitivity: 0.0055,
@@ -37,10 +37,10 @@
     inertia: 0.55,
 
     /** Base visual scale of an item at the front (depth = 1) */
-    productScale: 1.05,
+    productScale: 0.98,
 
     /** Smallest scale allowed at the back of the orbit */
-    minimumScale: 0.42,
+    minimumScale: 0.4,
 
     /** Lowest opacity for back-facing products */
     minimumOpacity: 0.28,
@@ -51,8 +51,11 @@
      */
     autoRotateSpeed: 0.12,
 
-    /** Vertical squash of the circle → ellipse (1 = perfect circle) */
-    verticalScale: 0.42,
+    /**
+     * Vertical squash of the circle → ellipse (1 = perfect circle).
+     * Higher = taller ring = more open center for name/price/CTA.
+     */
+    verticalScale: 0.62,
 
     /** Velocity damping each frame after release, before snap engages */
     inertiaDamping: 0.94,
@@ -91,6 +94,13 @@
       price: "$148",
       url: "#pants-line",
       image: "assets/product-pants.png",
+    },
+    {
+      id: "pants-cargo",
+      name: "Cargo Straight Pants",
+      price: "$168",
+      url: "#pants-cargo",
+      image: "assets/product-cargos.png",
     },
     {
       id: "jacket-shell",
@@ -262,9 +272,9 @@
 
     state.radiusPx = shortSide * radiusFactor;
 
-    if (rect.width <= 640) state.itemSize = 140;
-    else if (rect.width <= 900) state.itemSize = 170;
-    else state.itemSize = 210;
+    if (rect.width <= 640) state.itemSize = 130;
+    else if (rect.width <= 900) state.itemSize = 160;
+    else state.itemSize = 190;
 
     items.forEach((el) => {
       el.style.setProperty("--item-size", `${state.itemSize}px`);
