@@ -143,6 +143,8 @@ Rendered separately at bottom of pipeline via `renderPipelineGroup(aeoTier, aeoT
 - **Show all / Show less** — button toggles between expanded/collapsed state, stores total in `data-pipeline-total`
 - **Year filter** — defaults to `2027` when that year exists
 - **Owner filter** — defaults to the signed-in person; includes Scott automatically if any AEO-pending tasks exist. "All owners" is still in the dropdown; Clear filters restores it.
+- **Inventory merge** — feed rows match tracker tasks by dealer + year + make + canonical model (not raw `id`), so `Kia Telluride` and `Telluride` do not create duplicates
+- **Evansville combo feed** — `LouFuszEvansville.csv` is split by make: Kia → Kia Evansville, Mazda → Mazda Evansville
 - **Owner avatars** — colored initials in each row. Colors: Jnuru=#4D8DF6, Chris=#3DB67A, Scott=#9B5CF6
 
 ### Key functions in renderers.js
@@ -230,6 +232,8 @@ Reset everything: `?demo=reset` in URL.
 - ✅ Upcoming Models watchlist
 - ✅ Firebase Auth — Google Sign-In
 - ✅ Invite emails to Chris + Scott scheduled (Monday July 6, 7:30 AM CT)
+- ✅ 2027 tracker refreshed from the Sep 8 2026 inventory feed (48 new retail model pages; commercial chassis/vans stay ignored)
+- ✅ Evansville combo CSV routes Kia/Mazda to the correct rooftop; demo status fakes for Seltos / CX-50 / TRX removed
 
 ## What's pending
 
