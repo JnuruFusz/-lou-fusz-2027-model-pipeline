@@ -320,6 +320,7 @@ function completeOnboarding(member) {
   localStorage.setItem("fusz-demo-session", JSON.stringify(state.session));
   state.workspaceView = member.defaultView;
   localStorage.setItem("pipeline-workspace-view", member.defaultView);
+  if (typeof populateOwnerFilter === "function") populateOwnerFilter();
   renderAuth();
   render();
   const firstName = member.name.split(" ")[0];
@@ -499,6 +500,7 @@ const PIPELINE_TIERS = [
 ];
 
 const PIPELINE_ROW_CAP = 6;
+const PIPELINE_HEAVY_THRESHOLD = 8;
 const PIPELINE_GROUP_COLLAPSE_KEY = "fusz-pipeline-group-collapsed";
 
 const OWNER_AVATAR_COLORS = {
@@ -523,15 +525,30 @@ function ownerAvatarBg(name) {
   return ["#4D8DF6","#3DB67A","#9B5CF6","#E3A05A","#E3507A","#5AC8E3"][seed % 6];
 }
 
+function taskStageTimestamp(task) {
+  const iso = task.details?.stagedAt || task.details?.updatedAt;
+  if (!iso) return null;
+  const ms = Date.parse(iso);
+  return Number.isFinite(ms) ? ms : null;
+}
+
+function hoursInStage(task) {
+  const ms = taskStageTimestamp(task);
+  if (ms == null) return null;
+  return Math.max(0, (Date.now() - ms) / 3600000);
+}
+
 function taskAgeLabel(task) {
-  const seed = task.id.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
-  const hours = [2,5,12,18,24,36,48,72,96,120,144,168,192,216,240][seed % 15];
-  return hours < 24 ? `${hours}h` : `${Math.floor(hours / 24)}d`;
+  const hours = hoursInStage(task);
+  if (hours == null) return "—";
+  if (hours < 1) return `${Math.max(1, Math.round(hours * 60))}m`;
+  if (hours < 24) return `${Math.round(hours)}h`;
+  return `${Math.floor(hours / 24)}d`;
 }
 
 function taskAgeTone(task) {
-  const seed = task.id.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
-  const hours = [2,5,12,18,24,36,48,72,96,120,144,168,192,216,240][seed % 15];
+  const hours = hoursInStage(task);
+  if (hours == null) return "muted";
   if (hours >= 96) return "red";
   if (hours >= 48) return "amber";
   return "muted";
@@ -632,14 +649,16 @@ function getPipelineGroupCollapsed() {
   catch { return {}; }
 }
 
-function isPipelineGroupCollapsed(tierKey, defaultOpen) {
+function isPipelineGroupCollapsed(tierKey, defaultOpen, taskCount = 0) {
   const stored = getPipelineGroupCollapsed();
-  return stored[tierKey] !== undefined ? stored[tierKey] : !defaultOpen;
+  if (stored[tierKey] !== undefined) return stored[tierKey];
+  if (taskCount > PIPELINE_HEAVY_THRESHOLD) return true;
+  return !defaultOpen;
 }
 
 function renderPipelineGroup(tier, tasks, ownerOverride) {
   if (!tasks.length) return "";
-  const collapsed = isPipelineGroupCollapsed(tier.key, tier.defaultOpen);
+  const collapsed = isPipelineGroupCollapsed(tier.key, tier.defaultOpen, tasks.length);
   const collapsedAttr = collapsed ? " is-collapsed" : "";
   const chevronAttr = collapsed ? " is-collapsed" : "";
   const capped = tasks.length > PIPELINE_ROW_CAP;
@@ -682,7 +701,11 @@ function renderTable(tasks) {
   if (!container) return;
 
   if (!tasks.length) {
-    container.innerHTML = `<div class="empty">No tasks match the current filters.</div>`;
+    const owner = els.ownerFilter?.value;
+    const hint = owner && owner !== "all"
+      ? `No tasks for ${owner}. Switch the owner filter to All owners to see the full board.`
+      : "No tasks match the current filters.";
+    container.innerHTML = `<div class="empty">${escapeHtml(hint)}</div>`;
     return;
   }
 
