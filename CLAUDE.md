@@ -123,7 +123,7 @@ Pipeline replaced the flat table. Groups are rendered in `renderTable()` in `ren
 ### Tiers (mutually exclusive, in priority order)
 | Key | Color | Dot | Match condition | Default |
 |-----|-------|-----|-----------------|---------|
-| `on_lot` | Red | 🔴 | `inventorySignal === "on_lot"` AND not live/ignored/snoozed | Open |
+| `on_lot` | Red | 🔴 | `inventorySignal === "on_lot"` AND not live/ignored/snoozed | Open, unless more than 8 rows |
 | `blocked` | Violet | 🟣 | `pageStatus === "needs_review"` | Open |
 | `ready` | Blue | 🔵 | `pageStatus` in `["seo_done","needs_build"]` | Collapsed |
 | `in_progress` | Blue | 🔵 | `pageStatus` in `["seo_in_progress","page_built"]` | Collapsed |
@@ -139,8 +139,12 @@ Rendered separately at bottom of pipeline via `renderPipelineGroup(aeoTier, aeoT
 ### Pipeline features
 - **Collapsible groups** — toggle handler in `events.js` updates localStorage then calls `render()`
 - **Row cap** — `PIPELINE_ROW_CAP = 6` — first 6 rows visible, rest in `.pipeline-hidden-rows` div
+- **Heavy groups** — `PIPELINE_HEAVY_THRESHOLD = 8` — groups larger than this start collapsed unless the user has toggled them
 - **Show all / Show less** — button toggles between expanded/collapsed state, stores total in `data-pipeline-total`
-- **Owner filter** — dropdown in toolbar; includes Scott automatically if any AEO-pending tasks exist
+- **Year filter** — defaults to `2027` when that year exists
+- **Owner filter** — defaults to the signed-in person; includes Scott automatically if any AEO-pending tasks exist. "All owners" is still in the dropdown; Clear filters restores it.
+- **Inventory merge** — feed rows match tracker tasks by dealer + year + make + canonical model (not raw `id`), so `Kia Telluride` and `Telluride` do not create duplicates
+- **Evansville combo feed** — `LouFuszEvansville.csv` is split by make: Kia → Kia Evansville, Mazda → Mazda Evansville
 - **Owner avatars** — colored initials in each row. Colors: Jnuru=#4D8DF6, Chris=#3DB67A, Scott=#9B5CF6
 
 ### Key functions in renderers.js
@@ -196,7 +200,7 @@ pipeline-workspace-view        → last active view
 pipeline-status-overrides      → { taskId: pageStatus }
 pipeline-aeo-overrides         → { taskId: aeoStatus }
 pipeline-signal-overrides      → { taskId: signal }
-pipeline-task-details          → { taskId: { seoOwner, buildOwner, notes, ... } }
+pipeline-task-details          → { taskId: { seoOwner, buildOwner, aeoOwner, stagedAt, aeoStagedAt, notes, ... } }
 fusz-pipeline-group-collapsed  → { tierKey: boolean } — pipeline group collapse state
 ```
 
@@ -213,6 +217,8 @@ Reset everything: `?demo=reset` in URL.
 - ✅ Team Pipeline — owner column, avatars, time-in-stage badge, nudge button
 - ✅ Team Pipeline — AEO tier (teal, Scott's lane)
 - ✅ Team Pipeline — owner filter dropdown (includes Scott for AEO tasks)
+- ✅ Team Pipeline — owner filter defaults to signed-in person; year defaults to 2027; groups with more than 8 rows start collapsed
+- ✅ Status changes stamp `details.stagedAt` / `aeoStagedAt` and missing `seoOwner` / `buildOwner` / `aeoOwner`; time-in-stage uses the real timestamp
 - ✅ Team Pipeline — Show all / Show less toggle
 - ✅ Admin panel with working nav buttons
 - ✅ Settings: theme, notifications, integrations, team table
@@ -226,11 +232,11 @@ Reset everything: `?demo=reset` in URL.
 - ✅ Upcoming Models watchlist
 - ✅ Firebase Auth — Google Sign-In
 - ✅ Invite emails to Chris + Scott scheduled (Monday July 6, 7:30 AM CT)
+- ✅ 2027 tracker refreshed from the Sep 8 2026 inventory feed (48 new retail model pages; commercial chassis/vans stay ignored)
+- ✅ Evansville combo CSV routes Kia/Mazda to the correct rooftop; demo status fakes for Seltos / CX-50 / TRX removed
 
 ## What's pending
 
-- ⏳ Real `aeoOwner` field on task records in data.js (currently defaults to Scott in wins logic)
-- ⏳ Real `stagedAt` timestamps on tasks (time-in-stage badge uses deterministic fake ages from task ID seed)
 - ⏳ Google Drive SEO folder connection (waiting on shared folder)
 - ⏳ Role editing for team members (Manage button shows "coming soon")
 - ⏳ Onboarding flow / first-run experience for new team members

@@ -269,7 +269,7 @@ async function fetchInventoryFeed() {
   const loadedFiles = [];
   const failedFiles = [];
 
-  for (const file of inventoryFeedFiles) {
+  const results = await Promise.all(inventoryFeedFiles.map(async (file) => {
     try {
       const response = await fetch(`data/${file}`, { cache: "no-store" });
       if (!response.ok) throw new Error(`feed missing: ${file}`);
@@ -277,10 +277,18 @@ async function fetchInventoryFeed() {
       const feedRows = parseCsv(csv)
         .map((row) => normalizeInventoryRow(row, file))
         .filter((row) => isInInventoryYearWindow(row.year));
-      rows.push(...feedRows);
-      loadedFiles.push(file);
+      return { file, feedRows, ok: true };
     } catch {
-      failedFiles.push(file);
+      return { file, feedRows: [], ok: false };
+    }
+  }));
+
+  for (const result of results) {
+    if (result.ok) {
+      rows.push(...result.feedRows);
+      loadedFiles.push(result.file);
+    } else {
+      failedFiles.push(result.file);
     }
   }
 
@@ -347,16 +355,17 @@ function normalizeFeedKey(key) {
 }
 
 function normalizeInventoryRow(row, file) {
-  const dealer = normalizeDealerName(row.dealer || row.dealership || row.dealership_name);
+  const rawMake = String(row.make || "").trim();
+  const dealer = normalizeDealerName(row.dealer || row.dealership || row.dealership_name, rawMake);
   const vehicleStatus = row.status || row.vehicle_status || "";
   const inventoryUrl = row.inventory_url || row.vdp_url || row.vdp_urls || "";
   const stockDate = row.last_updated || row.updated_at || row.date_in_stock || row.date_instock || row.date_instock_raw || "";
 
   const rawModel = String(row.model || "").trim();
-  const rawMake = String(row.make || "").trim();
-  const model = rawMake && rawModel.toLowerCase().startsWith(rawMake.toLowerCase() + " ")
+  const stripped = rawMake && rawModel.toLowerCase().startsWith(rawMake.toLowerCase() + " ")
     ? rawModel.slice(rawMake.length).trim()
     : rawModel;
+  const model = canonicalizeModel(rawMake, stripped);
 
   return {
     ...row,
@@ -394,9 +403,39 @@ function inventoryRowKey(row = {}) {
   return `row:${normalizeCompare(row.dealer)}|${row.year}|${normalizeCompare(row.make)}|${normalizeCompare(row.model)}|${normalizeCompare(row.trim)}|${normalizeCompare(row.stock_number)}`;
 }
 
-function normalizeDealerName(name) {
+function normalizeDealerName(name, make) {
   const clean = String(name || "").trim();
+  if (normalizeWords(clean) === "lou fusz evansville") {
+    const brand = normalizeCompare(make);
+    if (brand === "kia") return "Lou Fusz Kia Evansville";
+    if (brand === "mazda") return "Lou Fusz Mazda Evansville";
+  }
   return dealerNameAliases[normalizeWords(clean)] || clean;
+}
+
+const inventoryModelAliases = {
+  carnivalmpv: "Carnival",
+  carnivalmpvhybrid: "Carnival Hybrid",
+  carnivalhybrid: "Carnival Hybrid",
+  ascent: "Ascent",
+};
+
+function canonicalizeModel(make, model) {
+  const stripped = modelWithoutMake({ make, model });
+  return inventoryModelAliases[normalizeCompare(stripped)] || stripped;
+}
+
+function isCommercialModel(model) {
+  return /chassiscab|promaster|transit|e350sd|f250sd|f350sd|f600sd/.test(normalizeCompare(model));
+}
+
+function taskIdentityKey(task) {
+  return [
+    normalizeCompare(task.dealer),
+    String(task.year || ""),
+    normalizeCompare(task.make),
+    normalizeCompare(canonicalizeModel(task.make, task.model)),
+  ].join("|");
 }
 
 function normalizeWords(value) {
@@ -572,13 +611,16 @@ function normalizeSession() {
 }
 
 function mergeInventoryFeedTasks(tasks, rows = []) {
-  const existing = new Set(tasks.map((task) => task.id));
+  const existingIds = new Set(tasks.map((task) => task.id));
+  const existingKeys = new Set(tasks.map((task) => taskIdentityKey(task)));
   const feedTasks = rows
     .filter((row) => row.dealer && row.year && row.make && row.model)
     .map((row) => inventoryRowToTask(row))
     .filter((task) => {
-      if (existing.has(task.id)) return false;
-      existing.add(task.id);
+      const key = taskIdentityKey(task);
+      if (existingIds.has(task.id) || existingKeys.has(key)) return false;
+      existingIds.add(task.id);
+      existingKeys.add(key);
       return true;
     });
   return [...tasks, ...feedTasks];
@@ -590,17 +632,19 @@ function normalizeMakeName(make) {
 }
 
 function inventoryRowToTask(row) {
+  const make = normalizeMakeName(String(row.make || "").trim());
   const task = {
     dealer: row.dealer,
     year: Number(row.year),
-    make: normalizeMakeName(String(row.make || "").trim()),
-    model: row.model,
+    make,
+    model: canonicalizeModel(make, row.model),
   };
+  const commercial = isCommercialModel(task.model);
   return {
     ...task,
     id: `${normalizeCompare(task.dealer)}|${task.year}|${normalizeCompare(task.make)}-${normalizeCompare(task.model)}`,
-    pageStatus: normalizePageStatus(row.page_status || row.page_status_raw || "needs_seo"),
-    aeoStatus: normalizeAeoStatus(row.aeo_status),
+    pageStatus: normalizePageStatus(row.page_status || row.page_status_raw || (commercial ? "ignored" : "needs_seo")),
+    aeoStatus: normalizeAeoStatus(row.aeo_status) || (commercial ? "not_needed" : null),
     trackerStatusRaw: null,
     trackerRow: null,
     source: row.feedFile || "inventory-feed",
@@ -613,20 +657,13 @@ function inventoryRowToTask(row) {
   };
 }
 
-function demoPageStatus(task) {
-  if (state.overrides[task.id]) return null;
-  if (task.year !== 2027) return null;
-  const model = String(task.model || "").toLowerCase();
-  if (model.includes("1500 srt trx")) return "seo_done";
-  if (model.includes("cx-50")) return "page_built";
-  if (model.includes("seltos")) return "needs_review";
+function demoPageStatus() {
   return null;
 }
 
 function demoAeoStatus(task, pageStatus) {
-  const title = `${task.make || ""} ${task.model || ""}`.toLowerCase();
   if (["page_built", "live"].includes(pageStatus) || task.trackerStatusRaw === true) return "done";
-  if (title.includes("cx-50") || title.includes("telluride") || title.includes("land cruiser")) return "done";
+  if (pageStatus === "ignored") return "not_needed";
   if (pageStatus === "seo_done") return "in_progress";
   return "not_started";
 }
@@ -652,10 +689,12 @@ function applyInventoryFeedSignals() {
 }
 
 function feedRowMatchesTask(row, task) {
-  return normalizeCompare(row.dealer) === normalizeCompare(task.dealer)
-    && String(row.year || "") === String(task.year || "")
-    && normalizeCompare(row.make) === normalizeCompare(task.make)
-    && normalizeCompare(row.model) === normalizeCompare(task.model);
+  return taskIdentityKey({
+    dealer: row.dealer,
+    year: row.year,
+    make: row.make,
+    model: row.model,
+  }) === taskIdentityKey(task);
 }
 
 function signalFromFeedStatus(status, row = {}) {
@@ -684,23 +723,42 @@ function populateDealerFilter() {
 
 function populateYearFilter() {
   const years = [...new Set(state.tasks.map((task) => task.year))].sort((a, b) => b - a);
+  const previous = els.yearFilter.value;
   els.yearFilter.innerHTML = [
     `<option value="all">All years</option>`,
     ...years.map((year) => `<option value="${year}">${year}</option>`),
   ].join("");
-  els.yearFilter.value = "all";
+  const hasPrevious = previous === "all" || years.some((year) => String(year) === previous);
+  els.yearFilter.value = hasPrevious ? previous : (years.includes(2027) ? "2027" : "all");
 }
 
 function populateOwnerFilter() {
   if (!els.ownerFilter) return;
+  const previous = els.ownerFilter.value;
+  const userSet = els.ownerFilter.dataset.userSet === "1";
   const activeTasks = state.tasks.filter((task) => !["live", "ignored", "snoozed"].includes(task.pageStatus));
   const owners = new Set(
     activeTasks.map((task) => (typeof pipelineOwnerForTask === "function" ? pipelineOwnerForTask(task) : (task.details?.buildOwner || task.details?.seoOwner || "Team")))
   );
+  const hasAeoPending = state.tasks.some((task) =>
+    !["done", "not_needed"].includes(task.aeoStatus) &&
+    !["live", "ignored", "snoozed"].includes(task.pageStatus)
+  );
+  if (hasAeoPending) owners.add("Scott Toulou");
+  if (state.session?.name) owners.add(state.session.name);
   els.ownerFilter.innerHTML = [
     `<option value="all">All owners</option>`,
     ...[...owners].sort().map((owner) => `<option value="${escapeAttr(owner)}">${escapeHtml(owner)}</option>`),
   ].join("");
+  const sessionName = state.session?.name || "";
+  const options = [...els.ownerFilter.options].map((option) => option.value);
+  if (userSet && options.includes(previous)) {
+    els.ownerFilter.value = previous;
+  } else if (sessionName && options.includes(sessionName)) {
+    els.ownerFilter.value = sessionName;
+  } else {
+    els.ownerFilter.value = "all";
+  }
 }
 
 boot().catch((error) => {
