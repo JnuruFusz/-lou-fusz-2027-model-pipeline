@@ -134,6 +134,26 @@ function configureInviteOnboarding() {
   els.authHelpButton = document.querySelector("#authHelpButton");
 }
 
+function googleSignInErrorMessage(err) {
+  const code = err?.code || "";
+  const host = location.hostname;
+  if (code === "auth/unauthorized-domain") {
+    return host.includes("deploy-preview")
+      ? "This deploy preview is not in Firebase authorized domains. Sign in on the live site, or add this hostname in Firebase Auth settings."
+      : `${host} is not in Firebase authorized domains. Add it in Authentication → Settings.`;
+  }
+  if (code === "auth/popup-blocked") {
+    return "Popups are blocked — allow popups for this site and try again.";
+  }
+  if (code === "auth/operation-not-allowed") {
+    return "Google sign-in is turned off in the Firebase project.";
+  }
+  if (String(err?.message || "") === "Auth not ready") {
+    return "Firebase Auth is still loading — wait a second and try again.";
+  }
+  return "Sign-in failed — please try again.";
+}
+
 function on(element, eventName, handler) {
   if (!element) return;
   element.addEventListener(eventName, handler);
@@ -296,12 +316,9 @@ Let me know if you have any questions.`
     } catch (err) {
       button.disabled = false;
       button.textContent = "Open My Work →";
-      if (err.code === "auth/popup-blocked") {
-        showToast("Popups are blocked — please allow popups for this site and try again.", 5000);
-      } else if (err.code !== "auth/popup-closed-by-user" && err.code !== "auth/cancelled-popup-request") {
-        showToast("Sign-in failed — please try again.");
-        console.warn("[Fusz+] Google sign-in error:", err);
-      }
+      if (err.code === "auth/popup-closed-by-user" || err.code === "auth/cancelled-popup-request") return;
+      showToast(googleSignInErrorMessage(err), 6500);
+      console.warn("[Fusz+] Google sign-in error:", err);
     }
   });
 
