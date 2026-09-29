@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
+import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 import { writeSeoClear } from "./lib/firebase-pipeline.mjs";
 import { patchTrackerSource } from "./lib/patch-tracker.mjs";
@@ -258,4 +259,26 @@ test("firebase write patches one task and keeps existing detail fields", async (
   });
   assert.equal(store["overrides/seoClears/lou-fusz-ford%7C2027%7Cexpedition"].slack_ts, pending[0].slack_ts);
   assert.ok(calls.every((call) => !call.key.includes("aeo") && !call.key.includes("signal")));
+});
+
+test("builder queue keeps assigned builds and shows SEO Chris just finished", () => {
+  const source = fs.readFileSync(path.join(root, "js", "renderers.js"), "utf8");
+  const match = source.match(/function builderWorkTasks\(tasks = \[\], me = ""\) \{[\s\S]*?\n\}/);
+  assert.ok(match, "builderWorkTasks should be a pure function");
+  const sandbox = {};
+  vm.createContext(sandbox);
+  vm.runInContext(`${match[0]}\nthis.builderWorkTasks = builderWorkTasks;`, sandbox);
+  const tasks = [
+    { id: "owned", year: 2027, pageStatus: "needs_build", details: { buildOwner: "Jnuru Goodwin" } },
+    { id: "lou-fusz-ford|2027|expedition", year: 2027, pageStatus: "seo_done", details: { seoOwner: "Chris Pajda" } },
+    { id: "still-writing", year: 2027, pageStatus: "needs_seo", details: { seoOwner: "Chris Pajda" } },
+    { id: "live-page", year: 2027, pageStatus: "live", details: { buildOwner: "Jnuru Goodwin" } },
+    { id: "lou-fusz-kia|2027|seltos", year: 2027, pageStatus: "needs_build", details: { buildOwner: "Jnuru Goodwin", seoOwner: "Chris Pajda" } },
+  ];
+  const shown = sandbox.builderWorkTasks(tasks, "Jnuru Goodwin").map((task) => task.id);
+  assert.ok(shown.includes("lou-fusz-ford|2027|expedition"));
+  assert.ok(shown.includes("owned"));
+  assert.ok(shown.includes("lou-fusz-kia|2027|seltos"));
+  assert.equal(shown.includes("still-writing"), false);
+  assert.equal(shown.includes("live-page"), false);
 });

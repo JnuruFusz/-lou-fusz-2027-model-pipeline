@@ -537,7 +537,7 @@ async function boot() {
     console.warn("[Fusz+] Auth check failed, falling back to localStorage session", err);
   }
 
-  await loadClassicScript("js/my-work-workbench.js?v=20260709");
+  await loadClassicScript("js/my-work-workbench.js?v=20260929");
   prog(38);
   await loadClassicScript("js/fusz-implementation.js?v=20260616");
   prog(60);
@@ -550,21 +550,17 @@ async function boot() {
   state.sources = sources;
   state.rooftops = loadRooftops(sources);
   state.inventoryFeed = inventoryFeed;
-  state.tasks = sourceTasks.map((task) => {
-    const completedOverride = completedOverrideFor(task);
-    const existingLiveStatus = task.pageStatus === "live" ? "live" : null;
-    const pageStatus = normalizePageStatus(state.overrides[task.id] || existingLiveStatus || completedOverride?.pageStatus || demoPageStatus(task) || task.pageStatus);
-    return {
-      ...task,
-      pageStatus,
-      aeoStatus: state.aeoOverrides[task.id] || completedOverride?.aeoStatus || normalizeAeoStatus(task.aeoStatus) || demoAeoStatus(task, pageStatus),
-      details: { ...(task.details || {}), ...(state.details[task.id] || {}) },
-      inventorySignal: state.signalOverrides[task.id] || inferSignal(task),
-      accent: brandAccentOverrides[task.make]?.accent || dealerAccents[task.dealer] || "#2563a9",
-      accentStyle: accentStyleForTask(task),
-      inventoryUrl: sourceFor(task.dealer)?.inventoryUrl || task.inventoryUrl || "",
-    };
-  });
+  state.tasks = sourceTasks.map((task) => applyStoredStatus({
+    ...task,
+    seedPageStatus: task.pageStatus,
+    seedDetails: { ...(task.details || {}) },
+    seedAeoStatus: task.aeoStatus,
+    seedSignal: task.inventorySignal,
+    accent: brandAccentOverrides[task.make]?.accent || dealerAccents[task.dealer] || "#2563a9",
+    accentStyle: accentStyleForTask(task),
+    inventoryUrl: sourceFor(task.dealer)?.inventoryUrl || task.inventoryUrl || "",
+  }));
+  promoteSlackSeoClears();
   applyInventoryFeedSignals();
   populateYearFilter();
   populateDealerFilter();
@@ -655,6 +651,58 @@ function inventoryRowToTask(row) {
     trim: row.trim || "",
     dateInStock: row.date_in_stock || "",
   };
+}
+
+const SLACK_SEO_CLEARS = [
+  { id: "lou-fusz-ford|2027|expedition", clearedBy: "Chris Pajda", clearedAt: "2026-09-28T17:58:35.341Z" },
+  { id: "lou-fusz-ford|2027|explorer", clearedBy: "Chris Pajda", clearedAt: "2026-09-28T17:59:10.135Z" },
+  { id: "lou-fusz-nissan-moline|2027|kicks", clearedBy: "Chris Pajda", clearedAt: "2026-09-28T17:59:10.135Z" },
+  { id: "lou-fusz-nissan-moline|2027|sentra", clearedBy: "Chris Pajda", clearedAt: "2026-09-28T17:59:10.135Z" },
+  { id: "lou-fusz-subaru-o-fallon|2027|ascent", clearedBy: "Chris Pajda", clearedAt: "2026-09-28T17:59:10.135Z" },
+  { id: "lou-fusz-subaru-st-louis|2027|ascent", clearedBy: "Chris Pajda", clearedAt: "2026-09-28T17:59:10.135Z" },
+  { id: "lou-fusz-kia|2027|seltos", clearedBy: "Chris Pajda", clearedAt: "2026-09-28T18:10:49.639Z" },
+  { id: "lou-fusz-kia-columbus|2027|seltos", clearedBy: "Chris Pajda", clearedAt: "2026-09-28T18:10:49.639Z" },
+  { id: "lou-fusz-toyota|2027|corolla", clearedBy: "Chris Pajda", clearedAt: "2026-09-28T18:52:05.385Z" },
+  { id: "lou-fusz-toyota|2027|corolla-hatchback", clearedBy: "Chris Pajda", clearedAt: "2026-09-28T18:52:05.385Z" },
+  { id: "lou-fusz-toyota|2027|bz-woodland", clearedBy: "Chris Pajda", clearedAt: "2026-09-28T18:52:05.385Z" },
+];
+
+function applyStoredStatus(task) {
+  const completedOverride = completedOverrideFor(task);
+  const seed = task.seedPageStatus ?? task.pageStatus;
+  const pageStatus = normalizePageStatus(state.overrides[task.id] || (seed === "live" ? "live" : null) || completedOverride?.pageStatus || demoPageStatus(task) || seed);
+  task.pageStatus = pageStatus;
+  task.aeoStatus = state.aeoOverrides[task.id] || completedOverride?.aeoStatus || normalizeAeoStatus(task.seedAeoStatus ?? task.aeoStatus) || demoAeoStatus(task, pageStatus);
+  task.details = { ...(task.seedDetails || task.details || {}), ...(state.details[task.id] || {}) };
+  task.inventorySignal = state.signalOverrides[task.id] || task.seedSignal || inferSignal(task);
+  return task;
+}
+
+function promoteSlackSeoClears() {
+  if (!Array.isArray(state.tasks)) return false;
+  let changed = false;
+  SLACK_SEO_CLEARS.forEach((clear) => {
+    const task = state.tasks.find((candidate) => candidate.id === clear.id);
+    if (!task || !["needs_seo", "seo_in_progress"].includes(task.pageStatus)) return;
+    task.pageStatus = "seo_done";
+    const patch = {};
+    if (!task.details?.seoOwner) patch.seoOwner = clear.clearedBy;
+    if (!task.details?.stagedAt) patch.stagedAt = clear.clearedAt;
+    task.details = { ...(task.details || {}), ...patch };
+    if (typeof fbPatchPageStatus === "function") fbPatchPageStatus(task.id, "seo_done");
+    else state.overrides[task.id] = "seo_done";
+    if (Object.keys(patch).length && typeof fbPatchTaskDetails === "function") fbPatchTaskDetails(task.id, patch);
+    changed = true;
+  });
+  return changed;
+}
+
+function applyRemoteOverrides() {
+  if (!Array.isArray(state.tasks) || !state.tasks.length) return;
+  state.tasks.forEach((task) => applyStoredStatus(task));
+  promoteSlackSeoClears();
+  if (typeof applyInventoryFeedSignals === "function") applyInventoryFeedSignals();
+  if (typeof render === "function") render();
 }
 
 function demoPageStatus() {

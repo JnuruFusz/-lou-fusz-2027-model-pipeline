@@ -44,17 +44,27 @@ function teamPipelineTasks(tasks = []) {
   return tasks.filter((task) => DEFAULT_TEAM_PAGE_STATUSES.includes(task.pageStatus));
 }
 
+function builderWorkTasks(tasks = [], me = "") {
+  const name = String(me || "").toLowerCase();
+  const pool = (tasks || []).filter((task) =>
+    Number(task.year) >= 2027 && ["seo_done", "needs_build", "page_built", "needs_review"].includes(task.pageStatus)
+  );
+  const mine = pool.filter((task) => (task.details?.buildOwner || "").toLowerCase() === name);
+  const incoming = pool.filter((task) => !task.details?.buildOwner && ["seo_done", "needs_build"].includes(task.pageStatus));
+  if (!mine.length) return pool.filter((task) => !task.details?.buildOwner);
+  const seen = new Set();
+  return [...incoming, ...mine].filter((task) => {
+    if (seen.has(task.id)) return false;
+    seen.add(task.id);
+    return true;
+  });
+}
+
 function personalWorkTasks(tasks = []) {
   if (state.workspaceView !== "my_work") return tasks;
   const role = currentRoleKey();
   const me = (state.session?.name || "").toLowerCase();
-  if (role.includes("builder")) {
-    const pool = tasks.filter((task) =>
-      task.year >= 2027 && ["seo_done", "needs_build", "page_built", "needs_review"].includes(task.pageStatus)
-    );
-    const mine = pool.filter((t) => (t.details?.buildOwner || "").toLowerCase() === me);
-    return mine.length ? mine : pool.filter((t) => !t.details?.buildOwner);
-  }
+  if (role.includes("builder")) return builderWorkTasks(tasks, me);
   if (role.includes("seo")) {
     const pool = tasks.filter((task) => ["needs_seo", "seo_in_progress", "needs_review"].includes(task.pageStatus));
     const mine = pool.filter((t) => (t.details?.seoOwner || "").toLowerCase() === me);
@@ -238,15 +248,34 @@ function capMyWorkSections() {
   groupMyWorkSections();
 }
 
+function myWorkSourceTasks() {
+  const query = (els.searchInput?.value || "").trim().toLowerCase();
+  return (state.tasks || []).filter((task) => {
+    if (!query) return true;
+    return `${taskTitle(task)} ${task.dealer} ${task.make} ${task.model}`.toLowerCase().includes(query);
+  });
+}
+
 function render() {
   const tasks = filteredTasks();
-  const personalTasks = personalWorkTasks(tasks);
+  const personalTasks = personalWorkTasks(state.workspaceView === "my_work" ? myWorkSourceTasks() : tasks);
   const visiblePipelineTasks = teamPipelineTasks(tasks);
   document.body.dataset.view = "focus";
   document.body.dataset.workspaceView = state.workspaceView;
   document.body.dataset.adminAccess = String(hasAdminAccess(state.session));
   renderWorkspaceView();
   renderMetrics(tasks);
+  if (state.workspaceView === "my_work" && currentRoleKey().includes("builder")) {
+    const ready = personalTasks.filter((task) => ["seo_done", "needs_build"].includes(task.pageStatus)).length;
+    const checks = personalTasks.filter((task) => task.pageStatus === "page_built").length;
+    const setQueueMetric = (el, value) => {
+      if (!el) return;
+      el.textContent = value;
+      el.closest(".metric")?.classList.toggle("is-zero", value === 0);
+    };
+    setQueueMetric(els.metricDetected, ready);
+    setQueueMetric(els.metricSeo, checks);
+  }
   renderAchievements(tasks);
   renderFocusTask(personalTasks);
   renderMyWork(personalTasks);

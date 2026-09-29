@@ -36,7 +36,10 @@
     const safeTasks = Array.isArray(tasks) ? tasks.filter(isRenderableTask) : [];
     const work = safeTasks
       .filter((t) => ["seo_done","needs_build","page_built","needs_review"].includes(t.pageStatus))
-      .sort((a, b) => workPriority(a) - workPriority(b));
+      .sort((a, b) => {
+        const seoFirst = (task) => task.pageStatus === "seo_done" ? 0 : 1;
+        return seoFirst(a) - seoFirst(b) || workPriority(a) - workPriority(b);
+      });
     return { work };
   }
 

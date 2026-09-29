@@ -23,6 +23,7 @@ let _auth = null;
 let _firebaseReady = false;
 let _fbAuthReady   = false;
 const _pendingWrites = [];
+const _pendingPatches = [];
 
 /* Auth promise — resolves with the Firebase user (or null) once
    onAuthStateChanged fires for the first time on page load. */
@@ -83,6 +84,10 @@ function fbGetCurrentUser() {
         /* Flush any writes queued before Firebase was ready */
         _pendingWrites.forEach(([path, value]) => _db.ref(path).set(value));
         _pendingWrites.length = 0;
+        _pendingPatches.splice(0).forEach(([kind, taskId, value]) => {
+          if (kind === "pageStatus") _db.ref("overrides/pageStatus").child(taskId).set(value);
+          if (kind === "details") _db.ref("overrides/details").child(taskId).update(value);
+        });
 
         /* Listen for remote changes and merge into state + re-render.
            Guard with state.tasks check — the listener fires on connect, before
@@ -93,7 +98,8 @@ function fbGetCurrentUser() {
           state.aeoOverrides    = data.aeoStatus  || {};
           state.signalOverrides = data.signal      || {};
           state.details         = data.details     || {};
-          if (typeof render === "function" && Array.isArray(state.tasks) && state.tasks.length) render();
+          if (typeof applyRemoteOverrides === "function") applyRemoteOverrides();
+          else if (typeof render === "function" && Array.isArray(state.tasks) && state.tasks.length) render();
         });
 
         /* --- Auth ---
@@ -169,6 +175,28 @@ function fbSetDetails(details) {
   } else {
     _pendingWrites.push(["overrides/details", details]);
   }
+}
+
+/* Patch one task. Never replace the whole override map. */
+function fbPatchPageStatus(taskId, status) {
+  if (!taskId) return;
+  state.overrides[taskId] = status;
+  localStorage.setItem("pipeline-status-overrides", JSON.stringify(state.overrides));
+  if (_firebaseReady && _db) _db.ref("overrides/pageStatus").child(taskId).set(status);
+  else _pendingPatches.push(["pageStatus", taskId, status]);
+}
+
+function fbPatchTaskDetails(taskId, patch) {
+  if (!taskId || !patch) return;
+  const nextPatch = {};
+  Object.keys(patch).forEach((key) => {
+    if (patch[key] != null && patch[key] !== "") nextPatch[key] = patch[key];
+  });
+  if (!Object.keys(nextPatch).length) return;
+  state.details[taskId] = { ...(state.details[taskId] || {}), ...nextPatch };
+  localStorage.setItem("pipeline-task-details", JSON.stringify(state.details));
+  if (_firebaseReady && _db) _db.ref("overrides/details").child(taskId).update(nextPatch);
+  else _pendingPatches.push(["details", taskId, nextPatch]);
 }
 
 function fbClearAll() {
