@@ -1,0 +1,82 @@
+{
+  "note": "Slack #seo-page-builder clears that were stored only in the Page Builder local seo-write-cleared.json. Dealers are explicit so Ascent and Seltos rooftops are not merged.",
+  "clears": [
+    {
+      "display": "2027 Ford Expedition",
+      "dealer": "Lou Fusz Ford",
+      "cleared_by": "Chris Pajda",
+      "cleared_at": "2026-09-28T17:58:35.341Z",
+      "slack_ts": "1790618315.341449"
+    },
+    {
+      "display": "2027 Ford Explorer",
+      "dealer": "Lou Fusz Ford",
+      "cleared_by": "Chris Pajda",
+      "cleared_at": "2026-09-28T17:59:10.135Z",
+      "slack_ts": "1790618350.135199"
+    },
+    {
+      "display": "2027 Nissan Kicks",
+      "dealer": "Lou Fusz Nissan Moline",
+      "cleared_by": "Chris Pajda",
+      "cleared_at": "2026-09-28T17:59:10.135Z",
+      "slack_ts": "1790618350.135199"
+    },
+    {
+      "display": "2027 Nissan Sentra",
+      "dealer": "Lou Fusz Nissan Moline",
+      "cleared_by": "Chris Pajda",
+      "cleared_at": "2026-09-28T17:59:10.135Z",
+      "slack_ts": "1790618350.135199"
+    },
+    {
+      "display": "2027 Subaru Ascent",
+      "dealer": "Lou Fusz Subaru O'Fallon",
+      "cleared_by": "Chris Pajda",
+      "cleared_at": "2026-09-28T17:59:10.135Z",
+      "slack_ts": "1790618350.135199"
+    },
+    {
+      "display": "2027 Subaru Ascent",
+      "dealer": "Lou Fusz Subaru St. Louis",
+      "cleared_by": "Chris Pajda",
+      "cleared_at": "2026-09-28T17:59:10.135Z",
+      "slack_ts": "1790618350.135199"
+    },
+    {
+      "display": "2027 Kia Seltos",
+      "dealer": "Lou Fusz Kia",
+      "cleared_by": "Chris Pajda",
+      "cleared_at": "2026-09-28T18:10:49.639Z",
+      "slack_ts": "1790619049.639689"
+    },
+    {
+      "display": "2027 Kia Seltos",
+      "dealer": "Lou Fusz Kia Columbus",
+      "cleared_by": "Chris Pajda",
+      "cleared_at": "2026-09-28T18:10:49.639Z",
+      "slack_ts": "1790619049.639689"
+    },
+    {
+      "display": "2027 Toyota Corolla",
+      "dealer": "Lou Fusz Toyota",
+      "cleared_by": "Chris Pajda",
+      "cleared_at": "2026-09-28T18:52:05.385Z",
+      "slack_ts": "1790621525.385609"
+    },
+    {
+      "display": "2027 Toyota Corolla Hatchback",
+      "dealer": "Lou Fusz Toyota",
+      "cleared_by": "Chris Pajda",
+      "cleared_at": "2026-09-28T18:52:05.385Z",
+      "slack_ts": "1790621525.385609"
+    },
+    {
+      "display": "2027 Toyota bZ Woodland",
+      "dealer": "Lou Fusz Toyota",
+      "cleared_by": "Chris Pajda",
+      "cleared_at": "2026-09-28T18:52:05.385Z",
+      "slack_ts": "1790621525.385609"
+    }
+  ]
+}
