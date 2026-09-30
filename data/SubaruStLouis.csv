@@ -1,15 +1,10 @@
 "Dealership Name",VIN,Year,Make,Model,Trim,"Vehicle Status","Stock Number","Date In stock","VDP URLs"
-"Lou Fusz Subaru St. Louis",4S4GUHM67V3704049,2027,Subaru,CROSSTREK,,"In Transit",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2027-subaru-crosstrek-5-door-4s4guhm67v3704049/
-"Lou Fusz Subaru St. Louis",4S4SLDD61T3187561,2026,Subaru,FORESTER,Premium,"In Transit",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-forester-premium-suv-4s4sldd61t3187561/
-"Lou Fusz Subaru St. Louis",4S4SLDD64T3186064,2026,Subaru,FORESTER,Premium,"In Transit",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-forester-premium-suv-4s4sldd64t3186064/
 "Lou Fusz Subaru St. Louis",4S4SLDD65T3187255,2026,Subaru,FORESTER,Premium,"In Transit",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-forester-premium-suv-4s4sldd65t3187255/
 "Lou Fusz Subaru St. Louis",4S4SLDH61T3186100,2026,Subaru,FORESTER,Sport,"In Transit",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-forester-sport-suv-4s4sldh61t3186100/
 "Lou Fusz Subaru St. Louis",4S4SLDR68T3186495,2026,Subaru,FORESTER,Limited,"In Transit",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-forester-limited-suv-4s4sldr68t3186495/
 "Lou Fusz Subaru St. Louis",4S4SLSR71T3187288,2026,Subaru,FORESTER,"Limited Hybrid","In Transit",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-forester-limited-hybrid-suv-4s4slsr71t3187288/
 "Lou Fusz Subaru St. Louis",4S4SLST71T3186263,2026,Subaru,FORESTER,"Touring Hybrid","In Transit",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-forester-touring-hybrid-suv-4s4slst71t3186263/
-"Lou Fusz Subaru St. Louis",4S4SLDL63T3173114,2026,Subaru,FORESTER,Wilderness,"At Dealership",S261022,2026-09-14,https://www.subaru.fusz.com/inventory/new-2026-subaru-forester-wilderness-awd-suv-4s4sldl63t3173114/
-"Lou Fusz Subaru St. Louis",4S4SLSR76T3173063,2026,Subaru,FORESTER,"Limited Hybrid","At Dealership",S261021,2026-09-14,https://www.subaru.fusz.com/inventory/new-2026-subaru-forester-limited-hybrid-awd-suv-4s4slsr76t3173063/
-"Lou Fusz Subaru St. Louis",JF2BUPDD6TY593566,2026,Subaru,OUTBACK,Limited,"In Transit",S261029,2026-09-11,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-limited-awd-wagon-jf2bupdd6ty593566/
+"Lou Fusz Subaru St. Louis",JF2BURJDXTY551417,2026,Subaru,OUTBACK,"Touring XT","At Dealership",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-touring-xt-wagon-jf2burjdxty551417/
 "Lou Fusz Subaru St. Louis",JF2BURGD5TY592934,2026,Subaru,OUTBACK,"Limited XT","In Transit",S261026,2026-09-11,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-limited-xt-awd-wagon-jf2burgd5ty592934/
 "Lou Fusz Subaru St. Louis",4S4WMABD3V3401774,2027,Subaru,ASCENT,"Premium 7-Passenger","At Dealership",S27003,2026-09-14,https://www.subaru.fusz.com/inventory/new-2027-subaru-ascent-premium-7-passenger-awd-suv-4s4wmabd3v3401774/
 "Lou Fusz Subaru St. Louis",4S4WMABD4V3401640,2027,Subaru,ASCENT,"Premium 7-Passenger","At Dealership",S27002,2026-09-14,https://www.subaru.fusz.com/inventory/new-2027-subaru-ascent-premium-7-passenger-awd-suv-4s4wmabd4v3401640/
@@ -34,8 +29,8 @@
 "Lou Fusz Subaru St. Louis",4S4GUHM64T3829507,2026,Subaru,CROSSTREK,Limited,"In Transit",S261071,2026-09-25,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-limited-awd-5-door-4s4guhm64t3829507/
 "Lou Fusz Subaru St. Louis",4S4GUHM64T3829636,2026,Subaru,CROSSTREK,Limited,"In Transit",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-limited-5-door-4s4guhm64t3829636/
 "Lou Fusz Subaru St. Louis",4S4GUHT64T3829038,2026,Subaru,CROSSTREK,Wilderness,"In Transit",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-wilderness-5-door-4s4guht64t3829038/
-"Lou Fusz Subaru St. Louis",4S4GUHU65T3828950,2026,Subaru,CROSSTREK,Wilderness,"In Transit",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-wilderness-5-door-4s4guhu65t3828950/
-"Lou Fusz Subaru St. Louis",4S4GUHU65T3829127,2026,Subaru,CROSSTREK,Wilderness,"In Transit",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-wilderness-5-door-4s4guhu65t3829127/
+"Lou Fusz Subaru St. Louis",4S4GUHU65T3828950,2026,Subaru,CROSSTREK,Wilderness,"In Transit",S261087,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-wilderness-awd-5-door-4s4guhu65t3828950/
+"Lou Fusz Subaru St. Louis",4S4GUHU65T3829127,2026,Subaru,CROSSTREK,Wilderness,"In Transit",S261088,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-wilderness-awd-5-door-4s4guhu65t3829127/
 "Lou Fusz Subaru St. Louis",4S4GUHU65T3829256,2026,Subaru,CROSSTREK,Wilderness,"In Transit",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-wilderness-5-door-4s4guhu65t3829256/
 "Lou Fusz Subaru St. Louis",4S4GUHU66T3828861,2026,Subaru,CROSSTREK,Wilderness,"At Dealership",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-wilderness-5-door-4s4guhu66t3828861/
 "Lou Fusz Subaru St. Louis",4S4GUHU66T3828942,2026,Subaru,CROSSTREK,Wilderness,"At Dealership",S261064,2026-09-25,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-wilderness-awd-5-door-4s4guhu66t3828942/
@@ -57,6 +52,9 @@
 "Lou Fusz Subaru St. Louis",4S4WMABD8V3404511,2027,Subaru,ASCENT,"Premium 7-Passenger","In Transit",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2027-subaru-ascent-premium-7-passenger-suv-4s4wmabd8v3404511/
 "Lou Fusz Subaru St. Louis",4S4WMAKDXV3405031,2027,Subaru,ASCENT,"Touring 7-Passenger","In Transit",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2027-subaru-ascent-touring-7-passenger-suv-4s4wmakdxv3405031/
 "Lou Fusz Subaru St. Louis",4S4GUHB65V3703937,2027,Subaru,CROSSTREK,,"In Transit",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2027-subaru-crosstrek-5-door-4s4guhb65v3703937/
+"Lou Fusz Subaru St. Louis",4S4GUHM67V3704049,2027,Subaru,CROSSTREK,,"In Transit",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2027-subaru-crosstrek-5-door-4s4guhm67v3704049/
+"Lou Fusz Subaru St. Louis",4S4SLDD61T3187561,2026,Subaru,FORESTER,Premium,"In Transit",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-forester-premium-suv-4s4sldd61t3187561/
+"Lou Fusz Subaru St. Louis",4S4SLDD64T3186064,2026,Subaru,FORESTER,Premium,"In Transit",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-forester-premium-suv-4s4sldd64t3186064/
 "Lou Fusz Subaru St. Louis",4S4GUHD62T3717529,2026,Subaru,CROSSTREK,Premium,"At Dealership",S26066,2025-12-04,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-premium-awd-5-door-4s4guhd62t3717529/
 "Lou Fusz Subaru St. Louis",JF2BURMD5TY487685,2026,Subaru,OUTBACK,Wilderness,"At Dealership",S26193,2026-02-16,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-wilderness-awd-wagon-jf2burmd5ty487685/
 "Lou Fusz Subaru St. Louis",JF2BURGD8TY489653,2026,Subaru,OUTBACK,"Limited XT","At Dealership",S26388,2026-03-30,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-limited-xt-awd-wagon-jf2burgd8ty489653/
@@ -68,7 +66,6 @@
 "Lou Fusz Subaru St. Louis",JF2BURKD6TY535083,2026,Subaru,OUTBACK,Wilderness,"At Dealership",S26507,2026-05-14,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-wilderness-awd-wagon-jf2burkd6ty535083/
 "Lou Fusz Subaru St. Louis",JF2BURKD7TY535125,2026,Subaru,OUTBACK,Wilderness,"At Dealership",S26493,2026-05-14,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-wilderness-awd-wagon-jf2burkd7ty535125/
 "Lou Fusz Subaru St. Louis",JF2BURJD1TY457247,2026,Subaru,OUTBACK,"Touring XT","At Dealership",S26433,2026-04-10,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-touring-xt-awd-wagon-jf2burjd1ty457247/
-"Lou Fusz Subaru St. Louis",4S4GUHU64T3774489,2026,Subaru,CROSSTREK,Wilderness,"At Dealership",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-wilderness-5-door-4s4guhu64t3774489/
 "Lou Fusz Subaru St. Louis",JF2BURLD9TY547601,2026,Subaru,OUTBACK,Wilderness,"At Dealership",S26633,2026-06-15,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-wilderness-awd-wagon-jf2burld9ty547601/
 "Lou Fusz Subaru St. Louis",JF2BURMD8TY542694,2026,Subaru,OUTBACK,Wilderness,"At Dealership",S26587,2026-06-03,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-wilderness-awd-wagon-jf2burmd8ty542694/
 "Lou Fusz Subaru St. Louis",JF2BURGD9TY503513,2026,Subaru,OUTBACK,"Limited XT","At Dealership",S26575,2026-05-16,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-limited-xt-awd-wagon-jf2burgd9ty503513/
@@ -77,7 +74,6 @@
 "Lou Fusz Subaru St. Louis",JF2BURJD7TY550967,2026,Subaru,OUTBACK,"Touring XT","At Dealership",S26664,2026-06-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-touring-xt-awd-wagon-jf2burjd7ty550967/
 "Lou Fusz Subaru St. Louis",JF2BUPDD0TY501741,2026,Subaru,OUTBACK,Limited,"At Dealership",S26615,2026-05-25,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-limited-awd-wagon-jf2bupdd0ty501741/
 "Lou Fusz Subaru St. Louis",4S4GUHM67T3788855,2026,Subaru,CROSSTREK,Limited,"At Dealership",S26673,2026-06-11,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-limited-awd-5-door-4s4guhm67t3788855/
-"Lou Fusz Subaru St. Louis",JF2BUPED5TY499306,2026,Subaru,OUTBACK,Touring,"At Dealership",S26644,2026-05-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-touring-awd-wagon-jf2buped5ty499306/
 "Lou Fusz Subaru St. Louis",JF2BURGD8TY551584,2026,Subaru,OUTBACK,"Limited XT","At Dealership",S26719,2026-07-09,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-limited-xt-awd-wagon-jf2burgd8ty551584/
 "Lou Fusz Subaru St. Louis",4S4GUHM64T3799926,2026,Subaru,CROSSTREK,Limited,"At Dealership",S26791,2026-07-16,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-limited-awd-5-door-4s4guhm64t3799926/
 "Lou Fusz Subaru St. Louis",4S4GUHM68T3798147,2026,Subaru,CROSSTREK,Limited,"At Dealership",S26725,2026-06-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-limited-awd-5-door-4s4guhm68t3798147/
@@ -108,13 +104,12 @@
 "Lou Fusz Subaru St. Louis",JF2GUSND1T8279329,2026,Subaru,CROSSTREK,"Limited Hybrid","At Dealership",S26843,2026-08-25,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-limited-hybrid-awd-5-door-jf2gusnd1t8279329/
 "Lou Fusz Subaru St. Louis",JF2GUSND1T8282067,2026,Subaru,CROSSTREK,"Limited Hybrid","At Dealership",S26885,2026-08-26,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-limited-hybrid-awd-5-door-jf2gusnd1t8282067/
 "Lou Fusz Subaru St. Louis",JF2GUSND4T8279938,2026,Subaru,CROSSTREK,"Limited Hybrid","At Dealership",S26844,2026-08-26,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-limited-hybrid-awd-5-door-jf2gusnd4t8279938/
-"Lou Fusz Subaru St. Louis",JF2GUSND6T8278712,2026,Subaru,CROSSTREK,"Limited Hybrid","At Dealership",S26872,2026-08-26,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-limited-hybrid-awd-5-door-jf2gusnd6t8278712/
+"Lou Fusz Subaru St. Louis",JF2GUSND6T8278712,2026,Subaru,CROSSTREK,"Limited Hybrid","At Dealership",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-limited-hybrid-5-door-jf2gusnd6t8278712/
 "Lou Fusz Subaru St. Louis",JF2GUSND9T8279465,2026,Subaru,CROSSTREK,"Limited Hybrid","At Dealership",S26889,2026-08-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-limited-hybrid-awd-5-door-jf2gusnd9t8279465/
 "Lou Fusz Subaru St. Louis",JF2GUSND9T8279501,2026,Subaru,CROSSTREK,"Limited Hybrid","At Dealership",S26890,2026-08-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-limited-hybrid-awd-5-door-jf2gusnd9t8279501/
 "Lou Fusz Subaru St. Louis",4S4SLDH69T3138120,2026,Subaru,FORESTER,"Sport Onyx Edition","At Dealership",S26798,2026-07-17,https://www.subaru.fusz.com/inventory/new-2026-subaru-forester-sport-onyx-edition-awd-suv-4s4sldh69t3138120/
 "Lou Fusz Subaru St. Louis",JF2BUPDD4TY512063,2026,Subaru,OUTBACK,Limited,"At Dealership",S26803,2026-07-21,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-limited-awd-wagon-jf2bupdd4ty512063/
 "Lou Fusz Subaru St. Louis",JF2GUSND3T8267621,2026,Subaru,CROSSTREK,"Limited Hybrid","At Dealership",S26815,2026-07-22,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-limited-hybrid-awd-5-door-jf2gusnd3t8267621/
-"Lou Fusz Subaru St. Louis",4S4WMAFD2T3434658,2026,Subaru,ASCENT,"Limited 8-Passenger","At Dealership",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-ascent-limited-8-passenger-suv-4s4wmafd2t3434658/
 "Lou Fusz Subaru St. Louis",4S4GUHT68T3806913,2026,Subaru,CROSSTREK,Wilderness,"At Dealership",S26853,2026-07-31,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-wilderness-awd-5-door-4s4guht68t3806913/
 "Lou Fusz Subaru St. Louis",4S4SLDL61T3148535,2026,Subaru,FORESTER,Wilderness,"At Dealership",S26847,2026-07-30,https://www.subaru.fusz.com/inventory/new-2026-subaru-forester-wilderness-awd-suv-4s4sldl61t3148535/
 "Lou Fusz Subaru St. Louis",JF2BURJD5TY551230,2026,Subaru,OUTBACK,"Touring XT","At Dealership",S26818,2026-07-23,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-touring-xt-awd-wagon-jf2burjd5ty551230/
@@ -142,18 +137,21 @@
 "Lou Fusz Subaru St. Louis",4S4SLDH62T3168267,2026,Subaru,FORESTER,"Sport Onyx Edition","At Dealership",S26992,2026-09-02,https://www.subaru.fusz.com/inventory/new-2026-subaru-forester-sport-onyx-edition-awd-suv-4s4sldh62t3168267/
 "Lou Fusz Subaru St. Louis",4S4SLDH63T3165961,2026,Subaru,FORESTER,"Sport Onyx Edition","At Dealership",S26984,2026-08-31,https://www.subaru.fusz.com/inventory/new-2026-subaru-forester-sport-onyx-edition-awd-suv-4s4sldh63t3165961/
 "Lou Fusz Subaru St. Louis",4S4SLDH63T3167998,2026,Subaru,FORESTER,"Sport Onyx Edition","At Dealership",S26988,2026-09-02,https://www.subaru.fusz.com/inventory/new-2026-subaru-forester-sport-onyx-edition-awd-suv-4s4sldh63t3167998/
-"Lou Fusz Subaru St. Louis",JF2BURMD8TY591099,2026,Subaru,OUTBACK,Wilderness,"In Transit",S26994,2026-09-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-wilderness-awd-wagon-jf2burmd8ty591099/
-"Lou Fusz Subaru St. Louis",JF2GUSND6T8289323,2026,Subaru,CROSSTREK,"Limited Hybrid","In Transit",S26985,2026-09-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-limited-hybrid-awd-5-door-jf2gusnd6t8289323/
+"Lou Fusz Subaru St. Louis",JF2BURMD8TY591099,2026,Subaru,OUTBACK,Wilderness,"At Dealership",S26994,2026-09-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-wilderness-awd-wagon-jf2burmd8ty591099/
+"Lou Fusz Subaru St. Louis",JF2GUSND6T8289323,2026,Subaru,CROSSTREK,"Limited Hybrid","At Dealership",S26985,2026-09-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-limited-hybrid-awd-5-door-jf2gusnd6t8289323/
 "Lou Fusz Subaru St. Louis",JF2GUSND8T8289792,2026,Subaru,CROSSTREK,"Limited Hybrid","At Dealership",S26986,2026-09-23,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-limited-hybrid-awd-5-door-jf2gusnd8t8289792/
-"Lou Fusz Subaru St. Louis",JF1VBAH6XT9813642,2026,Subaru,WRX,Base,"In Transit",S26993,2026-09-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-wrx-base-awd-4-door-jf1vbah6xt9813642/
-"Lou Fusz Subaru St. Louis",JF2BUPAD6TY591319,2026,Subaru,OUTBACK,Premium,"In Transit",S26995,2026-09-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-premium-awd-wagon-jf2bupad6ty591319/
-"Lou Fusz Subaru St. Louis",JF2BUPAD7TY591197,2026,Subaru,OUTBACK,Premium,"In Transit",S26987,2026-09-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-premium-awd-wagon-jf2bupad7ty591197/
+"Lou Fusz Subaru St. Louis",JF1VBAH6XT9813642,2026,Subaru,WRX,Base,"At Dealership",S26993,2026-09-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-wrx-base-awd-4-door-jf1vbah6xt9813642/
+"Lou Fusz Subaru St. Louis",JF2BUPAD6TY591319,2026,Subaru,OUTBACK,Premium,"At Dealership",S26995,2026-09-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-premium-awd-wagon-jf2bupad6ty591319/
+"Lou Fusz Subaru St. Louis",JF2BUPAD7TY591197,2026,Subaru,OUTBACK,Premium,"At Dealership",S26987,2026-09-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-premium-awd-wagon-jf2bupad7ty591197/
 "Lou Fusz Subaru St. Louis",JF2BUPAD7TY591331,2026,Subaru,OUTBACK,Premium,"At Dealership",S26996,2026-09-23,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-premium-awd-wagon-jf2bupad7ty591331/
-"Lou Fusz Subaru St. Louis",JF2BUPED4TY591071,2026,Subaru,OUTBACK,Touring,"In Transit",S261006,2026-09-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-touring-awd-wagon-jf2buped4ty591071/
-"Lou Fusz Subaru St. Louis",JF2BURJD7TY590658,2026,Subaru,OUTBACK,"Touring XT","In Transit",S261005,2026-09-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-touring-xt-awd-wagon-jf2burjd7ty590658/
-"Lou Fusz Subaru St. Louis",JF2BURJD8TY591432,2026,Subaru,OUTBACK,"Touring XT","In Transit",S26997,2026-09-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-touring-xt-awd-wagon-jf2burjd8ty591432/
+"Lou Fusz Subaru St. Louis",JF2BUPED4TY591071,2026,Subaru,OUTBACK,Touring,"At Dealership",S261006,2026-09-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-touring-awd-wagon-jf2buped4ty591071/
+"Lou Fusz Subaru St. Louis",JF2BURJD7TY590658,2026,Subaru,OUTBACK,"Touring XT","At Dealership",S261005,2026-09-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-touring-xt-awd-wagon-jf2burjd7ty590658/
+"Lou Fusz Subaru St. Louis",JF2BURJD8TY591432,2026,Subaru,OUTBACK,"Touring XT","At Dealership",S26997,2026-09-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-touring-xt-awd-wagon-jf2burjd8ty591432/
 "Lou Fusz Subaru St. Louis",4S4WMAADXT3433345,2026,Subaru,ASCENT,"Premium 8-Passenger","At Dealership",S26972,2026-08-24,https://www.subaru.fusz.com/inventory/new-2026-subaru-ascent-premium-8-passenger-awd-suv-4s4wmaadxt3433345/
 "Lou Fusz Subaru St. Louis",4S4GUHL67T3809575,2026,Subaru,CROSSTREK,Limited,"At Dealership",S261011,2026-08-31,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-limited-awd-5-door-4s4guhl67t3809575/
 "Lou Fusz Subaru St. Louis",JF2BUPBD4TY575523,2026,Subaru,OUTBACK,Premium,"At Dealership",S26998,2026-08-31,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-premium-awd-wagon-jf2bupbd4ty575523/
-"Lou Fusz Subaru St. Louis",4S4GUHD64T3823934,2026,Subaru,CROSSTREK,Premium,"At Dealership",,2026-09-29,https://www.subaru.fusz.com/inventory/new-2026-subaru-crosstrek-premium-5-door-4s4guhd64t3823934/
-"Lou Fusz Subaru St. Louis",JF2BUPBD2TY593860,2026,Subaru,OUTBACK,Premium,"In Transit",S261030,2026-09-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-premium-awd-wagon-jf2bupbd2ty593860/
+"Lou Fusz Subaru St. Louis",JF2BUPBD2TY593860,2026,Subaru,OUTBACK,Premium,"At Dealership",S261030,2026-09-28,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-premium-awd-wagon-jf2bupbd2ty593860/
+"Lou Fusz Subaru St. Louis",4S4SLDL63T3173114,2026,Subaru,FORESTER,Wilderness,"At Dealership",S261022,2026-09-14,https://www.subaru.fusz.com/inventory/new-2026-subaru-forester-wilderness-awd-suv-4s4sldl63t3173114/
+"Lou Fusz Subaru St. Louis",4S4SLDT66T3173415,2026,Subaru,FORESTER,Touring,"At Dealership",S261054,2026-09-25,https://www.subaru.fusz.com/inventory/new-2026-subaru-forester-touring-awd-suv-4s4sldt66t3173415/
+"Lou Fusz Subaru St. Louis",4S4SLSR76T3173063,2026,Subaru,FORESTER,"Limited Hybrid","At Dealership",S261021,2026-09-14,https://www.subaru.fusz.com/inventory/new-2026-subaru-forester-limited-hybrid-awd-suv-4s4slsr76t3173063/
+"Lou Fusz Subaru St. Louis",JF2BUPDD6TY593566,2026,Subaru,OUTBACK,Limited,"In Transit",S261029,2026-09-11,https://www.subaru.fusz.com/inventory/new-2026-subaru-outback-limited-awd-wagon-jf2bupdd6ty593566/
