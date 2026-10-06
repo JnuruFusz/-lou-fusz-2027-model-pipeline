@@ -282,3 +282,27 @@ test("builder queue keeps assigned builds and shows SEO Chris just finished", ()
   assert.equal(shown.includes("still-writing"), false);
   assert.equal(shown.includes("live-page"), false);
 });
+
+test("October 2 Slack clears are ready to build and Getaway EV stays Needs SEO", () => {
+  const byId = new Map(catalog.map((task) => [task.id, task]));
+  for (const id of [
+    "lou-fusz-chevrolet|2027|silverado-1500",
+    "lou-fusz-subaru-st.-louis|2027|crosstrek-hybrid",
+    "lou-fusz-subaru-o'fallon|2027|crosstrek-hybrid",
+  ]) {
+    assert.equal(byId.get(id).pageStatus, "seo_done", id);
+    assert.equal(byId.get(id).details.seoOwner, "Chris Pajda");
+  }
+  assert.equal(byId.get("lou-fusz-subaru-st.-louis|2027|getaway-ev").pageStatus, "needs_seo");
+  assert.equal(byId.get("lou-fusz-subaru-o'fallon|2027|getaway-ev").pageStatus, "needs_seo");
+  assert.equal(byId.get("lou-fusz-subaru-st.-louis|2027|crosstrek").pageStatus, "needs_seo");
+  assert.equal(byId.get("lou-fusz-chrysler-jeep-dodge-ram|2027|wrangler").pageStatus, "needs_build");
+  const hidden = fs.readFileSync(path.join(root, "js", "fusz-implementation.js"), "utf8");
+  for (const id of [
+    "lou-fusz-chrysler-jeep-dodge-ram|2027|wrangler",
+    "lou-fusz-buick-gmc|2027|acadia",
+    "lou-fusz-kia|2027|sportage",
+  ]) {
+    assert.equal(hidden.includes(`"${id}"`), false, id);
+  }
+});

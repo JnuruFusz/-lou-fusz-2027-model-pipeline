@@ -537,9 +537,9 @@ async function boot() {
     console.warn("[Fusz+] Auth check failed, falling back to localStorage session", err);
   }
 
-  await loadClassicScript("js/my-work-workbench.js?v=20260929");
+  await loadClassicScript("js/my-work-workbench.js?v=20261006");
   prog(38);
-  await loadClassicScript("js/fusz-implementation.js?v=20260616");
+  await loadClassicScript("js/fusz-implementation.js?v=20261006");
   prog(60);
   normalizeSession();
   bindEvents();
@@ -665,6 +665,9 @@ const SLACK_SEO_CLEARS = [
   { id: "lou-fusz-toyota|2027|corolla", clearedBy: "Chris Pajda", clearedAt: "2026-09-28T18:52:05.385Z" },
   { id: "lou-fusz-toyota|2027|corolla-hatchback", clearedBy: "Chris Pajda", clearedAt: "2026-09-28T18:52:05.385Z" },
   { id: "lou-fusz-toyota|2027|bz-woodland", clearedBy: "Chris Pajda", clearedAt: "2026-09-28T18:52:05.385Z" },
+  { id: "lou-fusz-chevrolet|2027|silverado-1500", clearedBy: "Chris Pajda", clearedAt: "2026-10-02T20:48:10.844Z" },
+  { id: "lou-fusz-subaru-st.-louis|2027|crosstrek-hybrid", clearedBy: "Chris Pajda", clearedAt: "2026-10-02T20:48:10.844Z" },
+  { id: "lou-fusz-subaru-o'fallon|2027|crosstrek-hybrid", clearedBy: "Chris Pajda", clearedAt: "2026-10-02T20:48:10.844Z" },
 ];
 
 function applyStoredStatus(task) {

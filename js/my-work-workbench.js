@@ -37,8 +37,9 @@
     const work = safeTasks
       .filter((t) => ["seo_done","needs_build","page_built","needs_review"].includes(t.pageStatus))
       .sort((a, b) => {
+        const signalRank = (task) => task.inventorySignal === "on_lot" ? 0 : task.inventorySignal === "shipped" ? 1 : 2;
         const seoFirst = (task) => task.pageStatus === "seo_done" ? 0 : 1;
-        return seoFirst(a) - seoFirst(b) || workPriority(a) - workPriority(b);
+        return signalRank(a) - signalRank(b) || seoFirst(a) - seoFirst(b) || workPriority(a) - workPriority(b);
       });
     return { work };
   }

@@ -178,10 +178,15 @@ function fbSetDetails(details) {
 }
 
 /* Patch one task. Never replace the whole override map. */
+function firebaseTaskKeyOk(taskId) {
+  return typeof taskId === "string" && taskId.length > 0 && !/[.#$[\]\/]/.test(taskId);
+}
+
 function fbPatchPageStatus(taskId, status) {
   if (!taskId) return;
   state.overrides[taskId] = status;
   localStorage.setItem("pipeline-status-overrides", JSON.stringify(state.overrides));
+  if (!firebaseTaskKeyOk(taskId)) return;
   if (_firebaseReady && _db) _db.ref("overrides/pageStatus").child(taskId).set(status);
   else _pendingPatches.push(["pageStatus", taskId, status]);
 }
@@ -195,6 +200,7 @@ function fbPatchTaskDetails(taskId, patch) {
   if (!Object.keys(nextPatch).length) return;
   state.details[taskId] = { ...(state.details[taskId] || {}), ...nextPatch };
   localStorage.setItem("pipeline-task-details", JSON.stringify(state.details));
+  if (!firebaseTaskKeyOk(taskId)) return;
   if (_firebaseReady && _db) _db.ref("overrides/details").child(taskId).update(nextPatch);
   else _pendingPatches.push(["details", taskId, nextPatch]);
 }

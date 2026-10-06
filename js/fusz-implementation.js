@@ -10,9 +10,6 @@
     "lou-fusz-chevrolet|2027|trax",
     "lou-fusz-ford|2027|bronco",
     "lou-fusz-mazda|2027|cx-5",
-    "lou-fusz-kia|2027|sportage",
-    "lou-fusz-buick-gmc|2027|acadia",
-    "lou-fusz-chrysler-jeep-dodge-ram|2027|wrangler",
     "lou-fusz-ford|2027|f-150-lightning",
     "lou-fusz-toyota|2027|4runner",
     "lou-fusz-chevrolet|2027|tahoe",
@@ -29,10 +26,7 @@
     "loufuszford|2027|ford|f150lightning",
     "loufuszford|2027|ford|mustangmache",
     "loufuszmazda|2027|mazda|cx5",
-    "loufuszkia|2027|kia|sportage",
-    "loufuszbuickgmc|2027|gmc|acadia",
     "loufuszbuickgmc|2027|gmc|yukon",
-    "loufuszchryslerjeepdodgeram|2027|jeep|wrangler",
   ]);
   let rooftopFormOpen = false;
 
