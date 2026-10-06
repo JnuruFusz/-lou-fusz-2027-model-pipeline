@@ -81,23 +81,32 @@ function fbGetCurrentUser() {
         _db = firebase.database(app);
         _firebaseReady = true;
 
-        /* Flush any writes queued before Firebase was ready */
-        _pendingWrites.forEach(([path, value]) => _db.ref(path).set(value));
+        /* Flush any writes queued before Firebase was ready.
+           Values are already encoded by the write helpers. */
+        _pendingWrites.forEach(([path, value]) => {
+          try { _db.ref(path).set(value); }
+          catch (err) { console.warn("[Fusz+] Firebase write failed", path, err); }
+        });
         _pendingWrites.length = 0;
-        _pendingPatches.splice(0).forEach(([kind, taskId, value]) => {
-          if (kind === "pageStatus") _db.ref("overrides/pageStatus").child(taskId).set(value);
-          if (kind === "details") _db.ref("overrides/details").child(taskId).update(value);
+        _pendingPatches.splice(0).forEach(([kind, taskKey, value]) => {
+          try {
+            if (kind === "pageStatus") _db.ref("overrides/pageStatus").child(taskKey).set(value);
+            if (kind === "details") _db.ref("overrides/details").child(taskKey).update(value);
+          } catch (err) {
+            console.warn("[Fusz+] Firebase patch failed", kind, err);
+          }
         });
 
         /* Listen for remote changes and merge into state + re-render.
            Guard with state.tasks check — the listener fires on connect, before
-           boot() has populated tasks, which caused "cannot read .id of undefined". */
+           boot() has populated tasks, which caused "cannot read .id of undefined".
+           Keys are decoded so task ids like "st.-louis" match the catalog. */
         _db.ref("overrides").on("value", (snap) => {
           const data = snap.val() || {};
-          state.overrides       = data.pageStatus || {};
-          state.aeoOverrides    = data.aeoStatus  || {};
-          state.signalOverrides = data.signal      || {};
-          state.details         = data.details     || {};
+          state.overrides       = decodeFirebaseMap(data.pageStatus);
+          state.aeoOverrides    = decodeFirebaseMap(data.aeoStatus);
+          state.signalOverrides = decodeFirebaseMap(data.signal);
+          state.details         = decodeFirebaseMap(data.details);
           if (typeof applyRemoteOverrides === "function") applyRemoteOverrides();
           else if (typeof render === "function" && Array.isArray(state.tasks) && state.tasks.length) render();
         });
@@ -139,56 +148,95 @@ function fbGetCurrentUser() {
 })();
 
 /* ---------------------------------------------------------------
-   Write helpers — fall back to localStorage if Firebase isn't ready
+   Write helpers — fall back to localStorage if Firebase isn't ready.
+
+   Realtime Database keys cannot contain . # $ / [ ]
+   Task ids such as lou-fusz-subaru-st.-louis|2027|crosstrek-hybrid
+   are stored under a reversible encoded key. localStorage and the
+   in-app state keep the real task id.
+   Keep in sync with scripts/lib/firebase-keys.mjs.
    --------------------------------------------------------------- */
+function firebaseTaskKey(taskId) {
+  return String(taskId || "").replace(/[.#$/[\]]/g, (char) => {
+    const hex = char.charCodeAt(0).toString(16).toUpperCase();
+    return `%${hex.length < 2 ? "0" : ""}${hex}`;
+  });
+}
+
+function taskIdFromFirebaseKey(key) {
+  return String(key || "").replace(/%(2E|23|24|2F|5B|5D)/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16)));
+}
+
+function encodeFirebaseMap(map) {
+  const encoded = {};
+  Object.keys(map || {}).forEach((key) => {
+    if (!key) return;
+    encoded[firebaseTaskKey(key)] = map[key];
+  });
+  return encoded;
+}
+
+function decodeFirebaseMap(map) {
+  const decoded = {};
+  Object.keys(map || {}).forEach((key) => {
+    decoded[taskIdFromFirebaseKey(key)] = map[key];
+  });
+  return decoded;
+}
+
+function writeFirebaseMap(path, map) {
+  const payload = encodeFirebaseMap(map);
+  try {
+    if (_firebaseReady && _db) _db.ref(path).set(payload);
+    else _pendingWrites.push([path, payload]);
+  } catch (err) {
+    console.warn("[Fusz+] Firebase write failed", path, err);
+  }
+}
+
+function writeFirebaseChild(kind, taskId, value, method) {
+  const taskKey = firebaseTaskKey(taskId);
+  if (!taskKey) return;
+  const path = kind === "pageStatus" ? "overrides/pageStatus" : "overrides/details";
+  try {
+    if (_firebaseReady && _db) {
+      const ref = _db.ref(path).child(taskKey);
+      if (method === "update") ref.update(value);
+      else ref.set(value);
+    } else {
+      _pendingPatches.push([kind, taskKey, value]);
+    }
+  } catch (err) {
+    console.warn("[Fusz+] Firebase patch failed", path, err);
+  }
+}
+
 function fbSetPageStatus(overrides) {
   localStorage.setItem("pipeline-status-overrides", JSON.stringify(overrides));
-  if (_firebaseReady) {
-    _db.ref("overrides/pageStatus").set(overrides);
-  } else {
-    _pendingWrites.push(["overrides/pageStatus", overrides]);
-  }
+  writeFirebaseMap("overrides/pageStatus", overrides);
 }
 
 function fbSetAeoStatus(aeoOverrides) {
   localStorage.setItem("pipeline-aeo-overrides", JSON.stringify(aeoOverrides));
-  if (_firebaseReady) {
-    _db.ref("overrides/aeoStatus").set(aeoOverrides);
-  } else {
-    _pendingWrites.push(["overrides/aeoStatus", aeoOverrides]);
-  }
+  writeFirebaseMap("overrides/aeoStatus", aeoOverrides);
 }
 
 function fbSetSignal(signalOverrides) {
   localStorage.setItem("pipeline-signal-overrides", JSON.stringify(signalOverrides));
-  if (_firebaseReady) {
-    _db.ref("overrides/signal").set(signalOverrides);
-  } else {
-    _pendingWrites.push(["overrides/signal", signalOverrides]);
-  }
+  writeFirebaseMap("overrides/signal", signalOverrides);
 }
 
 function fbSetDetails(details) {
   localStorage.setItem("pipeline-task-details", JSON.stringify(details));
-  if (_firebaseReady) {
-    _db.ref("overrides/details").set(details);
-  } else {
-    _pendingWrites.push(["overrides/details", details]);
-  }
+  writeFirebaseMap("overrides/details", details);
 }
 
 /* Patch one task. Never replace the whole override map. */
-function firebaseTaskKeyOk(taskId) {
-  return typeof taskId === "string" && taskId.length > 0 && !/[.#$[\]\/]/.test(taskId);
-}
-
 function fbPatchPageStatus(taskId, status) {
   if (!taskId) return;
   state.overrides[taskId] = status;
   localStorage.setItem("pipeline-status-overrides", JSON.stringify(state.overrides));
-  if (!firebaseTaskKeyOk(taskId)) return;
-  if (_firebaseReady && _db) _db.ref("overrides/pageStatus").child(taskId).set(status);
-  else _pendingPatches.push(["pageStatus", taskId, status]);
+  writeFirebaseChild("pageStatus", taskId, status, "set");
 }
 
 function fbPatchTaskDetails(taskId, patch) {
@@ -200,9 +248,7 @@ function fbPatchTaskDetails(taskId, patch) {
   if (!Object.keys(nextPatch).length) return;
   state.details[taskId] = { ...(state.details[taskId] || {}), ...nextPatch };
   localStorage.setItem("pipeline-task-details", JSON.stringify(state.details));
-  if (!firebaseTaskKeyOk(taskId)) return;
-  if (_firebaseReady && _db) _db.ref("overrides/details").child(taskId).update(nextPatch);
-  else _pendingPatches.push(["details", taskId, nextPatch]);
+  writeFirebaseChild("details", taskId, nextPatch, "update");
 }
 
 function fbClearAll() {

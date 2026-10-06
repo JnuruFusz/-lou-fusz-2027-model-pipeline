@@ -7,6 +7,8 @@
  *   overrides/seoClears/<taskId>   → { slack_ts, cleared_by, cleared_at, from, to }
  */
 
+import { decodeFirebaseMap, firebaseTaskKey } from "./firebase-keys.mjs";
+
 const DEFAULT_DATABASE_URL = "https://fuszplus-default-rtdb.firebaseio.com";
 
 export function firebaseAuthFromEnv(env = process.env) {
@@ -18,7 +20,7 @@ export function firebaseDatabaseUrl(env = process.env) {
 }
 
 function taskPath(base, id) {
-  return `${base}/${encodeURIComponent(id)}`;
+  return `${base}/${encodeURIComponent(firebaseTaskKey(id))}`;
 }
 
 async function requestJson(fetchImpl, url, { method = "GET", body, auth } = {}) {
@@ -55,9 +57,9 @@ export async function readPipelineOverrides({ fetchImpl = fetch, databaseUrl, au
     requestJson(fetchImpl, `${root}/overrides/seoClears.json`, { auth }),
   ]);
   return {
-    pageStatus: pageStatus || {},
-    details: details || {},
-    seoClears: seoClears || {},
+    pageStatus: decodeFirebaseMap(pageStatus),
+    details: decodeFirebaseMap(details),
+    seoClears: decodeFirebaseMap(seoClears),
   };
 }
 
