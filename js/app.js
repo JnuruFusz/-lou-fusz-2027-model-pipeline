@@ -668,6 +668,7 @@ const SLACK_SEO_CLEARS = [
   { id: "lou-fusz-chevrolet|2027|silverado-1500", clearedBy: "Chris Pajda", clearedAt: "2026-10-02T20:48:10.844Z" },
   { id: "lou-fusz-subaru-st.-louis|2027|crosstrek-hybrid", clearedBy: "Chris Pajda", clearedAt: "2026-10-02T20:48:10.844Z" },
   { id: "lou-fusz-subaru-o'fallon|2027|crosstrek-hybrid", clearedBy: "Chris Pajda", clearedAt: "2026-10-02T20:48:10.844Z" },
+  { id: "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2027|wrangler", clearedBy: "Chris Pajda", clearedAt: "2026-10-02T20:48:10.844Z" },
 ];
 
 function applyStoredStatus(task) {

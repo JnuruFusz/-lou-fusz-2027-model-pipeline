@@ -297,6 +297,9 @@ test("October 2 Slack clears are ready to build and Getaway EV stays Needs SEO",
   assert.equal(byId.get("lou-fusz-subaru-o'fallon|2027|getaway-ev").pageStatus, "needs_seo");
   assert.equal(byId.get("lou-fusz-subaru-st.-louis|2027|crosstrek").pageStatus, "needs_seo");
   assert.equal(byId.get("lou-fusz-chrysler-jeep-dodge-ram|2027|wrangler").pageStatus, "needs_build");
+  const vincennesWrangler = byId.get("lou-fusz-chrysler-jeep-dodge-ram-vincennes|2027|wrangler");
+  assert.equal(vincennesWrangler.pageStatus, "seo_done");
+  assert.equal(vincennesWrangler.details.seoOwner, "Chris Pajda");
   const hidden = fs.readFileSync(path.join(root, "js", "fusz-implementation.js"), "utf8");
   for (const id of [
     "lou-fusz-chrysler-jeep-dodge-ram|2027|wrangler",
