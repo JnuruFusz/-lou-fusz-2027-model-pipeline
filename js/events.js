@@ -534,7 +534,9 @@ function updateStatus(taskId, status) {
   }
   stampTaskDetails(task, patch);
 
-  showToast(`${displayModel(task)} moved to ${statusLabels[status] || status}`);
+  showToast(status === "needs_build"
+    ? `${displayModel(task)} — build started. It stays at the top of your queue.`
+    : `${displayModel(task)} moved to ${statusLabels[status] || status}`);
   render();
 }
 

@@ -818,6 +818,15 @@ function dealerShortName(dealer) { const source = state.sources?.find((item) => 
 function ownerBucket(task) { if (task.details?.buildOwner) return task.details.buildOwner; if (task.details?.seoOwner) return task.details.seoOwner; if (["seo_done", "needs_build", "page_built"].includes(task.pageStatus)) return state.session?.name || "Builder"; if (["needs_seo", "seo_in_progress"].includes(task.pageStatus)) return "SEO Writer"; return "Team"; }
 function initials(name) { const words = String(name || "Team").trim().split(/\s+/).filter(Boolean); return words.length > 1 ? `${words[0][0]}${words[1][0]}`.toUpperCase() : (words[0] || "T").slice(0, 2).toUpperCase(); }
 function workPriority(task) { return ({ needs_build: 0, seo_done: 1, page_built: 2, needs_review: 3, needs_seo: 4, seo_in_progress: 5, live: 9 }[task.pageStatus] ?? 6); }
+
+function builderFocusRank(task) {
+  const stage = task.pageStatus === "needs_build" ? 0
+    : task.pageStatus === "page_built" ? 1
+    : task.pageStatus === "needs_review" ? 2
+    : 3;
+  const signal = task.inventorySignal === "on_lot" ? 0 : task.inventorySignal === "shipped" ? 1 : 2;
+  return stage * 10 + signal;
+}
 function actionLabel(task) { return builderNextStep(task); }
 
 function modelInfoUrl(task) { return `https://www.google.com/search?q=${encodeURIComponent(`${task.year || ""} ${task.make || ""} ${displayModel(task)} official model`.trim())}`; }

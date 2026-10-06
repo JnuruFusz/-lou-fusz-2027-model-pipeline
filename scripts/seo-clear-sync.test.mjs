@@ -283,6 +283,18 @@ test("builder queue keeps assigned builds and shows SEO Chris just finished", ()
   assert.equal(shown.includes("live-page"), false);
 });
 
+test("a page you just started stays ahead of SEO-ready pages", () => {
+  const source = fs.readFileSync(path.join(root, "js", "renderers.js"), "utf8");
+  const match = source.match(/function builderFocusRank\(task\) \{[\s\S]*?\n\}/);
+  assert.ok(match, "builderFocusRank should be a pure function");
+  const sandbox = {};
+  vm.createContext(sandbox);
+  vm.runInContext(`${match[0]}\nthis.builderFocusRank = builderFocusRank;`, sandbox);
+  const started = { id: "lou-fusz-subaru-st.-louis|2027|crosstrek-hybrid", pageStatus: "needs_build", inventorySignal: "shipped" };
+  const ready = { id: "lou-fusz-chrysler-jeep-dodge-ram|2027|wrangler", pageStatus: "seo_done", inventorySignal: "on_lot" };
+  assert.ok(sandbox.builderFocusRank(started) < sandbox.builderFocusRank(ready));
+});
+
 test("October 2 Slack clears are ready to build and Getaway EV stays Needs SEO", () => {
   const byId = new Map(catalog.map((task) => [task.id, task]));
   for (const id of [

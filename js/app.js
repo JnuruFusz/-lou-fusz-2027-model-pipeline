@@ -537,7 +537,7 @@ async function boot() {
     console.warn("[Fusz+] Auth check failed, falling back to localStorage session", err);
   }
 
-  await loadClassicScript("js/my-work-workbench.js?v=20261006");
+  await loadClassicScript("js/my-work-workbench.js?v=20261006b");
   prog(38);
   await loadClassicScript("js/fusz-implementation.js?v=20261006");
   prog(60);

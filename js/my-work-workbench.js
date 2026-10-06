@@ -1,5 +1,6 @@
 (function () {
   let _lastSelectedId = null;
+  try { _lastSelectedId = sessionStorage.getItem("fusz-focus-task"); } catch {}
   let _focusMode = sessionStorage.getItem("fusz-focus-mode") !== "false";
 
   function currentMyWorkRole() {
@@ -37,9 +38,8 @@
     const work = safeTasks
       .filter((t) => ["seo_done","needs_build","page_built","needs_review"].includes(t.pageStatus))
       .sort((a, b) => {
-        const signalRank = (task) => task.inventorySignal === "on_lot" ? 0 : task.inventorySignal === "shipped" ? 1 : 2;
-        const seoFirst = (task) => task.pageStatus === "seo_done" ? 0 : 1;
-        return signalRank(a) - signalRank(b) || seoFirst(a) - seoFirst(b) || workPriority(a) - workPriority(b);
+        const rank = (task) => (typeof builderFocusRank === "function" ? builderFocusRank(task) : workPriority(task));
+        return rank(a) - rank(b) || workPriority(a) - workPriority(b);
       });
     return { work };
   }
@@ -419,7 +419,10 @@
 
     const selected = (_lastSelectedId && work.find((t) => t.id === _lastSelectedId))
       || work.find(isRenderableTask) || null;
-    if (selected) _lastSelectedId = selected.id;
+    if (selected) {
+      _lastSelectedId = selected.id;
+      try { sessionStorage.setItem("fusz-focus-task", selected.id); } catch {}
+    }
 
     /* Count summary — role-aware */
     if (els.myWorkCount) {
