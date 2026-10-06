@@ -1,0 +1,44 @@
+name: Scan Slack SEO clears
+
+on:
+  schedule:
+    # Every 30 minutes, 7am–7pm CT on weekdays. GitHub runs this in UTC.
+    - cron: "*/30 12-23 * * 1-5"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Use Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Read Chris's done replies
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        run: |
+          if [ -z "$SLACK_BOT_TOKEN" ]; then
+            echo "::warning::SLACK_BOT_TOKEN is not set, so Chris's Slack replies were not scanned. Add that repository secret, invite the bot to #seo-page-builder, and give it channels:history."
+            exit 0
+          fi
+          node scripts/scan-slack-seo-clears.mjs --apply
+
+      - name: Publish ready-to-build pages
+        run: |
+          git add js/data.js data/seo-clears.json
+          if git diff --cached --quiet; then
+            echo "No new SEO clears."
+            exit 0
+          fi
+          git config user.name "seo-clear-scanner"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -m "Apply Chris's Slack SEO clears [automated]"
+          git push

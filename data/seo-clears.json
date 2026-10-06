@@ -1,0 +1,96 @@
+{
+  "channel": "C0C3KGH1DJ8",
+  "author": "Chris Pajda",
+  "clears": [
+    {
+      "id": "lou-fusz-ford|2027|expedition",
+      "clearedBy": "Chris Pajda",
+      "clearedAt": "2026-09-28T17:58:35.341Z",
+      "slackTs": "1790618315.341449"
+    },
+    {
+      "id": "lou-fusz-ford|2027|explorer",
+      "clearedBy": "Chris Pajda",
+      "clearedAt": "2026-09-28T17:59:10.135Z",
+      "slackTs": "1790618350.135199"
+    },
+    {
+      "id": "lou-fusz-nissan-moline|2027|kicks",
+      "clearedBy": "Chris Pajda",
+      "clearedAt": "2026-09-28T17:59:10.135Z",
+      "slackTs": "1790618350.135199"
+    },
+    {
+      "id": "lou-fusz-nissan-moline|2027|sentra",
+      "clearedBy": "Chris Pajda",
+      "clearedAt": "2026-09-28T17:59:10.135Z",
+      "slackTs": "1790618350.135199"
+    },
+    {
+      "id": "lou-fusz-subaru-o-fallon|2027|ascent",
+      "clearedBy": "Chris Pajda",
+      "clearedAt": "2026-09-28T17:59:10.135Z",
+      "slackTs": "1790618350.135199"
+    },
+    {
+      "id": "lou-fusz-subaru-st-louis|2027|ascent",
+      "clearedBy": "Chris Pajda",
+      "clearedAt": "2026-09-28T17:59:10.135Z",
+      "slackTs": "1790618350.135199"
+    },
+    {
+      "id": "lou-fusz-kia|2027|seltos",
+      "clearedBy": "Chris Pajda",
+      "clearedAt": "2026-09-28T18:10:49.639Z",
+      "slackTs": "1790619049.639689"
+    },
+    {
+      "id": "lou-fusz-kia-columbus|2027|seltos",
+      "clearedBy": "Chris Pajda",
+      "clearedAt": "2026-09-28T18:10:49.639Z",
+      "slackTs": "1790619049.639689"
+    },
+    {
+      "id": "lou-fusz-toyota|2027|corolla",
+      "clearedBy": "Chris Pajda",
+      "clearedAt": "2026-09-28T18:52:05.385Z",
+      "slackTs": "1790621525.385609"
+    },
+    {
+      "id": "lou-fusz-toyota|2027|corolla-hatchback",
+      "clearedBy": "Chris Pajda",
+      "clearedAt": "2026-09-28T18:52:05.385Z",
+      "slackTs": "1790621525.385609"
+    },
+    {
+      "id": "lou-fusz-toyota|2027|bz-woodland",
+      "clearedBy": "Chris Pajda",
+      "clearedAt": "2026-09-28T18:52:05.385Z",
+      "slackTs": "1790621525.385609"
+    },
+    {
+      "id": "lou-fusz-chevrolet|2027|silverado-1500",
+      "clearedBy": "Chris Pajda",
+      "clearedAt": "2026-10-02T20:48:10.844Z",
+      "slackTs": "1790974090.844789"
+    },
+    {
+      "id": "lou-fusz-subaru-st.-louis|2027|crosstrek-hybrid",
+      "clearedBy": "Chris Pajda",
+      "clearedAt": "2026-10-02T20:48:10.844Z",
+      "slackTs": "1790974090.844789"
+    },
+    {
+      "id": "lou-fusz-subaru-o'fallon|2027|crosstrek-hybrid",
+      "clearedBy": "Chris Pajda",
+      "clearedAt": "2026-10-02T20:48:10.844Z",
+      "slackTs": "1790974090.844789"
+    },
+    {
+      "id": "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2027|wrangler",
+      "clearedBy": "Chris Pajda",
+      "clearedAt": "2026-10-02T20:48:10.844Z",
+      "slackTs": "1790974090.844789"
+    }
+  ]
+}

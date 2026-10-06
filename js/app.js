@@ -560,7 +560,9 @@ async function boot() {
     accentStyle: accentStyleForTask(task),
     inventoryUrl: sourceFor(task.dealer)?.inventoryUrl || task.inventoryUrl || "",
   }));
+  await loadPublishedSeoClears();
   promoteSlackSeoClears();
+  watchPublishedSeoClears();
   applyInventoryFeedSignals();
   populateYearFilter();
   populateDealerFilter();
@@ -670,6 +672,43 @@ const SLACK_SEO_CLEARS = [
   { id: "lou-fusz-subaru-o'fallon|2027|crosstrek-hybrid", clearedBy: "Chris Pajda", clearedAt: "2026-10-02T20:48:10.844Z" },
   { id: "lou-fusz-chrysler-jeep-dodge-ram-vincennes|2027|wrangler", clearedBy: "Chris Pajda", clearedAt: "2026-10-02T20:48:10.844Z" },
 ];
+
+const SEO_CLEAR_POLL_MS = 2 * 60 * 1000;
+
+async function loadPublishedSeoClears() {
+  try {
+    const response = await fetch(`data/seo-clears.json?ts=${Date.now()}`, { cache: "no-store" });
+    if (!response.ok) return false;
+    const payload = await response.json();
+    let added = false;
+    (payload.clears || []).forEach((clear) => {
+      if (!clear?.id || SLACK_SEO_CLEARS.some((existing) => existing.id === clear.id)) return;
+      SLACK_SEO_CLEARS.push({
+        id: clear.id,
+        clearedBy: clear.clearedBy || clear.cleared_by || "Chris Pajda",
+        clearedAt: clear.clearedAt || clear.cleared_at || "",
+      });
+      added = true;
+    });
+    return added;
+  } catch (error) {
+    console.warn("[Fusz+] Could not load data/seo-clears.json", error);
+    return false;
+  }
+}
+
+function watchPublishedSeoClears() {
+  const tick = async () => {
+    const added = await loadPublishedSeoClears();
+    if (!added || !promoteSlackSeoClears()) return;
+    if (typeof render === "function") render();
+    if (typeof showToast === "function") showToast("Chris finished SEO. Those pages are ready to build.");
+  };
+  window.setInterval(tick, SEO_CLEAR_POLL_MS);
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") tick();
+  });
+}
 
 function applyStoredStatus(task) {
   const completedOverride = completedOverrideFor(task);
