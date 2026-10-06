@@ -27,10 +27,11 @@ import {
   CHRIS_SLACK_USER_ID,
   SEO_PAGE_BUILDER_CHANNEL,
   fetchChannelMessages,
-  fetchThreadParents,
+  fetchThreadMessages,
   mergeClearFile,
   planScannedReplies,
   selectDoneReplies,
+  threadIdsWithReplies,
 } from "./lib/slack-seo-scan.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -65,13 +66,11 @@ async function main(argv = process.argv.slice(2)) {
   const channel = process.env.SLACK_SEO_CHANNEL || SEO_PAGE_BUILDER_CHANNEL;
   const authorId = process.env.SLACK_SEO_AUTHOR || CHRIS_SLACK_USER_ID;
   const oldest = String(Math.floor(Date.now() / 1000) - LOOKBACK_SECONDS);
-  const messages = await fetchChannelMessages(token, channel, { oldest });
-  const threadIds = [...new Set(messages
-    .filter((message) => message.thread_ts && message.thread_ts !== message.ts)
-    .map((message) => message.thread_ts))];
-  const parents = await fetchThreadParents(token, channel, threadIds);
-  const replies = selectDoneReplies(messages, parents, { authorId });
-  console.log(`Scanned ${messages.length} messages. ${replies.length} done repl${replies.length === 1 ? "y" : "ies"} from Chris.`);
+  const channelMessages = await fetchChannelMessages(token, channel, { oldest });
+  const threadIds = threadIdsWithReplies(channelMessages);
+  const { messages: threadMessages, parents } = await fetchThreadMessages(token, channel, threadIds);
+  const replies = selectDoneReplies([...channelMessages, ...threadMessages], parents, { authorId });
+  console.log(`Scanned ${channelMessages.length} channel messages and ${threadMessages.length} thread messages. ${replies.length} done repl${replies.length === 1 ? "y" : "ies"} from Chris.`);
   if (!replies.length) return;
 
   const catalog = loadCatalog(dataJsPath);

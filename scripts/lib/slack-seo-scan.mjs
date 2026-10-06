@@ -35,6 +35,7 @@ export function isPlainSlackMessage(message) {
 export function selectDoneReplies(messages = [], parentsByTs = new Map(), options = {}) {
   const authorId = options.authorId || CHRIS_SLACK_USER_ID;
   const authorName = options.authorName || CHRIS_CLEAR_NAME;
+  const seen = new Set();
   return messages
     .filter((message) => isPlainSlackMessage(message) && message.user === authorId && isSeoDoneReply(message.text))
     .map((message) => {
@@ -48,7 +49,22 @@ export function selectDoneReplies(messages = [], parentsByTs = new Map(), option
         digest: threadTs ? (parentsByTs.get(threadTs) || "") : "",
       };
     })
+    .filter((reply) => {
+      if (!reply.ts || seen.has(reply.ts)) return false;
+      seen.add(reply.ts);
+      return true;
+    })
     .sort((a, b) => Number(a.ts) - Number(b.ts));
+}
+
+export function threadIdsWithReplies(messages = []) {
+  const ids = new Set();
+  for (const message of messages) {
+    if (!message?.ts) continue;
+    if (message.reply_count > 0) ids.add(message.thread_ts || message.ts);
+    else if (message.thread_ts && message.thread_ts !== message.ts) ids.add(message.thread_ts);
+  }
+  return [...ids];
 }
 
 export function planScannedReplies(catalog = [], replies = [], options = {}) {
@@ -151,18 +167,21 @@ export async function fetchChannelMessages(token, channel, { oldest = "", fetchI
   return messages;
 }
 
-export async function fetchThreadParents(token, channel, threadIds = [], fetchImpl = fetch) {
+export async function fetchThreadMessages(token, channel, threadIds = [], fetchImpl = fetch) {
+  const messages = [];
   const parents = new Map();
   for (const ts of threadIds) {
     if (!ts || parents.has(ts)) continue;
-    const data = await slackApi(token, "conversations.replies", {
-      channel,
-      ts,
-      limit: "1",
-      inclusive: "true",
-    }, fetchImpl);
-    const parent = (data.messages || [])[0];
-    if (parent?.text) parents.set(ts, parent.text);
+    let cursor = "";
+    do {
+      const params = { channel, ts, limit: "200" };
+      if (cursor) params.cursor = cursor;
+      const data = await slackApi(token, "conversations.replies", params, fetchImpl);
+      const batch = data.messages || [];
+      if (batch[0]?.text) parents.set(ts, batch[0].text);
+      messages.push(...batch);
+      cursor = data.response_metadata?.next_cursor || "";
+    } while (cursor);
   }
-  return parents;
+  return { messages, parents };
 }

@@ -10,6 +10,7 @@ import {
   planScannedReplies,
   selectDoneReplies,
   slackTsToIso,
+  threadIdsWithReplies,
 } from "./lib/slack-seo-scan.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -86,6 +87,20 @@ test("a done reply with no digest does not guess a rooftop", () => {
   }]);
   assert.equal(results.some((result) => result.status === "ambiguous"), true);
   assert.equal(applied.some((item) => item.action === "update"), false);
+});
+
+test("Chris's done reply inside a digest thread is scanned", () => {
+  const parentTs = "1790947525.207189";
+  const history = [{ type: "message", user: "U06HWKA6YMU", text: OCT2_DIGEST, ts: parentTs, reply_count: 1 }];
+  assert.deepEqual(threadIdsWithReplies(history), [parentTs]);
+  const thread = [
+    history[0],
+    { type: "message", user: CHRIS_SLACK_USER_ID, text: "done 2027 Jeep Wrangler, done 2027 Silverado 1500", ts: "1790974090.844789", thread_ts: parentTs },
+  ];
+  const parents = new Map([[parentTs, OCT2_DIGEST]]);
+  const replies = selectDoneReplies([...history, ...thread], parents);
+  assert.equal(replies.length, 1);
+  assert.equal(replies[0].digest.includes("Wrangler"), true);
 });
 
 test("publishing a clear file keeps earlier rows and does not duplicate ids", () => {
