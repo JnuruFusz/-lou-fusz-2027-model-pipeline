@@ -127,6 +127,14 @@ const transitions = {
   needs_review: [["needs_seo", "Send Back To SEO"], ["live", "Keep Live"]],
 };
 
+// Shared Google Drive folder: "2026-2027 SEO" (Chris Pajda).
+// Agents and the dashboard both read this. Search Drive with parentId = id.
+const SEO_DRIVE_FOLDER = {
+  id: "1Fl597hOQ3dSvf6Bsr8GMl8PIHY0J9WL_",
+  title: "2026-2027 SEO",
+  url: "https://drive.google.com/drive/folders/1Fl597hOQ3dSvf6Bsr8GMl8PIHY0J9WL_",
+};
+
 // ─── SEO doc links — keyed by "dealer|year" ──────────────────────────────────
 // Update this when new SEO docs are created. One doc per dealer per model year.
 const SEO_DOC_LINKS = {
@@ -142,6 +150,7 @@ const SEO_DOC_LINKS = {
   "Lou Fusz Kia of Moline|2026":                "https://docs.google.com/document/d/1432gqSwCj522lFQOb6cORiWiDnjm22R5q1DXwWjjQx8",
   "Lou Fusz Kia Terre Haute|2026":              "https://docs.google.com/document/d/1bKVl7pnVmd3MBl3Q-AiKqUZ0xphg1ZWsaSpb15syhps",
   "Lou Fusz Kia Columbus|2026":                 "https://docs.google.com/document/d/1Z3RK7-VVsyfQH4rERoxhB73eE2KdZ632Prw0EgfbRmU",
+  "Lou Fusz Kia Wentzville|2026":               "https://docs.google.com/document/d/13h4wJfxddr7YNxon4_nVQDIQL6qAIAtmRh621CYPJUU",
   "Lou Fusz Mazda|2026":                        "https://docs.google.com/document/d/17JROHls8DDvVEOq2o3hoQ7EmX3yhH8ztuAxLaCKDnXU",
   "Lou Fusz Mazda Evansville|2026":             "https://docs.google.com/document/d/1OSW_dubcbnbHvO42NdRKGO-JnVWKk1aarryx72EVzhg",
   "Lou Fusz Nissan Moline|2026":                "https://docs.google.com/document/d/1lmGvBu5w87lH2TxhCyAc5BLKo8h7J7UjPwzFpKmAjbk",
@@ -149,7 +158,9 @@ const SEO_DOC_LINKS = {
   "Lou Fusz Subaru St. Louis|2026":             "https://docs.google.com/document/d/1COvqcNa-kRR48OwghYip_AQfqPOBws1A9dsNtHHVlZY",
   "Lou Fusz Toyota|2026":                       "https://docs.google.com/document/d/1Tac7AcuSyyvR2gOWA-RDu2q0-yGXBvqtVSKM9-OVZbQ",
   // 2027
+  "Lou Fusz Buick GMC|2027|GMC":                "https://docs.google.com/document/d/1-s3J6OYT8aj2yYNmCb6e3HQbuZyiYbohnscJgA1pX2w",
   "Lou Fusz Chevrolet|2027":                    "https://docs.google.com/document/d/1H-asB_sMbrXT6Oqz2B-H9qv3zVPPi2L9Sp6nYFBGEK4",
+  "Lou Fusz Ford|2027":                         "https://docs.google.com/document/d/1QOt-BtfXgemy3iFkaklGwkKjktdBajW4uOIITtDLArw",
   "Lou Fusz Chrysler Jeep Dodge RAM|2027":      "https://docs.google.com/document/d/12OdXuRYK3yDaz1B4TutqavuuE4WmrNiIpreguow4GDQ",
   "Lou Fusz Chrysler Jeep Dodge Ram Vincennes|2027": "https://docs.google.com/document/d/1nRrjzbD4l_lHRdZ1DSPPDvSsODOSxijA3F9_XA3pMIY",
   "Lou Fusz Kia|2027":                          "https://docs.google.com/document/d/17Llp8wDE_uX18dauWdGjq_zmN5NlgTCUUvBzcRcPk8s",
@@ -158,6 +169,8 @@ const SEO_DOC_LINKS = {
   "Lou Fusz Kia of Moline|2027":                "https://docs.google.com/document/d/1yai_qzf600AQAJf8-CGtOoHcMcfdc5fXILQGDrsRHTI",
   "Lou Fusz Kia Columbus|2027":                 "https://docs.google.com/document/d/1NROowSjtBxbwDpsNSzSk1VF6VNDacnByun6pO_XqXzc",
   "Lou Fusz Kia Wentzville|2027":               "https://docs.google.com/document/d/1qQajbwlkGKTjIANeqGGBjJW8WfSEQk9a1OstYBnV_YI",
+  "Lou Fusz Nissan Moline|2027":                "https://docs.google.com/document/d/1FLyDoe9Gug3bOEA2dOy1XE4PbDZSUhaxI1SC7k6snJo",
+  "Lou Fusz Subaru O'Fallon|2027":              "https://docs.google.com/document/d/1fQxqBltqRzLDQMgdo21xoKzHZSb8qoQjlXM0vZ6Z9J4",
 };
 
 function seoDocUrl(task) {

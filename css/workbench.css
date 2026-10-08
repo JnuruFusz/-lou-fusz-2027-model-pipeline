@@ -850,6 +850,13 @@ body[data-workspace-view="team_board"] .task-actions .button-secondary-action {
   color: var(--amber); /* amber token — theme-aware */
 }
 
+.resource-status.status-green,
+.settings-status.status-green {
+  border-color: rgba(61, 182, 122, 0.28);
+  background: rgba(61, 182, 122, 0.1);
+  color: var(--green);
+}
+
 .rooftops-manager {
   margin-top: 16px;
   padding-top: 16px;
