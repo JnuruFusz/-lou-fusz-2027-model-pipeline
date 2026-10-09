@@ -1,5 +1,4 @@
 "Dealership Name",VIN,Year,Make,Model,Trim,"Vehicle Status","Stock Number","Date In stock","VDP URLs"
-"Nissan of Moline",3N1AB9CV9VY218688,2027,Nissan,Sentra,SV,"At Dealership",H270016,2026-09-17,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-sentra-sv-fwd-car-3n1ab9cv9vy218688/
 "Nissan of Moline",5N1BT3BB0TC890188,2026,Nissan,Rogue,SV,"At Dealership",H260252,2026-08-31,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-sv-awd-crossover-5n1bt3bb0tc890188/
 "Nissan of Moline",5N1BT3BB0TC890255,2026,Nissan,Rogue,"Dark Armor™","At Dealership",H260253,2026-08-31,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-dark-armor%e2%84%a2-awd-crossover-5n1bt3bb0tc890255/
 "Nissan of Moline",5N1BT3BB7TC891631,2026,Nissan,Rogue,SV,"At Dealership",H260254,2026-08-31,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-sv-awd-crossover-5n1bt3bb7tc891631/
@@ -47,6 +46,7 @@
 "Nissan of Moline",1N6ED1EK0VN605797,2027,Nissan,Frontier,"Crew Cab SV","At Dealership",H270015,2026-09-25,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-frontier-crew-cab-sv-4x4-truck-1n6ed1ek0vn605797/
 "Nissan of Moline",1N6ED1EK1VN607395,2027,Nissan,Frontier,"Crew Cab SV","At Dealership",H270028,2026-09-25,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-frontier-crew-cab-sv-4x4-truck-1n6ed1ek1vn607395/
 "Nissan of Moline",5N1BT3BB4VC679188,2027,Nissan,Rogue,"Rock Creek®","At Dealership",H270041,2026-09-27,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-rogue-rock-creek%c2%ae-awd-crossover-5n1bt3bb4vc679188/
+"Nissan of Moline",1N6ED1EK5VN609991,2027,Nissan,Frontier,"Crew Cab PRO-4X®","At Dealership",H270036,2026-10-07,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-frontier-crew-cab-pro-4x%c2%ae-4x4-truck-1n6ed1ek5vn609991/
 "Nissan of Moline",5N1AZ3DT8TC105139,2026,Nissan,Murano,Platinum,"At Dealership",H260048,2025-11-04,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-murano-platinum-awd-crossover-5n1az3dt8tc105139/
 "Nissan of Moline",5N1AZ3DS0TC105627,2026,Nissan,Murano,Platinum,"At Dealership",H260049,2025-11-22,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-murano-platinum-awd-crossover-5n1az3ds0tc105627/
 "Nissan of Moline",5N1AZ3DS2TC118248,2026,Nissan,Murano,Platinum,"At Dealership",H260115,2026-03-13,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-murano-platinum-awd-crossover-5n1az3ds2tc118248/
@@ -55,7 +55,7 @@
 "Nissan of Moline",1N6ED1EK1TN664421,2026,Nissan,Frontier,"Crew Cab SV","At Dealership",H260179,2026-06-10,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-frontier-crew-cab-sv-4x4-truck-1n6ed1ek1tn664421/
 "Nissan of Moline",1N6ED1EK6TN667167,2026,Nissan,Frontier,"Crew Cab SV","At Dealership",H260185,2026-06-15,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-frontier-crew-cab-sv-4x4-truck-1n6ed1ek6tn667167/
 "Nissan of Moline",3N8AP6CB0TL438724,2026,Nissan,Kicks,SV,"At Dealership",H260198,2026-07-25,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-kicks-sv-awd-crossover-3n8ap6cb0tl438724/
-"Nissan of Moline",JN8BT3DD0TW491321,2026,Nissan,Rogue,Platinum,"At Dealership",H260194,2026-08-07,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-platinum-awd-crossover-jn8bt3dd0tw491321/
+"Nissan of Moline",JN8BT3DD0TW491321,2026,Nissan,Rogue,Platinum,"At Dealership",H260194,2026-08-07,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-platinum-awd-4d-sport-utility-jn8bt3dd0tw491321/
 "Nissan of Moline",JN8BT3DD6TW324428,2026,Nissan,Rogue,Platinum,"At Dealership",TW324428,2026-08-12,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-platinum-awd-crossover-jn8bt3dd6tw324428/
 "Nissan of Moline",JN8BT3DD7TW491137,2026,Nissan,Rogue,Platinum,"At Dealership",H260197,2026-08-07,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-platinum-awd-crossover-jn8bt3dd7tw491137/
 "Nissan of Moline",3N8AP6CE6TL440729,2026,Nissan,Kicks,SV,"At Dealership",H260202,2026-07-30,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-kicks-sv-fwd-crossover-3n8ap6ce6tl440729/
@@ -68,14 +68,13 @@
 "Nissan of Moline",JN1BZ4BH2VM550070,2027,Nissan,Z,Performance,"At Dealership",H270002,2026-09-01,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-z-performance-rwd-sports-car-jn1bz4bh2vm550070/
 "Nissan of Moline",1N4BL4CV8TN354120,2026,Nissan,Altima,SR,"At Dealership",H260208,2026-08-26,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-altima-sr-fwd-car-1n4bl4cv8tn354120/
 "Nissan of Moline",5N1BT3BB2TC875093,2026,Nissan,Rogue,"Dark Armor™","At Dealership",H260217,2026-08-12,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-dark-armor%e2%84%a2-awd-crossover-5n1bt3bb2tc875093/
-"Nissan of Moline",5N1BT3BB9TC874765,2026,Nissan,Rogue,SV,"At Dealership",H260227,2026-08-12,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-sv-awd-4d-sport-utility-5n1bt3bb9tc874765/
 "Nissan of Moline",5N1BT3BB7TC876241,2026,Nissan,Rogue,"Dark Armor™","At Dealership",H260233,2026-08-12,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-dark-armor%e2%84%a2-awd-crossover-5n1bt3bb7tc876241/
 "Nissan of Moline",5N1BT3BBXTC875729,2026,Nissan,Rogue,"Dark Armor™","At Dealership",H260211,2026-08-12,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-dark-armor%e2%84%a2-awd-crossover-5n1bt3bbxtc875729/
 "Nissan of Moline",5N1BT3BB0TC876954,2026,Nissan,Rogue,"Dark Armor™","At Dealership",H260224,2026-08-12,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-dark-armor%e2%84%a2-awd-crossover-5n1bt3bb0tc876954/
 "Nissan of Moline",5N1BT3BB4TC877122,2026,Nissan,Rogue,"Dark Armor™","At Dealership",H260216,2026-08-12,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-dark-armor%e2%84%a2-awd-crossover-5n1bt3bb4tc877122/
 "Nissan of Moline",5N1BT3BB9TC876483,2026,Nissan,Rogue,"Dark Armor™","At Dealership",H260222,2026-08-14,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-dark-armor%e2%84%a2-awd-crossover-5n1bt3bb9tc876483/
 "Nissan of Moline",5N1BT3BB1TC877627,2026,Nissan,Rogue,"Dark Armor™","At Dealership",H260231,2026-08-14,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-dark-armor%e2%84%a2-awd-crossover-5n1bt3bb1tc877627/
-"Nissan of Moline",5N1BT3BB3TC877726,2026,Nissan,Rogue,"Dark Armor™","At Dealership",H260213,2026-08-12,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-dark-armor%e2%84%a2-awd-crossover-5n1bt3bb3tc877726/
+"Nissan of Moline",5N1BT3BB3TC877726,2026,Nissan,Rogue,"Dark Armor","At Dealership",H260213,2026-08-12,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-dark-armor-awd-4d-sport-utility-5n1bt3bb3tc877726/
 "Nissan of Moline",5N1BT3BB4TC877914,2026,Nissan,Rogue,SV,"At Dealership",H260225,2026-08-14,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-sv-awd-crossover-5n1bt3bb4tc877914/
 "Nissan of Moline",5N1BT3BB6TC877378,2026,Nissan,Rogue,"Dark Armor™","At Dealership",H260218,2026-08-14,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-dark-armor%e2%84%a2-awd-crossover-5n1bt3bb6tc877378/
 "Nissan of Moline",5N1BT3BB7TC878023,2026,Nissan,Rogue,"Dark Armor™","At Dealership",H260226,2026-08-12,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-dark-armor%e2%84%a2-awd-crossover-5n1bt3bb7tc878023/
@@ -97,3 +96,4 @@
 "Nissan of Moline",3N1AB9CV0VY217395,2027,Nissan,Sentra,SV,"At Dealership",H270007,2026-09-17,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-sentra-sv-fwd-car-3n1ab9cv0vy217395/
 "Nissan of Moline",3N1AB9CV1VY219351,2027,Nissan,Sentra,SV,"At Dealership",H270018,2026-09-18,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-sentra-sv-fwd-car-3n1ab9cv1vy219351/
 "Nissan of Moline",3N1AB9CV9VY200160,2027,Nissan,Sentra,SV,"At Dealership",H270001,2026-08-26,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-sentra-sv-fwd-car-3n1ab9cv9vy200160/
+"Nissan of Moline",3N1AB9CV9VY218688,2027,Nissan,Sentra,SV,"At Dealership",H270016,2026-09-17,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-sentra-sv-fwd-car-3n1ab9cv9vy218688/
