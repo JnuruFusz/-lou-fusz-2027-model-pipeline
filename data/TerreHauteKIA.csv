@@ -1,9 +1,8 @@
 "Dealership Name",VIN,Year,Make,Model,Trim,"Vehicle Status","Stock Number","Date In stock","VDP URLs"
-"Terre Haute KIA",3KPFW4DEXVE432082,2027,Kia,K4,GT-Line,"In Transit",P4050,2026-10-15,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-k4-gt-line-fwd-4-door-sedan-3kpfw4dexve432082/
+"Terre Haute KIA",3KPFW4DEXVE432082,2027,Kia,K4,GT-Line,"At Dealership",P4050,2026-10-15,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-k4-gt-line-fwd-4d-sedan-3kpfw4dexve432082/
 "Terre Haute KIA",KNDPVDDGXV7464524,2027,Kia,"Sportage Hybrid",EX,"At Dealership",P4045,2026-10-14,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-sportage-hybrid-ex-awd-5dr-sport-utility-kndpvddgxv7464524/
 "Terre Haute KIA",5XYPCES11VG053946,2027,Kia,Telluride,"X-Line EX","At Dealership",P4018,2026-10-05,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-telluride-x-line-ex-awd-5dr-sport-utility-5xypces11vg053946/
 "Terre Haute KIA",KNDELCD3XV5036873,2027,Kia,Seltos,S,"At Dealership",P4042,2026-10-14,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-seltos-s-awd-5dr-sport-utility-kndelcd3xv5036873/
-"Terre Haute KIA",5XYPLESAXVG063925,2027,Kia,"Telluride Hybrid",SX-PRESTIGE,"At Dealership",P4040,2026-10-13,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-telluride-hybrid-sx-prestige-awd-5dr-sport-utility-5xyplesaxvg063925/
 "Terre Haute KIA",5XYK33DF0VG481353,2027,Kia,Sportage,EX,"At Dealership",P4034,2026-10-13,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33df0vg481353/
 "Terre Haute KIA",5XYK53DF1VG486717,2027,Kia,Sportage,"SX Prestige","At Dealership",P4035,2026-10-13,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-sportage-sx-prestige-fwd-5dr-sport-utility-5xyk53df1vg486717/
 "Terre Haute KIA",5XYK6CDF1VG487024,2027,Kia,Sportage,X-Line,"At Dealership",P4033,2026-10-13,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-sportage-x-line-awd-5dr-sport-utility-5xyk6cdf1vg487024/
@@ -16,7 +15,6 @@
 "Terre Haute KIA",5XYRHDJF3TG453893,2026,Kia,Sorento,"X-Line EX AWD","At Dealership",P3379,2026-02-17,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-sorento-x-line-ex-awd-awd-4dr-sport-utility-5xyrhdjf3tg453893/
 "Terre Haute KIA",KNDNE5KA2T6133192,2026,Kia,"Carnival MPV Hybrid","SX Prestige","At Dealership",P3423,2026-03-05,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka2t6133192/
 "Terre Haute KIA",KNDRHDJG0T5489512,2026,Kia,"Sorento Hybrid",EX,"At Dealership",P3481,2026-03-24,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-sorento-hybrid-ex-awd-4dr-sport-utility-kndrhdjg0t5489512/
-"Terre Haute KIA",KNDNE5K39T6626028,2026,Kia,"Carnival MPV",SX,"At Dealership",P3539,2026-04-22,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-carnival-mpv-sx-fwd-minivan-kndne5k39t6626028/
 "Terre Haute KIA",KNDNE5K38T6632273,2026,Kia,"Carnival MPV","SX Prestige","At Dealership",P3503,2026-04-01,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-carnival-mpv-sx-prestige-fwd-minivan-kndne5k38t6632273/
 "Terre Haute KIA",5XYRHDJF7TG460300,2026,Kia,Sorento,"X-Line EX AWD","At Dealership",P3468,2026-03-18,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-sorento-x-line-ex-awd-awd-4dr-sport-utility-5xyrhdjf7tg460300/
 "Terre Haute KIA",KNDNE5K30T6630405,2026,Kia,"Carnival MPV",SX,"At Dealership",P3560,2026-04-22,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-carnival-mpv-sx-fwd-minivan-kndne5k30t6630405/
@@ -30,7 +28,6 @@
 "Terre Haute KIA",KNAG64J77T5501004,2026,Kia,K5,"GT-Line AWD","At Dealership",P3679,2026-06-01,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-k5-gt-line-awd-awd-4-door-sedan-knag64j77t5501004/
 "Terre Haute KIA",KNDPVCDF6T7509067,2026,Kia,Sportage,EX,"At Dealership",P3654,2026-05-22,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-sportage-ex-awd-4dr-sport-utility-kndpvcdf6t7509067/
 "Terre Haute KIA",5XYK6CDF7TG444143,2026,Kia,Sportage,X-Line,"At Dealership",P3636,2026-05-15,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-sportage-x-line-awd-4dr-sport-utility-5xyk6cdf7tg444143/
-"Terre Haute KIA",KNAG64J74T5504572,2026,Kia,K5,"GT-Line FWD","At Dealership",P3675,2026-06-01,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-k5-gt-line-fwd-fwd-4-door-sedan-knag64j74t5504572/
 "Terre Haute KIA",KNDNE5K39T6644089,2026,Kia,"Carnival MPV","SX Prestige","At Dealership",P3677,2026-06-01,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-carnival-mpv-sx-prestige-fwd-minivan-kndne5k39t6644089/
 "Terre Haute KIA",5XYK6CDF6TG446031,2026,Kia,Sportage,X-Line,"At Dealership",P3670,2026-05-29,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-sportage-x-line-awd-4dr-sport-utility-5xyk6cdf6tg446031/
 "Terre Haute KIA",5XYK23DF2TG451738,2026,Kia,Sportage,LX,"At Dealership",P3704,2026-06-11,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-sportage-lx-fwd-4dr-sport-utility-5xyk23df2tg451738/
@@ -61,7 +58,6 @@
 "Terre Haute KIA",KNDEDCD3XV5011159,2027,Kia,Seltos,"X-Line S","At Dealership",P3872,2026-08-20,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-seltos-x-line-s-awd-5dr-sport-utility-kndedcd3xv5011159/
 "Terre Haute KIA",KNDEL3D38V5011843,2027,Kia,Seltos,S,"At Dealership",P3874,2026-08-20,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d38v5011843/
 "Terre Haute KIA",KNDEL3D39V5013486,2027,Kia,Seltos,S,"At Dealership",P3839,2026-07-30,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d39v5013486/
-"Terre Haute KIA",KNDNC5K39V6668949,2027,Kia,"Carnival MPV",EX,"At Dealership",P3985,2026-09-25,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k39v6668949/
 "Terre Haute KIA",7YAPCDDG0VY008539,2027,Kia,"Sportage Hybrid",X-Line,"At Dealership",P3923,2026-09-03,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-sportage-hybrid-x-line-awd-5dr-sport-utility-7yapcddg0vy008539/
 "Terre Haute KIA",7YAPEDDG9VY008243,2027,Kia,"Sportage Hybrid","SX Prestige","At Dealership",P3924,2026-09-03,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-5dr-sport-utility-7yapeddg9vy008243/
 "Terre Haute KIA",KNDRKDJG6T5558575,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",P3986,2026-09-25,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg6t5558575/
@@ -75,14 +71,13 @@
 "Terre Haute KIA",KNDEECD70V7046006,2027,Kia,Seltos,"X-Line SX","At Dealership",P3993,2026-09-28,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-seltos-x-line-sx-awd-5dr-sport-utility-kndeecd70v7046006/
 "Terre Haute KIA",KNDRH4JG6T5562642,2026,Kia,"Sorento Hybrid",EX,"At Dealership",P4008,2026-10-02,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-sorento-hybrid-ex-fwd-4dr-sport-utility-kndrh4jg6t5562642/
 "Terre Haute KIA",KNDNC5K37V6670537,2027,Kia,"Carnival MPV",EX,"At Dealership",P4014,2026-10-02,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k37v6670537/
-"Terre Haute KIA",KNDPXDDG4V7454906,2027,Kia,"Sportage Hybrid",SX-Prestige,"At Dealership",E2776047,2026-10-16,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-4d-sport-utility-kndpxddg4v7454906/
+"Terre Haute KIA",KNDPXDDG4V7454906,2027,Kia,"Sportage Hybrid","SX Prestige","At Dealership",E2776047,2026-10-16,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-5dr-sport-utility-kndpxddg4v7454906/
 "Terre Haute KIA",KNDEL3D35V5028728,2027,Kia,Seltos,S,"At Dealership",P3995,2026-09-28,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d35v5028728/
 "Terre Haute KIA",3KPFU4DE8TE408916,2026,Kia,K4,EX,"At Dealership",P4027,2026-10-09,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-k4-ex-fwd-4-door-sedan-3kpfu4de8te408916/
 "Terre Haute KIA",5XYRLDJC7TG493916,2026,Kia,Sorento,S,"At Dealership",P3965,2026-09-16,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-sorento-s-awd-4dr-sport-utility-5xyrldjc7tg493916/
 "Terre Haute KIA",KNDPU3DGXV7447087,2027,Kia,"Sportage Hybrid",LX,"At Dealership",P4003,2026-10-02,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-sportage-hybrid-lx-fwd-5dr-sport-utility-kndpu3dgxv7447087/
 "Terre Haute KIA",5XYK5CDF7VG477178,2027,Kia,Sportage,"SX Prestige","At Dealership",P3966,2026-09-16,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-sportage-sx-prestige-awd-5dr-sport-utility-5xyk5cdf7vg477178/
 "Terre Haute KIA",KNDEBCD34V5036211,2027,Kia,Seltos,LX,"At Dealership",P4005,2026-10-02,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-seltos-lx-awd-5dr-sport-utility-kndebcd34v5036211/
-"Terre Haute KIA",KNDEDCD31V5033938,2027,Kia,Seltos,"X-Line S","At Dealership",P4009,2026-10-02,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-seltos-x-line-s-awd-5dr-sport-utility-kndedcd31v5033938/
 "Terre Haute KIA",KNDNE5KAXV6224598,2027,Kia,"Carnival MPV Hybrid",SX,"At Dealership",P4025,2026-10-07,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5kaxv6224598/
 "Terre Haute KIA",KNDPVDDGXV7456438,2027,Kia,"Sportage Hybrid",X-Line,"At Dealership",P4004,2026-10-02,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-sportage-hybrid-x-line-awd-5dr-sport-utility-kndpvddgxv7456438/
 "Terre Haute KIA",KNDEDCD31V7057015,2027,Kia,Seltos,"X-Line S","At Dealership",P4006,2026-10-02,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-seltos-x-line-s-awd-5dr-sport-utility-kndedcd31v7057015/
@@ -102,7 +97,7 @@
 "Terre Haute KIA",5XYK33DF4VG482778,2027,Kia,Sportage,EX,"At Dealership",P3994,2026-09-28,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33df4vg482778/
 "Terre Haute KIA",5XYK3CDF6VG484242,2027,Kia,Sportage,EX,"At Dealership",P3997,2026-09-28,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-sportage-ex-awd-5dr-sport-utility-5xyk3cdf6vg484242/
 "Terre Haute KIA",KNAG64J76V5541609,2027,Kia,K5,GT-Line,"At Dealership",P4028,2026-10-12,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-k5-gt-line-fwd-4-door-sedan-knag64j76v5541609/
-"Terre Haute KIA",3KPFW4DE4VE431915,2027,Kia,K4,GT-Line,"In Transit",P4051,2026-10-15,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-k4-gt-line-fwd-4-door-sedan-3kpfw4de4ve431915/
+"Terre Haute KIA",3KPFW4DE4VE431915,2027,Kia,K4,GT-Line,"At Dealership",P4051,2026-10-15,https://www.loufuszkiaterrehaute.com/inventory/new-2027-kia-k4-gt-line-fwd-4d-sedan-3kpfw4de4ve431915/
 "Terre Haute KIA",KNDRKDJG0T5567319,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",P4046,2026-10-14,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg0t5567319/
 "Terre Haute KIA",KNDRKDJG1T5567300,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",P4031,2026-10-12,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg1t5567300/
 "Terre Haute KIA",KNDRKDJG1T5567667,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",P4029,2026-10-12,https://www.loufuszkiaterrehaute.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg1t5567667/
