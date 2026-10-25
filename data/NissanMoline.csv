@@ -1,5 +1,4 @@
 "Dealership Name",VIN,Year,Make,Model,Trim,"Vehicle Status","Stock Number","Date In stock","VDP URLs"
-"Nissan of Moline",3N8AP6CB9VL317337,2027,Nissan,Kicks,SV,"At Dealership",H270023,2026-10-07,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-kicks-sv-awd-crossover-3n8ap6cb9vl317337/
 "Nissan of Moline",3N8AP6CB9VL319105,2027,Nissan,Kicks,SV,"At Dealership",H270039,2026-09-26,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-kicks-sv-awd-crossover-3n8ap6cb9vl319105/
 "Nissan of Moline",3N8AP6DB0VL303230,2027,Nissan,Kicks,SR,"At Dealership",H270006,2026-09-01,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-kicks-sr-awd-crossover-3n8ap6db0vl303230/
 "Nissan of Moline",3N8AP6DD6VL318509,2027,Nissan,Kicks,SR,"At Dealership",H270025,2026-10-06,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-kicks-sr-awd-crossover-3n8ap6dd6vl318509/
@@ -41,7 +40,7 @@
 "Nissan of Moline",3N8AP6CB0TL438724,2026,Nissan,Kicks,SV,"At Dealership",H260198,2026-07-25,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-kicks-sv-awd-crossover-3n8ap6cb0tl438724/
 "Nissan of Moline",JN8BT3DD6TW324428,2026,Nissan,Rogue,Platinum,"At Dealership",TW324428,2026-08-12,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-platinum-awd-crossover-jn8bt3dd6tw324428/
 "Nissan of Moline",JN8BT3DD7TW491137,2026,Nissan,Rogue,Platinum,"At Dealership",H260197,2026-08-07,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-platinum-awd-crossover-jn8bt3dd7tw491137/
-"Nissan of Moline",3N8AP6CE7TL441145,2026,Nissan,Kicks,SV,"At Dealership",H260201,2026-07-25,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-kicks-sv-fwd-crossover-3n8ap6ce7tl441145/
+"Nissan of Moline",3N8AP6CE7TL441145,2026,Nissan,Kicks,SV,"At Dealership",H260201,2026-07-25,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-kicks-sv-fwd-4d-sport-utility-3n8ap6ce7tl441145/
 "Nissan of Moline",JN8AY3CC2T9231460,2026,Nissan,Armada,"Platinum Reserve","At Dealership",H260204,2026-07-30,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-armada-platinum-reserve-4x4-suv-jn8ay3cc2t9231460/
 "Nissan of Moline",JN8BT3DD0TW430213,2026,Nissan,Rogue,Platinum,"At Dealership",H260232,2026-08-28,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-platinum-awd-crossover-jn8bt3dd0tw430213/
 "Nissan of Moline",JN8BT3DD5TW010463,2026,Nissan,Rogue,Platinum,"At Dealership",H260229,2026-08-28,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-platinum-awd-crossover-jn8bt3dd5tw010463/
@@ -62,7 +61,6 @@
 "Nissan of Moline",JN8BT3DD4TW011054,2026,Nissan,Rogue,Platinum,"At Dealership",H260240,2026-09-01,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-platinum-awd-crossover-jn8bt3dd4tw011054/
 "Nissan of Moline",JN8BT3DD4TW011507,2026,Nissan,Rogue,Platinum,"At Dealership",H260242,2026-09-01,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-platinum-awd-crossover-jn8bt3dd4tw011507/
 "Nissan of Moline",5N1BT3BB5TC882667,2026,Nissan,Rogue,"Dark Armor™","At Dealership",H260249,2026-08-21,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-dark-armor%e2%84%a2-awd-crossover-5n1bt3bb5tc882667/
-"Nissan of Moline",JN8BT3DD0TW432575,2026,Nissan,Rogue,Platinum,"At Dealership",H260251,2026-09-17,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-platinum-awd-4d-sport-utility-jn8bt3dd0tw432575/
 "Nissan of Moline",JN8BT3DD4TW433194,2026,Nissan,Rogue,Platinum,"At Dealership",H260246,2026-09-17,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-platinum-awd-crossover-jn8bt3dd4tw433194/
 "Nissan of Moline",JN8BT3DD5TW432698,2026,Nissan,Rogue,Platinum,"At Dealership",H260247,2026-09-17,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-platinum-awd-crossover-jn8bt3dd5tw432698/
 "Nissan of Moline",JN8BT3DD6TW433200,2026,Nissan,Rogue,Platinum,"At Dealership",H260248,2026-09-17,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-platinum-awd-crossover-jn8bt3dd6tw433200/
@@ -85,3 +83,4 @@
 "Nissan of Moline",3N8AP6CB4VL305094,2027,Nissan,Kicks,SV,"At Dealership",H270004,2026-09-01,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-kicks-sv-awd-crossover-3n8ap6cb4vl305094/
 "Nissan of Moline",3N8AP6CB7VL316753,2027,Nissan,Kicks,SV,"At Dealership",H270014,2026-09-18,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-kicks-sv-awd-crossover-3n8ap6cb7vl316753/
 "Nissan of Moline",3N8AP6CB9VL307648,2027,Nissan,Kicks,SV,"At Dealership",H270008,2026-09-01,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-kicks-sv-awd-crossover-3n8ap6cb9vl307648/
+"Nissan of Moline",3N8AP6CB9VL317337,2027,Nissan,Kicks,SV,"At Dealership",H270023,2026-10-07,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-kicks-sv-awd-crossover-3n8ap6cb9vl317337/
