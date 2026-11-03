@@ -1,5 +1,4 @@
 "Dealership Name",VIN,Year,Make,Model,Trim,"Vehicle Status","Stock Number","Date In stock","VDP URLs"
-"Lou Fusz KIA",5XYPDESA9VG057451,2027,Kia,"Telluride Hybrid","X-LINE SX","At Dealership",K27T091,2026-09-22,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-5dr-sport-utility-5xypdesa9vg057451/
 "Lou Fusz KIA",5XYK33DFXVG478492,2027,Kia,Sportage,EX,"At Dealership",K27F013,2026-09-17,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33dfxvg478492/
 "Lou Fusz KIA",5XYK3CDF8VG482041,2027,Kia,Sportage,EX,"At Dealership",K27F014,2026-09-17,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-awd-5dr-sport-utility-5xyk3cdf8vg482041/
 "Lou Fusz KIA",5XYRHDJF6TG496494,2026,Kia,Sorento,EX,"At Dealership",K267140,2026-09-22,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-ex-awd-4dr-sport-utility-5xyrhdjf6tg496494/
@@ -49,57 +48,57 @@
 "Lou Fusz KIA",KNDRKDJG3T5567301,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",K26H052,2026-10-28,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg3t5567301/
 "Lou Fusz KIA",KNDRKDJG8T5567780,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",K26H053,2026-10-28,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg8t5567780/
 "Lou Fusz KIA",5XYPD5S13VG058921,2027,Kia,Telluride,SX,"At Dealership",K27J098,2026-10-20,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-sx-fwd-5dr-sport-utility-5xypd5s13vg058921/
-"Lou Fusz KIA",5XYK33DF1VG474735,2027,Kia,Sportage,EX,"At Dealership",K27F006,2026-09-03,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33df1vg474735/
-"Lou Fusz KIA",5XYK33DF8VG470911,2027,Kia,Sportage,EX,"At Dealership",K27F007,2026-09-03,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33df8vg470911/
-"Lou Fusz KIA",5XYK33DF8VG477518,2027,Kia,Sportage,EX,"At Dealership",K27F008,2026-09-03,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33df8vg477518/
-"Lou Fusz KIA",5XYPD5SA7VG051342,2027,Kia,"Telluride Hybrid",SX,"At Dealership",K27T080,2026-09-01,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-sx-fwd-5dr-sport-utility-5xypd5sa7vg051342/
-"Lou Fusz KIA",KNDNC5K34V6662220,2027,Kia,"Carnival MPV",EX,"At Dealership",K27M024,2026-09-24,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k34v6662220/
-"Lou Fusz KIA",KNDNC5K35V6666986,2027,Kia,"Carnival MPV",EX,"At Dealership",K27M027,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k35v6666986/
-"Lou Fusz KIA",KNDNE5KA6V6216157,2027,Kia,"Carnival MPV Hybrid",SX,"At Dealership",K27Q015,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5ka6v6216157/
-"Lou Fusz KIA",KNDEC3D3XV5021600,2027,Kia,Seltos,EX,"At Dealership",K27K055,2026-10-05,https://www.kia.fusz.com/inventory/new-2027-kia-seltos-ex-fwd-5dr-sport-utility-kndec3d3xv5021600/
-"Lou Fusz KIA",KNDRKDJG3T5559375,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",K26H047,2026-09-28,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg3t5559375/
-"Lou Fusz KIA",KNDEL3D37V5022476,2027,Kia,Seltos,S,"At Dealership",K27K054,2026-10-05,https://www.kia.fusz.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d37v5022476/
-"Lou Fusz KIA",KNDNC5K33V6667277,2027,Kia,"Carnival MPV",EX,"At Dealership",K27M025,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k33v6667277/
-"Lou Fusz KIA",KNDNC5K3XV6666563,2027,Kia,"Carnival MPV",EX,"At Dealership",K27M026,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k3xv6666563/
-"Lou Fusz KIA",KNDRHDJGXT5558867,2026,Kia,"Sorento Hybrid",EX,"At Dealership",K26H048,2026-09-28,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-hybrid-ex-awd-4dr-sport-utility-kndrhdjgxt5558867/
-"Lou Fusz KIA",5XYPCESA3VG053348,2027,Kia,"Telluride Hybrid",EX,"At Dealership",K27T084,2026-09-15,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-ex-awd-5dr-sport-utility-5xypcesa3vg053348/
-"Lou Fusz KIA",KNDPUDDG1V7449963,2027,Kia,"Sportage Hybrid",S,"At Dealership",K27Y028,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-s-awd-5dr-sport-utility-kndpuddg1v7449963/
-"Lou Fusz KIA",KNDPYDDH3V7448309,2027,Kia,"Sportage Plug-in Hybrid",X-Line,"At Dealership",K27Y029,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-plug-in-hybrid-x-line-awd-5dr-sport-utility-kndpyddh3v7448309/
-"Lou Fusz KIA",KNDRKDJG0T5553579,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",K26H049,2026-09-24,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg0t5553579/
-"Lou Fusz KIA",KNDEL3D35V5022475,2027,Kia,Seltos,S,"At Dealership",K27K058,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d35v5022475/
-"Lou Fusz KIA",KNDNC5KA7V6216867,2027,Kia,"Carnival MPV Hybrid",EX,"At Dealership",K27Q016,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5ka7v6216867/
-"Lou Fusz KIA",3KPFT4DE7TE414399,2026,Kia,K4,LXS,"At Dealership",K26C089,2026-09-14,https://www.kia.fusz.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de7te414399/
-"Lou Fusz KIA",3KPFT4DE9TE415179,2026,Kia,K4,LXS,"At Dealership",K26C092,2026-09-14,https://www.kia.fusz.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de9te415179/
-"Lou Fusz KIA",KNDECCD30V7051158,2027,Kia,Seltos,EX,"At Dealership",K27K060,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-seltos-ex-awd-5dr-sport-utility-kndeccd30v7051158/
-"Lou Fusz KIA",5XYRLDJC2TG493564,2026,Kia,Sorento,S,"At Dealership",K267137,2026-09-08,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-s-awd-4dr-sport-utility-5xyrldjc2tg493564/
-"Lou Fusz KIA",5XYK3CDF9VG480279,2027,Kia,Sportage,EX,"At Dealership",K27F009,2026-09-08,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-awd-5dr-sport-utility-5xyk3cdf9vg480279/
-"Lou Fusz KIA",KNDNB5KA1V6218570,2027,Kia,"Carnival MPV Hybrid",LXS,"At Dealership",K27Q017,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-hybrid-lxs-fwd-minivan-kndnb5ka1v6218570/
-"Lou Fusz KIA",KNDNC5K35V6664302,2027,Kia,"Carnival MPV",EX,"At Dealership",K27M028,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k35v6664302/
-"Lou Fusz KIA",KNDPVDDG0V7441642,2027,Kia,"Sportage Hybrid",EX,"At Dealership",K27Y031,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-ex-awd-5dr-sport-utility-kndpvddg0v7441642/
-"Lou Fusz KIA",KNDNC5K35V6666549,2027,Kia,"Carnival MPV",EX,"At Dealership",K27M029,2026-10-05,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k35v6666549/
-"Lou Fusz KIA",3KPFT4DE2TE415878,2026,Kia,K4,LXS,"At Dealership",K26C093,2026-09-15,https://www.kia.fusz.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de2te415878/
-"Lou Fusz KIA",3KPFW4DE0TE406457,2026,Kia,K4,GT-Line,"At Dealership",K26C095,2026-09-15,https://www.kia.fusz.com/inventory/new-2026-kia-k4-gt-line-fwd-4-door-sedan-3kpfw4de0te406457/
-"Lou Fusz KIA",3KMDBDDC3VE003574,2027,Kia,EV3,Wind,"At Dealership",K27E001,2026-08-31,https://www.kia.fusz.com/inventory/new-2027-kia-ev3-wind-awd-5dr-sport-utility-3kmdbddc3ve003574/
-"Lou Fusz KIA",3KMDBDDC6VE004069,2027,Kia,EV3,Wind,"At Dealership",K27E002,2026-09-08,https://www.kia.fusz.com/inventory/new-2027-kia-ev3-wind-awd-5dr-sport-utility-3kmdbddc6ve004069/
-"Lou Fusz KIA",KNDPUDDG5V7451974,2027,Kia,"Sportage Hybrid",S,"At Dealership",K27Y032,2026-09-30,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-s-awd-5dr-sport-utility-kndpuddg5v7451974/
-"Lou Fusz KIA",KNDNC5KAXV6217415,2027,Kia,"Carnival MPV Hybrid",EX,"At Dealership",K27Q019,2026-10-06,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5kaxv6217415/
-"Lou Fusz KIA",KNDPXDDG0V7452960,2027,Kia,"Sportage Hybrid","SX Prestige","At Dealership",K27Y035,2026-10-01,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-5dr-sport-utility-kndpxddg0v7452960/
-"Lou Fusz KIA",5XYK33DF1VG476758,2027,Kia,Sportage,EX,"At Dealership",K27F010,2026-09-15,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33df1vg476758/
-"Lou Fusz KIA",KNDNE5K34T6647837,2026,Kia,"Carnival MPV","SX Prestige","At Dealership",K26M456,2026-10-01,https://www.kia.fusz.com/inventory/new-2026-kia-carnival-mpv-sx-prestige-fwd-minivan-kndne5k34t6647837/
-"Lou Fusz KIA",5XYPLESA4VG055285,2027,Kia,"Telluride Hybrid","X-LINE SX PRESTIGE","At Dealership",K27T087,2026-09-09,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-5dr-sport-utility-5xyplesa4vg055285/
-"Lou Fusz KIA",5XYRH4JF7TG494561,2026,Kia,Sorento,EX,"At Dealership",K267138,2026-09-09,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-ex-fwd-4dr-sport-utility-5xyrh4jf7tg494561/
-"Lou Fusz KIA",7YAPEDDGXVY006209,2027,Kia,"Sportage Hybrid","SX Prestige","At Dealership",K27Y033,2026-09-10,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-5dr-sport-utility-7yapeddgxvy006209/
-"Lou Fusz KIA",5XYRK4JF8TG489175,2026,Kia,Sorento,SX,"At Dealership",K267139,2026-09-14,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-sx-fwd-4dr-sport-utility-5xyrk4jf8tg489175/
-"Lou Fusz KIA",5XYK33DF4VG479329,2027,Kia,Sportage,EX,"At Dealership",K27F011,2026-09-14,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33df4vg479329/
-"Lou Fusz KIA",5XYK33DF8VG476871,2027,Kia,Sportage,EX,"At Dealership",K27F012,2026-09-15,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33df8vg476871/
-"Lou Fusz KIA",KNDRHDJG8T5562495,2026,Kia,"Sorento Hybrid",EX,"At Dealership",K26H050,2026-10-06,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-hybrid-ex-awd-4dr-sport-utility-kndrhdjg8t5562495/
-"Lou Fusz KIA",KNDPXDDG7V7414237,2027,Kia,"Sportage Hybrid","SX Prestige","At Dealership",KD7Y010,2026-09-11,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-5dr-sport-utility-kndpxddg7v7414237/
-"Lou Fusz KIA",KNDNE5KA0V6220933,2027,Kia,"Carnival MPV Hybrid",SX,"At Dealership",K27Q020,2026-10-06,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5ka0v6220933/
-"Lou Fusz KIA",KNDNE5KA5V6221401,2027,Kia,"Carnival MPV Hybrid","SX Prestige","At Dealership",K27Q023,2026-10-01,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka5v6221401/
-"Lou Fusz KIA",7YAPCDDG6VY008870,2027,Kia,"Sportage Hybrid",X-Line,"At Dealership",K27Y039,2026-09-15,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-x-line-awd-5dr-sport-utility-7yapcddg6vy008870/
-"Lou Fusz KIA",5XYPCES18VG052230,2027,Kia,Telluride,"X-Line EX","At Dealership",K27J090,2026-09-24,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-x-line-ex-awd-5dr-sport-utility-5xypces18vg052230/
-"Lou Fusz KIA",5XYPCESA1VG056605,2027,Kia,"Telluride Hybrid",EX,"At Dealership",K27T092,2026-09-17,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-ex-awd-5dr-sport-utility-5xypcesa1vg056605/
-"Lou Fusz KIA",KNDNB5K37V6658956,2027,Kia,"Carnival MPV",LX,"At Dealership",K27M011,2026-08-17,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-lx-fwd-minivan-kndnb5k37v6658956/
+"Lou Fusz KIA",5XYPLESA2VG064714,2027,Kia,"Telluride Hybrid","X-LINE SX PRESTIGE","At Dealership",K27T105,2026-10-20,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-5dr-sport-utility-5xyplesa2vg064714/
+"Lou Fusz KIA",KNDELCD30V7058675,2027,Kia,Seltos,S,"At Dealership",K27K062,2026-10-28,https://www.kia.fusz.com/inventory/new-2027-kia-seltos-s-awd-5dr-sport-utility-kndelcd30v7058675/
+"Lou Fusz KIA",KNDNE5KA0V6225839,2027,Kia,"Carnival MPV Hybrid","SX Prestige","At Dealership",K27Q027,2026-10-28,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka0v6225839/
+"Lou Fusz KIA",KNDPUDDG2V7463175,2027,Kia,"Sportage Hybrid",S,"At Dealership",K27Y048,2026-10-28,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-s-awd-5dr-sport-utility-kndpuddg2v7463175/
+"Lou Fusz KIA",KNDPUDDG4V7452145,2027,Kia,"Sportage Hybrid",S,"At Dealership",K27Y049,2026-11-02,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-s-awd-4d-sport-utility-kndpuddg4v7452145/
+"Lou Fusz KIA",5XYPCES11VG058791,2027,Kia,Telluride,EX,"At Dealership",K27J100,2026-10-27,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-ex-awd-5dr-sport-utility-5xypces11vg058791/
+"Lou Fusz KIA",5XYPCES15VG058244,2027,Kia,Telluride,EX,"At Dealership",K27J099,2026-10-16,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-ex-awd-5dr-sport-utility-5xypces15vg058244/
+"Lou Fusz KIA",KNDRKDJG4T5567288,2026,Kia,"Sorento Hybrid","X-Line SX Prestige","At Dealership",K26H054,2026-11-02,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-4d-sport-utility-kndrkdjg4t5567288/
+"Lou Fusz KIA",3KPFT4DE4VE438050,2027,Kia,K4,LXS,"At Dealership",K27C013,2026-10-23,https://www.kia.fusz.com/inventory/new-2027-kia-k4-lxs-fwd-4-door-sedan-3kpft4de4ve438050/
+"Lou Fusz KIA",3KPFT4DE7VE438575,2027,Kia,K4,LXS,"At Dealership",K27C011,2026-10-23,https://www.kia.fusz.com/inventory/new-2027-kia-k4-lxs-fwd-4-door-sedan-3kpft4de7ve438575/
+"Lou Fusz KIA",5XYPDESA2VG036294,2027,Kia,"Telluride Hybrid","X-LINE SX","At Dealership",KD7T027,2026-10-14,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-5dr-sport-utility-5xypdesa2vg036294/
+"Lou Fusz KIA",5XYPLESA3VG066570,2027,Kia,"Telluride Hybrid","X-LINE SX PRESTIGE","At Dealership",K27T106,2026-10-27,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-5dr-sport-utility-5xyplesa3vg066570/
+"Lou Fusz KIA",3KPFW4DE3VE418377,2027,Kia,K4,GT-Line,"At Dealership",K27C012,2026-10-19,https://www.kia.fusz.com/inventory/new-2027-kia-k4-gt-line-fwd-4-door-sedan-3kpfw4de3ve418377/
+"Lou Fusz KIA",KNAG44J89V5537522,2027,Kia,K5,GT,"At Dealership",K27L001,2026-11-02,https://www.kia.fusz.com/inventory/new-2027-kia-k5-gt-fwd-4d-sedan-knag44j89v5537522/
+"Lou Fusz KIA",KNAG44J8XV5537688,2027,Kia,K5,GT,"At Dealership",K27L002,2026-11-02,https://www.kia.fusz.com/inventory/new-2027-kia-k5-gt-fwd-4d-sedan-knag44j8xv5537688/
+"Lou Fusz KIA",5XYPCES19VG057632,2027,Kia,Telluride,"X-Line EX","At Dealership",K27J101,2026-10-27,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-x-line-ex-awd-5dr-sport-utility-5xypces19vg057632/
+"Lou Fusz KIA",3KPFW4DE1VE425182,2027,Kia,K4,GT-Line,"At Dealership",K27C014,2026-10-19,https://www.kia.fusz.com/inventory/new-2027-kia-k4-gt-line-fwd-4-door-sedan-3kpfw4de1ve425182/
+"Lou Fusz KIA",7YAPB3DG4VY006709,2027,Kia,"Sportage Hybrid",S,"At Dealership",K27Y050,2026-10-16,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-s-fwd-5dr-sport-utility-7yapb3dg4vy006709/
+"Lou Fusz KIA",KNAG64J7XV5529205,2027,Kia,K5,GT-Line,"At Dealership",K27L003,2026-11-02,https://www.kia.fusz.com/inventory/new-2027-kia-k5-gt-line-fwd-4d-sedan-knag64j7xv5529205/
+"Lou Fusz KIA",KNDCT3JE1V5405701,2027,Kia,Niro,SX,"At Dealership",K27G000,2026-11-02,https://www.kia.fusz.com/inventory/new-2027-kia-niro-sx-fwd-4d-sport-utility-kndct3je1v5405701/
+"Lou Fusz KIA",KNDPVDDG6V7448496,2027,Kia,"Sportage Hybrid",X-Line,"At Dealership",KD7Y021,2026-10-16,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-x-line-awd-5dr-sport-utility-kndpvddg6v7448496/
+"Lou Fusz KIA",7YAPEDDG4VY007677,2027,Kia,"Sportage Hybrid","SX Prestige","At Dealership",KD7Y022,2026-10-17,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-5dr-sport-utility-7yapeddg4vy007677/
+"Lou Fusz KIA",KNDEECD71V7077118,2027,Kia,Seltos,"X-Line SX","In Transit",K27K063,2026-10-19,https://www.kia.fusz.com/inventory/new-2027-kia-seltos-x-line-sx-awd-5dr-sport-utility-kndeecd71v7077118/
+"Lou Fusz KIA",KNDEECD77V7074773,2027,Kia,Seltos,"X-Line SX","In Transit",K27K064,2026-10-19,https://www.kia.fusz.com/inventory/new-2027-kia-seltos-x-line-sx-awd-5dr-sport-utility-kndeecd77v7074773/
+"Lou Fusz KIA",KNDPXDDG6V7468662,2027,Kia,"Sportage Hybrid","SX Prestige","In Transit",K27Y051,2026-10-19,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-5dr-sport-utility-kndpxddg6v7468662/
+"Lou Fusz KIA",KNDNC5KA9V6232973,2027,Kia,"Carnival MPV Hybrid",EX,"In Transit",K27Q028,2026-10-19,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5ka9v6232973/
+"Lou Fusz KIA",3KPFT4DE6VE438812,2027,Kia,K4,LX,"At Dealership",K27C016,2026-10-28,https://www.kia.fusz.com/inventory/new-2027-kia-k4-lx-fwd-4-door-sedan-3kpft4de6ve438812/
+"Lou Fusz KIA",3KPFT4DEXVE436125,2027,Kia,K4,LXS,"At Dealership",K27C015,2026-10-28,https://www.kia.fusz.com/inventory/new-2027-kia-k4-lxs-fwd-4-door-sedan-3kpft4dexve436125/
+"Lou Fusz KIA",3KPFW4DE7VE442004,2027,Kia,K4,GT-Line,"At Dealership",K27C017,2026-10-28,https://www.kia.fusz.com/inventory/new-2027-kia-k4-gt-line-fwd-4-door-sedan-3kpfw4de7ve442004/
+"Lou Fusz KIA",KNAG64J71V5529335,2027,Kia,K5,GT-Line,"In Transit",K27L004,2026-10-19,https://www.kia.fusz.com/inventory/new-2027-kia-k5-gt-line-awd-4-door-sedan-knag64j71v5529335/
+"Lou Fusz KIA",KNAG64J76V5529069,2027,Kia,K5,GT-Line,"In Transit",K27L005,2026-10-21,https://www.kia.fusz.com/inventory/new-2027-kia-k5-gt-line-awd-4-door-sedan-knag64j76v5529069/
+"Lou Fusz KIA",KNAG64J78V5529154,2027,Kia,K5,GT-Line,"In Transit",K27L006,2026-10-21,https://www.kia.fusz.com/inventory/new-2027-kia-k5-gt-line-fwd-4-door-sedan-knag64j78v5529154/
+"Lou Fusz KIA",KNDCP3JEXV5394959,2027,Kia,Niro,S,"In Transit",K27G003,2026-10-21,https://www.kia.fusz.com/inventory/new-2027-kia-niro-s-fwd-mpv-kndcp3jexv5394959/
+"Lou Fusz KIA",KNDCR3JE4V5396233,2027,Kia,Niro,EX,"In Transit",K27G001,2026-10-21,https://www.kia.fusz.com/inventory/new-2027-kia-niro-ex-fwd-mpv-kndcr3je4v5396233/
+"Lou Fusz KIA",KNDCR3JE8V5394792,2027,Kia,Niro,EX,"In Transit",K27G002,2026-10-21,https://www.kia.fusz.com/inventory/new-2027-kia-niro-ex-fwd-mpv-kndcr3je8v5394792/
+"Lou Fusz KIA",KNDEECD76V5043848,2027,Kia,Seltos,"X-Line SX","In Transit",K27K065,2026-10-21,https://www.kia.fusz.com/inventory/new-2027-kia-seltos-x-line-sx-awd-5dr-sport-utility-kndeecd76v5043848/
+"Lou Fusz KIA",KNDNE5KA0V6188629,2027,Kia,"Carnival MPV Hybrid","SX Prestige","At Dealership",KD7Q004,2026-10-21,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka0v6188629/
+"Lou Fusz KIA",3KPFW4DE5VE442678,2027,Kia,K4,GT-Line,"At Dealership",K27C018,2026-10-28,https://www.kia.fusz.com/inventory/new-2027-kia-k4-gt-line-fwd-4-door-sedan-3kpfw4de5ve442678/
+"Lou Fusz KIA",5XYAFFS54VG029646,2027,Kia,EV9,Wind,"At Dealership",K27P000,2026-10-27,https://www.kia.fusz.com/inventory/new-2027-kia-ev9-wind-awd-5dr-sport-utility-5xyaffs54vg029646/
+"Lou Fusz KIA",5XYK6CDF1VG479229,2027,Kia,Sportage,X-Line,"At Dealership",KD7F001,2026-10-21,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-x-line-awd-5dr-sport-utility-5xyk6cdf1vg479229/
+"Lou Fusz KIA",5XYPDESA0VG067284,2027,Kia,"Telluride Hybrid","X-LINE SX","At Dealership",K27T107,2026-10-27,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-5dr-sport-utility-5xypdesa0vg067284/
+"Lou Fusz KIA",7YAPCDDG5VY006690,2027,Kia,"Sportage Hybrid",EX,"At Dealership",K27Y052,2026-10-23,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-ex-awd-5dr-sport-utility-7yapcddg5vy006690/
+"Lou Fusz KIA",KNDPVDDGXV7424475,2027,Kia,"Sportage Hybrid",X-Line,"At Dealership",KD7Y020,2026-10-21,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-x-line-awd-5dr-sport-utility-kndpvddgxv7424475/
+"Lou Fusz KIA",3KPFW4DE3TE414973,2026,Kia,K4,GT-Line,"At Dealership",KD6C020,2026-10-21,https://www.kia.fusz.com/inventory/new-2026-kia-k4-gt-line-fwd-4-door-sedan-3kpfw4de3te414973/
+"Lou Fusz KIA",KNDCR3JE8V5396462,2027,Kia,Niro,EX,"In Transit",K27G004,2026-10-22,https://www.kia.fusz.com/inventory/new-2027-kia-niro-ex-fwd-mpv-kndcr3je8v5396462/
+"Lou Fusz KIA",KNDNC5K30V6663834,2027,Kia,"Carnival MPV",EX,"In Transit",K27M031,2026-10-22,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k30v6663834/
+"Lou Fusz KIA",5XYK33DF9VG493792,2027,Kia,Sportage,EX,"At Dealership",K27F023,2026-10-27,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33df9vg493792/
+"Lou Fusz KIA",5XYK3CDF4VG493828,2027,Kia,Sportage,EX,"At Dealership",K27F022,2026-10-27,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-awd-5dr-sport-utility-5xyk3cdf4vg493828/
+"Lou Fusz KIA",5XYPDES16VG060811,2027,Kia,Telluride,"X-Line SX","At Dealership",K27J102,2026-10-30,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-x-line-sx-awd-5dr-sport-utility-5xypdes16vg060811/
+"Lou Fusz KIA",5XYPLESA3VG069923,2027,Kia,"Telluride Hybrid","X-LINE SX PRESTIGE","At Dealership",K27T108,2026-10-30,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-5dr-sport-utility-5xyplesa3vg069923/
+"Lou Fusz KIA",5XYRKDJF4VG498524,2027,Kia,Sorento,"X-Line SX AWD","At Dealership",K277000,2026-10-30,https://www.kia.fusz.com/inventory/new-2027-kia-sorento-x-line-sx-awd-awd-5dr-sport-utility-5xyrkdjf4vg498524/
 "Lou Fusz KIA",KNDNC5K32V6653757,2027,Kia,"Carnival MPV",EX,"At Dealership",K27M009,2026-08-12,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k32v6653757/
 "Lou Fusz KIA",KNAG64J72T5524206,2026,Kia,K5,"GT-Line FWD","At Dealership",K26L110,2026-08-17,https://www.kia.fusz.com/inventory/new-2026-kia-k5-gt-line-fwd-fwd-4-door-sedan-knag64j72t5524206/
 "Lou Fusz KIA",KNDNC5K37V6656525,2027,Kia,"Carnival MPV",EX,"At Dealership",K27M008,2026-08-12,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k37v6656525/
@@ -149,63 +148,13 @@
 "Lou Fusz KIA",5XYPDESA2VG050969,2027,Kia,"Telluride Hybrid","X-LINE SX","At Dealership",K27T078,2026-08-27,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-5dr-sport-utility-5xypdesa2vg050969/
 "Lou Fusz KIA",5XYK33DF8VG470634,2027,Kia,Sportage,EX,"At Dealership",K27F005,2026-09-02,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33df8vg470634/
 "Lou Fusz KIA",KNDNE5KA0V6188033,2027,Kia,"Carnival MPV Hybrid",SX,"At Dealership",K27Q012,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5ka0v6188033/
-"Lou Fusz KIA",5XYPLESA2VG064714,2027,Kia,"Telluride Hybrid","X-LINE SX PRESTIGE","At Dealership",K27T105,2026-10-20,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-5dr-sport-utility-5xyplesa2vg064714/
-"Lou Fusz KIA",KNDELCD30V7058675,2027,Kia,Seltos,S,"At Dealership",K27K062,2026-10-28,https://www.kia.fusz.com/inventory/new-2027-kia-seltos-s-awd-5dr-sport-utility-kndelcd30v7058675/
-"Lou Fusz KIA",KNDNE5KA0V6225839,2027,Kia,"Carnival MPV Hybrid","SX Prestige","At Dealership",K27Q027,2026-10-28,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka0v6225839/
-"Lou Fusz KIA",KNDPUDDG2V7463175,2027,Kia,"Sportage Hybrid",S,"At Dealership",K27Y048,2026-10-28,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-s-awd-5dr-sport-utility-kndpuddg2v7463175/
-"Lou Fusz KIA",KNDPUDDG4V7452145,2027,Kia,"Sportage Hybrid",S,"In Transit",K27Y049,2026-10-14,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-s-awd-5dr-sport-utility-kndpuddg4v7452145/
-"Lou Fusz KIA",5XYPCES11VG058791,2027,Kia,Telluride,EX,"At Dealership",K27J100,2026-10-27,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-ex-awd-5dr-sport-utility-5xypces11vg058791/
-"Lou Fusz KIA",5XYPCES15VG058244,2027,Kia,Telluride,EX,"At Dealership",K27J099,2026-10-16,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-ex-awd-5dr-sport-utility-5xypces15vg058244/
-"Lou Fusz KIA",KNDRKDJG4T5567288,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","In Transit",K26H054,2026-10-14,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg4t5567288/
-"Lou Fusz KIA",3KPFT4DE4VE438050,2027,Kia,K4,LXS,"At Dealership",K27C013,2026-10-23,https://www.kia.fusz.com/inventory/new-2027-kia-k4-lxs-fwd-4-door-sedan-3kpft4de4ve438050/
-"Lou Fusz KIA",3KPFT4DE7VE438575,2027,Kia,K4,LXS,"At Dealership",K27C011,2026-10-23,https://www.kia.fusz.com/inventory/new-2027-kia-k4-lxs-fwd-4-door-sedan-3kpft4de7ve438575/
-"Lou Fusz KIA",5XYPDESA2VG036294,2027,Kia,"Telluride Hybrid","X-LINE SX","At Dealership",KD7T027,2026-10-14,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-5dr-sport-utility-5xypdesa2vg036294/
-"Lou Fusz KIA",5XYPLESA3VG066570,2027,Kia,"Telluride Hybrid","X-LINE SX PRESTIGE","At Dealership",K27T106,2026-10-27,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-5dr-sport-utility-5xyplesa3vg066570/
-"Lou Fusz KIA",3KPFW4DE3VE418377,2027,Kia,K4,GT-Line,"At Dealership",K27C012,2026-10-19,https://www.kia.fusz.com/inventory/new-2027-kia-k4-gt-line-fwd-4-door-sedan-3kpfw4de3ve418377/
-"Lou Fusz KIA",KNAG44J89V5537522,2027,Kia,K5,GT,"In Transit",K27L001,2026-10-14,https://www.kia.fusz.com/inventory/new-2027-kia-k5-gt-fwd-4-door-sedan-knag44j89v5537522/
-"Lou Fusz KIA",KNAG44J8XV5537688,2027,Kia,K5,GT,"In Transit",K27L002,2026-10-14,https://www.kia.fusz.com/inventory/new-2027-kia-k5-gt-fwd-4-door-sedan-knag44j8xv5537688/
-"Lou Fusz KIA",5XYPCES19VG057632,2027,Kia,Telluride,"X-Line EX","At Dealership",K27J101,2026-10-27,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-x-line-ex-awd-5dr-sport-utility-5xypces19vg057632/
-"Lou Fusz KIA",3KPFW4DE1VE425182,2027,Kia,K4,GT-Line,"At Dealership",K27C014,2026-10-19,https://www.kia.fusz.com/inventory/new-2027-kia-k4-gt-line-fwd-4-door-sedan-3kpfw4de1ve425182/
-"Lou Fusz KIA",7YAPB3DG4VY006709,2027,Kia,"Sportage Hybrid",S,"At Dealership",K27Y050,2026-10-16,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-s-fwd-5dr-sport-utility-7yapb3dg4vy006709/
-"Lou Fusz KIA",KNAG64J7XV5529205,2027,Kia,K5,GT-Line,"In Transit",K27L003,2026-10-16,https://www.kia.fusz.com/inventory/new-2027-kia-k5-gt-line-fwd-4-door-sedan-knag64j7xv5529205/
-"Lou Fusz KIA",KNDCT3JE1V5405701,2027,Kia,Niro,SX,"In Transit",K27G000,2026-10-16,https://www.kia.fusz.com/inventory/new-2027-kia-niro-sx-fwd-mpv-kndct3je1v5405701/
-"Lou Fusz KIA",KNDPVDDG6V7448496,2027,Kia,"Sportage Hybrid",X-Line,"At Dealership",KD7Y021,2026-10-16,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-x-line-awd-5dr-sport-utility-kndpvddg6v7448496/
-"Lou Fusz KIA",7YAPEDDG4VY007677,2027,Kia,"Sportage Hybrid","SX Prestige","At Dealership",KD7Y022,2026-10-17,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-5dr-sport-utility-7yapeddg4vy007677/
-"Lou Fusz KIA",KNDEECD71V7077118,2027,Kia,Seltos,"X-Line SX","In Transit",K27K063,2026-10-19,https://www.kia.fusz.com/inventory/new-2027-kia-seltos-x-line-sx-awd-5dr-sport-utility-kndeecd71v7077118/
-"Lou Fusz KIA",KNDEECD77V7074773,2027,Kia,Seltos,"X-Line SX","In Transit",K27K064,2026-10-19,https://www.kia.fusz.com/inventory/new-2027-kia-seltos-x-line-sx-awd-5dr-sport-utility-kndeecd77v7074773/
-"Lou Fusz KIA",KNDPXDDG6V7468662,2027,Kia,"Sportage Hybrid","SX Prestige","In Transit",K27Y051,2026-10-19,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-5dr-sport-utility-kndpxddg6v7468662/
-"Lou Fusz KIA",KNDNC5KA9V6232973,2027,Kia,"Carnival MPV Hybrid",EX,"In Transit",K27Q028,2026-10-19,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5ka9v6232973/
-"Lou Fusz KIA",3KPFT4DE6VE438812,2027,Kia,K4,LX,"At Dealership",K27C016,2026-10-28,https://www.kia.fusz.com/inventory/new-2027-kia-k4-lx-fwd-4-door-sedan-3kpft4de6ve438812/
-"Lou Fusz KIA",3KPFT4DEXVE436125,2027,Kia,K4,LXS,"At Dealership",K27C015,2026-10-28,https://www.kia.fusz.com/inventory/new-2027-kia-k4-lxs-fwd-4-door-sedan-3kpft4dexve436125/
-"Lou Fusz KIA",3KPFW4DE7VE442004,2027,Kia,K4,GT-Line,"At Dealership",K27C017,2026-10-28,https://www.kia.fusz.com/inventory/new-2027-kia-k4-gt-line-fwd-4-door-sedan-3kpfw4de7ve442004/
-"Lou Fusz KIA",KNAG64J71V5529335,2027,Kia,K5,GT-Line,"In Transit",K27L004,2026-10-19,https://www.kia.fusz.com/inventory/new-2027-kia-k5-gt-line-awd-4-door-sedan-knag64j71v5529335/
-"Lou Fusz KIA",KNAG64J76V5529069,2027,Kia,K5,GT-Line,"In Transit",K27L005,2026-10-21,https://www.kia.fusz.com/inventory/new-2027-kia-k5-gt-line-awd-4-door-sedan-knag64j76v5529069/
-"Lou Fusz KIA",KNAG64J78V5529154,2027,Kia,K5,GT-Line,"In Transit",K27L006,2026-10-21,https://www.kia.fusz.com/inventory/new-2027-kia-k5-gt-line-fwd-4-door-sedan-knag64j78v5529154/
-"Lou Fusz KIA",KNDCP3JEXV5394959,2027,Kia,Niro,S,"In Transit",K27G003,2026-10-21,https://www.kia.fusz.com/inventory/new-2027-kia-niro-s-fwd-mpv-kndcp3jexv5394959/
-"Lou Fusz KIA",KNDCR3JE4V5396233,2027,Kia,Niro,EX,"In Transit",K27G001,2026-10-21,https://www.kia.fusz.com/inventory/new-2027-kia-niro-ex-fwd-mpv-kndcr3je4v5396233/
-"Lou Fusz KIA",KNDCR3JE8V5394792,2027,Kia,Niro,EX,"In Transit",K27G002,2026-10-21,https://www.kia.fusz.com/inventory/new-2027-kia-niro-ex-fwd-mpv-kndcr3je8v5394792/
-"Lou Fusz KIA",KNDEECD76V5043848,2027,Kia,Seltos,"X-Line SX","In Transit",K27K065,2026-10-21,https://www.kia.fusz.com/inventory/new-2027-kia-seltos-x-line-sx-awd-5dr-sport-utility-kndeecd76v5043848/
-"Lou Fusz KIA",KNDNE5KA0V6188629,2027,Kia,"Carnival MPV Hybrid","SX Prestige","At Dealership",KD7Q004,2026-10-21,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka0v6188629/
-"Lou Fusz KIA",3KPFW4DE5VE442678,2027,Kia,K4,GT-Line,"At Dealership",K27C018,2026-10-28,https://www.kia.fusz.com/inventory/new-2027-kia-k4-gt-line-fwd-4-door-sedan-3kpfw4de5ve442678/
-"Lou Fusz KIA",5XYAFFS54VG029646,2027,Kia,EV9,Wind,"At Dealership",K27P000,2026-10-27,https://www.kia.fusz.com/inventory/new-2027-kia-ev9-wind-awd-5dr-sport-utility-5xyaffs54vg029646/
-"Lou Fusz KIA",5XYK6CDF1VG479229,2027,Kia,Sportage,X-Line,"At Dealership",KD7F001,2026-10-21,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-x-line-awd-5dr-sport-utility-5xyk6cdf1vg479229/
-"Lou Fusz KIA",5XYPDESA0VG067284,2027,Kia,"Telluride Hybrid","X-LINE SX","At Dealership",K27T107,2026-10-27,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-5dr-sport-utility-5xypdesa0vg067284/
-"Lou Fusz KIA",7YAPCDDG5VY006690,2027,Kia,"Sportage Hybrid",EX,"At Dealership",K27Y052,2026-10-23,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-ex-awd-5dr-sport-utility-7yapcddg5vy006690/
-"Lou Fusz KIA",KNDPVDDGXV7424475,2027,Kia,"Sportage Hybrid",X-Line,"At Dealership",KD7Y020,2026-10-21,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-x-line-awd-5dr-sport-utility-kndpvddgxv7424475/
-"Lou Fusz KIA",3KPFW4DE3TE414973,2026,Kia,K4,GT-Line,"At Dealership",KD6C020,2026-10-21,https://www.kia.fusz.com/inventory/new-2026-kia-k4-gt-line-fwd-4-door-sedan-3kpfw4de3te414973/
-"Lou Fusz KIA",KNDCR3JE8V5396462,2027,Kia,Niro,EX,"In Transit",K27G004,2026-10-22,https://www.kia.fusz.com/inventory/new-2027-kia-niro-ex-fwd-mpv-kndcr3je8v5396462/
-"Lou Fusz KIA",KNDNC5K30V6663834,2027,Kia,"Carnival MPV",EX,"In Transit",K27M031,2026-10-22,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k30v6663834/
-"Lou Fusz KIA",5XYK33DF9VG493792,2027,Kia,Sportage,EX,"At Dealership",K27F023,2026-10-27,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33df9vg493792/
-"Lou Fusz KIA",5XYK3CDF4VG493828,2027,Kia,Sportage,EX,"At Dealership",K27F022,2026-10-27,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-awd-5dr-sport-utility-5xyk3cdf4vg493828/
-"Lou Fusz KIA",5XYPDES16VG060811,2027,Kia,Telluride,"X-Line SX","At Dealership",K27J102,2026-10-30,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-x-line-sx-awd-5dr-sport-utility-5xypdes16vg060811/
-"Lou Fusz KIA",5XYPLESA3VG069923,2027,Kia,"Telluride Hybrid","X-LINE SX PRESTIGE","At Dealership",K27T108,2026-10-30,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-5dr-sport-utility-5xyplesa3vg069923/
+"Lou Fusz KIA",5XYK33DF1VG474735,2027,Kia,Sportage,EX,"At Dealership",K27F006,2026-09-03,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33df1vg474735/
 "Lou Fusz KIA",5XYK5CDF2TG415359,2026,Kia,Sportage,"SX Prestige","At Dealership",K26F104,2026-02-09,https://www.kia.fusz.com/inventory/new-2026-kia-sportage-sx-prestige-awd-4dr-sport-utility-5xyk5cdf2tg415359/
 "Lou Fusz KIA",KNDRHDJG5T5486458,2026,Kia,"Sorento Hybrid",EX,"At Dealership",K26H021,2026-04-10,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-hybrid-ex-awd-4dr-sport-utility-kndrhdjg5t5486458/
 "Lou Fusz KIA",5XYRLDJC1TG462547,2026,Kia,Sorento,S,"At Dealership",K267072,2026-04-13,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-s-awd-4dr-sport-utility-5xyrldjc1tg462547/
 "Lou Fusz KIA",KNAG64J7XT5502874,2026,Kia,K5,"GT-Line AWD","At Dealership",K26L081,2026-06-04,https://www.kia.fusz.com/inventory/new-2026-kia-k5-gt-line-awd-awd-4-door-sedan-knag64j7xt5502874/
 "Lou Fusz KIA",KNAG64J7XT5494873,2026,Kia,K5,"GT-Line FWD","At Dealership",K26L086,2026-06-15,https://www.kia.fusz.com/inventory/new-2026-kia-k5-gt-line-fwd-fwd-4-door-sedan-knag64j7xt5494873/
 "Lou Fusz KIA",KNDNE5K3XT6648345,2026,Kia,"Carnival MPV","SX Prestige","At Dealership",K26M440,2026-06-11,https://www.kia.fusz.com/inventory/new-2026-kia-carnival-mpv-sx-prestige-fwd-minivan-kndne5k3xt6648345/
-"Lou Fusz KIA",5XYC3DJC8TG016711,2026,Kia,EV6,LIGHT,"At Dealership",K25N012,2026-06-03,https://www.kia.fusz.com/inventory/new-2026-kia-ev6-light-awd-5dr-sport-utility-5xyc3djc8tg016711/
 "Lou Fusz KIA",5XYK6CDF5TG448322,2026,Kia,Sportage,X-Line,"At Dealership",K26F144,2026-05-31,https://www.kia.fusz.com/inventory/new-2026-kia-sportage-x-line-awd-4dr-sport-utility-5xyk6cdf5tg448322/
 "Lou Fusz KIA",5XYRL4JC5TG457920,2026,Kia,Sorento,S,"At Dealership",K267089,2026-06-03,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-s-fwd-4dr-sport-utility-5xyrl4jc5tg457920/
 "Lou Fusz KIA",5XYRLDJC8TG476056,2026,Kia,Sorento,S,"At Dealership",K267087,2026-06-03,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-s-awd-4dr-sport-utility-5xyrldjc8tg476056/
@@ -249,7 +198,57 @@
 "Lou Fusz KIA",KNDNB5K31V6654627,2027,Kia,"Carnival MPV",LXS,"At Dealership",K27M006,2026-08-08,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-lxs-fwd-minivan-kndnb5k31v6654627/
 "Lou Fusz KIA",KNDNC5K34V6655350,2027,Kia,"Carnival MPV",EX,"At Dealership",K27M007,2026-08-17,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k34v6655350/
 "Lou Fusz KIA",KNDELCD38V5009557,2027,Kia,Seltos,S,"At Dealership",K27K036,2026-09-01,https://www.kia.fusz.com/inventory/new-2027-kia-seltos-s-awd-5dr-sport-utility-kndelcd38v5009557/
-"Lou Fusz KIA",5XYRKDJF4VG498524,2027,Kia,Sorento,"X-Line SX AWD","At Dealership",K277000,2026-10-30,https://www.kia.fusz.com/inventory/new-2027-kia-sorento-x-line-sx-awd-awd-5dr-sport-utility-5xyrkdjf4vg498524/
+"Lou Fusz KIA",KNDNB5K37V6658956,2027,Kia,"Carnival MPV",LX,"At Dealership",K27M011,2026-08-17,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-lx-fwd-minivan-kndnb5k37v6658956/
+"Lou Fusz KIA",5XYK33DF8VG470911,2027,Kia,Sportage,EX,"At Dealership",K27F007,2026-09-03,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33df8vg470911/
+"Lou Fusz KIA",5XYK33DF8VG477518,2027,Kia,Sportage,EX,"At Dealership",K27F008,2026-09-03,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33df8vg477518/
+"Lou Fusz KIA",5XYPD5SA7VG051342,2027,Kia,"Telluride Hybrid",SX,"At Dealership",K27T080,2026-09-01,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-sx-fwd-5dr-sport-utility-5xypd5sa7vg051342/
+"Lou Fusz KIA",KNDNC5K34V6662220,2027,Kia,"Carnival MPV",EX,"At Dealership",K27M024,2026-09-24,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k34v6662220/
+"Lou Fusz KIA",KNDNC5K35V6666986,2027,Kia,"Carnival MPV",EX,"At Dealership",K27M027,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k35v6666986/
+"Lou Fusz KIA",KNDNE5KA6V6216157,2027,Kia,"Carnival MPV Hybrid",SX,"At Dealership",K27Q015,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5ka6v6216157/
+"Lou Fusz KIA",KNDEC3D3XV5021600,2027,Kia,Seltos,EX,"At Dealership",K27K055,2026-10-05,https://www.kia.fusz.com/inventory/new-2027-kia-seltos-ex-fwd-5dr-sport-utility-kndec3d3xv5021600/
+"Lou Fusz KIA",KNDRKDJG3T5559375,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",K26H047,2026-09-28,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg3t5559375/
+"Lou Fusz KIA",KNDEL3D37V5022476,2027,Kia,Seltos,S,"At Dealership",K27K054,2026-10-05,https://www.kia.fusz.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d37v5022476/
+"Lou Fusz KIA",KNDNC5K33V6667277,2027,Kia,"Carnival MPV",EX,"At Dealership",K27M025,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k33v6667277/
+"Lou Fusz KIA",KNDNC5K3XV6666563,2027,Kia,"Carnival MPV",EX,"At Dealership",K27M026,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k3xv6666563/
+"Lou Fusz KIA",KNDRHDJGXT5558867,2026,Kia,"Sorento Hybrid",EX,"At Dealership",K26H048,2026-09-28,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-hybrid-ex-awd-4dr-sport-utility-kndrhdjgxt5558867/
+"Lou Fusz KIA",5XYPCESA3VG053348,2027,Kia,"Telluride Hybrid",EX,"At Dealership",K27T084,2026-09-15,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-ex-awd-5dr-sport-utility-5xypcesa3vg053348/
+"Lou Fusz KIA",KNDPUDDG1V7449963,2027,Kia,"Sportage Hybrid",S,"At Dealership",K27Y028,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-s-awd-5dr-sport-utility-kndpuddg1v7449963/
+"Lou Fusz KIA",KNDPYDDH3V7448309,2027,Kia,"Sportage Plug-in Hybrid",X-Line,"At Dealership",K27Y029,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-plug-in-hybrid-x-line-awd-5dr-sport-utility-kndpyddh3v7448309/
+"Lou Fusz KIA",KNDRKDJG0T5553579,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",K26H049,2026-09-24,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg0t5553579/
+"Lou Fusz KIA",KNDEL3D35V5022475,2027,Kia,Seltos,S,"At Dealership",K27K058,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d35v5022475/
+"Lou Fusz KIA",KNDNC5KA7V6216867,2027,Kia,"Carnival MPV Hybrid",EX,"At Dealership",K27Q016,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5ka7v6216867/
+"Lou Fusz KIA",3KPFT4DE7TE414399,2026,Kia,K4,LXS,"At Dealership",K26C089,2026-09-14,https://www.kia.fusz.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de7te414399/
+"Lou Fusz KIA",3KPFT4DE9TE415179,2026,Kia,K4,LXS,"At Dealership",K26C092,2026-09-14,https://www.kia.fusz.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de9te415179/
+"Lou Fusz KIA",KNDECCD30V7051158,2027,Kia,Seltos,EX,"At Dealership",K27K060,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-seltos-ex-awd-5dr-sport-utility-kndeccd30v7051158/
+"Lou Fusz KIA",5XYRLDJC2TG493564,2026,Kia,Sorento,S,"At Dealership",K267137,2026-09-08,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-s-awd-4dr-sport-utility-5xyrldjc2tg493564/
+"Lou Fusz KIA",5XYK3CDF9VG480279,2027,Kia,Sportage,EX,"At Dealership",K27F009,2026-09-08,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-awd-5dr-sport-utility-5xyk3cdf9vg480279/
+"Lou Fusz KIA",KNDNB5KA1V6218570,2027,Kia,"Carnival MPV Hybrid",LXS,"At Dealership",K27Q017,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-hybrid-lxs-fwd-minivan-kndnb5ka1v6218570/
+"Lou Fusz KIA",KNDNC5K35V6664302,2027,Kia,"Carnival MPV",EX,"At Dealership",K27M028,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k35v6664302/
+"Lou Fusz KIA",KNDPVDDG0V7441642,2027,Kia,"Sportage Hybrid",EX,"At Dealership",K27Y031,2026-09-28,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-ex-awd-5dr-sport-utility-kndpvddg0v7441642/
+"Lou Fusz KIA",KNDNC5K35V6666549,2027,Kia,"Carnival MPV",EX,"At Dealership",K27M029,2026-10-05,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k35v6666549/
+"Lou Fusz KIA",3KPFT4DE2TE415878,2026,Kia,K4,LXS,"At Dealership",K26C093,2026-09-15,https://www.kia.fusz.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de2te415878/
+"Lou Fusz KIA",3KPFW4DE0TE406457,2026,Kia,K4,GT-Line,"At Dealership",K26C095,2026-09-15,https://www.kia.fusz.com/inventory/new-2026-kia-k4-gt-line-fwd-4-door-sedan-3kpfw4de0te406457/
+"Lou Fusz KIA",3KMDBDDC3VE003574,2027,Kia,EV3,Wind,"At Dealership",K27E001,2026-08-31,https://www.kia.fusz.com/inventory/new-2027-kia-ev3-wind-awd-5dr-sport-utility-3kmdbddc3ve003574/
+"Lou Fusz KIA",3KMDBDDC6VE004069,2027,Kia,EV3,Wind,"At Dealership",K27E002,2026-09-08,https://www.kia.fusz.com/inventory/new-2027-kia-ev3-wind-awd-5dr-sport-utility-3kmdbddc6ve004069/
+"Lou Fusz KIA",KNDPUDDG5V7451974,2027,Kia,"Sportage Hybrid",S,"At Dealership",K27Y032,2026-09-30,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-s-awd-5dr-sport-utility-kndpuddg5v7451974/
+"Lou Fusz KIA",KNDNC5KAXV6217415,2027,Kia,"Carnival MPV Hybrid",EX,"At Dealership",K27Q019,2026-10-06,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5kaxv6217415/
+"Lou Fusz KIA",KNDPXDDG0V7452960,2027,Kia,"Sportage Hybrid","SX Prestige","At Dealership",K27Y035,2026-10-01,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-5dr-sport-utility-kndpxddg0v7452960/
+"Lou Fusz KIA",5XYK33DF1VG476758,2027,Kia,Sportage,EX,"At Dealership",K27F010,2026-09-15,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33df1vg476758/
+"Lou Fusz KIA",KNDNE5K34T6647837,2026,Kia,"Carnival MPV","SX Prestige","At Dealership",K26M456,2026-10-01,https://www.kia.fusz.com/inventory/new-2026-kia-carnival-mpv-sx-prestige-fwd-minivan-kndne5k34t6647837/
+"Lou Fusz KIA",5XYPLESA4VG055285,2027,Kia,"Telluride Hybrid","X-LINE SX PRESTIGE","At Dealership",K27T087,2026-09-09,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-5dr-sport-utility-5xyplesa4vg055285/
+"Lou Fusz KIA",5XYRH4JF7TG494561,2026,Kia,Sorento,EX,"At Dealership",K267138,2026-09-09,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-ex-fwd-4dr-sport-utility-5xyrh4jf7tg494561/
+"Lou Fusz KIA",7YAPEDDGXVY006209,2027,Kia,"Sportage Hybrid","SX Prestige","At Dealership",K27Y033,2026-09-10,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-5dr-sport-utility-7yapeddgxvy006209/
+"Lou Fusz KIA",5XYRK4JF8TG489175,2026,Kia,Sorento,SX,"At Dealership",K267139,2026-09-14,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-sx-fwd-4dr-sport-utility-5xyrk4jf8tg489175/
+"Lou Fusz KIA",5XYK33DF4VG479329,2027,Kia,Sportage,EX,"At Dealership",K27F011,2026-09-14,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33df4vg479329/
+"Lou Fusz KIA",5XYK33DF8VG476871,2027,Kia,Sportage,EX,"At Dealership",K27F012,2026-09-15,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33df8vg476871/
+"Lou Fusz KIA",KNDRHDJG8T5562495,2026,Kia,"Sorento Hybrid",EX,"At Dealership",K26H050,2026-10-06,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-hybrid-ex-awd-4dr-sport-utility-kndrhdjg8t5562495/
+"Lou Fusz KIA",KNDPXDDG7V7414237,2027,Kia,"Sportage Hybrid","SX Prestige","At Dealership",KD7Y010,2026-09-11,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-5dr-sport-utility-kndpxddg7v7414237/
+"Lou Fusz KIA",KNDNE5KA0V6220933,2027,Kia,"Carnival MPV Hybrid",SX,"At Dealership",K27Q020,2026-10-06,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5ka0v6220933/
+"Lou Fusz KIA",KNDNE5KA5V6221401,2027,Kia,"Carnival MPV Hybrid","SX Prestige","At Dealership",K27Q023,2026-10-01,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka5v6221401/
+"Lou Fusz KIA",7YAPCDDG6VY008870,2027,Kia,"Sportage Hybrid",X-Line,"At Dealership",K27Y039,2026-09-15,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-x-line-awd-5dr-sport-utility-7yapcddg6vy008870/
+"Lou Fusz KIA",5XYPCES18VG052230,2027,Kia,Telluride,"X-Line EX","At Dealership",K27J090,2026-09-24,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-x-line-ex-awd-5dr-sport-utility-5xypces18vg052230/
+"Lou Fusz KIA",5XYPCESA1VG056605,2027,Kia,"Telluride Hybrid",EX,"At Dealership",K27T092,2026-09-17,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-ex-awd-5dr-sport-utility-5xypcesa1vg056605/
+"Lou Fusz KIA",5XYPDESA9VG057451,2027,Kia,"Telluride Hybrid","X-LINE SX","At Dealership",K27T091,2026-09-22,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-5dr-sport-utility-5xypdesa9vg057451/
 "Lou Fusz KIA",KNAG64J70V5544005,2027,Kia,K5,GT-Line,"In Transit",K27L007,2026-10-22,https://www.kia.fusz.com/inventory/new-2027-kia-k5-gt-line-awd-4-door-sedan-knag64j70v5544005/
 "Lou Fusz KIA",5XYRKDJF6VG504436,2027,Kia,Sorento,"X-Line SX AWD","At Dealership",K277001,2026-10-30,https://www.kia.fusz.com/inventory/new-2027-kia-sorento-x-line-sx-awd-awd-5dr-sport-utility-5xyrkdjf6vg504436/
 "Lou Fusz KIA",KNAG24J79V5550056,2027,Kia,K5,LXS,"In Transit",K27L008,2026-10-22,https://www.kia.fusz.com/inventory/new-2027-kia-k5-lxs-fwd-4-door-sedan-knag24j79v5550056/
@@ -258,13 +257,13 @@
 "Lou Fusz KIA",5XYPD5SA6VG066978,2027,Kia,"Telluride Hybrid",SX,"At Dealership",K27T110,2026-10-30,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-sx-fwd-5dr-sport-utility-5xypd5sa6vg066978/
 "Lou Fusz KIA",5XYPLESA1VG070150,2027,Kia,"Telluride Hybrid","X-Line SX Prestige","At Dealership",K27T109,2026-10-23,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-4d-sport-utility-5xyplesa1vg070150/
 "Lou Fusz KIA",KNDPU3DG7V7465398,2027,Kia,"Sportage Hybrid",S,"In Transit",K27Y055,2026-10-23,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-s-fwd-5dr-sport-utility-kndpu3dg7v7465398/
-"Lou Fusz KIA",5XYK6CDF5VG494736,2027,Kia,Sportage,X-Line,"At Dealership",K27F025,2026-10-26,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-x-line-awd-4d-sport-utility-5xyk6cdf5vg494736/
+"Lou Fusz KIA",5XYK6CDF5VG494736,2027,Kia,Sportage,X-Line,"At Dealership",K27F025,2026-11-02,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-x-line-awd-5dr-sport-utility-5xyk6cdf5vg494736/
 "Lou Fusz KIA",5XYPC5SA4VG068229,2027,Kia,"Telluride Hybrid",EX,"At Dealership",K27T111,2026-10-26,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-ex-fwd-4d-sport-utility-5xypc5sa4vg068229/
 "Lou Fusz KIA",5XYPCES1XVG061415,2027,Kia,Telluride,"X-Line EX","At Dealership",K27J104,2026-10-26,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-x-line-ex-awd-4d-sport-utility-5xypces1xvg061415/
 "Lou Fusz KIA",5XYPLES18VG061591,2027,Kia,Telluride,"X-Line SX Prestige","At Dealership",K27J103,2026-10-30,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-x-line-sx-prestige-awd-5dr-sport-utility-5xyples18vg061591/
 "Lou Fusz KIA",5XYPLESA4VG071003,2027,Kia,"Telluride Hybrid","X-Line SX Prestige","At Dealership",K27T112,2026-10-26,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-4d-sport-utility-5xyplesa4vg071003/
 "Lou Fusz KIA",KNDEECD71V5040999,2027,Kia,Seltos,"X-Line SX","In Transit",K27K066,2026-10-26,https://www.kia.fusz.com/inventory/new-2027-kia-seltos-x-line-sx-awd-5dr-sport-utility-kndeecd71v5040999/
-"Lou Fusz KIA",5XYK33DF1VG494774,2027,Kia,Sportage,EX,"At Dealership",K27F026,2026-10-26,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-fwd-4d-sport-utility-5xyk33df1vg494774/
+"Lou Fusz KIA",5XYK33DF1VG494774,2027,Kia,Sportage,EX,"At Dealership",K27F026,2026-11-02,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33df1vg494774/
 "Lou Fusz KIA",5XYK33DFXVG494935,2027,Kia,Sportage,EX,"At Dealership",K27F024,2026-10-30,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33dfxvg494935/
 "Lou Fusz KIA",KNDPU3DGXV7465508,2027,Kia,"Sportage Hybrid",S,"In Transit",K27Y057,2026-10-26,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-s-fwd-5dr-sport-utility-kndpu3dgxv7465508/
 "Lou Fusz KIA",KNDPV3DF7V7552898,2027,Kia,Sportage,EX,"In Transit",K27F027,2026-10-26,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-kndpv3df7v7552898/
@@ -291,3 +290,7 @@
 "Lou Fusz KIA",5XYRG4JC0TG489937,2026,Kia,Sorento,LX,"At Dealership",KD267013,2026-10-29,https://www.kia.fusz.com/inventory/new-2026-kia-sorento-lx-fwd-4dr-sport-utility-5xyrg4jc0tg489937/
 "Lou Fusz KIA",5XYPB5S18VG061173,2027,Kia,Telluride,LX,"At Dealership",K27J105,2026-10-30,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-lx-fwd-4d-sport-utility-5xypb5s18vg061173/
 "Lou Fusz KIA",5XYPEES16VG062698,2027,Kia,Telluride,S,"At Dealership",K27J106,2026-10-30,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-s-awd-4d-sport-utility-5xypees16vg062698/
+"Lou Fusz KIA",KNDNE5KA2V6228046,2027,Kia,"Carnival MPV Hybrid","SX Prestige","In Transit",K27Q030,2026-11-02,https://www.kia.fusz.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka2v6228046/
+"Lou Fusz KIA",KNDPXDDG4V7455702,2027,Kia,"Sportage Hybrid",SX-Prestige,"At Dealership",K27Y063,2026-11-02,https://www.kia.fusz.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-4d-sport-utility-kndpxddg4v7455702/
+"Lou Fusz KIA",5XYPDES17VG038736,2027,Kia,Telluride,"X-Line SX","At Dealership",KD7J038,2026-11-02,https://www.kia.fusz.com/inventory/new-2027-kia-telluride-x-line-sx-awd-4d-sport-utility-5xypdes17vg038736/
+"Lou Fusz KIA",KNDEECD71V7024225,2027,Kia,Seltos,"X-Line SX","At Dealership",KD7K006,2026-11-02,https://www.kia.fusz.com/inventory/new-2027-kia-seltos-x-line-sx-awd-4d-sport-utility-kndeecd71v7024225/
