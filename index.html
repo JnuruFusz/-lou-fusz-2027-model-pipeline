@@ -206,13 +206,13 @@
               <span class="automation-icon">DOC</span>
               <div>
                 <h3>SEO Doc Folder</h3>
-                <p>Connect one shared folder so completed copy can be matched to each model page handoff.</p>
+                <p>Shared folder for completed SEO copy, matched to each model page handoff.</p>
               </div>
             </div>
             <div class="resource-rule-list">
               <div>
                 <span>Folder status</span>
-                <strong>Waiting on shared Google Drive folder</strong>
+                <strong id="seoDriveFolderStatus">2026-2027 SEO</strong>
               </div>
               <div>
                 <span>Naming rule</span>
@@ -224,9 +224,9 @@
               </div>
             </div>
             <div class="resource-actions">
-              <button class="button button-primary-action" type="button" data-settings-action="Request Drive folder">Request access</button>
+              <a class="button button-primary-action" id="seoDriveFolderLink" href="https://drive.google.com/drive/folders/1Fl597hOQ3dSvf6Bsr8GMl8PIHY0J9WL_" target="_blank" rel="noreferrer">Open folder</a>
               <a class="button button-secondary-action" href="https://docs.google.com/document/d/1bKVl7pnVmd3MBl3Q-AiKqUZ0xphg1ZWsaSpb15syhps/edit?tab=t.0" target="_blank" rel="noreferrer">Open example doc</a>
-              <span class="resource-status status-gray">Not connected</span>
+              <span id="seoDriveFolderBadge" class="resource-status status-green">Connected</span>
             </div>
           </article>
 
@@ -370,10 +370,10 @@
               <div class="integration-row">
                 <div class="integration-identity">
                   <span class="integration-icon">GD</span>
-                  <div><strong>SEO Google Drive folder</strong><span>Used to locate completed SEO documents and confirm handoff status.</span></div>
+                  <div><strong>SEO Google Drive folder</strong><span>2026-2027 SEO. Used to locate completed SEO documents and confirm handoff status.</span></div>
                 </div>
-                <span class="settings-status integration-status status-gray">Not connected</span>
-                <button class="button button-primary-action integration-action" type="button" data-settings-action="Connect Drive" aria-label="Connect SEO Google Drive folder">Connect Drive</button>
+                <span id="driveIntegrationStatus" class="settings-status integration-status status-green">Connected</span>
+                <a class="button button-secondary-action integration-action" id="openDriveFolderLink" href="https://drive.google.com/drive/folders/1Fl597hOQ3dSvf6Bsr8GMl8PIHY0J9WL_" target="_blank" rel="noreferrer" aria-label="Open SEO Google Drive folder">Open folder</a>
             </div>
               <div class="integration-row">
                 <div class="integration-identity">

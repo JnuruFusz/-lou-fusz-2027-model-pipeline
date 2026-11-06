@@ -47,7 +47,7 @@ Plus two dynamic scripts loaded by `boot()`:
 | File | Purpose |
 |------|---------|
 | `css/tokens.css` | All CSS variables. Light = `body[data-theme="light"]`, Dark = `body[data-theme="gray"]` |
-| `js/data.js` | `TEAM_ROSTER`, status/aeo/signal labels, `dealerAccents`, `brandAccentOverrides`, `transitions`, `embeddedTracker`, `embeddedSources` |
+| `js/data.js` | `TEAM_ROSTER`, status/aeo/signal labels, `dealerAccents`, `brandAccentOverrides`, `transitions`, `SEO_DRIVE_FOLDER`, `SEO_DOC_LINKS`, `embeddedTracker`, `embeddedSources` |
 | `js/state.js` | Global `state` object + `els` DOM cache. Theme defaults to `"system"`. |
 | `js/app.js` | `boot()`, inventory CSV feed parsing, `dealerNameAliases`, `completedModelOverrideKeys`, `populateOwnerFilter()` |
 | `js/events.js` | All event bindings. Onboarding via `configureInviteOnboarding()`. Pipeline group toggle + show-all toggle handlers. |
@@ -234,10 +234,10 @@ Reset everything: `?demo=reset` in URL.
 - ✅ Invite emails to Chris + Scott scheduled (Monday July 6, 7:30 AM CT)
 - ✅ 2027 tracker refreshed from the Sep 8 2026 inventory feed (48 new retail model pages; commercial chassis/vans stay ignored)
 - ✅ Evansville combo CSV routes Kia/Mazda to the correct rooftop; demo status fakes for Seltos / CX-50 / TRX removed
+- ✅ SEO Google Drive folder connected: `2026-2027 SEO` (`SEO_DRIVE_FOLDER` in `js/data.js`, folder id `1Fl597hOQ3dSvf6Bsr8GMl8PIHY0J9WL_`)
 
 ## What's pending
 
-- ⏳ Google Drive SEO folder connection (waiting on shared folder)
 - ⏳ Role editing for team members (Manage button shows "coming soon")
 - ⏳ Onboarding flow / first-run experience for new team members
 - ⏳ Brand color system documentation
