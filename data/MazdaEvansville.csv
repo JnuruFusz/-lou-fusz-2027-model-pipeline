@@ -1,7 +1,6 @@
 "Dealership Name",VIN,Year,Make,Model,Trim,"Vehicle Status","Stock Number","Date In stock","VDP URLs"
 "Mazda of Evansville",7MMVAADW2TN198899,2026,Mazda,"CX-50 Hybrid",Premium,"At Dealership",WM260600,2026-11-02,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-50-hybrid-premium-awd-suv-7mmvaadw2tn198899/
 "Mazda of Evansville",JM3KKCHD4T1400984,2026,Mazda,CX-90,"3.3 Turbo Premium","At Dealership",WM260587,2026-10-28,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-90-3-3-turbo-premium-awd-suv-jm3kkchd4t1400984/
-"Mazda of Evansville",JM3KKBHD7T1411018,2026,Mazda,CX-90,"3.3 Turbo Preferred","At Dealership",WM260477,2026-09-14,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-90-3-3-turbo-preferred-awd-suv-jm3kkbhd7t1411018/
 "Mazda of Evansville",3MVDMBCL2TM221218,2026,Mazda,CX-30,"2.5 S Preferred","At Dealership",WM260422L,2026-08-03,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-30-2-5-s-preferred-awd-suv-3mvdmbcl2tm221218/
 "Mazda of Evansville",7MMVAABW4TN183906,2026,Mazda,"CX-50 Hybrid",Preferred,"At Dealership",WM260431,2026-07-30,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-50-hybrid-preferred-awd-suv-7mmvaabw4tn183906/
 "Mazda of Evansville",JM3KMCHA5T0198520,2026,Mazda,CX-5,"2.5 S Preferred","At Dealership",WM260474,2026-08-31,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-5-2-5-s-preferred-awd-suv-jm3kmcha5t0198520/
@@ -88,6 +87,7 @@
 "Mazda of Evansville",JM3KKBHDXT1415287,2026,Mazda,CX-90,"3.3 Turbo Preferred","At Dealership",WM260525,2026-10-01,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-90-3-3-turbo-preferred-awd-suv-jm3kkbhdxt1415287/
 "Mazda of Evansville",7MMVAABW1TN196290,2026,Mazda,"CX-50 Hybrid",Preferred,"At Dealership",WM260564,2026-10-20,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-50-hybrid-preferred-awd-suv-7mmvaabw1tn196290/
 "Mazda of Evansville",3MVDMBDLXTM245796,2026,Mazda,CX-30,"2.5 S Premium","In Transit",WM260602,2026-11-05,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-30-2-5-s-premium-awd-suv-3mvdmbdlxtm245796/
+"Mazda of Evansville",3MVDMBCL3TM246581,2026,Mazda,CX-30,"2.5 S Preferred","In Transit",WM260603,2026-11-05,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-30-2-5-s-preferred-awd-suv-3mvdmbcl3tm246581/
 "Mazda of Evansville",7MMVABCY2TN637091,2026,Mazda,CX-50,"2.5 Turbo","At Dealership",WM260569,2026-10-22,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-50-2-5-turbo-awd-suv-7mmvabcy2tn637091/
 "Mazda of Evansville",7MMVABDL2TN637174,2026,Mazda,CX-50,"2.5 S Premium","At Dealership",WM260567,2026-10-22,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-50-2-5-s-premium-awd-suv-7mmvabdl2tn637174/
 "Mazda of Evansville",7MMVABDL2TN637322,2026,Mazda,CX-50,"2.5 S Premium","At Dealership",WM260590,2026-10-29,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-50-2-5-s-premium-awd-suv-7mmvabdl2tn637322/
@@ -138,7 +138,6 @@
 "Mazda of Evansville",7MMVABDL8TN496949,2026,Mazda,CX-50,"2.5 S Premium","At Dealership",WM260294,2026-04-28,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-50-2-5-s-premium-awd-suv-7mmvabdl8tn496949/
 "Mazda of Evansville",JM3KMCHA5T0158325,2026,Mazda,CX-5,"2.5 S Preferred","At Dealership",WM260365,2026-06-29,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-5-2-5-s-preferred-awd-suv-jm3kmcha5t0158325/
 "Mazda of Evansville",JM3KMCHA8T0157332,2026,Mazda,CX-5,"2.5 S Preferred","At Dealership",WM260356,2026-06-16,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-5-2-5-s-preferred-awd-suv-jm3kmcha8t0157332/
-"Mazda of Evansville",7MMVABBLXTN498754,2026,Mazda,CX-50,"2.5 S Preferred","At Dealership",WM260316,2026-05-05,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-50-2-5-s-preferred-awd-suv-7mmvabblxtn498754/
 "Mazda of Evansville",7MMVABBL7TN602648,2026,Mazda,CX-50,"2.5 S Preferred","At Dealership",WM260340L,2026-05-26,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-50-2-5-s-preferred-awd-suv-7mmvabbl7tn602648/
 "Mazda of Evansville",7MMVAABW7TN177436,2026,Mazda,"CX-50 Hybrid",Preferred,"At Dealership",WM260360,2026-07-16,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-50-hybrid-preferred-awd-suv-7mmvaabw7tn177436/
 "Mazda of Evansville",JM3KMCHA6T0171505,2026,Mazda,CX-5,"2.5 S Preferred","At Dealership",WM260390,2026-08-03,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-5-2-5-s-preferred-awd-suv-jm3kmcha6t0171505/
@@ -151,3 +150,4 @@
 "Mazda of Evansville",7MMVABEY5TN614126,2026,Mazda,CX-50,"2.5 Turbo Premium Plus","At Dealership",WM260400,2026-07-13,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-50-2-5-turbo-premium-plus-awd-suv-7mmvabey5tn614126/
 "Mazda of Evansville",JM3KKEHD1T1410464,2026,Mazda,CX-90,"3.3 Turbo Premium Plus","At Dealership",WM260457,2026-08-13,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-90-3-3-turbo-premium-plus-awd-suv-jm3kkehd1t1410464/
 "Mazda of Evansville",JM3KMBHA7T0190882,2026,Mazda,CX-5,"2.5 S Select","At Dealership",WM260458,2026-08-19,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-5-2-5-s-select-awd-suv-jm3kmbha7t0190882/
+"Mazda of Evansville",JM3KKBHD7T1411018,2026,Mazda,CX-90,"3.3 Turbo Preferred","At Dealership",WM260477,2026-09-14,https://www.loufuszmazdaevansville.com/inventory/new-2026-mazda-cx-90-3-3-turbo-preferred-awd-suv-jm3kkbhd7t1411018/
