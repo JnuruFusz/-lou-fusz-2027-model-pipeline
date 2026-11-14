@@ -455,15 +455,47 @@
     }
   }
 
+  function driveFolder() {
+    return (typeof SEO_DRIVE_FOLDER === "object" && SEO_DRIVE_FOLDER && SEO_DRIVE_FOLDER.url)
+      ? SEO_DRIVE_FOLDER
+      : null;
+  }
+
   function driveParts() {
     const button = document.querySelector('[data-settings-action="Connect Drive"]');
-    const row = button?.closest(".integration-row");
-    const status = row?.querySelector(".integration-status");
+    const status = document.querySelector("#driveIntegrationStatus")
+      || button?.closest(".integration-row")?.querySelector(".integration-status");
     return { button, status };
   }
 
   function renderDriveConnection() {
+    const folder = driveFolder();
     const { status } = driveParts();
+    const docsStatus = document.querySelector("#seoDriveFolderStatus");
+    const docsBadge = document.querySelector("#seoDriveFolderBadge");
+    const folderLinks = [
+      document.querySelector("#seoDriveFolderLink"),
+      document.querySelector("#openDriveFolderLink"),
+    ].filter(Boolean);
+
+    if (folder) {
+      state.driveConnection = "connected";
+      localStorage.setItem(DRIVE_KEY, "connected");
+      if (status) {
+        status.textContent = "Connected";
+        status.className = "settings-status integration-status status-green";
+      }
+      if (docsStatus) docsStatus.textContent = folder.title || "Connected";
+      if (docsBadge) {
+        docsBadge.textContent = "Connected";
+        docsBadge.className = "resource-status status-green";
+      }
+      folderLinks.forEach((link) => {
+        link.href = folder.url;
+      });
+      return;
+    }
+
     if (!status) return;
     const pending = state.driveConnection === "pending" || localStorage.getItem(DRIVE_KEY) === "pending";
     state.driveConnection = pending ? "pending" : "not_connected";
@@ -472,6 +504,11 @@
   }
 
   function handleDriveConnection(button) {
+    const folder = driveFolder();
+    if (folder) {
+      window.open(folder.url, "_blank", "noopener");
+      return;
+    }
     const originalText = button.textContent;
     button.disabled = true;
     button.classList.add("is-loading");
