@@ -1,156 +1,4 @@
 "Dealership Name",VIN,Year,Make,Model,Trim,"Vehicle Status","Stock Number","Date In stock","VDP URLs"
-"KIA Ohio",5XYK3CDF8VG483335,2027,Kia,Sportage,EX,"At Dealership",L270325,2026-09-23,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-awd-5dr-sport-utility-5xyk3cdf8vg483335/
-"KIA Ohio",5XYK6CDF7VG473502,2027,Kia,Sportage,X-Line,"At Dealership",L270317,2026-09-23,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-x-line-awd-5dr-sport-utility-5xyk6cdf7vg473502/
-"KIA Ohio",5XYPDES17VG052281,2027,Kia,Telluride,"X-Line SX","At Dealership",L270321,2026-09-29,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-x-line-sx-awd-5dr-sport-utility-5xypdes17vg052281/
-"KIA Ohio",5XYPLES12VG052630,2027,Kia,Telluride,"SX Prestige","At Dealership",L270313,2026-09-28,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-sx-prestige-awd-5dr-sport-utility-5xyples12vg052630/
-"KIA Ohio",3KPFT4DE5TE409198,2026,Kia,K4,LX,"At Dealership",L260895,2026-09-23,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lx-fwd-4-door-sedan-3kpft4de5te409198/
-"KIA Ohio",KNDNC5KA6V6223521,2027,Kia,"Carnival MPV Hybrid",EX,"At Dealership",L270322,2026-10-16,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5ka6v6223521/
-"KIA Ohio",KNDPU3DG5V7445313,2027,Kia,"Sportage Hybrid",LX,"At Dealership",L270315,2026-10-08,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-lx-fwd-5dr-sport-utility-kndpu3dg5v7445313/
-"KIA Ohio",KNDPVDDG6V7452595,2027,Kia,"Sportage Hybrid",X-Line,"At Dealership",L270328,2026-10-01,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-x-line-awd-5dr-sport-utility-kndpvddg6v7452595/
-"KIA Ohio",KNDNB5K39V6671580,2027,Kia,"Carnival MPV",LX,"At Dealership",L270329,2026-10-08,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-lx-fwd-minivan-kndnb5k39v6671580/
-"KIA Ohio",KNDNB5KA8V6211518,2027,Kia,"Carnival MPV Hybrid",LXS,"At Dealership",L270324,2026-10-08,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-lxs-fwd-minivan-kndnb5ka8v6211518/
-"KIA Ohio",KNDCR3JEXV5397886,2027,Kia,Niro,EX,"At Dealership",L270327,2026-10-01,https://www.loufuszkia.com/inventory/new-2027-kia-niro-ex-fwd-mpv-kndcr3jexv5397886/
-"KIA Ohio",KNDNC5K32V6673085,2027,Kia,"Carnival MPV",EX,"At Dealership",L270330,2026-10-08,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k32v6673085/
-"KIA Ohio",5XYPDESA8VG058445,2027,Kia,"Telluride Hybrid","X-LINE SX","At Dealership",L270326,2026-09-29,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-5dr-sport-utility-5xypdesa8vg058445/
-"KIA Ohio",5XYPCESA5VG055411,2027,Kia,"Telluride Hybrid",EX,"At Dealership",L270335,2026-09-29,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-ex-awd-5dr-sport-utility-5xypcesa5vg055411/
-"KIA Ohio",5XYK3CDF1VG475349,2027,Kia,Sportage,EX,"At Dealership",L270342,2026-09-22,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-awd-5dr-sport-utility-5xyk3cdf1vg475349/
-"KIA Ohio",5XYK3CDF6VG475282,2027,Kia,Sportage,EX,"At Dealership",L270339,2026-09-22,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-awd-5dr-sport-utility-5xyk3cdf6vg475282/
-"KIA Ohio",5XYPCESA3VG049025,2027,Kia,"Telluride Hybrid",EX,"At Dealership",L270338,2026-09-22,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-ex-awd-5dr-sport-utility-5xypcesa3vg049025/
-"KIA Ohio",5XYPDESA7VG059697,2027,Kia,"Telluride Hybrid","X-LINE SX","At Dealership",L270340,2026-09-29,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-5dr-sport-utility-5xypdesa7vg059697/
-"KIA Ohio",5XYK3CDF8VG479656,2027,Kia,Sportage,EX,"At Dealership",L270343,2026-09-28,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-awd-5dr-sport-utility-5xyk3cdf8vg479656/
-"KIA Ohio",5XYPDESA8VG056758,2027,Kia,"Telluride Hybrid","X-LINE SX","At Dealership",L270344,2026-09-30,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-5dr-sport-utility-5xypdesa8vg056758/
-"KIA Ohio",KNAG44J81V5537448,2027,Kia,K5,GT,"At Dealership",L270346,2026-10-08,https://www.loufuszkia.com/inventory/new-2027-kia-k5-gt-fwd-4-door-sedan-knag44j81v5537448/
-"KIA Ohio",5XYPDESA7VG061496,2027,Kia,"Telluride Hybrid","X-LINE SX","At Dealership",L270351,2026-09-28,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-5dr-sport-utility-5xypdesa7vg061496/
-"KIA Ohio",KNDEECD70V7058592,2027,Kia,Seltos,"X-Line SX","At Dealership",L270352,2026-10-08,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-x-line-sx-awd-5dr-sport-utility-kndeecd70v7058592/
-"KIA Ohio",KNDELCD33V5036388,2027,Kia,Seltos,S,"At Dealership",L270350,2026-10-08,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-awd-5dr-sport-utility-kndelcd33v5036388/
-"KIA Ohio",5XYADFS55TG029500,2026,Kia,EV9,"Land AWD","At Dealership",L260900,2026-10-06,https://www.loufuszkia.com/inventory/new-2026-kia-ev9-land-awd-awd-5dr-sport-utility-5xyadfs55tg029500/
-"KIA Ohio",5XYC3DJC9TG019570,2026,Kia,EV6,LIGHT,"At Dealership",L270347,2026-10-06,https://www.loufuszkia.com/inventory/new-2026-kia-ev6-light-awd-5dr-sport-utility-5xyc3djc9tg019570/
-"KIA Ohio",KNDRKDJG2T5566348,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",L260899,2026-10-16,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg2t5566348/
-"KIA Ohio",KNDRKDJG4T5566965,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",L260904,2026-10-22,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg4t5566965/
-"KIA Ohio",KNDNC5KA2V6214315,2027,Kia,"Carnival MPV Hybrid",EX,"At Dealership",L270356,2026-10-21,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5ka2v6214315/
-"KIA Ohio",KNDNE5KA4V6225357,2027,Kia,"Carnival MPV Hybrid","SX Prestige","At Dealership",L270362,2026-10-21,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka4v6225357/
-"KIA Ohio",7YAPCDDG7VY011924,2027,Kia,"Sportage Hybrid",EX,"At Dealership",L270360,2026-09-30,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-ex-awd-5dr-sport-utility-7yapcddg7vy011924/
-"KIA Ohio",7YAPEDDG0VY011337,2027,Kia,"Sportage Hybrid","SX Prestige","At Dealership",L270359,2026-09-30,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-5dr-sport-utility-7yapeddg0vy011337/
-"KIA Ohio",KNDPVDDG6V7460227,2027,Kia,"Sportage Hybrid",X-Line,"At Dealership",L270363,2026-10-16,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-x-line-awd-5dr-sport-utility-kndpvddg6v7460227/
-"KIA Ohio",KNAG64J78V5532152,2027,Kia,K5,GT-Line,"At Dealership",L270366,2026-10-16,https://www.loufuszkia.com/inventory/new-2027-kia-k5-gt-line-awd-4-door-sedan-knag64j78v5532152/
-"KIA Ohio",3KPFT4DE5VE430023,2027,Kia,K4,LXS,"At Dealership",L270365,2026-10-22,https://www.loufuszkia.com/inventory/new-2027-kia-k4-lxs-fwd-4-door-sedan-3kpft4de5ve430023/
-"KIA Ohio",3KPFU4DE8VE433642,2027,Kia,K4,EX,"At Dealership",L270367,2026-10-22,https://www.loufuszkia.com/inventory/new-2027-kia-k4-ex-fwd-4-door-sedan-3kpfu4de8ve433642/
-"KIA Ohio",KNDPV3DG0V7464445,2027,Kia,"Sportage Hybrid",EX,"At Dealership",L270369,2026-10-21,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-ex-fwd-5dr-sport-utility-kndpv3dg0v7464445/
-"KIA Ohio",5XYK6CDF1VG487489,2027,Kia,Sportage,X-Line,"At Dealership",L270372,2026-10-07,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-x-line-awd-5dr-sport-utility-5xyk6cdf1vg487489/
-"KIA Ohio",5XYPLESA3VG063345,2027,Kia,"Telluride Hybrid","X-LINE SX PRESTIGE","At Dealership",L270370,2026-10-05,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-5dr-sport-utility-5xyplesa3vg063345/
-"KIA Ohio",5XYPLESA8VG061591,2027,Kia,"Telluride Hybrid","X-LINE SX PRESTIGE","At Dealership",L270375,2026-10-15,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-5dr-sport-utility-5xyplesa8vg061591/
-"KIA Ohio",KNDEECD71V7073280,2027,Kia,Seltos,"X-Line SX","At Dealership",L270371,2026-10-21,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-x-line-sx-awd-5dr-sport-utility-kndeecd71v7073280/
-"KIA Ohio",KNDPV3DF8V7552649,2027,Kia,Sportage,EX,"At Dealership",L270374,2026-10-21,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-kndpv3df8v7552649/
-"KIA Ohio",KNDPVDDG1V7465268,2027,Kia,"Sportage Hybrid",EX,"At Dealership",L270373,2026-10-27,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-ex-awd-5dr-sport-utility-kndpvddg1v7465268/
-"KIA Ohio",5XYK3CDF9VG485224,2027,Kia,Sportage,EX,"At Dealership",L270382,2026-10-15,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-awd-5dr-sport-utility-5xyk3cdf9vg485224/
-"KIA Ohio",KNDCP3JE6V5394232,2027,Kia,Niro,S,"At Dealership",L270378,2026-10-16,https://www.loufuszkia.com/inventory/new-2027-kia-niro-s-fwd-mpv-kndcp3je6v5394232/
-"KIA Ohio",5XYPLES1XVG056702,2027,Kia,Telluride,"SX Prestige","At Dealership",L270389,2026-10-16,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-sx-prestige-awd-5dr-sport-utility-5xyples1xvg056702/
-"KIA Ohio",KNDEDCD3XV5041472,2027,Kia,Seltos,"X-Line S","At Dealership",L270383,2026-10-16,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-x-line-s-awd-5dr-sport-utility-kndedcd3xv5041472/
-"KIA Ohio",KNDEDCD3XV5041939,2027,Kia,Seltos,"X-Line S","At Dealership",L270386,2026-10-16,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-x-line-s-awd-5dr-sport-utility-kndedcd3xv5041939/
-"KIA Ohio",7YAPCDDG7VY012913,2027,Kia,"Sportage Hybrid",X-Line,"At Dealership",L270381,2026-10-12,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-x-line-awd-5dr-sport-utility-7yapcddg7vy012913/
-"KIA Ohio",3KPFT4DE7VE440097,2027,Kia,K4,LXS,"At Dealership",L270391,2026-10-22,https://www.loufuszkia.com/inventory/new-2027-kia-k4-lxs-fwd-4-door-sedan-3kpft4de7ve440097/
-"KIA Ohio",KNDNE5K39T6570804,2026,Kia,"Carnival MPV","SX Prestige","At Dealership",L260078,2025-10-06,https://www.loufuszkia.com/inventory/new-2026-kia-carnival-mpv-sx-prestige-fwd-minivan-kndne5k39t6570804/
-"KIA Ohio",5XYK6CDF2TG375622,2026,Kia,Sportage,X-Line,"At Dealership",L260092,2025-10-06,https://www.loufuszkia.com/inventory/new-2026-kia-sportage-x-line-awd-4dr-sport-utility-5xyk6cdf2tg375622/
-"KIA Ohio",5XYK6CDF7TG379505,2026,Kia,Sportage,X-Line,"At Dealership",L260177,2025-10-13,https://www.loufuszkia.com/inventory/new-2026-kia-sportage-x-line-awd-4dr-sport-utility-5xyk6cdf7tg379505/
-"KIA Ohio",5XYRL4JC6TG427485,2026,Kia,Sorento,S,"At Dealership",L260186,2025-10-17,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-s-fwd-4dr-sport-utility-5xyrl4jc6tg427485/
-"KIA Ohio",5XYRLDJC0TG427952,2026,Kia,Sorento,S,"At Dealership",L260191,2025-10-20,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-s-awd-4dr-sport-utility-5xyrldjc0tg427952/
-"KIA Ohio",5XYK53DF7TG383072,2026,Kia,Sportage,"SX Prestige","At Dealership",L260189,2025-10-20,https://www.loufuszkia.com/inventory/new-2026-kia-sportage-sx-prestige-fwd-4dr-sport-utility-5xyk53df7tg383072/
-"KIA Ohio",5XYRLDJCXTG433533,2026,Kia,Sorento,S,"At Dealership",L260213,2025-11-22,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-s-awd-4dr-sport-utility-5xyrldjcxtg433533/
-"KIA Ohio",5XYRL4JC8TG434387,2026,Kia,Sorento,S,"At Dealership",L260226,2025-11-10,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-s-fwd-4dr-sport-utility-5xyrl4jc8tg434387/
-"KIA Ohio",5XYRLDJC0TG433153,2026,Kia,Sorento,S,"At Dealership",L260225,2025-11-10,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-s-awd-4dr-sport-utility-5xyrldjc0tg433153/
-"KIA Ohio",5XYK6CDF7TG394957,2026,Kia,Sportage,X-Line,"At Dealership",L260246,2025-11-24,https://www.loufuszkia.com/inventory/new-2026-kia-sportage-x-line-awd-4dr-sport-utility-5xyk6cdf7tg394957/
-"KIA Ohio",5XYRKDJF4TG453287,2026,Kia,Sorento,"X-Line SX Prestige AWD","At Dealership",L260439,2026-02-19,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-x-line-sx-prestige-awd-awd-4dr-sport-utility-5xyrkdjf4tg453287/
-"KIA Ohio",KNAG64J73T5468518,2026,Kia,K5,"GT-Line FWD","At Dealership",L260437,2026-02-24,https://www.loufuszkia.com/inventory/new-2026-kia-k5-gt-line-fwd-fwd-4-door-sedan-knag64j73t5468518/
-"KIA Ohio",5XYPCES18VG009135,2027,Kia,Telluride,"X-Line EX","At Dealership",L270027,2026-03-02,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-x-line-ex-awd-5dr-sport-utility-5xypces18vg009135/
-"KIA Ohio",KNAG64J77T5486391,2026,Kia,K5,"GT-Line AWD","At Dealership",L260547,2026-04-23,https://www.loufuszkia.com/inventory/new-2026-kia-k5-gt-line-awd-awd-4-door-sedan-knag64j77t5486391/
-"KIA Ohio",3KPFT4DE9TE304857,2026,Kia,K4,LXS,"At Dealership",L260552,2026-04-08,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de9te304857/
-"KIA Ohio",5XYRHDJFXTG469749,2026,Kia,Sorento,EX,"At Dealership",L260580,2026-04-21,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-ex-awd-4dr-sport-utility-5xyrhdjfxtg469749/
-"KIA Ohio",3KPFT4DE1TE338002,2026,Kia,K4,LXS,"At Dealership",L260598,2026-05-07,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de1te338002/
-"KIA Ohio",5XYRLDJC7TG466554,2026,Kia,Sorento,S,"At Dealership",L260611,2026-04-29,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-s-awd-4dr-sport-utility-5xyrldjc7tg466554/
-"KIA Ohio",5XYPLES10VG032814,2027,Kia,Telluride,"X-Pro SX Prestige","At Dealership",L270088,2026-05-13,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-x-pro-sx-prestige-awd-5dr-sport-utility-5xyples10vg032814/
-"KIA Ohio",5XYRL4JC6TG474158,2026,Kia,Sorento,S,"At Dealership",L260661,2026-05-13,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-s-fwd-4dr-sport-utility-5xyrl4jc6tg474158/
-"KIA Ohio",5XYK6CDF4TG448330,2026,Kia,Sportage,X-Line,"At Dealership",L260686,2026-06-18,https://www.loufuszkia.com/inventory/new-2026-kia-sportage-x-line-awd-4dr-sport-utility-5xyk6cdf4tg448330/
-"KIA Ohio",3KPFT4DE1TE353468,2026,Kia,K4,LXS,"At Dealership",L260695,2026-06-02,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de1te353468/
-"KIA Ohio",3KPFT4DE1TE353521,2026,Kia,K4,LXS,"At Dealership",L260694,2026-06-02,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de1te353521/
-"KIA Ohio",3KPFT4DE5TE353411,2026,Kia,K4,LXS,"At Dealership",L260693,2026-06-02,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de5te353411/
-"KIA Ohio",KNDNB5K31T6648324,2026,Kia,"Carnival MPV",LXS,"At Dealership",L260710,2026-06-16,https://www.loufuszkia.com/inventory/new-2026-kia-carnival-mpv-lxs-fwd-minivan-kndnb5k31t6648324/
-"KIA Ohio",KNDNB5K37T6648781,2026,Kia,"Carnival MPV",LXS,"At Dealership",L260712,2026-06-10,https://www.loufuszkia.com/inventory/new-2026-kia-carnival-mpv-lxs-fwd-minivan-kndnb5k37t6648781/
-"KIA Ohio",3KPFT4DEXTE360967,2026,Kia,K4,LXS,"At Dealership",L260721,2026-06-18,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4dexte360967/
-"KIA Ohio",5XYPLES15VG036163,2027,Kia,Telluride,"X-Pro SX Prestige","At Dealership",L270111,2026-06-18,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-x-pro-sx-prestige-awd-5dr-sport-utility-5xyples15vg036163/
-"KIA Ohio",3KPFT4DE0TE363506,2026,Kia,K4,LXS,"At Dealership",L260747,2026-06-24,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de0te363506/
-"KIA Ohio",3KPFT4DE1TE358587,2026,Kia,K4,LXS,"At Dealership",L260763,2026-06-24,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de1te358587/
-"KIA Ohio",3KPFT4DE4TE373682,2026,Kia,K4,LXS,"At Dealership",L260778,2026-07-09,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de4te373682/
-"KIA Ohio",3KPFT4DE3TE375679,2026,Kia,K4,LXS,"At Dealership",L260777,2026-07-14,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de3te375679/
-"KIA Ohio",5XYPLES15VG040505,2027,Kia,Telluride,"X-Pro SX Prestige","At Dealership",L270133,2026-07-09,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-x-pro-sx-prestige-awd-5dr-sport-utility-5xyples15vg040505/
-"KIA Ohio",3KPFT4DE0TE376224,2026,Kia,K4,LXS,"At Dealership",L260784,2026-07-14,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de0te376224/
-"KIA Ohio",3KPFT4DE0TE380743,2026,Kia,K4,LXS,"At Dealership",L260806,2026-07-15,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de0te380743/
-"KIA Ohio",KNDELCD32V7033079,2027,Kia,Seltos,S,"At Dealership",L270164,2026-08-07,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-awd-5dr-sport-utility-kndelcd32v7033079/
-"KIA Ohio",KNDELCD36V7036048,2027,Kia,Seltos,S,"At Dealership",L270166,2026-08-20,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-awd-5dr-sport-utility-kndelcd36v7036048/
-"KIA Ohio",3KPFT4DE3TE388271,2026,Kia,K4,LXS,"At Dealership",L260827,2026-07-20,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de3te388271/
-"KIA Ohio",KNDNC5K33V6653587,2027,Kia,"Carnival MPV",EX,"At Dealership",L270181,2026-07-22,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k33v6653587/
-"KIA Ohio",3KPFT4DE6TE389558,2026,Kia,K4,LXS,"At Dealership",L260836,2026-08-05,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de6te389558/
-"KIA Ohio",3KPFX5DEXTE389668,2026,Kia,"K4 Hatchback",EX,"At Dealership",L260835,2026-07-23,https://www.loufuszkia.com/inventory/new-2026-kia-k4-hatchback-ex-fwd-5-door-sedan-3kpfx5dexte389668/
-"KIA Ohio",KNDECCD30V5013392,2027,Kia,Seltos,EX,"At Dealership",L270184,2026-08-22,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-ex-awd-5dr-sport-utility-kndeccd30v5013392/
-"KIA Ohio",KNDNE5K35V6653102,2027,Kia,"Carnival MPV","SX Prestige","At Dealership",L270185,2026-08-19,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-sx-prestige-fwd-minivan-kndne5k35v6653102/
-"KIA Ohio",KNDRHDJG5T5546884,2026,Kia,"Sorento Hybrid",EX,"At Dealership",L260839,2026-08-19,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-hybrid-ex-awd-4dr-sport-utility-kndrhdjg5t5546884/
-"KIA Ohio",3KPFW4DE3TE382641,2026,Kia,K4,GT-Line,"At Dealership",L260843,2026-08-05,https://www.loufuszkia.com/inventory/new-2026-kia-k4-gt-line-fwd-4-door-sedan-3kpfw4de3te382641/
-"KIA Ohio",KNDNE5KA4V6199858,2027,Kia,"Carnival MPV Hybrid",SX,"At Dealership",L270192,2026-08-20,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5ka4v6199858/
-"KIA Ohio",KNDELCD33V5015850,2027,Kia,Seltos,S,"At Dealership",L270187,2026-08-19,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-awd-5dr-sport-utility-kndelcd33v5015850/
-"KIA Ohio",KNAG64J77T5522998,2026,Kia,K5,"GT-Line AWD","At Dealership",L260849,2026-08-21,https://www.loufuszkia.com/inventory/new-2026-kia-k5-gt-line-awd-awd-4-door-sedan-knag64j77t5522998/
-"KIA Ohio",3KPFT4DE1TE395932,2026,Kia,K4,LXS,"At Dealership",L260853,2026-08-19,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de1te395932/
-"KIA Ohio",3KPFT4DE9TE397511,2026,Kia,K4,LXS,"At Dealership",L260856,2026-08-19,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de9te397511/
-"KIA Ohio",KNDEC3D38V5014452,2027,Kia,Seltos,EX,"At Dealership",L270200,2026-08-05,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-ex-fwd-5dr-sport-utility-kndec3d38v5014452/
-"KIA Ohio",KNDNC5KA1V6206433,2027,Kia,"Carnival MPV Hybrid",EX,"At Dealership",L270203,2026-08-21,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5ka1v6206433/
-"KIA Ohio",5XYK6CDF8TG469407,2026,Kia,Sportage,X-Line,"At Dealership",L260861,2026-08-13,https://www.loufuszkia.com/inventory/new-2026-kia-sportage-x-line-awd-4dr-sport-utility-5xyk6cdf8tg469407/
-"KIA Ohio",KNDEB3D31V5013260,2027,Kia,Seltos,LX,"At Dealership",L270224,2026-08-27,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-lx-fwd-5dr-sport-utility-kndeb3d31v5013260/
-"KIA Ohio",KNDEL3D34V5011841,2027,Kia,Seltos,S,"At Dealership",L270215,2026-08-27,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d34v5011841/
-"KIA Ohio",5XYPDESA2VG044895,2027,Kia,"Telluride Hybrid","X-LINE SX","At Dealership",L270220,2026-08-19,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-5dr-sport-utility-5xypdesa2vg044895/
-"KIA Ohio",5XYPDESA9VG046045,2027,Kia,"Telluride Hybrid","X-LINE SX","At Dealership",L270216,2026-08-19,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-5dr-sport-utility-5xypdesa9vg046045/
-"KIA Ohio",5XYRKDJF6TG490390,2026,Kia,Sorento,"X-Line SX Prestige AWD","At Dealership",L260867,2026-08-11,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-x-line-sx-prestige-awd-awd-4dr-sport-utility-5xyrkdjf6tg490390/
-"KIA Ohio",KNDRKDJG7T5550114,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",L260873,2026-08-17,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg7t5550114/
-"KIA Ohio",KNDEBCD31V7029754,2027,Kia,Seltos,LX,"At Dealership",L270222,2026-08-14,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-lx-awd-5dr-sport-utility-kndebcd31v7029754/
-"KIA Ohio",KNDEBCD34V5014838,2027,Kia,Seltos,LX,"At Dealership",L270236,2026-09-02,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-lx-awd-5dr-sport-utility-kndebcd34v5014838/
-"KIA Ohio",KNDELCD35V5024937,2027,Kia,Seltos,S,"At Dealership",L270225,2026-08-28,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-awd-5dr-sport-utility-kndelcd35v5024937/
-"KIA Ohio",KNDNB5K32V6662378,2027,Kia,"Carnival MPV",LX,"At Dealership",L270226,2026-08-17,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-lx-fwd-minivan-kndnb5k32v6662378/
-"KIA Ohio",KNDNE5K37V6664702,2027,Kia,"Carnival MPV",SX,"At Dealership",L270231,2026-08-17,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-sx-fwd-minivan-kndne5k37v6664702/
-"KIA Ohio",KNDNE5KAXV6196494,2027,Kia,"Carnival MPV Hybrid",SX,"At Dealership",L270229,2026-09-02,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5kaxv6196494/
-"KIA Ohio",5XYPLESA2VG048836,2027,Kia,"Telluride Hybrid","X-LINE SX PRESTIGE","At Dealership",L270234,2026-08-27,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-5dr-sport-utility-5xyplesa2vg048836/
-"KIA Ohio",KNDNB5KA2V6204659,2027,Kia,"Carnival MPV Hybrid",LXS,"At Dealership",L270230,2026-09-02,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-lxs-fwd-minivan-kndnb5ka2v6204659/
-"KIA Ohio",3KPFT4DE3TE404047,2026,Kia,K4,LX,"At Dealership",L260871,2026-09-07,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lx-fwd-4-door-sedan-3kpft4de3te404047/
-"KIA Ohio",KNDECCD33V7031146,2027,Kia,Seltos,EX,"At Dealership",L270240,2026-08-18,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-ex-awd-5dr-sport-utility-kndeccd33v7031146/
-"KIA Ohio",KNDEL3D32V5016424,2027,Kia,Seltos,S,"At Dealership",L270242,2026-09-02,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d32v5016424/
-"KIA Ohio",KNDNC5K38V6662267,2027,Kia,"Carnival MPV",EX,"At Dealership",L270243,2026-09-09,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k38v6662267/
-"KIA Ohio",KNDNE5KA7V6203885,2027,Kia,"Carnival MPV Hybrid","SX Prestige","At Dealership",L270259,2026-09-15,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka7v6203885/
-"KIA Ohio",KNDNE5KA7V6218970,2027,Kia,"Carnival MPV Hybrid","SX Prestige","At Dealership",L270255,2026-09-15,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka7v6218970/
-"KIA Ohio",KNDNE5KA8V6218458,2027,Kia,"Carnival MPV Hybrid","SX Prestige","At Dealership",L270258,2026-09-09,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka8v6218458/
-"KIA Ohio",KNDRKDJG3T5546626,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",L260881,2026-10-01,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg3t5546626/
-"KIA Ohio",KNDEC3D35V7043444,2027,Kia,Seltos,EX,"At Dealership",L270264,2026-09-09,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-ex-fwd-5dr-sport-utility-kndec3d35v7043444/
-"KIA Ohio",KNDEDCD33V7049711,2027,Kia,Seltos,"X-Line S","At Dealership",L270267,2026-09-09,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-x-line-s-awd-5dr-sport-utility-kndedcd33v7049711/
-"KIA Ohio",KNDEL3D39V5021183,2027,Kia,Seltos,S,"At Dealership",L270265,2026-09-15,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d39v5021183/
-"KIA Ohio",KNDNB5K35V6663895,2027,Kia,"Carnival MPV",LX,"At Dealership",L270266,2026-09-17,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-lx-fwd-minivan-kndnb5k35v6663895/
-"KIA Ohio",KNDNE5KA8V6188880,2027,Kia,"Carnival MPV Hybrid",SX,"At Dealership",L270276,2026-09-15,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5ka8v6188880/
-"KIA Ohio",KNDNE5KA9V6188421,2027,Kia,"Carnival MPV Hybrid","SX Prestige","At Dealership",L270283,2026-09-23,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka9v6188421/
-"KIA Ohio",KNDEL3D31V5014017,2027,Kia,Seltos,S,"At Dealership",L270282,2026-09-17,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d31v5014017/
-"KIA Ohio",KNDRKDJGXT5559079,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",L260887,2026-09-23,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjgxt5559079/
-"KIA Ohio",KNDEL3D30V7042802,2027,Kia,Seltos,S,"At Dealership",L270280,2026-09-09,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d30v7042802/
-"KIA Ohio",KNDEL3D33V5016920,2027,Kia,Seltos,S,"At Dealership",L270281,2026-09-15,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d33v5016920/
-"KIA Ohio",KNDEBCD30V5022919,2027,Kia,Seltos,LX,"At Dealership",L270288,2026-09-17,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-lx-awd-5dr-sport-utility-kndebcd30v5022919/
-"KIA Ohio",KNDEL3D3XV5022598,2027,Kia,Seltos,S,"At Dealership",L270299,2026-09-23,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d3xv5022598/
-"KIA Ohio",KNDNC5K37V6668349,2027,Kia,"Carnival MPV",EX,"At Dealership",L270301,2026-10-01,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k37v6668349/
-"KIA Ohio",KNDNE5KA1V6217393,2027,Kia,"Carnival MPV Hybrid",SX,"At Dealership",L270296,2026-10-01,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5ka1v6217393/
-"KIA Ohio",KNDPUDDG0V7442860,2027,Kia,"Sportage Hybrid",S,"At Dealership",L270292,2026-09-23,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-s-awd-5dr-sport-utility-kndpuddg0v7442860/
-"KIA Ohio",KNDRKDJG5T5555862,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",L260891,2026-09-08,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg5t5555862/
-"KIA Ohio",KNDELCD38V5027542,2027,Kia,Seltos,S,"At Dealership",L270291,2026-09-17,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-awd-5dr-sport-utility-kndelcd38v5027542/
-"KIA Ohio",KNDNC5KA6V6212518,2027,Kia,"Carnival MPV Hybrid",EX,"At Dealership",L270295,2026-09-23,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5ka6v6212518/
-"KIA Ohio",KNDPXDDG5V7455062,2027,Kia,"Sportage Hybrid","SX Prestige","At Dealership",L270290,2026-10-01,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-5dr-sport-utility-kndpxddg5v7455062/
-"KIA Ohio",5XYK3CDF4VG480092,2027,Kia,Sportage,EX,"At Dealership",L270297,2026-09-15,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-awd-5dr-sport-utility-5xyk3cdf4vg480092/
-"KIA Ohio",3KMDBDDC3VE003204,2027,Kia,EV3,Wind,"At Dealership",L270294,2026-10-02,https://www.loufuszkia.com/inventory/new-2027-kia-ev3-wind-awd-5dr-sport-utility-3kmdbddc3ve003204/
-"KIA Ohio",7YAPB3DG3VY004871,2027,Kia,"Sportage Hybrid",LX,"At Dealership",L270309,2026-09-14,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-lx-fwd-5dr-sport-utility-7yapb3dg3vy004871/
-"KIA Ohio",KNDEDCD39V5033007,2027,Kia,Seltos,"X-Line S","At Dealership",L270303,2026-09-23,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-x-line-s-awd-5dr-sport-utility-kndedcd39v5033007/
-"KIA Ohio",KNDEDCD3XV7054517,2027,Kia,Seltos,"X-Line S","At Dealership",L270304,2026-09-23,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-x-line-s-awd-5dr-sport-utility-kndedcd3xv7054517/
-"KIA Ohio",KNDPU3DG6V7447846,2027,Kia,"Sportage Hybrid",LX,"At Dealership",L270311,2026-10-01,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-lx-fwd-5dr-sport-utility-kndpu3dg6v7447846/
-"KIA Ohio",KNDNC5KA7V6229103,2027,Kia,"Carnival MPV Hybrid",EX,"At Dealership",L270387,2026-10-29,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5ka7v6229103/
-"KIA Ohio",3KPFW4DE8VE424207,2027,Kia,K4,GT-Line,"At Dealership",L270379,2026-11-02,https://www.loufuszkia.com/inventory/new-2027-kia-k4-gt-line-fwd-4-door-sedan-3kpfw4de8ve424207/
 "KIA Ohio",KNDNE5KA4V6227982,2027,Kia,"Carnival MPV Hybrid","SX Prestige","At Dealership",L270385,2026-10-29,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka4v6227982/
 "KIA Ohio",KNDNE5KA7V6227569,2027,Kia,"Carnival MPV Hybrid","SX Prestige","At Dealership",L270384,2026-10-29,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka7v6227569/
 "KIA Ohio",5XYK6CDF7VG490462,2027,Kia,Sportage,X-Line,"At Dealership",L270397,2026-10-16,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-x-line-awd-5dr-sport-utility-5xyk6cdf7vg490462/
@@ -199,35 +47,135 @@
 "KIA Ohio",KNDPVDDG5V7441586,2027,Kia,"Sportage Hybrid",EX,"At Dealership",L270445,2026-10-27,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-ex-awd-5dr-sport-utility-kndpvddg5v7441586/
 "KIA Ohio",5XYPCES19VG061017,2027,Kia,Telluride,"X-Line EX","At Dealership",L270448,2026-11-02,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-x-line-ex-awd-5dr-sport-utility-5xypces19vg061017/
 "KIA Ohio",KNDPUDDG2V7449552,2027,Kia,"Sportage Hybrid",S,"At Dealership",L270447,2026-10-26,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-s-awd-5dr-sport-utility-kndpuddg2v7449552/
-"KIA Ohio",KNDPV3DF4V7553765,2027,Kia,Sportage,EX,"In Transit",L270449,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-kndpv3df4v7553765/
+"KIA Ohio",KNDPV3DF4V7553765,2027,Kia,Sportage,EX,"At Dealership",L270449,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-fwd-4d-sport-utility-kndpv3df4v7553765/
 "KIA Ohio",KNDPV3DF6V7553766,2027,Kia,Sportage,EX,"At Dealership",L270450,2026-10-27,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-kndpv3df6v7553766/
+"KIA Ohio",KNDNE5K39T6570804,2026,Kia,"Carnival MPV","SX Prestige","At Dealership",L260078,2025-10-06,https://www.loufuszkia.com/inventory/new-2026-kia-carnival-mpv-sx-prestige-fwd-minivan-kndne5k39t6570804/
+"KIA Ohio",5XYK6CDF2TG375622,2026,Kia,Sportage,X-Line,"At Dealership",L260092,2025-10-06,https://www.loufuszkia.com/inventory/new-2026-kia-sportage-x-line-awd-4dr-sport-utility-5xyk6cdf2tg375622/
+"KIA Ohio",5XYK6CDF7TG379505,2026,Kia,Sportage,X-Line,"At Dealership",L260177,2025-10-13,https://www.loufuszkia.com/inventory/new-2026-kia-sportage-x-line-awd-4dr-sport-utility-5xyk6cdf7tg379505/
+"KIA Ohio",5XYRL4JC6TG427485,2026,Kia,Sorento,S,"At Dealership",L260186,2025-10-17,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-s-fwd-4dr-sport-utility-5xyrl4jc6tg427485/
+"KIA Ohio",5XYRLDJC0TG427952,2026,Kia,Sorento,S,"At Dealership",L260191,2025-10-20,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-s-awd-4dr-sport-utility-5xyrldjc0tg427952/
+"KIA Ohio",5XYK53DF7TG383072,2026,Kia,Sportage,"SX Prestige","At Dealership",L260189,2025-10-20,https://www.loufuszkia.com/inventory/new-2026-kia-sportage-sx-prestige-fwd-4dr-sport-utility-5xyk53df7tg383072/
+"KIA Ohio",5XYRLDJCXTG433533,2026,Kia,Sorento,S,"At Dealership",L260213,2025-11-22,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-s-awd-4dr-sport-utility-5xyrldjcxtg433533/
+"KIA Ohio",5XYRL4JC8TG434387,2026,Kia,Sorento,S,"At Dealership",L260226,2025-11-10,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-s-fwd-4dr-sport-utility-5xyrl4jc8tg434387/
+"KIA Ohio",5XYRLDJC0TG433153,2026,Kia,Sorento,S,"At Dealership",L260225,2025-11-10,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-s-awd-4dr-sport-utility-5xyrldjc0tg433153/
+"KIA Ohio",5XYK6CDF7TG394957,2026,Kia,Sportage,X-Line,"At Dealership",L260246,2025-11-24,https://www.loufuszkia.com/inventory/new-2026-kia-sportage-x-line-awd-4dr-sport-utility-5xyk6cdf7tg394957/
+"KIA Ohio",5XYRKDJF4TG453287,2026,Kia,Sorento,"X-Line SX Prestige AWD","At Dealership",L260439,2026-02-19,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-x-line-sx-prestige-awd-awd-4dr-sport-utility-5xyrkdjf4tg453287/
+"KIA Ohio",KNAG64J73T5468518,2026,Kia,K5,"GT-Line FWD","At Dealership",L260437,2026-02-24,https://www.loufuszkia.com/inventory/new-2026-kia-k5-gt-line-fwd-fwd-4-door-sedan-knag64j73t5468518/
+"KIA Ohio",5XYPCES18VG009135,2027,Kia,Telluride,"X-Line EX","At Dealership",L270027,2026-03-02,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-x-line-ex-awd-5dr-sport-utility-5xypces18vg009135/
+"KIA Ohio",KNAG64J77T5486391,2026,Kia,K5,"GT-Line AWD","At Dealership",L260547,2026-04-23,https://www.loufuszkia.com/inventory/new-2026-kia-k5-gt-line-awd-awd-4-door-sedan-knag64j77t5486391/
+"KIA Ohio",3KPFT4DE9TE304857,2026,Kia,K4,LXS,"At Dealership",L260552,2026-04-08,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de9te304857/
+"KIA Ohio",3KPFT4DE1TE338002,2026,Kia,K4,LXS,"At Dealership",L260598,2026-05-07,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de1te338002/
+"KIA Ohio",5XYRLDJC7TG466554,2026,Kia,Sorento,S,"At Dealership",L260611,2026-04-29,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-s-awd-4dr-sport-utility-5xyrldjc7tg466554/
+"KIA Ohio",5XYPLES10VG032814,2027,Kia,Telluride,"X-Pro SX Prestige","At Dealership",L270088,2026-05-13,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-x-pro-sx-prestige-awd-5dr-sport-utility-5xyples10vg032814/
+"KIA Ohio",5XYRL4JC6TG474158,2026,Kia,Sorento,S,"At Dealership",L260661,2026-05-13,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-s-fwd-4dr-sport-utility-5xyrl4jc6tg474158/
+"KIA Ohio",5XYK6CDF4TG448330,2026,Kia,Sportage,X-Line,"At Dealership",L260686,2026-06-18,https://www.loufuszkia.com/inventory/new-2026-kia-sportage-x-line-awd-4dr-sport-utility-5xyk6cdf4tg448330/
+"KIA Ohio",3KPFT4DE1TE353468,2026,Kia,K4,LXS,"At Dealership",L260695,2026-06-02,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de1te353468/
+"KIA Ohio",3KPFT4DE1TE353521,2026,Kia,K4,LXS,"At Dealership",L260694,2026-06-02,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de1te353521/
+"KIA Ohio",3KPFT4DE5TE353411,2026,Kia,K4,LXS,"At Dealership",L260693,2026-06-02,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de5te353411/
+"KIA Ohio",KNDNB5K31T6648324,2026,Kia,"Carnival MPV",LXS,"At Dealership",L260710,2026-06-16,https://www.loufuszkia.com/inventory/new-2026-kia-carnival-mpv-lxs-fwd-minivan-kndnb5k31t6648324/
+"KIA Ohio",KNDNB5K37T6648781,2026,Kia,"Carnival MPV",LXS,"At Dealership",L260712,2026-06-10,https://www.loufuszkia.com/inventory/new-2026-kia-carnival-mpv-lxs-fwd-minivan-kndnb5k37t6648781/
+"KIA Ohio",3KPFT4DEXTE360967,2026,Kia,K4,LXS,"At Dealership",L260721,2026-06-18,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4dexte360967/
+"KIA Ohio",5XYPLES15VG036163,2027,Kia,Telluride,"X-Pro SX Prestige","At Dealership",L270111,2026-06-18,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-x-pro-sx-prestige-awd-5dr-sport-utility-5xyples15vg036163/
+"KIA Ohio",3KPFT4DE0TE363506,2026,Kia,K4,LXS,"At Dealership",L260747,2026-06-24,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de0te363506/
+"KIA Ohio",3KPFT4DE1TE358587,2026,Kia,K4,LXS,"At Dealership",L260763,2026-06-24,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de1te358587/
+"KIA Ohio",3KPFT4DE4TE373682,2026,Kia,K4,LXS,"At Dealership",L260778,2026-07-09,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de4te373682/
+"KIA Ohio",3KPFT4DE3TE375679,2026,Kia,K4,LXS,"At Dealership",L260777,2026-07-14,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de3te375679/
+"KIA Ohio",5XYPLES15VG040505,2027,Kia,Telluride,"X-Pro SX Prestige","At Dealership",L270133,2026-07-09,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-x-pro-sx-prestige-awd-5dr-sport-utility-5xyples15vg040505/
+"KIA Ohio",3KPFT4DE0TE376224,2026,Kia,K4,LXS,"At Dealership",L260784,2026-07-14,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de0te376224/
+"KIA Ohio",3KPFT4DE0TE380743,2026,Kia,K4,LXS,"At Dealership",L260806,2026-07-15,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de0te380743/
+"KIA Ohio",KNDELCD32V7033079,2027,Kia,Seltos,S,"At Dealership",L270164,2026-08-07,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-awd-5dr-sport-utility-kndelcd32v7033079/
+"KIA Ohio",KNDELCD36V7036048,2027,Kia,Seltos,S,"At Dealership",L270166,2026-08-20,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-awd-5dr-sport-utility-kndelcd36v7036048/
+"KIA Ohio",3KPFT4DE3TE388271,2026,Kia,K4,LXS,"At Dealership",L260827,2026-07-20,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de3te388271/
+"KIA Ohio",KNDNC5K33V6653587,2027,Kia,"Carnival MPV",EX,"At Dealership",L270181,2026-07-22,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k33v6653587/
+"KIA Ohio",3KPFT4DE6TE389558,2026,Kia,K4,LXS,"At Dealership",L260836,2026-08-05,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de6te389558/
+"KIA Ohio",3KPFX5DEXTE389668,2026,Kia,"K4 Hatchback",EX,"At Dealership",L260835,2026-07-23,https://www.loufuszkia.com/inventory/new-2026-kia-k4-hatchback-ex-fwd-5-door-sedan-3kpfx5dexte389668/
+"KIA Ohio",KNDECCD30V5013392,2027,Kia,Seltos,EX,"At Dealership",L270184,2026-08-22,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-ex-awd-5dr-sport-utility-kndeccd30v5013392/
+"KIA Ohio",KNDNE5K35V6653102,2027,Kia,"Carnival MPV","SX Prestige","At Dealership",L270185,2026-08-19,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-sx-prestige-fwd-minivan-kndne5k35v6653102/
+"KIA Ohio",KNDRHDJG5T5546884,2026,Kia,"Sorento Hybrid",EX,"At Dealership",L260839,2026-08-19,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-hybrid-ex-awd-4dr-sport-utility-kndrhdjg5t5546884/
+"KIA Ohio",3KPFW4DE3TE382641,2026,Kia,K4,GT-Line,"At Dealership",L260843,2026-08-05,https://www.loufuszkia.com/inventory/new-2026-kia-k4-gt-line-fwd-4-door-sedan-3kpfw4de3te382641/
+"KIA Ohio",KNDNE5KA4V6199858,2027,Kia,"Carnival MPV Hybrid",SX,"At Dealership",L270192,2026-08-20,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5ka4v6199858/
+"KIA Ohio",KNDELCD33V5015850,2027,Kia,Seltos,S,"At Dealership",L270187,2026-08-19,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-awd-5dr-sport-utility-kndelcd33v5015850/
+"KIA Ohio",KNAG64J77T5522998,2026,Kia,K5,"GT-Line AWD","At Dealership",L260849,2026-08-21,https://www.loufuszkia.com/inventory/new-2026-kia-k5-gt-line-awd-awd-4-door-sedan-knag64j77t5522998/
+"KIA Ohio",3KPFT4DE1TE395932,2026,Kia,K4,LXS,"At Dealership",L260853,2026-08-19,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de1te395932/
+"KIA Ohio",3KPFT4DE9TE397511,2026,Kia,K4,LXS,"At Dealership",L260856,2026-08-19,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lxs-fwd-4-door-sedan-3kpft4de9te397511/
+"KIA Ohio",KNDEC3D38V5014452,2027,Kia,Seltos,EX,"At Dealership",L270200,2026-08-05,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-ex-fwd-5dr-sport-utility-kndec3d38v5014452/
+"KIA Ohio",KNDNC5KA1V6206433,2027,Kia,"Carnival MPV Hybrid",EX,"At Dealership",L270203,2026-08-21,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5ka1v6206433/
+"KIA Ohio",5XYK6CDF8TG469407,2026,Kia,Sportage,X-Line,"At Dealership",L260861,2026-08-13,https://www.loufuszkia.com/inventory/new-2026-kia-sportage-x-line-awd-4dr-sport-utility-5xyk6cdf8tg469407/
+"KIA Ohio",KNDEB3D31V5013260,2027,Kia,Seltos,LX,"At Dealership",L270224,2026-08-27,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-lx-fwd-5dr-sport-utility-kndeb3d31v5013260/
+"KIA Ohio",KNDEL3D34V5011841,2027,Kia,Seltos,S,"At Dealership",L270215,2026-08-27,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d34v5011841/
+"KIA Ohio",5XYPDESA2VG044895,2027,Kia,"Telluride Hybrid","X-LINE SX","At Dealership",L270220,2026-08-19,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-5dr-sport-utility-5xypdesa2vg044895/
+"KIA Ohio",5XYRKDJF6TG490390,2026,Kia,Sorento,"X-Line SX Prestige AWD","At Dealership",L260867,2026-08-11,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-x-line-sx-prestige-awd-awd-4dr-sport-utility-5xyrkdjf6tg490390/
+"KIA Ohio",KNDRKDJG7T5550114,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",L260873,2026-08-17,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg7t5550114/
+"KIA Ohio",KNDEBCD31V7029754,2027,Kia,Seltos,LX,"At Dealership",L270222,2026-08-14,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-lx-awd-5dr-sport-utility-kndebcd31v7029754/
+"KIA Ohio",KNDEBCD34V5014838,2027,Kia,Seltos,LX,"At Dealership",L270236,2026-09-02,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-lx-awd-5dr-sport-utility-kndebcd34v5014838/
+"KIA Ohio",KNDELCD35V5024937,2027,Kia,Seltos,S,"At Dealership",L270225,2026-08-28,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-awd-5dr-sport-utility-kndelcd35v5024937/
+"KIA Ohio",KNDNB5K32V6662378,2027,Kia,"Carnival MPV",LX,"At Dealership",L270226,2026-08-17,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-lx-fwd-minivan-kndnb5k32v6662378/
+"KIA Ohio",KNDNE5K37V6664702,2027,Kia,"Carnival MPV",SX,"At Dealership",L270231,2026-08-17,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-sx-fwd-minivan-kndne5k37v6664702/
+"KIA Ohio",KNDNE5KAXV6196494,2027,Kia,"Carnival MPV Hybrid",SX,"At Dealership",L270229,2026-09-02,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5kaxv6196494/
+"KIA Ohio",5XYPLESA2VG048836,2027,Kia,"Telluride Hybrid","X-LINE SX PRESTIGE","At Dealership",L270234,2026-08-27,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-5dr-sport-utility-5xyplesa2vg048836/
+"KIA Ohio",KNDNB5KA2V6204659,2027,Kia,"Carnival MPV Hybrid",LXS,"At Dealership",L270230,2026-09-02,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-lxs-fwd-minivan-kndnb5ka2v6204659/
+"KIA Ohio",3KPFT4DE3TE404047,2026,Kia,K4,LX,"At Dealership",L260871,2026-09-07,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lx-fwd-4-door-sedan-3kpft4de3te404047/
+"KIA Ohio",KNDECCD33V7031146,2027,Kia,Seltos,EX,"At Dealership",L270240,2026-08-18,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-ex-awd-5dr-sport-utility-kndeccd33v7031146/
+"KIA Ohio",KNDEL3D32V5016424,2027,Kia,Seltos,S,"At Dealership",L270242,2026-09-02,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d32v5016424/
+"KIA Ohio",KNDNC5K38V6662267,2027,Kia,"Carnival MPV",EX,"At Dealership",L270243,2026-09-09,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k38v6662267/
+"KIA Ohio",KNDNE5KA7V6203885,2027,Kia,"Carnival MPV Hybrid","SX Prestige","At Dealership",L270259,2026-09-15,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka7v6203885/
+"KIA Ohio",KNDNE5KA7V6218970,2027,Kia,"Carnival MPV Hybrid","SX Prestige","At Dealership",L270255,2026-09-15,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka7v6218970/
+"KIA Ohio",KNDNE5KA8V6218458,2027,Kia,"Carnival MPV Hybrid","SX Prestige","At Dealership",L270258,2026-09-09,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka8v6218458/
+"KIA Ohio",KNDRKDJG3T5546626,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",L260881,2026-10-01,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg3t5546626/
+"KIA Ohio",KNDEC3D35V7043444,2027,Kia,Seltos,EX,"At Dealership",L270264,2026-09-09,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-ex-fwd-5dr-sport-utility-kndec3d35v7043444/
+"KIA Ohio",KNDEDCD33V7049711,2027,Kia,Seltos,"X-Line S","At Dealership",L270267,2026-09-09,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-x-line-s-awd-5dr-sport-utility-kndedcd33v7049711/
+"KIA Ohio",KNDEL3D39V5021183,2027,Kia,Seltos,S,"At Dealership",L270265,2026-09-15,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d39v5021183/
+"KIA Ohio",KNDNB5K35V6663895,2027,Kia,"Carnival MPV",LX,"At Dealership",L270266,2026-09-17,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-lx-fwd-minivan-kndnb5k35v6663895/
+"KIA Ohio",KNDNE5KA8V6188880,2027,Kia,"Carnival MPV Hybrid",SX,"At Dealership",L270276,2026-09-15,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5ka8v6188880/
+"KIA Ohio",KNDNE5KA9V6188421,2027,Kia,"Carnival MPV Hybrid","SX Prestige","At Dealership",L270283,2026-09-23,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka9v6188421/
+"KIA Ohio",KNDEL3D31V5014017,2027,Kia,Seltos,S,"At Dealership",L270282,2026-09-17,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d31v5014017/
+"KIA Ohio",KNDRKDJGXT5559079,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",L260887,2026-09-23,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjgxt5559079/
+"KIA Ohio",KNDEL3D30V7042802,2027,Kia,Seltos,S,"At Dealership",L270280,2026-09-09,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d30v7042802/
+"KIA Ohio",KNDEL3D33V5016920,2027,Kia,Seltos,S,"At Dealership",L270281,2026-09-15,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d33v5016920/
+"KIA Ohio",KNDEBCD30V5022919,2027,Kia,Seltos,LX,"At Dealership",L270288,2026-09-17,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-lx-awd-5dr-sport-utility-kndebcd30v5022919/
+"KIA Ohio",KNDEL3D3XV5022598,2027,Kia,Seltos,S,"At Dealership",L270299,2026-09-23,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-fwd-5dr-sport-utility-kndel3d3xv5022598/
+"KIA Ohio",KNDNC5K37V6668349,2027,Kia,"Carnival MPV",EX,"At Dealership",L270301,2026-10-01,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k37v6668349/
+"KIA Ohio",KNDNE5KA1V6217393,2027,Kia,"Carnival MPV Hybrid",SX,"At Dealership",L270296,2026-10-01,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5ka1v6217393/
+"KIA Ohio",KNDPUDDG0V7442860,2027,Kia,"Sportage Hybrid",S,"At Dealership",L270292,2026-09-23,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-s-awd-5dr-sport-utility-kndpuddg0v7442860/
+"KIA Ohio",KNDRKDJG5T5555862,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",L260891,2026-09-08,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg5t5555862/
+"KIA Ohio",KNDELCD38V5027542,2027,Kia,Seltos,S,"At Dealership",L270291,2026-09-17,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-awd-5dr-sport-utility-kndelcd38v5027542/
+"KIA Ohio",KNDNC5KA6V6212518,2027,Kia,"Carnival MPV Hybrid",EX,"At Dealership",L270295,2026-09-23,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5ka6v6212518/
+"KIA Ohio",KNDPXDDG5V7455062,2027,Kia,"Sportage Hybrid","SX Prestige","At Dealership",L270290,2026-10-01,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-5dr-sport-utility-kndpxddg5v7455062/
+"KIA Ohio",5XYK3CDF4VG480092,2027,Kia,Sportage,EX,"At Dealership",L270297,2026-09-15,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-awd-5dr-sport-utility-5xyk3cdf4vg480092/
+"KIA Ohio",3KMDBDDC3VE003204,2027,Kia,EV3,Wind,"At Dealership",L270294,2026-10-02,https://www.loufuszkia.com/inventory/new-2027-kia-ev3-wind-awd-5dr-sport-utility-3kmdbddc3ve003204/
+"KIA Ohio",7YAPB3DG3VY004871,2027,Kia,"Sportage Hybrid",LX,"At Dealership",L270309,2026-09-14,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-lx-fwd-5dr-sport-utility-7yapb3dg3vy004871/
+"KIA Ohio",KNDEDCD39V5033007,2027,Kia,Seltos,"X-Line S","At Dealership",L270303,2026-09-23,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-x-line-s-awd-5dr-sport-utility-kndedcd39v5033007/
+"KIA Ohio",KNDEDCD3XV7054517,2027,Kia,Seltos,"X-Line S","At Dealership",L270304,2026-09-23,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-x-line-s-awd-5dr-sport-utility-kndedcd3xv7054517/
+"KIA Ohio",KNDPU3DG6V7447846,2027,Kia,"Sportage Hybrid",LX,"At Dealership",L270311,2026-10-01,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-lx-fwd-5dr-sport-utility-kndpu3dg6v7447846/
+"KIA Ohio",5XYK3CDF8VG483335,2027,Kia,Sportage,EX,"At Dealership",L270325,2026-09-23,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-awd-5dr-sport-utility-5xyk3cdf8vg483335/
+"KIA Ohio",5XYK6CDF7VG473502,2027,Kia,Sportage,X-Line,"At Dealership",L270317,2026-09-23,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-x-line-awd-5dr-sport-utility-5xyk6cdf7vg473502/
 "KIA Ohio",3KPFT4DE4VE449968,2027,Kia,K4,LX,"In Transit",L270454,2026-10-28,https://www.loufuszkia.com/inventory/new-2027-kia-k4-lx-fwd-4-door-sedan-3kpft4de4ve449968/
 "KIA Ohio",5XYPLESAXVG067280,2027,Kia,"Telluride Hybrid",SX-PRESTIGE,"At Dealership",L270455,2026-11-02,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-sx-prestige-awd-5dr-sport-utility-5xyplesaxvg067280/
 "KIA Ohio",5XYPLESAXVG071541,2027,Kia,"Telluride Hybrid","X-LINE SX PRESTIGE","At Dealership",L270457,2026-11-02,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-5dr-sport-utility-5xyplesaxvg071541/
 "KIA Ohio",5XYK2CDF6VG495826,2027,Kia,Sportage,LX,"At Dealership",L270453,2026-11-02,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-lx-awd-5dr-sport-utility-5xyk2cdf6vg495826/
 "KIA Ohio",5XYK33DF7VG495105,2027,Kia,Sportage,EX,"At Dealership",L270452,2026-11-02,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33df7vg495105/
-"KIA Ohio",KNDNE5KA2V6237071,2027,Kia,"Carnival MPV Hybrid",SX,"In Transit",L270459,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5ka2v6237071/
-"KIA Ohio",KNAG64J75V5540905,2027,Kia,K5,GT-Line,"In Transit",L270451,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-k5-gt-line-awd-4-door-sedan-knag64j75v5540905/
-"KIA Ohio",KNDNE5KAXV6235357,2027,Kia,"Carnival MPV Hybrid",SX,"In Transit",L270458,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5kaxv6235357/
-"KIA Ohio",KNDPV3DG5V7474212,2027,Kia,"Sportage Hybrid",EX,"In Transit",L270456,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-ex-fwd-5dr-sport-utility-kndpv3dg5v7474212/
-"KIA Ohio",KNAG64J77V5544504,2027,Kia,K5,GT-Line,"In Transit",L270466,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-k5-gt-line-awd-4-door-sedan-knag64j77v5544504/
-"KIA Ohio",KNAG64J79V5543869,2027,Kia,K5,GT-Line,"In Transit",L270462,2026-10-30,https://www.loufuszkia.com/inventory/new-2027-kia-k5-gt-line-awd-4-door-sedan-knag64j79v5543869/
+"KIA Ohio",KNDNE5KA2V6237071,2027,Kia,"Carnival Hybrid",SX,"At Dealership",L270459,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-hybrid-sx-fwd-4d-passenger-van-kndne5ka2v6237071/
+"KIA Ohio",KNAG64J75V5540905,2027,Kia,K5,GT-Line,"At Dealership",L270451,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-k5-gt-line-awd-4d-sedan-knag64j75v5540905/
+"KIA Ohio",KNDNE5KAXV6235357,2027,Kia,"Carnival Hybrid",SX,"At Dealership",L270458,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-hybrid-sx-fwd-4d-passenger-van-kndne5kaxv6235357/
+"KIA Ohio",KNDPV3DG5V7474212,2027,Kia,"Sportage Hybrid",EX,"At Dealership",L270456,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-ex-fwd-4d-sport-utility-kndpv3dg5v7474212/
+"KIA Ohio",KNAG64J77V5544504,2027,Kia,K5,GT-Line,"At Dealership",L270466,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-k5-gt-line-awd-4d-sedan-knag64j77v5544504/
+"KIA Ohio",KNAG64J79V5543869,2027,Kia,K5,GT-Line,"In Transit",L270462,2026-11-13,https://www.loufuszkia.com/inventory/new-2027-kia-k5-gt-line-awd-4-door-sedan-knag64j79v5543869/
 "KIA Ohio",5XYPLESA8VG071506,2027,Kia,"Telluride Hybrid","X-LINE SX PRESTIGE","At Dealership",L270467,2026-11-02,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-5dr-sport-utility-5xyplesa8vg071506/
-"KIA Ohio",KNDECCD39V7079248,2027,Kia,Seltos,EX,"In Transit",L270468,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-ex-awd-5dr-sport-utility-kndeccd39v7079248/
+"KIA Ohio",KNDECCD39V7079248,2027,Kia,Seltos,EX,"At Dealership",L270468,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-ex-awd-4d-sport-utility-kndeccd39v7079248/
 "KIA Ohio",5XYK2CDF5VG493906,2027,Kia,Sportage,LX,"At Dealership",L270461,2026-11-02,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-lx-awd-5dr-sport-utility-5xyk2cdf5vg493906/
 "KIA Ohio",5XYK3CDF5VG495863,2027,Kia,Sportage,EX,"At Dealership",L270463,2026-11-02,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-awd-5dr-sport-utility-5xyk3cdf5vg495863/
 "KIA Ohio",5XYK3CDF9VG495462,2027,Kia,Sportage,EX,"At Dealership",L270464,2026-11-02,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-awd-5dr-sport-utility-5xyk3cdf9vg495462/
-"KIA Ohio",KNDNC5KA8V6236688,2027,Kia,"Carnival MPV Hybrid",EX,"In Transit",L270465,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5ka8v6236688/
+"KIA Ohio",KNDNC5KA8V6236688,2027,Kia,"Carnival Hybrid",EX,"At Dealership",L270465,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-hybrid-ex-fwd-4d-passenger-van-kndnc5ka8v6236688/
 "KIA Ohio",3KPFW4DC8VE450661,2027,Kia,K4,"GT-Line Turbo","In Transit",L270471,2026-11-03,https://www.loufuszkia.com/inventory/new-2027-kia-k4-gt-line-turbo-fwd-4-door-sedan-3kpfw4dc8ve450661/
 "KIA Ohio",5XYK5CDF5VG494612,2027,Kia,Sportage,"SX Prestige","At Dealership",L270469,2026-11-02,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-sx-prestige-awd-5dr-sport-utility-5xyk5cdf5vg494612/
-"KIA Ohio",KNAG64J73V5542393,2027,Kia,K5,GT-Line,"In Transit",L270477,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-k5-gt-line-awd-4-door-sedan-knag64j73v5542393/
-"KIA Ohio",KNAG64J75V5541021,2027,Kia,K5,GT-Line,"In Transit",L270474,2026-11-04,https://www.loufuszkia.com/inventory/new-2027-kia-k5-gt-line-awd-4-door-sedan-knag64j75v5541021/
+"KIA Ohio",KNAG64J73V5542393,2027,Kia,K5,GT-Line,"At Dealership",L270477,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-k5-gt-line-awd-4d-sedan-knag64j73v5542393/
+"KIA Ohio",KNAG64J75V5541021,2027,Kia,K5,GT-Line,"In Transit",L270474,2026-11-13,https://www.loufuszkia.com/inventory/new-2027-kia-k5-gt-line-awd-4-door-sedan-knag64j75v5541021/
 "KIA Ohio",KNDNC5KA2V6228246,2027,Kia,"Carnival MPV Hybrid",EX,"In Transit",L270473,2026-11-04,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5ka2v6228246/
 "KIA Ohio",KNDNE5KA2V6234168,2027,Kia,"Carnival MPV Hybrid",SX,"In Transit",L270472,2026-11-03,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5ka2v6234168/
 "KIA Ohio",KNDNE5KA4V6235094,2027,Kia,"Carnival MPV Hybrid","SX Prestige","In Transit",L270475,2026-11-04,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka4v6235094/
 "KIA Ohio",5XYK6CDF4VG493562,2027,Kia,Sportage,X-Line,"At Dealership",L270476,2026-11-09,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-x-line-awd-5dr-sport-utility-5xyk6cdf4vg493562/
 "KIA Ohio",5XYPLESA7VG072730,2027,Kia,"Telluride Hybrid","X-LINE SX PRESTIGE","At Dealership",L270478,2026-11-09,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-5dr-sport-utility-5xyplesa7vg072730/
-"KIA Ohio",KNDEDCD31V5052599,2027,Kia,Seltos,"X-Line S","In Transit",L270488,2026-11-05,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-x-line-s-awd-5dr-sport-utility-kndedcd31v5052599/
+"KIA Ohio",KNDEDCD31V5052599,2027,Kia,Seltos,"X-Line S","In Transit",L270488,2026-11-13,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-x-line-s-awd-5dr-sport-utility-kndedcd31v5052599/
 "KIA Ohio",7YAPEDDG9VY020179,2027,Kia,"Sportage Hybrid","SX Prestige","At Dealership",L270470,2026-11-04,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-5dr-sport-utility-7yapeddg9vy020179/
 "KIA Ohio",KNAG64J72V5543437,2027,Kia,K5,GT-Line,"In Transit",L270482,2026-11-05,https://www.loufuszkia.com/inventory/new-2027-kia-k5-gt-line-awd-4-door-sedan-knag64j72v5543437/
 "KIA Ohio",3KMDB4DA6VE008380,2027,Kia,EV3,Wind,"In Transit",L270480,2026-11-05,https://www.loufuszkia.com/inventory/new-2027-kia-ev3-wind-fwd-5dr-sport-utility-3kmdb4da6ve008380/
@@ -241,14 +189,69 @@
 "KIA Ohio",KNAG64J73V5541082,2027,Kia,K5,GT-Line,"In Transit",L270490,2026-11-06,https://www.loufuszkia.com/inventory/new-2027-kia-k5-gt-line-awd-4-door-sedan-knag64j73v5541082/
 "KIA Ohio",5XYK33DF8VG491967,2027,Kia,Sportage,EX,"At Dealership",L270491,2026-11-09,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-5xyk33df8vg491967/
 "KIA Ohio",3KPFU5DC3VE454127,2027,Kia,"K4 Hatchback","GT-Line Turbo","In Transit",L270497,2026-11-09,https://www.loufuszkia.com/inventory/new-2027-kia-k4-hatchback-gt-line-turbo-fwd-5-door-sedan-3kpfu5dc3ve454127/
-"KIA Ohio",KNDNE5KAXV6220082,2027,Kia,"Carnival MPV Hybrid",SX,"At Dealership",L270493,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5kaxv6220082/
+"KIA Ohio",KNDNE5KAXV6220082,2027,Kia,"Carnival Hybrid",SX,"At Dealership",L270493,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-hybrid-sx-fwd-4d-passenger-van-kndne5kaxv6220082/
 "KIA Ohio",3KPFT4DE4VE455544,2027,Kia,K4,LXS,"In Transit",L270496,2026-11-09,https://www.loufuszkia.com/inventory/new-2027-kia-k4-lxs-fwd-4-door-sedan-3kpft4de4ve455544/
-"KIA Ohio",KNAG64J77V5544454,2027,Kia,K5,GT-Line,"At Dealership",L270495,2026-11-09,https://www.loufuszkia.com/inventory/new-2027-kia-k5-gt-line-awd-4d-sedan-knag64j77v5544454/
+"KIA Ohio",KNAG64J77V5544454,2027,Kia,K5,GT-Line,"In Transit",L270495,2026-11-09,https://www.loufuszkia.com/inventory/new-2027-kia-k5-gt-line-awd-4-door-sedan-knag64j77v5544454/
 "KIA Ohio",KNDNE5KA9V6201362,2027,Kia,"Carnival MPV Hybrid",SX,"At Dealership",L270492,2026-11-09,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-fwd-minivan-kndne5ka9v6201362/
 "KIA Ohio",5XYPCES1XVG062354,2027,Kia,Telluride,"X-Line EX","At Dealership",L270499,2026-11-09,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-x-line-ex-awd-4d-sport-utility-5xypces1xvg062354/
 "KIA Ohio",5XYC4DJC4VG019962,2027,Kia,EV6,GT-Line,"At Dealership",L270494,2026-11-09,https://www.loufuszkia.com/inventory/new-2027-kia-ev6-gt-line-awd-4d-sport-utility-5xyc4djc4vg019962/
 "KIA Ohio",5XYPLESA2VG074837,2027,Kia,"Telluride Hybrid","X-Line SX Prestige","At Dealership",L270498,2026-11-09,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-4d-sport-utility-5xyplesa2vg074837/
 "KIA Ohio",5XYPDESA3VG071670,2027,Kia,"Telluride Hybrid","X-Line SX","At Dealership",L270500,2026-11-10,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-4d-sport-utility-5xypdesa3vg071670/
 "KIA Ohio",5XYPLESA8VG074566,2027,Kia,"Telluride Hybrid","X-Line SX Prestige","At Dealership",L270501,2026-11-10,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-4d-sport-utility-5xyplesa8vg074566/
-"KIA Ohio",KNAG64J75V5558546,2027,Kia,K5,GT-Line,"At Dealership",L270503,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-k5-gt-line-fwd-4d-sedan-knag64j75v5558546/
+"KIA Ohio",KNAG64J75V5558546,2027,Kia,K5,GT-Line,"In Transit",L270503,2026-11-11,https://www.loufuszkia.com/inventory/new-2027-kia-k5-gt-line-fwd-4-door-sedan-knag64j75v5558546/
+"KIA Ohio",5XYPDES17VG052281,2027,Kia,Telluride,"X-Line SX","At Dealership",L270321,2026-09-29,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-x-line-sx-awd-5dr-sport-utility-5xypdes17vg052281/
+"KIA Ohio",5XYPLES12VG052630,2027,Kia,Telluride,"SX Prestige","At Dealership",L270313,2026-09-28,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-sx-prestige-awd-5dr-sport-utility-5xyples12vg052630/
+"KIA Ohio",3KPFT4DE5TE409198,2026,Kia,K4,LX,"At Dealership",L260895,2026-09-23,https://www.loufuszkia.com/inventory/new-2026-kia-k4-lx-fwd-4-door-sedan-3kpft4de5te409198/
+"KIA Ohio",KNDNC5KA6V6223521,2027,Kia,"Carnival MPV Hybrid",EX,"At Dealership",L270322,2026-10-16,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5ka6v6223521/
+"KIA Ohio",KNDPU3DG5V7445313,2027,Kia,"Sportage Hybrid",LX,"At Dealership",L270315,2026-10-08,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-lx-fwd-5dr-sport-utility-kndpu3dg5v7445313/
+"KIA Ohio",KNDPVDDG6V7452595,2027,Kia,"Sportage Hybrid",X-Line,"At Dealership",L270328,2026-10-01,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-x-line-awd-5dr-sport-utility-kndpvddg6v7452595/
+"KIA Ohio",KNDNB5K39V6671580,2027,Kia,"Carnival MPV",LX,"At Dealership",L270329,2026-10-08,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-lx-fwd-minivan-kndnb5k39v6671580/
+"KIA Ohio",KNDNB5KA8V6211518,2027,Kia,"Carnival MPV Hybrid",LXS,"At Dealership",L270324,2026-10-08,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-lxs-fwd-minivan-kndnb5ka8v6211518/
+"KIA Ohio",KNDCR3JEXV5397886,2027,Kia,Niro,EX,"At Dealership",L270327,2026-10-01,https://www.loufuszkia.com/inventory/new-2027-kia-niro-ex-fwd-mpv-kndcr3jexv5397886/
+"KIA Ohio",KNDNC5K32V6673085,2027,Kia,"Carnival MPV",EX,"At Dealership",L270330,2026-10-08,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-ex-fwd-minivan-kndnc5k32v6673085/
+"KIA Ohio",5XYPDESA8VG058445,2027,Kia,"Telluride Hybrid","X-LINE SX","At Dealership",L270326,2026-09-29,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-5dr-sport-utility-5xypdesa8vg058445/
+"KIA Ohio",5XYPCESA5VG055411,2027,Kia,"Telluride Hybrid",EX,"At Dealership",L270335,2026-09-29,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-ex-awd-5dr-sport-utility-5xypcesa5vg055411/
+"KIA Ohio",5XYK3CDF1VG475349,2027,Kia,Sportage,EX,"At Dealership",L270342,2026-09-22,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-awd-5dr-sport-utility-5xyk3cdf1vg475349/
+"KIA Ohio",5XYK3CDF6VG475282,2027,Kia,Sportage,EX,"At Dealership",L270339,2026-09-22,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-awd-5dr-sport-utility-5xyk3cdf6vg475282/
+"KIA Ohio",5XYPCESA3VG049025,2027,Kia,"Telluride Hybrid",EX,"At Dealership",L270338,2026-09-22,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-ex-awd-5dr-sport-utility-5xypcesa3vg049025/
+"KIA Ohio",5XYPDESA7VG059697,2027,Kia,"Telluride Hybrid","X-LINE SX","At Dealership",L270340,2026-09-29,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-5dr-sport-utility-5xypdesa7vg059697/
+"KIA Ohio",5XYK3CDF8VG479656,2027,Kia,Sportage,EX,"At Dealership",L270343,2026-09-28,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-awd-5dr-sport-utility-5xyk3cdf8vg479656/
+"KIA Ohio",5XYPDESA8VG056758,2027,Kia,"Telluride Hybrid","X-LINE SX","At Dealership",L270344,2026-09-30,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-5dr-sport-utility-5xypdesa8vg056758/
+"KIA Ohio",KNAG44J81V5537448,2027,Kia,K5,GT,"At Dealership",L270346,2026-10-08,https://www.loufuszkia.com/inventory/new-2027-kia-k5-gt-fwd-4-door-sedan-knag44j81v5537448/
+"KIA Ohio",5XYPDESA7VG061496,2027,Kia,"Telluride Hybrid","X-LINE SX","At Dealership",L270351,2026-09-28,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-awd-5dr-sport-utility-5xypdesa7vg061496/
+"KIA Ohio",KNDEECD70V7058592,2027,Kia,Seltos,"X-Line SX","At Dealership",L270352,2026-10-08,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-x-line-sx-awd-5dr-sport-utility-kndeecd70v7058592/
+"KIA Ohio",KNDELCD33V5036388,2027,Kia,Seltos,S,"At Dealership",L270350,2026-10-08,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-s-awd-5dr-sport-utility-kndelcd33v5036388/
+"KIA Ohio",5XYADFS55TG029500,2026,Kia,EV9,"Land AWD","At Dealership",L260900,2026-10-06,https://www.loufuszkia.com/inventory/new-2026-kia-ev9-land-awd-awd-5dr-sport-utility-5xyadfs55tg029500/
+"KIA Ohio",5XYC3DJC9TG019570,2026,Kia,EV6,LIGHT,"At Dealership",L270347,2026-10-06,https://www.loufuszkia.com/inventory/new-2026-kia-ev6-light-awd-5dr-sport-utility-5xyc3djc9tg019570/
+"KIA Ohio",KNDRKDJG2T5566348,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",L260899,2026-10-16,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg2t5566348/
+"KIA Ohio",KNDRKDJG4T5566965,2026,Kia,"Sorento Hybrid","X-Line SX Prestige AWD","At Dealership",L260904,2026-10-22,https://www.loufuszkia.com/inventory/new-2026-kia-sorento-hybrid-x-line-sx-prestige-awd-awd-4dr-sport-utility-kndrkdjg4t5566965/
+"KIA Ohio",KNDNC5KA2V6214315,2027,Kia,"Carnival MPV Hybrid",EX,"At Dealership",L270356,2026-10-21,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5ka2v6214315/
+"KIA Ohio",KNDNE5KA4V6225357,2027,Kia,"Carnival MPV Hybrid","SX Prestige","At Dealership",L270362,2026-10-21,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-sx-prestige-fwd-minivan-kndne5ka4v6225357/
+"KIA Ohio",7YAPCDDG7VY011924,2027,Kia,"Sportage Hybrid",EX,"At Dealership",L270360,2026-09-30,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-ex-awd-5dr-sport-utility-7yapcddg7vy011924/
+"KIA Ohio",7YAPEDDG0VY011337,2027,Kia,"Sportage Hybrid","SX Prestige","At Dealership",L270359,2026-09-30,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-5dr-sport-utility-7yapeddg0vy011337/
+"KIA Ohio",KNDPVDDG6V7460227,2027,Kia,"Sportage Hybrid",X-Line,"At Dealership",L270363,2026-10-16,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-x-line-awd-5dr-sport-utility-kndpvddg6v7460227/
+"KIA Ohio",KNAG64J78V5532152,2027,Kia,K5,GT-Line,"At Dealership",L270366,2026-10-16,https://www.loufuszkia.com/inventory/new-2027-kia-k5-gt-line-awd-4-door-sedan-knag64j78v5532152/
+"KIA Ohio",3KPFT4DE5VE430023,2027,Kia,K4,LXS,"At Dealership",L270365,2026-10-22,https://www.loufuszkia.com/inventory/new-2027-kia-k4-lxs-fwd-4-door-sedan-3kpft4de5ve430023/
+"KIA Ohio",3KPFU4DE8VE433642,2027,Kia,K4,EX,"At Dealership",L270367,2026-10-22,https://www.loufuszkia.com/inventory/new-2027-kia-k4-ex-fwd-4-door-sedan-3kpfu4de8ve433642/
+"KIA Ohio",KNDPV3DG0V7464445,2027,Kia,"Sportage Hybrid",EX,"At Dealership",L270369,2026-10-21,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-ex-fwd-5dr-sport-utility-kndpv3dg0v7464445/
+"KIA Ohio",5XYK6CDF1VG487489,2027,Kia,Sportage,X-Line,"At Dealership",L270372,2026-10-07,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-x-line-awd-5dr-sport-utility-5xyk6cdf1vg487489/
+"KIA Ohio",5XYPLESA3VG063345,2027,Kia,"Telluride Hybrid","X-LINE SX PRESTIGE","At Dealership",L270370,2026-10-05,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-5dr-sport-utility-5xyplesa3vg063345/
+"KIA Ohio",5XYPLESA8VG061591,2027,Kia,"Telluride Hybrid","X-LINE SX PRESTIGE","At Dealership",L270375,2026-10-15,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-hybrid-x-line-sx-prestige-awd-5dr-sport-utility-5xyplesa8vg061591/
+"KIA Ohio",KNDEECD71V7073280,2027,Kia,Seltos,"X-Line SX","At Dealership",L270371,2026-10-21,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-x-line-sx-awd-5dr-sport-utility-kndeecd71v7073280/
+"KIA Ohio",KNDPV3DF8V7552649,2027,Kia,Sportage,EX,"At Dealership",L270374,2026-10-21,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-fwd-5dr-sport-utility-kndpv3df8v7552649/
+"KIA Ohio",KNDPVDDG1V7465268,2027,Kia,"Sportage Hybrid",EX,"At Dealership",L270373,2026-10-27,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-ex-awd-5dr-sport-utility-kndpvddg1v7465268/
+"KIA Ohio",5XYK3CDF9VG485224,2027,Kia,Sportage,EX,"At Dealership",L270382,2026-10-15,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-awd-5dr-sport-utility-5xyk3cdf9vg485224/
+"KIA Ohio",KNDCP3JE6V5394232,2027,Kia,Niro,S,"At Dealership",L270378,2026-10-16,https://www.loufuszkia.com/inventory/new-2027-kia-niro-s-fwd-mpv-kndcp3je6v5394232/
+"KIA Ohio",5XYPLES1XVG056702,2027,Kia,Telluride,"SX Prestige","At Dealership",L270389,2026-10-16,https://www.loufuszkia.com/inventory/new-2027-kia-telluride-sx-prestige-awd-5dr-sport-utility-5xyples1xvg056702/
+"KIA Ohio",KNDEDCD3XV5041472,2027,Kia,Seltos,"X-Line S","At Dealership",L270383,2026-10-16,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-x-line-s-awd-5dr-sport-utility-kndedcd3xv5041472/
+"KIA Ohio",KNDEDCD3XV5041939,2027,Kia,Seltos,"X-Line S","At Dealership",L270386,2026-10-16,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-x-line-s-awd-5dr-sport-utility-kndedcd3xv5041939/
+"KIA Ohio",7YAPCDDG7VY012913,2027,Kia,"Sportage Hybrid",X-Line,"At Dealership",L270381,2026-10-12,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-x-line-awd-5dr-sport-utility-7yapcddg7vy012913/
+"KIA Ohio",3KPFT4DE7VE440097,2027,Kia,K4,LXS,"At Dealership",L270391,2026-10-22,https://www.loufuszkia.com/inventory/new-2027-kia-k4-lxs-fwd-4-door-sedan-3kpft4de7ve440097/
+"KIA Ohio",KNDNC5KA7V6229103,2027,Kia,"Carnival MPV Hybrid",EX,"At Dealership",L270387,2026-10-29,https://www.loufuszkia.com/inventory/new-2027-kia-carnival-mpv-hybrid-ex-fwd-minivan-kndnc5ka7v6229103/
+"KIA Ohio",3KPFW4DE8VE424207,2027,Kia,K4,GT-Line,"At Dealership",L270379,2026-11-02,https://www.loufuszkia.com/inventory/new-2027-kia-k4-gt-line-fwd-4-door-sedan-3kpfw4de8ve424207/
 "KIA Ohio",5XYK33DF8VG496392,2027,Kia,Sportage,EX,"At Dealership",L270505,2026-11-12,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-ex-fwd-4d-sport-utility-5xyk33df8vg496392/
+"KIA Ohio",3KPFT4DE3VE458175,2027,Kia,K4,LXS,"At Dealership",L270509,2026-11-13,https://www.loufuszkia.com/inventory/new-2027-kia-k4-lxs-fwd-4d-sedan-3kpft4de3ve458175/
+"KIA Ohio",KNDPXDDG0V7480368,2027,Kia,"Sportage Hybrid",SX-Prestige,"At Dealership",L270510,2026-11-13,https://www.loufuszkia.com/inventory/new-2027-kia-sportage-hybrid-sx-prestige-awd-4d-sport-utility-kndpxddg0v7480368/
+"KIA Ohio",5XYAEFS54VG032226,2027,Kia,EV9,GT-Line,"At Dealership",L270508,2026-11-13,https://www.loufuszkia.com/inventory/new-2027-kia-ev9-gt-line-awd-4d-sport-utility-5xyaefs54vg032226/
+"KIA Ohio",KNDEDCD34V5056386,2027,Kia,Seltos,"X-Line S","At Dealership",L270506,2026-11-13,https://www.loufuszkia.com/inventory/new-2027-kia-seltos-x-line-s-awd-4d-sport-utility-kndedcd34v5056386/
+"KIA Ohio",5XYRL4JC1VG504783,2027,Kia,Sorento,S,"At Dealership",L270507,2026-11-13,https://www.loufuszkia.com/inventory/new-2027-kia-sorento-s-fwd-4d-sport-utility-5xyrl4jc1vg504783/
