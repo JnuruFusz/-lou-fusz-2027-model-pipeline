@@ -1,11 +1,11 @@
 "Dealership Name",VIN,Year,Make,Model,Trim,"Vehicle Status","Stock Number","Date In stock","VDP URLs"
-"Lou Fusz CDJR Vincennes",3C6LRVBG5SE523719,2025,RAM,ProMaster,SLT,"At Dealership",Y3165,2024-08-09,https://www.loufuszcjdrvincennes.com/inventory/new-2025-ram-promaster-slt-4x2-cargo-van-3c6lrvbg5se523719/
+"Lou Fusz CDJR Vincennes",3C6LRVBG5SE523719,2025,RAM,ProMaster,Base,"At Dealership",Y3165,2024-08-09,https://www.loufuszcjdrvincennes.com/inventory/new-2025-ram-promaster-base-4x2-cargo-van-3c6lrvbg5se523719/
 "Lou Fusz CDJR Vincennes",2C4RC1BG4TR157572,2026,Chrysler,Pacifica,Select,"At Dealership",Y263275,2025-08-26,https://www.loufuszcjdrvincennes.com/inventory/new-2026-chrysler-pacifica-select-fwd-passenger-van-2c4rc1bg4tr157572/
 "Lou Fusz CDJR Vincennes",2C4RC1CG4TR183846,2026,Chrysler,Voyager,LX,"At Dealership",Y263326,2025-10-17,https://www.loufuszcjdrvincennes.com/inventory/new-2026-chrysler-voyager-lx-fwd-passenger-van-2c4rc1cg4tr183846/
 "Lou Fusz CDJR Vincennes",1C4PJXAN8TW162068,2026,Jeep,Wrangler,Sport,"At Dealership",Y263329,2025-10-31,https://www.loufuszcjdrvincennes.com/inventory/new-2026-jeep-wrangler-sport-4x4-2-door-1c4pjxan8tw162068/
 "Lou Fusz CDJR Vincennes",1C4PJXAN1TW166480,2026,Jeep,Wrangler,"Sport S","At Dealership",Y263343,2025-11-10,https://www.loufuszcjdrvincennes.com/inventory/new-2026-jeep-wrangler-sport-s-4x4-2-door-1c4pjxan1tw166480/
 "Lou Fusz CDJR Vincennes",3C63R5EL1TG226378,2026,RAM,2500,Rebel,"At Dealership",Y263370,2025-12-31,https://www.loufuszcjdrvincennes.com/inventory/new-2026-ram-2500-rebel-4x4-crew-cab-3c63r5el1tg226378/
-"Lou Fusz CDJR Vincennes",3C4NJDBN2TT197652,2026,Jeep,Compass,"Latitude Altitude","At Dealership",Y263349,2025-12-03,https://www.loufuszcjdrvincennes.com/inventory/new-2026-jeep-compass-latitude-altitude-4x4-sport-utility-3c4njdbn2tt197652/
+"Lou Fusz CDJR Vincennes",3C4NJDBN2TT197652,2026,Jeep,Compass,Latitude,"At Dealership",Y263349,2025-12-03,https://www.loufuszcjdrvincennes.com/inventory/new-2026-jeep-compass-latitude-4x4-sport-utility-3c4njdbn2tt197652/
 "Lou Fusz CDJR Vincennes",2C4RC1GG8TR211724,2026,Chrysler,Pacifica,Limited,"At Dealership",Y263351,2025-11-24,https://www.loufuszcjdrvincennes.com/inventory/new-2026-chrysler-pacifica-limited-fwd-passenger-van-2c4rc1gg8tr211724/
 "Lou Fusz CDJR Vincennes",2C4RC1CG3TR221891,2026,Chrysler,Voyager,LX,"At Dealership",Y263357,2025-12-12,https://www.loufuszcjdrvincennes.com/inventory/new-2026-chrysler-voyager-lx-fwd-passenger-van-2c4rc1cg3tr221891/
 "Lou Fusz CDJR Vincennes",1C4PJXDG3TW225753,2026,Jeep,Wrangler,"Sport S","At Dealership",Y263368,2025-12-26,https://www.loufuszcjdrvincennes.com/inventory/new-2026-jeep-wrangler-sport-s-4x4-4-door-1c4pjxdg3tw225753/
@@ -27,7 +27,7 @@
 "Lou Fusz CDJR Vincennes",3C63R3DJ7VG368306,2027,RAM,3500,"Big Horn","At Dealership",Y273485,2026-10-07,https://www.loufuszcjdrvincennes.com/inventory/new-2027-ram-3500-big-horn-4x4-crew-cab-3c63r3dj7vg368306/
 "Lou Fusz CDJR Vincennes",1C4RDJDG8TC177889,2026,Dodge,Durango,"GT Plus","At Dealership",Y263481,2026-07-24,https://www.loufuszcjdrvincennes.com/inventory/new-2026-dodge-durango-gt-plus-awd-sport-utility-1c4rdjdg8tc177889/
 "Lou Fusz CDJR Vincennes",3C6UR5CJ8VG373483,2027,RAM,2500,"Black Express","At Dealership",Y273490,2026-10-01,https://www.loufuszcjdrvincennes.com/inventory/new-2027-ram-2500-black-express-4x4-crew-cab-3c6ur5cj8vg373483/
-"Lou Fusz CDJR Vincennes",1C4PJXDNXTW335312,2026,Jeep,Wrangler,"America 250","At Dealership",Y263509,2026-09-15,https://www.loufuszcjdrvincennes.com/inventory/new-2026-jeep-wrangler-america-250-4x4-4-door-1c4pjxdnxtw335312/
+"Lou Fusz CDJR Vincennes",1C4PJXDNXTW335312,2026,Jeep,Wrangler,Willys,"At Dealership",Y263509,2026-09-15,https://www.loufuszcjdrvincennes.com/inventory/new-2026-jeep-wrangler-willys-4x4-4-door-1c4pjxdnxtw335312/
 "Lou Fusz CDJR Vincennes",3C63RRJL7VG400552,2027,RAM,3500,Laramie,"At Dealership",Y273507,2026-10-07,https://www.loufuszcjdrvincennes.com/inventory/new-2027-ram-3500-laramie-4x4-crew-cab-3c63rrjl7vg400552/
 "Lou Fusz CDJR Vincennes",1C4PJXDG5VW573590,2027,Jeep,Wrangler,"Sport S","At Dealership",Y273516,2026-09-29,https://www.loufuszcjdrvincennes.com/inventory/new-2027-jeep-wrangler-sport-s-4x4-4-door-1c4pjxdg5vw573590/
 "Lou Fusz CDJR Vincennes",1C4PJXDG4VW572768,2027,Jeep,Wrangler,"Sport S","At Dealership",Y273515,2026-09-29,https://www.loufuszcjdrvincennes.com/inventory/new-2027-jeep-wrangler-sport-s-4x4-4-door-1c4pjxdg4vw572768/
@@ -38,5 +38,5 @@
 "Lou Fusz CDJR Vincennes",1C4RJXFG5VW585437,2027,Jeep,Wrangler,"Rubicon X","At Dealership",Y273533,2026-11-04,https://www.loufuszcjdrvincennes.com/inventory/new-2027-jeep-wrangler-rubicon-x-4x4-4-door-1c4rjxfg5vw585437/
 "Lou Fusz CDJR Vincennes",1C6SRFJP0VN593065,2027,RAM,1500,Laramie,"At Dealership",Y273520,2026-10-06,https://www.loufuszcjdrvincennes.com/inventory/new-2027-ram-1500-laramie-4x4-crew-cab-1c6srfjp0vn593065/
 "Lou Fusz CDJR Vincennes",3C4PJMB22TT276625,2026,Jeep,Cherokee,Laredo,"At Dealership",Y263527,2026-10-27,https://www.loufuszcjdrvincennes.com/inventory/new-2026-jeep-cherokee-laredo-4x4-sport-utility-3c4pjmb22tt276625/
-"Lou Fusz CDJR Vincennes",1C4RJHBR0TC297725,2026,Jeep,"Grand Cherokee","85th Anniversary Edition","At Dealership",Y263529,2026-10-27,https://www.loufuszcjdrvincennes.com/inventory/new-2026-jeep-grand-cherokee-85th-anniversary-edition-4x4-sport-utility-1c4rjhbr0tc297725/
+"Lou Fusz CDJR Vincennes",1C4RJHBR0TC297725,2026,Jeep,"Grand Cherokee",,"At Dealership",Y263529,2026-10-27,https://www.loufuszcjdrvincennes.com/inventory/new-2026-jeep-grand-cherokee-4x4-sport-utility-1c4rjhbr0tc297725/
 "Lou Fusz CDJR Vincennes",3C4PJMB28TT276628,2026,Jeep,Cherokee,Laredo,"At Dealership",Y263528,2026-10-27,https://www.loufuszcjdrvincennes.com/inventory/new-2026-jeep-cherokee-laredo-4x4-sport-utility-3c4pjmb28tt276628/
