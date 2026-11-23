@@ -1,6 +1,4 @@
 "Dealership Name",VIN,Year,Make,Model,Trim,"Vehicle Status","Stock Number","Date In stock","VDP URLs"
-"Nissan of Moline",JN1BZ4BH7VM551764,2027,Nissan,Z,Performance,"At Dealership",H270043,2026-10-20,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-z-performance-rwd-sports-car-jn1bz4bh7vm551764/
-"Nissan of Moline",1N6ED1CL2VN606235,2027,Nissan,Frontier,"King Cab® S","At Dealership",H270021,2026-09-11,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-frontier-king-cab%c2%ae-s-4x2-truck-1n6ed1cl2vn606235/
 "Nissan of Moline",1N6ED1CL9VN602098,2027,Nissan,Frontier,"King Cab® S","At Dealership",H270033,2026-09-11,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-frontier-king-cab%c2%ae-s-4x2-truck-1n6ed1cl9vn602098/
 "Nissan of Moline",1N6ED1CM7VN601783,2027,Nissan,Frontier,"King Cab® S","At Dealership",H270026,2026-09-11,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-frontier-king-cab%c2%ae-s-4x4-truck-1n6ed1cm7vn601783/
 "Nissan of Moline",1N6ED1CM7VN605218,2027,Nissan,Frontier,"King Cab® S","At Dealership",H270017,2026-09-11,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-frontier-king-cab%c2%ae-s-4x4-truck-1n6ed1cm7vn605218/
@@ -48,8 +46,6 @@
 "Nissan of Moline",5N1BT3BB5TC882667,2026,Nissan,Rogue,"Dark Armor™","At Dealership",H260249,2026-08-21,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-dark-armor%e2%84%a2-awd-crossover-5n1bt3bb5tc882667/
 "Nissan of Moline",JN8BT3DD5TW432698,2026,Nissan,Rogue,Platinum,"At Dealership",H260247,2026-09-17,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-platinum-awd-crossover-jn8bt3dd5tw432698/
 "Nissan of Moline",JN8BT3DD6TW433200,2026,Nissan,Rogue,Platinum,"At Dealership",H260248,2026-09-17,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-platinum-awd-crossover-jn8bt3dd6tw433200/
-"Nissan of Moline",5N1BT3BBXTC883751,2026,Nissan,Rogue,"Rock Creek®","At Dealership",H260245,2026-08-20,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-rogue-rock-creek%c2%ae-awd-crossover-5n1bt3bbxtc883751/
-"Nissan of Moline",5N1DR3DK1TC202509,2026,Nissan,Pathfinder,Platinum,"At Dealership",H260237,2026-08-14,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-pathfinder-platinum-4wd-suv-5n1dr3dk1tc202509/
 "Nissan of Moline",3N1AB9CV0VY217395,2027,Nissan,Sentra,SV,"At Dealership",H270007,2026-09-17,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-sentra-sv-fwd-car-3n1ab9cv0vy217395/
 "Nissan of Moline",3N1AB9CV1VY219351,2027,Nissan,Sentra,SV,"At Dealership",H270018,2026-09-18,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-sentra-sv-fwd-car-3n1ab9cv1vy219351/
 "Nissan of Moline",3N1AB9CV9VY200160,2027,Nissan,Sentra,SV,"At Dealership",H270001,2026-08-26,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-sentra-sv-fwd-car-3n1ab9cv9vy200160/
@@ -77,3 +73,5 @@
 "Nissan of Moline",5N1DR3DK7TC295620,2026,Nissan,Pathfinder,Platinum,"At Dealership",H260264,2026-09-23,https://www.loufusznissanmoline.com/inventory/new-2026-nissan-pathfinder-platinum-4wd-suv-5n1dr3dk7tc295620/
 "Nissan of Moline",3N1AB9BV6VY231478,2027,Nissan,Sentra,S,"At Dealership",H270042,2026-10-07,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-sentra-s-fwd-car-3n1ab9bv6vy231478/
 "Nissan of Moline",3N1AB9BV8VY232759,2027,Nissan,Sentra,S,"At Dealership",H270044,2026-10-07,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-sentra-s-fwd-car-3n1ab9bv8vy232759/
+"Nissan of Moline",JN1BZ4BH7VM551764,2027,Nissan,Z,Performance,"At Dealership",H270043,2026-10-20,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-z-performance-rwd-sports-car-jn1bz4bh7vm551764/
+"Nissan of Moline",1N6ED1CL2VN606235,2027,Nissan,Frontier,"King Cab® S","At Dealership",H270021,2026-09-11,https://www.loufusznissanmoline.com/inventory/new-2027-nissan-frontier-king-cab%c2%ae-s-4x2-truck-1n6ed1cl2vn606235/
